@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>AngularJS Insights - By @PascalPrecht</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/neoskop-light.css" id="theme">
+    <link rel="stylesheet" href="custom.css" id="theme">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" ng-app="myApp">
+
+        <section>
+          <h1><img src="img/angularjs-logo.png" class="no-shadow" alt="angularjs-logo" width="700"> Insights</h1>
+          <br>
+          <p>By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a></p>
+          <p><strong>#HannoverJS</strong> 24th Jan '13</p>
+        </section>
+
+        <section>
+          <section>
+          <h1>Hello there.</h1>
+          <div class="fragment">
+            <p class="name-me">This is me <br>(<a href="http://twitter.com/PascalPrecht">@PascalPrecht</a>)</p>
+            <img src="img/me.png" alt="me" class="profile">
+            <p class="name-him">My neighbor.<br> He likes coding. <br>But he can't.</p>
+          </div>
+          </section>
+
+          <section>
+            <h1><img src="img/neo-logo.png" class="no-shadow" alt="neoskop-logo" width="400"></h1>
+            <img src="img/heartworking.gif" class="no-shadow" alt="heartworking">
+            <img src="img/heart.gif" class="no-shadow" alt="heart">
+          </section>
+
+          <section>
+            <h3>For those who are interested...</h3>
+            <div class="fragment">
+              <h2>We also play soccer!</h2>
+              <img src="img/neo-soccer.jpg" alt="neo-soccer" width="650" class="soccer">
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+          <p><img src="img/angularjs-shield.png" alt="angular-shield" class="shield no-shadow"> <span class="fragment grow qmark">?</span></p>
+          </section>
+
+          <section>
+            <blockquote class="big">
+              AngularJS is what HTML would have been, had it been designed for applications.
+            </blockquote>
+          </section>
+
+          <section>
+            <h2>HTML enhanced for web apps!</h2>
+          </section>
+
+          <section>
+            <h1>HTML++</h1>
+          </section>
+        </section>
+
+        <section>
+          <section>
+          <h2>Great features!</h2>
+          </section>
+
+          <section>
+          <h3>Dependency Injection.</h3>
+          <h3 class="fragment">Modularization.</h3>
+          <h3 class="fragment">Testability.</h3>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Example</h1>
+          </section>
+
+          <section>
+            <h1>Hello {{name}}!</h1>
+            <br>
+            <br>
+            <h3>Enter your name:</h3>
+            <input type="text" ng-model="name" class="big">
+          </section>
+
+          <section>
+          <h2>The code.</h2>
+          <br>
+            <pre><code contenteditable ng-non-bindable>
+&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;
+&lt;h3&gt;Enter your name:&lt;/h3&gt;
+&lt;input type="text" ng-model="name"&gt;
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Another example</h2>
+          </section>
+
+          <section ng-controller="FilterCtrl">
+            <input type=text ng-model="search" class="big">
+
+            <table id="songs">
+              <tr>
+                <td><h3>Song</h3></td>
+                <td><h3>Interpret</h3></td>
+              </tr>
+              <tr ng-repeat="song in songs | orderBy:'title' | filter:search">
+                <td>{{song.title}}</td>
+                <td>{{song.artist | uppercase}}</td>
+              </tr>
+            </table>
+          </section>
+
+          <section>
+            <h2>The code.</h2>
+            <pre><code contenteditable ng-non-bindable>
+&lt;section&gt; ng-controller="FilterCtrl"&gt;
+  &lt;input type="text" ng-model="search"&gt;
+
+  &lt;table&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Song&lt;/td&gt;
+      &lt;td&gt;Interpret&lt;/td&gt;
+    &lt;/tr&gt;
+
+  &lt;tr ng-repeat="song in songs | orderBy:'title' | filter:search"&gt;
+      &lt;td&gt;{{song.title}}&lt;/td&gt;
+      &lt;td&gt;{{song.artist | uppercase}}&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/section&gt;
+            </code></pre>
+          </section>
+
+        </section>
+        <section>
+          <section>
+            <h2>Can't get enough?</h2>
+          </section>
+
+          <section>
+            <h2>Drag the heart!</h2>
+            <br>
+            <div id="drag" draggable></div>
+          </section>
+
+          <section>
+            <h2>The code.</h2>
+            <pre><code contenteditable ng-non-bindable>
+&lt;h2&gt;Drag the heart!&lt;/h2&gt;
+&lt;div draggable&gt;&lt;/div&gt;
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>...and a bunch of other code.</h2>
+            <pre><code contenteditable ng-non-bindable class="scrollable">
+app.directive('draggable', function($document) {
+    var startX=0, startY=0, x = 0, y = 0;
+    return function(scope, element, attr) {
+      element.css({
+       position: 'relative',
+       cursor: 'pointer'
+      });
+      element.bind('mousedown', function(event) {
+        startX = event.screenX - x;
+        startY = event.screenY - y;
+        $document.bind('mousemove', mousemove);
+        $document.bind('mouseup', mouseup);
+      });
+
+      function mousemove(event) {
+        y = event.screenY - startY;
+        x = event.screenX - startX;
+        element.css({
+          top: y + 'px',
+          left:  x + 'px'
+        });
+      }
+
+      function mouseup() {
+        $document.unbind('mousemove', mousemove);
+        $document.unbind('mouseup', mouseup);
+      }
+    }
+  });
+          </code></pre>
+          </section>
+        </section>
+
+        <section>
+        <h2>Where does all the awesomeness come from?!</h2>
+        <img class="no-shadow" height="300" src="http://2.bp.blogspot.com/-JYPXG2GqjYI/UL_fKTFuvlI/AAAAAAAABOI/11Fv5XbvNBc/s1600/goo.gif">
+        </section>
+
+        <section>
+          <section>
+            <h1>The Zen of Angular</h1>
+          </section>
+
+          <section>
+            <ul id="zen">
+              <li><h3>Declarative code is better for UI's</h3></li>
+              <li class="fragment"><h3>Imperative code is excellent for expressing business logic</h3></li>
+              <li class="fragment"><h3>Decoupling DOM manipulation from app logic improves testability</h3></li>
+            </ul>
+          </section>
+
+          <section>
+          <h2>..this means you don't have to care about:</h2>
+          <br>
+          <br>
+          <ul id="zen">
+            <li class="fragment"><h3>Registering callbacks</h3></li>
+            <li class="fragment"><h3>Manipulating HTML DOM programmatically</h3></li>
+            <li class="fragment"><h3>Writing tons of initialization code just to get started</h3></li>
+          </ul>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h2>Bootstrapping an Angular app</h2>
+          </section>
+
+          <section>
+          <h2>Using <code>ng-app</code></h2>
+            <br>
+            <pre><code contenteditable ng-non-bindable class="scrollable">
+&lt;html ng-app="optionalModuleName"&gt;
+  &lt;body&gt;
+    I can add {{ 1+2 }}.
+    &lt;script src="angular.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Behind the scenes</h2>
+            <img src="img/concepts-startup.png" height="500">
+          </section>
+
+          <section>
+            <h2>Manual Initialization</h2>
+            <br>
+            <pre><code contenteditale ng-non-bindable class="scrollable">
+&lt;html ng-app="optionalModuleName"&gt;
+  &lt;body&gt;
+    Hello {{'World'}}!
+    &lt;script src="angular.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      angular.element(document).ready(function () {
+        angular.bootstrap(document);
+      });
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Step by step</h2>
+            <br>
+            <pre><code contenteditable ng-non-bindable class="scrollable">
+window.onload = function() {
+  var $rootElement = angular.element(window.document);
+  var modules = [
+    'ng',
+    'myApp',
+    function($provide) {
+      $provide.value('$rootElement', $rootElement)
+    }
+  ];
+  var $injector = angular.injector(modules);
+  var $compile = $injector.get('$compile');
+  var compositeLinkFn = $compile($rootElement);
+
+  var $rootScope = $injector.get('$rootScope');
+  compositeLinkFn($rootScope);
+
+  $rootScope.$apply();
+}
+            </code></pre>
+          </section>
+
+        </section>
+
+
+        <section>
+          <h1>Demo</h1>
+        </section>
+
+
+        <section>
+          <section>
+          <h1>The Scope</h1> 
+          <h2>(aka the glue)</h2>
+          </section>
+
+          <section>
+           <div ng-controller="MyCtrl">
+             <h1>Hello {{name}}!</h1>
+              <button ng-click="action()" id="fat">OK</button>
+            </div>
+          </section>
+
+          <section>
+            <h2>Behind the scenes</h2>
+            <img src="img/concepts-controller.png" height="400">
+          </section>
+        </section>
+
+        <section>
+          <section>
+          <h1>Angular Runtime</h1>
+          </section>
+
+          <section>
+          <h2>Single source of truth</h2>
+          <br>
+            <h3>Oh my {{name}}!</h3>
+            <h3>Oh my {{name}}!</h3>
+            <h3>Oh my {{name}}!</h3>
+            <h3>Oh my {{name}}!</h3>
+            <h3>Oh my {{name}}!</h3>
+          </br>
+            <input type="text" ng-model="name" class="big">
+          </section>
+
+          <section>
+            <h2>Behind the scenes</h2>
+            <img src="img/concepts-runtime.png" height="500">
+          </section>
+
+          <section>
+            <h2>Example: Hello world</h2>
+            <br>
+            <ul>
+              <li class="fragment"><h3>ng-model and input directive set up keydown listener</h3></li>
+              <li class="fragment"><h3>{{name}} interpolation sets up $watch expression</h3></li>
+              <li class="fragment"><h3>input directive captures change to input's value and calls $apply("name = 'x';")</h3></li>
+              <li class="fragment"><h3>$digest loop begins</h3></li>
+              <li class="fragment"><h3>$watch list detects change and notifies {{name}} interpolation</h3></li>
+              <li class="fragment"><h3>Angular exits execution context -> exits keydown event -> exits JS execution context</h3></li>
+              <li class="fragment"><h3>Browser re-renders the view</h3></li>
+            <ul>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h1>Providers</h1>
+            <h2>(aka $provide)</h2>
+          </section>
+
+          <section>
+            <h2>Ways of getting data into your controllers</h2>
+
+            <ul>
+              <li class="fragment"><h3>value</h3></li>
+              <li class="fragment"><h3>constant</h3></li>
+              <li class="fragment"><h3>service</h3></li>
+              <li class="fragment"><h3>factory<h3></li>
+              <li class="fragment"><h3>decorator</h3></li>
+              <li class="fragment"><h3>provider</h3></li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>The first time I got into this...</h2>
+          </section>
+
+          <section>
+            <h2 class="fragment">Srsly.</h2>
+            <img src="img/wtf.gif" height="300">
+          </section>
+
+          <section>
+          <h1>Constant</h1>
+          <br>
+          <h3>Injectable anywhere!</h3>
+          <br>
+          <pre><code contenteditable ng-non-bindable class="scrollable">
+app.constant('HannoverJS', 'Is awesome!');
+          </code></pre>
+          <p>(This is definitely a constant)</p>
+          </section>
+
+          <section>
+            <h1>Value</h1>
+            <br>
+            <h3>Injectable value.</h3>
+            <br>
+          <pre><code contenteditable ng-non-bindable class="scrollable">
+app.value('hash', { foo: 'bar' });
+          </code></pre>
+          <p>Could be anything: Primitive, Hash ...</p>
+          </section>
+
+          <section>
+            <h1>Service</h1>
+            <br>
+            <h3>Injectable constructor.</h3>
+            <br>
+          <pre><code contenteditable ng-non-bindable class="scrollable">
+app.service('ServiceA', function (dep) { ... });
+          </code></pre>
+
+          <p>Singleton.</p>
+          </section>
+
+          <section>
+            <h1>Factory</h1>
+            <br>
+            <h3>Injectable function.</h3>
+            <br>
+            <pre><code contenteditable ng-non-bindable class="scrollable">
+  app.factory('CarFactory', function (dep) { ... return 'foo'; });
+            </code></pre>
+            <p>Actually, a provider with only a $get method.</p>
+            <p>More creating a factory then being a factory.</p>
+          </section>
+
+          <section>
+            <h1>Provider</h1>
+            <br>
+            <pre><code contenteditable ng-non-bindable class="scrollable">
+$provide.provider('foo', {$get: function (dep) { ... }});
+$provide.provider('foo', function () {
+  this.$get = function (dep) { ... };
+});
+            </code></pre>
+            <p>$get method required!</p>
+          </section>
+        </section>
+
+
+        <section>
+          <section>
+          <h2>Wanna get started?</h2>
+          <br>
+          <br>
+          <ul>
+            <li><h3><a target="_blank" href="https://github.com/angular/angular-seed">Angular Seed</a></h3></li>
+            <li><h3><a target="_blank" href="https://github.com/btford/angular-express-seed">Angular Express Seed</a></h3></li>
+            <li><h3><a target="_blank" href="https://github.com/btford/angular-socket-io-seed">Angular Socket Seed</a></h3></li>
+          </ul>
+          </section>
+
+          <section>
+            <h2>What you should also check out:</h2>
+            <br>
+            <br>
+            <ul>
+              <li><h3><a target="_blank" href="https://github.com/angular/angularjs-batarang">Angular Batarang</a></h3></li>
+              <li><h3><a target="_blank" href="http://angular-ui.github.com/">Angular UI</a></h3></li>
+              <li><h3><a target="_blank" href="http://ngmodules.org">ngmodules.org</a></h3></li>
+            </ul>
+          </section>
+        </section>
+  
+        <section>
+        <h1>Thank you!</h1>
+        <h2><img  height="300"src="http://3.bp.blogspot.com/-9bTAaB0cKHM/UJz-uVACG6I/AAAAAAAABKc/Sg7mhwjkL8s/s1600/chowyunfat.gif"></h2>
+        <ul>
+          <li>Twitter: <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a></li>
+          <li>Slides: <a href="http://github.com/PascalPrecht/slides">github.com/PascalPrecht/slides/angularjs-insights</a></li>
+        </ul>
+        </section>
+			</div>
+
+		</div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+    <script>
+      var app = angular.module('myApp', []);
+
+      app.controller('FilterCtrl', ['$scope', 'Songs', function ($scope, Songs) {
+        $scope.songs = Songs;
+      }]);
+
+      app.controller('MyCtrl', ['$scope', function ($scope) {
+        $scope.action = function() {
+          $scope.name = 'OK';
+        }
+        $scope.name = 'World'; 
+      }]);
+
+      app.factory('Songs', function () {
+        var Songs = [
+          {
+            title: 'Bangarang',
+            artist: 'Skrillex'
+          },
+          {
+            title: 'Harder Better Faster Stronger',
+            artist: 'Daftpunk'
+          },
+          {
+            title: 'Badwings',
+            artist: 'Glitchmob'
+          },
+          {
+            title: 'Golddust',
+            artist: 'DJ Fresh'
+          },
+          {
+            title: 'Jeffer',
+            artist: 'Boys Noize'
+          },
+          {
+            title: 'Whole World locked',
+            artist: 'Break Science'
+          },
+          {
+            title: 'Right In',
+            artist: 'Skrillex'
+          },
+          {
+            title: 'Breezeblock',
+            artist: 'Camo & Crooked'
+          },
+          {
+            title: 'Black Sands',
+            artist: 'Bonobo'
+          },
+          {
+            title: 'Prelude',
+            artist: 'Bonobo'
+          },
+          {
+            title: 'Around the world',
+            artist: 'Da Chip'
+          },
+          {
+            title: 'Genesis',
+            artist: 'Justice'
+          },
+          {
+            title: 'Phantom',
+            artist: 'Justice'
+          },
+        ];
+
+        return Songs;
+      });
+
+      app.directive('draggable', function($document) {
+          var startX=0, startY=0, x = 0, y = 0;
+          return function(scope, element, attr) {
+            element.css({
+             position: 'relative',
+             cursor: 'pointer'
+            });
+            element.bind('mousedown', function(event) {
+              startX = event.screenX - x;
+              startY = event.screenY - y;
+              $document.bind('mousemove', mousemove);
+              $document.bind('mouseup', mouseup);
+            });
+
+            function mousemove(event) {
+              y = event.screenY - startY;
+              x = event.screenX - startX;
+              element.css({
+                top: y + 'px',
+                left:  x + 'px'
+              });
+            }
+
+            function mouseup() {
+              $document.unbind('mousemove', mousemove);
+              $document.unbind('mouseup', mouseup);
+            }
+          }
+        });
+
+    </script>
+	</body>
+</html>

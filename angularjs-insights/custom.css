@@ -1,0 +1,99 @@
+.reveal section img.no-shadow {
+  box-shadow: none!important;
+}
+
+.reveal section img.profile {
+  -moz-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  -o-transform: rotate(8deg);
+  -webkit-transform: rotate(8deg);
+  margin-top: 50px;
+}
+
+.reveal section img.soccer {
+  -moz-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  -o-transform: rotate(-8deg);
+  -webkit-transform: rotate(-8deg);
+  margin-top: 50px;
+}
+
+.reveal p.name-me {
+  position: absolute;
+  left: -120px;
+  top: 250px;
+  width: 220px;
+  z-index: 1;
+  -webkit-transform: rotate(-10deg);
+}
+
+.reveal p.name-him {
+  position: absolute;
+  right: -120px;
+  bottom: 0;
+  width: 230px;
+  -webkit-transform: rotate(10deg);
+}
+
+.reveal section img.shield {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.reveal p span.qmark {
+  font-size: 13em;
+  margin-left: 50px;
+  display: inline-block;
+}
+
+.reveal section blockquote.big {
+  font-size: 1.8em;
+  line-height: 1.2em;
+}
+
+input.big {
+  width: 450px;
+  height: 60px;
+  font-size: 1.5em;
+  border-radius: 0.2em;
+}
+
+#songs {
+  width: 100%;
+  margin-top: 1em;
+}
+#songs td {
+  padding: 0.3em;
+  border-bottom: 1px solid #ccc;
+}
+
+#songs tr:first-child td {
+  border-bottom: 1px solid #AAA;
+  padding-bottom: 0;
+}
+#songs tr td:first-child {
+  width: 50%;
+}
+
+#drag {
+  background: url(img/heart.gif);
+  background-repeat: no-repeat;
+  height: 450px;
+  width: 295px;
+  margin: auto;
+}
+
+.scrollable {
+  overflow: auto;
+}
+
+#zen li h3{
+  line-height: 1.3em;
+}
+
+#fat {
+  font-size: 2em;
+  border-radius: 0.3em;
+  background-color: #bada55;
+  padding: 0.5em 1em;
+}
