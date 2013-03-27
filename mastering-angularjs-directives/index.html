@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Mastering AngularJS Directives - By @PascalPrecht</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/neoskop-light.css" id="theme">
+    <link rel="stylesheet" href="custom.css" id="theme">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" ng-app="myApp">
+
+        <section>
+          <h1>Mastering</h1>
+          <h1><img src="img/angularjs-logo.png" class="no-shadow" alt="angularjs-logo" width="600"></h1>
+          <h1>Directives</h1>
+          <br>
+          <p>By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a></p>
+          <p><strong>#HannoverJS</strong> 28th Mar '13</p>
+        </section>
+
+        <section>
+          <section>
+          <h1>Hi!</h1>
+          <div class="fragment">
+            <p class="name-me">This is me <br>(<a href="http://twitter.com/PascalPrecht">@PascalPrecht</a>)</p>
+            <img src="img/me.png" alt="me" class="profile">
+            <p class="name-him">My neighbor.<br> He likes coding. <br>But he can't.</p>
+          </div>
+          </section>
+
+          <section>
+            <h1><img src="img/neo-logo.png" class="no-shadow" alt="neoskop-logo" width="400"></h1>
+            <img src="img/heartworking.gif" class="no-shadow" alt="heartworking">
+            <img src="img/heart.gif" class="no-shadow" alt="heart">
+          </section>
+
+          <section>
+            <img src="img/neo-logo.png" class="no-shadow" style="margin-bottom: 10px"alt="neoskop-logo" width="400">
+            <h1 class="love">&lt;3</h1>
+            <img src="img/angularjs-shield.png" alt="me" class="no-margin no-shadow" width="350">
+            <div class="fragment">
+              <figure class="smile">
+                <img src="img/i-like-that.gif"  width="300">
+                <figcaption>
+                  <p>And I like that!</p>
+                  </figcaption>
+              </figure>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+          <h1>WTF directives <span class="grow qmark">?</span></h1>
+          </section>
+
+          <section>
+            <blockquote class="big">
+              Directives are a way to teach HTML new tricks!
+            </blockquote>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h1>Example:</h1>
+          </section>
+
+          <section>
+            <h2>Drag the heart!</h2>
+            <br>
+            <div id="drag" draggable></div>
+            <pre><code contenteditable ng-non-bindable>// The code you actually use
+&lt;h2&gt;Drag the heart!&lt;/h2&gt;
+&lt;div draggable&gt;&lt;/div&gt;</code></pre>
+          </section>
+
+          <section>
+            <h2>Directive code</h2>
+            <pre><code contenteditable ng-non-bindable class="scrollable">app.directive('draggable', function($document) {
+    var startX=0, startY=0, x = 0, y = 0;
+    return function(scope, element, attr) {
+      element.css({
+       position: 'relative',
+       cursor: 'pointer'
+      });
+      element.bind('mousedown', function(event) {
+        startX = event.screenX - x;
+        startY = event.screenY - y;
+        $document.bind('mousemove', mousemove);
+        $document.bind('mouseup', mouseup);
+      });
+
+      function mousemove(event) {
+        y = event.screenY - startY;
+        x = event.screenX - startX;
+        element.css({
+          top: y + 'px',
+          left:  x + 'px'
+        });
+      }
+
+      function mouseup() {
+        $document.unbind('mousemove', mousemove);
+        $document.unbind('mouseup', mouseup);
+      }
+    }
+  });</code></pre>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h1>Cool, what else?</h1>
+          </section>
+
+          <section>
+          <h2>Re-usable components</h2>
+          <br>
+          <br>
+            <tabs>
+              <tab title="Tab 1">
+                Angular is what?!
+              </tab>
+
+              <tab title="Tab 2">
+                Awesome.
+              </tab>
+            </tabs>
+            <br><br><br>
+            <pre><code contenteditable ng-non-bindable>&lt;tabs&gt;
+  &lt;tab title="Tab 1"&gt;
+    Angular is what?! 
+  &lt;/tab&gt;
+  &lt;tab title="Tab 2"&gt;
+    Awesome.
+  &lt;/tab&gt;
+&lt;/tabs&gt;</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Not cool enough?</h1>
+            <br>
+            <h2 class="fragment">Okay. One more try.</h2>
+          </section>
+
+          <section>
+          <h2>This is a Zippy.</h2>
+          <p>Click around and have some fun with it...</p>
+            <br>
+            <br>
+            <zippy title="Click to toggle">
+              Zippy's content
+            </zippy>
+            <br><br><br>
+            <pre><code contenteditable ng-non-bindable>&lt;zippy title="Click to toggle"&gt;
+  Zippy's content
+&lt;/zippy&gt;</code></pre>
+          </section>
+
+          <section>
+          <h2 class="fragment">And this...</h2>
+          <div id="hacky" class="fragment">
+          <zippy title="Let's kick some asses!">
+            <zippy title="WTF..?!">
+              <zippy title="Nesting?">
+                <zippy title="You got the point.">
+                  <h3>ZippyCeption!!!!!!</h3>
+                  <img src="http://24.media.tumblr.com/tumblr_m7gwym8FTy1r04vyuo1_500.gif">
+                </zippy>
+              </zippy>
+            </zippy>
+            </zippy>
+          </div>
+          </section>
+
+          <section>
+          <h2>Yeap. You can do that.</h2>
+          <br><br>
+            <pre><code contenteditable ng-non-bindable>&lt;zippy title="Let's kick some asses!"&gt;
+  &lt;zippy title="WTF...?!"&gt;
+    &lt;zippy title="Nesting?"&gt;
+       .... and so on
+    &lt;/zippy&gt;
+  &lt;/zippy&gt;
+&lt;/zippy&gt;</code></pre>
+          </section>
+        </section>
+
+
+        <section>
+          <img class="no-shadow" width="300" src="img/wow.gif">
+          <div class="fragment">
+            <figure class="smile">
+              <img src="img/i-like-that.gif"  width="300">
+                <figcaption>
+                  <p>Yeap.</p>
+                  </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section>
+          <section>
+            <h2>Angular is the <b>only</b> framework that can do that!</h2>
+            <img src="http://bukk.it/srsly.gif">
+          </section>
+
+          <section>
+            <blockquote class="big">
+              Think of angular as a better browser rather then a framework.
+            </blockquote>
+            <p>-  Miško Hevery</p>
+            <br>
+            <h2 class="fragment">True that is!</h2>
+          </section>
+        </section>
+
+        <section>
+          <h1>Let's dive in!</h1>
+        </section>
+
+        <section>
+        <h2>Angular comes with a lot of built-in directives</h2>
+        <br>
+        <p>To see a list of built-in directives click the link below, check out the 'directive' section on the left and try out the examples.</p>
+        <br><br><br>
+        <a target="_blank" href="http://docs.angularjs.org/api/">⊂(◉‿◉)つ<br>awesomeness</a>
+        </section>
+
+        <section>
+          <section>
+            <h2>So how does this work?</h2>
+          </section>
+
+          <section>
+            <h2>Behind the scenes</h2>
+            <img src="img/concepts-startup.png" height="500">
+            </section>
+
+          <section>
+            <h2>Manual and compiling and linking</h2>
+            <br>
+            <pre><code contenteditable ng-non-bindable class="scrollable">
+window.onload = function() {
+  var $rootElement = angular.element(window.document);
+  var modules = [
+    'ng',
+    'myApp',
+    function($provide) {
+      $provide.value('$rootElement', $rootElement)
+    }
+  ];
+  var $injector = angular.injector(modules);
+  var $compile = $injector.get('$compile');
+  var compositeLinkFn = $compile($rootElement);
+
+  var $rootScope = $injector.get('$rootScope');
+  compositeLinkFn($rootScope);
+
+  $rootScope.$apply();
+}
+            </code></pre>
+
+          </section>
+
+        </section>
+
+
+        <section>
+          <section>
+          <h2>Building your own directives</h2>
+          <h3>(short version)</h3>
+          </section>
+
+
+          <section>
+          <h2>Definition:</h2>
+          <br>
+            <pre><code contenteditable ng-non-bindable>var app = anular.module('myApp', []);
+
+app.directive('directiveName', function factory(injectables) {
+
+  return function linkFn(scope, iElement, iAttrs) {
+    // Logic which has access to instance element,
+    // scope and instance attributes
+  };
+
+});</code></pre>
+          </section>
+
+
+
+          <section>
+          <h2>Example:</h2>
+            <pre><code contenteditable ng-non-bindable>var app = anular.module('myApp', []);
+
+app.directive('alertFoo', function () {
+  return function (scope, element, attrs) {
+    element.bind('hover', function () {
+      alert('foo');
+    });
+  );
+});</code></pre>
+          <br>
+          <h2>Usage:</h2>
+          <pre><code contenteditable ng-non-bindable>&lt;ANY foo&gt;&lt;/ANY&gt;</pre></code>
+          <br>
+          <h2>Result:</h2>
+          <pre><code contenteditable ng-non-bindable>&lt;ANY foo class="foo"&gt;&lt;/ANY&gt;</pre></code>
+          <p>Working sample? <a target="_blank" href="http://jsfiddle.net/PascalPrecht/9c7tB/1/">Click here!</a></p>
+          </section>
+
+          <!-- <section>
+            <h2>Things to remember</h2>
+            <h3>(short version)</h3>
+            <br>
+            <ul>
+              <li class="fragment"><h3>Registered directive just returns a function<br> (which is actually the linkFn())<h3><br></li>
+                  <li class="fragment"><h3>linkFn() has access to <b>scope, element and attributes</b></h3><br></li>
+                  <li class="fragment"><h3>Directive can be used as attribute <br>(by default)</h3></li>
+            </ul>
+            </section> -->
+
+        </section>
+
+          <section>
+          <h2>Directive Definition Object</h2>
+<pre><code contenteditable ng-non-bindable>var app = anular.module('myApp', []);
+
+app.directive('foo', function () {
+  return {
+    priority: 0,
+    template: '&lt;div&gt;&lt;/div&gt;',
+    templateUrl: 'template.html',
+    replace: false,
+    transclude: false,
+    restrict: 'A',
+    scope: false,
+    compile: function compile(tElement, tAttrs, transclude) {
+      return {
+        pre: function (scope, iElement, iAttrs, controller) {}
+        post: function (scope, iElement, iAttrs, controller) {}
+      }
+    },
+    link: function postLink(scope, iElement, iAttrs) {}
+  };
+});</pre></code>
+          </section>
+
+        <section>
+          <h2>Let's take deeper look</h2>
+        </section>
+
+        <section>
+          <section>
+            <h2>Directive Restriction</h2>
+          </section>
+
+          <section>
+            <h2>In Angular you can ...</h2>
+
+            <br>
+            <ul>
+              <li><p>...define directives as attribute</p></li>
+              <li><p>...define directives as class</p></li>
+              <li><p>...define directives as element</p></li>
+              <li><p>...define directives as comment</p></li>
+            </ul>
+            <br><br>
+            <p><a target="_blank" href="http://jsfiddle.net/PascalPrecht/9c7tB/5/">⊂(◉‿◉)つ<br>awesomeness</a></p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Priorizing Directives</h2>
+          </section>
+
+          <section>
+          <h2>Things to notice:</h2>
+          <br><br>
+          <ul>
+            <li><h3>Directives are linked in a Depth-First, Bottom-Up approach</h3><br></li>
+            <li><h3>ng-controller has it's own link timing. Controllers are linked top-down</h3><br></li>
+            <li><h3>You can change your directives link timing behavior with <b>priorities</b></h3></li>
+          </ul>
+          <br><br>
+          <p><a target="_blank" href="http://jsfiddle.net/PascalPrecht/9c7tB/2/">⊂(◉‿◉)つ<br>awesomeness</a></p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Directive Scope</h2>
+          </section>
+
+          <section>
+          <h2>A directives scope can...</h2>
+          <br>
+          <br>
+          <ul>
+            <li><h3><a target="_blank" href="http://jsfiddle.net/PascalPrecht/9c7tB/6/">be a child scope</a></h3></li>
+            <li><h3><a target="_blank" href="http://jsfiddle.net/PascalPrecht/9c7tB/7/">be an isolated scope</a></h3></li>
+          </ul>
+
+          <br><br>
+          <p>...and there's more</p>
+          <p><a target="_blank" href="https://github.com/angular/angular.js/wiki/The-Nuances-of-Scope-Prototypal-Inheritance">⊂(◉‿◉)つ<br>awesomeness</a></p>
+          </section>
+
+          <section>
+          <h2>Things to notice:</h2>
+          <br><br>
+          <ul>
+            <li><h3>If more than one directive requests a new scope, only one new scope is created</h3><br></li>
+            <li><h3>Isolated scope doesn't prototypically inherit</h3><br></li>
+            <li><h3>You can define your directives interface through attributes (@, =, &)</h3></li>
+          </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Transclusion</h2>
+          </section>
+
+          <section>
+            <h2>Zippy uses transclusion</h2>
+            <br>
+            <br>
+            <zippy title="Click to toggle">
+              Zippy's content
+            </zippy>
+            <br><br><br>
+            <pre><code contenteditable ng-non-bindable>&lt;zippy title="Click to toggle"&gt;
+  Zippy's content
+&lt;/zippy&gt;</code></pre>
+            <br><br>
+            <p><a target="_blank" href="http://jsfiddle.net/PascalPrecht/9c7tB/8/">⊂(◉‿◉)つ<br>Dig it</a></p>
+          </section>
+          <section>
+
+          <h2>Things to notice:</h2>
+          <br><br>
+          <ul>
+            <li><h3>A transcluded scope is a sibling of an isolated scope</h3><br></li>
+            <li><h3>A transcluded scope prototypically inherits from parent scope</h3><br></li>
+          </ul>
+          </section>
+        </section>
+
+
+        <section>
+          <section>
+          <h2>Wanna get started?</h2>
+          <br>
+          <br>
+          <ul>
+            <li><h3><a target="_blank" href="http://docs.angularjs.org/guide/directive">Read this</a></h3></li>
+            <li><h3><a target="_blank" href="https://github.com/angular/angular.js/wiki/The-Nuances-of-Scope-Prototypal-Inheritance">And this</a></h3></li>
+          </ul>
+          </section>
+
+          <section>
+            <h2>For real examples take a look at:</h2>
+            <br>
+            <br>
+            <ul>
+              <li><h3><a target="_blank" href="http://angular-ui.github.com">The awesome AngularUI Project</a></h3></li>
+              <li><h3><a target="_blank" href="http://angular-ui.github.com/bootstrap/">We also &lt;3 Bootstrap</a></h3></li>
+              <li><h3><a target="_blank" href="https://github.com/angular/angular.js/tree/master/src/ng/directive">Angular Team also just cooks with water</a></h3></li>
+            </ul>
+          </section>
+        </section>
+  
+        <section>
+        <h2><img  height="300" src="http://bukk.it/fin.gif"></h2>
+        <br>
+        <ul>
+          <li>Twitter: <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a></li>
+          <li>Slides: <a href="http://github.com/PascalPrecht/slides">github.com/PascalPrecht/slides/mastering-angularjs-directives</a></li>
+        </ul>
+        </section>
+
+        <section>
+        <h1><img src="img/neo-logo.png" class="no-shadow" alt="neoskop-logo" width="400"></h1>
+        <h2><a target="_blank" href="http://neoskop.de/jobs">is hiring!</a></h2>
+        </section>
+			</div>
+
+		</div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+    <script>
+      var app = angular.module('myApp', []);
+
+      app.controller('FilterCtrl', ['$scope', 'Songs', function ($scope, Songs) {
+        $scope.songs = Songs;
+      }]);
+
+      app.controller('MyCtrl', ['$scope', function ($scope) {
+        $scope.action = function() {
+          $scope.name = 'OK';
+        }
+        $scope.name = 'World'; 
+      }]);
+
+      app.factory('Songs', function () {
+        var Songs = [
+          {
+            title: 'Bangarang',
+            artist: 'Skrillex'
+          },
+          {
+            title: 'Harder Better Faster Stronger',
+            artist: 'Daftpunk'
+          },
+          {
+            title: 'Badwings',
+            artist: 'Glitchmob'
+          },
+          {
+            title: 'Golddust',
+            artist: 'DJ Fresh'
+          },
+          {
+            title: 'Jeffer',
+            artist: 'Boys Noize'
+          },
+          {
+            title: 'Whole World locked',
+            artist: 'Break Science'
+          },
+          {
+            title: 'Right In',
+            artist: 'Skrillex'
+          },
+          {
+            title: 'Breezeblock',
+            artist: 'Camo & Crooked'
+          },
+          {
+            title: 'Black Sands',
+            artist: 'Bonobo'
+          },
+          {
+            title: 'Prelude',
+            artist: 'Bonobo'
+          },
+          {
+            title: 'Around the world',
+            artist: 'Da Chip'
+          },
+          {
+            title: 'Genesis',
+            artist: 'Justice'
+          },
+          {
+            title: 'Phantom',
+            artist: 'Justice'
+          },
+        ];
+
+        return Songs;
+      });
+
+      app.directive('draggable', function($document) {
+          var startX=0, startY=0, x = 0, y = 0;
+          return function(scope, element, attr) {
+            element.css({
+             position: 'relative',
+             cursor: 'pointer'
+            });
+            element.bind('mousedown', function(event) {
+              startX = event.screenX - x;
+              startY = event.screenY - y;
+              $document.bind('mousemove', mousemove);
+              $document.bind('mouseup', mouseup);
+            });
+
+            function mousemove(event) {
+              y = event.screenY - startY;
+              x = event.screenX - startX;
+              element.css({
+                top: y + 'px',
+                left:  x + 'px'
+              });
+            }
+
+            function mouseup() {
+              $document.unbind('mousemove', mousemove);
+              $document.unbind('mouseup', mouseup);
+            }
+          }
+        });
+
+      app.directive('tabs', function () {
+
+        function TabsCtrl($scope, $element) {
+          var tabs = $scope.tabs = [];
+
+          $scope.activate = function (tab, $event) {
+            if ($event) {
+              $event.preventDefault();
+            }
+            angular.forEach(tabs, function (tab) {
+              tab.selected = false;
+            });
+            tab.selected = true;
+          };
+
+          this.addTab = function (tab) {
+            if (!tabs.length) {
+              $scope.activate(tab);
+            }
+            tabs.push(tab);
+          };
+        }
+
+        return {
+          restrict: 'E',
+          replace: true,
+          transclude: true,
+          scope: {
+            editAction: '&',
+            editActionLabel: '@'
+          },
+          template: [
+            '<div class="tabs">',
+            '<ul class="tabs-list group">',
+            '<li ng-repeat="tab in tabs" ng-class="{active: tab.selected}">',
+            '<a ng-click="activate(tab, $event)">{{tab.title}}</a>',
+            '</li>',
+            '</ul>',
+            '<div class="tab-content" ng-transclude></div>',
+            '</div>'
+          ].join(''),
+          controller: TabsCtrl
+        };
+      });
+
+app.directive('tab', function () {
+  return {
+    require: '^tabs',
+    restrict: 'E',
+    replace: true,
+    transclude: true,
+    scope: {
+      title: '@title'
+    },
+    template: '<div class="tabbody" ng-class="{hidden: !selected}" ng-transclude></div>',
+    link: function (scope, element, attrs, TabsCtrl) {
+      TabsCtrl.addTab(scope);
+    }
+  };
+});
+
+app.directive('zippy', function(){
+  return {
+    restrict: 'E',
+    transclude: true,
+    scope: { title:'@title'},
+    template:
+      '<div class="zippy {{state}}">' +
+        '<div class="title" ng-click="toggle()">{{title}}</div>' +
+        '<div class="body" ng-transclude></div>' +
+      '</div>',
+
+    link: function(scope, element, attrs) {
+      scope.state = "closed";
+      scope.toggle = function() {
+        scope.state = scope.state == 'opened' ? 'closed' : 'opened';
+      }
+
+    }
+  }
+});
+    </script>
+	</body>
+</html>

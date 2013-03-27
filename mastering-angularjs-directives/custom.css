@@ -1,0 +1,178 @@
+.reveal section img.no-shadow {
+  box-shadow: none!important;
+}
+
+.reveal section img.profile {
+  -moz-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  -o-transform: rotate(8deg);
+  -webkit-transform: rotate(8deg);
+  margin-top: 50px;
+}
+
+.reveal section img.no-margin {
+  margin: 0;
+}
+
+.reveal section .smile {
+  position: absolute;
+  -webkit-transform: rotate(15deg);
+  bottom: 20%;
+  right: 0;
+}
+
+.reveal h1.love {
+  margin-bottom: 0;
+  font-size: 5em;
+}
+.reveal p.name-me {
+  position: absolute;
+  left: -120px;
+  top: 250px;
+  width: 220px;
+  z-index: 1;
+  -webkit-transform: rotate(-10deg);
+}
+
+.reveal p.name-him {
+  position: absolute;
+  right: -120px;
+  bottom: 0;
+  width: 230px;
+  -webkit-transform: rotate(10deg);
+}
+
+.reveal section img.shield {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.reveal section blockquote.big {
+  font-size: 1.8em;
+  line-height: 1.2em;
+}
+
+input.big {
+  width: 450px;
+  height: 60px;
+  font-size: 1.5em;
+  border-radius: 0.2em;
+}
+
+#songs {
+  width: 100%;
+  margin-top: 1em;
+}
+#songs td {
+  padding: 0.3em;
+  border-bottom: 1px solid #ccc;
+}
+
+#songs tr:first-child td {
+  border-bottom: 1px solid #AAA;
+  padding-bottom: 0;
+}
+#songs tr td:first-child {
+  width: 50%;
+}
+
+#drag {
+  background: url(img/heart.gif);
+  background-repeat: no-repeat;
+  height: 450px;
+  width: 295px;
+  margin: auto;
+}
+
+.scrollable {
+  overflow: auto;
+}
+
+#zen li h3{
+  line-height: 1.3em;
+}
+
+#fat {
+  font-size: 2em;
+  border-radius: 0.3em;
+  background-color: #bada55;
+  padding: 0.5em 1em;
+}
+
+.tabs {
+}
+.tabs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tabs-list li {
+  display: inline-block;
+  margin-left: 3px;
+}
+
+.tabs-list li:first-child {
+  margin-left: 0;
+}
+.tabs-list .active a {
+  color: #FFF;
+  background-color: #333;
+}
+
+.tabs-list a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  background: #CCC;
+  padding: 5px 10px;
+  display: block;
+}
+
+.reveal .tabbody {
+  background: #F0F0F0;
+  padding: 12px;
+}
+
+.tabbody.hidden {
+  display: none;
+}
+
+.reveal .zippy {
+  border: 1px solid #ccc
+}
+
+.zippy .title {
+  color: #fff;
+  background-color: #643b78;
+  padding: 12px;
+}
+
+.zippy .title:hover {
+  cursor: pointer;
+}
+
+.zippy .body {
+  padding: 12px;
+}
+
+.zippy.closed .body {
+  display: none;
+}
+
+.zippy.opend .body {
+  display: block;
+}
+
+#hacky {
+  height: 590px;
+}
+
+.reveal code {
+  max-height: 600px;
+}
+
+#star {
+  position: absolute;
+  left: 0;
+}
