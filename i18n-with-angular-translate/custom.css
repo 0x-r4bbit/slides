@@ -1,0 +1,351 @@
+.reveal ul li h3 {
+  line-height: 1.5;
+}
+
+
+.reveal section img.no-shadow {
+  box-shadow: none!important;
+}
+
+.reveal section img.profile {
+  -moz-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  -o-transform: rotate(8deg);
+  -webkit-transform: rotate(8deg);
+  margin-top: 50px;
+}
+
+.reveal section img.soccer {
+  -moz-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  -o-transform: rotate(-8deg);
+  -webkit-transform: rotate(-8deg);
+  margin-top: 50px;
+}
+
+.reveal p.name-me {
+  position: absolute;
+  right: -120px;
+  top: 250px;
+  width: 220px;
+  z-index: 1;
+  -webkit-transform: rotate(10deg);
+}
+
+.reveal p.name-him {
+  position: absolute;
+  left: -100px;
+  width: 230px;
+  bottom: 250px;
+  -webkit-transform: rotate(-10deg);
+}
+
+.reveal section img.shield {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.reveal p span.qmark {
+  font-size: 13em;
+  margin-left: 50px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.reveal section blockquote.big {
+  font-size: 1.8em;
+  line-height: 1.2em;
+}
+
+input.big {
+  width: 450px;
+  height: 60px;
+  font-size: 1.5em;
+  border-radius: 0.2em;
+}
+
+#songs {
+  width: 100%;
+  margin-top: 1em;
+}
+#songs td {
+  padding: 0.3em;
+  border-bottom: 1px solid #ccc;
+}
+
+#songs tr:first-child td {
+  border-bottom: 1px solid #AAA;
+  padding-bottom: 0;
+}
+#songs tr td:first-child {
+  width: 50%;
+}
+
+#drag {
+  background: url(img/heart.gif);
+  background-repeat: no-repeat;
+  height: 450px;
+  width: 295px;
+  margin: auto;
+}
+
+.scrollable {
+  overflow: auto;
+}
+
+#zen li h3{
+  line-height: 1.3em;
+}
+
+#fat {
+  font-size: 2em;
+  border-radius: 0.3em;
+  background-color: #bada55;
+  padding: 0.5em 1em;
+}
+
+.reveal .polymer-architecture {
+  position: relative;
+  font-size: 14px;
+  line-height: 1;
+  height: 418px;
+  width: 591px;
+  font-family: arial;
+  margin: 0 auto;
+}
+
+.reveal .polymer-architecture:before {
+  position: absolute;
+  left: 0;
+  width: 40px;
+  height: 312px;
+  top:46px;
+  background: rgb(234, 230, 225);
+  content: '';
+}
+
+.reveal .polymer-architecture:after {
+  position: absolute;
+  content: "Polymer";
+  left: -10px;
+  top: 200px;
+  color: rgb(72, 43, 20);
+  -webkit-transform: rotate(-90deg);
+}
+
+.reveal .pica {
+  width: 46px;
+  height: 46px;
+  background: rgb(58, 121, 248);
+  position: relative;
+  margin-left: 150px;
+}
+
+.reveal .pica:after {
+  position: absolute;
+  content: "Pica";
+  top: 15px;
+  left: 5px;
+}
+
+.reveal .pica:before {
+  position: absolute;
+  content: "Applications";
+  left:-150px;
+  width: 120px;
+  height: 31px;
+  color: rgb(30, 87, 202);
+  padding-left: 30px;
+  padding-top: 15px;
+  background: rgba(58, 121, 248, 0.5);
+}
+
+.reveal .elements {
+  position: relative;
+  margin-left: 150px;
+  height: 162px;
+}
+
+.reveal .elements:before {
+  position: absolute;
+  height: 82px;
+  width: 95px;
+  content: "Elements";
+  left: -110px;
+  padding-top: 80px;
+  padding-left: 15px;
+  color: rgb(43, 105, 18);
+  background: rgba(76, 146, 77, 0.5);
+}
+
+.reveal .polymer-ui-elements {
+  background: rgb(76, 146, 77);
+  width: 154px;
+  height: 52px;
+  top: -1px;
+  position: absolute;
+  padding-top: 50px;
+  border-bottom: 1px solid green;
+}
+
+.reveal .polymer-elements {
+  background: rgb(76, 146, 77);
+  width: 185px;
+  height: 40px;
+  top: 102px;
+  padding-top: 20px;
+  padding-left:60px;
+  position: absolute;
+}
+
+.reveal .polymer-js {
+  width: 290px;
+  height: 30px;
+  background: rgb(247, 197, 74);
+  position: relative;
+  margin-left: 150px;
+}
+
+.reveal .polymer-js:before {
+  position: absolute;
+  content: "Core";
+  width: 95px;
+  height: 22px;
+  padding-top: 8px;
+  padding-left: 15px;
+  background: rgba(247, 197, 74, 0.5);
+  left: -110px;
+  color: rgb(229, 165, 71);
+}
+
+.reveal .polymer-js:after {
+  position: absolute;
+  content: "polymer.js";
+  left: 40%;
+  top: 5px;
+}
+
+.reveal .platform {
+  height: 20px;
+  width: 441px;
+  background: rgb(173, 52, 46);
+  margin-left: 150px;
+  position: relative;
+}
+
+.reveal .platform:before {
+  width: 95px;
+  height: 70px;
+  left: -110px;
+  content: "Foundation";
+  padding-top: 50px;
+  padding-left: 15px;
+  position: absolute;
+  color: rgb(172, 53, 76);
+  background: rgba(215, 70, 62, 0.5);
+}
+.reveal .platform:after {
+  content: "platform.js";
+  position: absolute;
+  left: 40%;
+}
+
+.mo, .pe, .sd, .ce,
+.hi, .tb, .nb, .wa {
+  width: 55px;
+  height: 100px;
+  top: 20px;
+  background: rgb(215, 70, 62);
+  position: absolute;
+  border-left: 1px solid rgb(173, 52, 46);
+}
+
+.mo span, .pe span, .sd span, .ce span,
+.hi span, .tb span, .nb span, .wa span {
+  -webkit-transform: rotate(-90deg) translateX(-50%) translateY(-20%);
+  display: inline-block;
+  text-align: center;
+}
+
+.mo {
+ left: 0;
+}
+
+.pe {
+  left: 55px;
+  height: 130px;
+}
+
+.sd {
+  left: 110px;
+  height: 160px;
+}
+
+.ce {
+  left: 165px;
+  height: 140px;
+}
+
+.hi {
+  left: 220px;
+  height: 130px;
+}
+
+.tb {
+  left: 275px;
+  height: 120px;
+}
+
+.nb {
+  left: 330px;
+}
+
+.wa {
+  left: 385px;
+  height: 120px;
+}
+
+.feat { position: absolute; }
+
+#service {
+  top: 0;  
+  left: 0;
+  font-size: 40px;
+}
+
+#filter {
+  top: -50px;
+  right: 0;
+  font-size: 50px;
+}
+
+#directive {
+  bottom: -100px;
+  right: 0;
+  font-size: 60px;
+}
+
+#variable-replacement {
+  top: -130px;
+  left: 200px;
+  font-size: 30px;
+}
+
+#multi-lang {
+  bottom: -80px;
+  left: -50px;
+  font-size: 40px;
+}
+
+#async {
+  bottom: -200px;
+  left: 250px;
+}
+
+#pluralization {
+  top: -120px;
+  right: 100px;
+}
+#knalli, #pp, #sgara, #max {
+  border-radius: 50%;
+}
