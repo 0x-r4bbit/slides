@@ -1,0 +1,213 @@
+/**
+ * A simple theme for reveal.js presentations, similar
+ * to the default theme. The accent color is darkblue.
+ *
+ * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
+ * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'source_sans', 'Arial', sans-serif;
+$mainColor: #555;
+$mainFontSize: 32px;
+$headingFont: 'Inika', Arial, sans-serif;
+$headingColor: #333;
+$headingTextShadow: none;
+$headingTextTransform: none;
+$backgroundColor: #fff;
+$linkColor: #CC0A2A;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: rgba(0, 0, 0, 0.99);
+
+body {
+  background: url('couch_bg_pattern.jpg')!important;
+}
+
+button {
+  background-color: $linkColor;
+  border-radius: 0.2em;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  margin-bottom: 1em;
+}
+.backgrounds {
+  top: 0;
+}
+.kodio_brand {
+  position: absolute; 
+  top: 15px;
+  left: 15px;
+  color: #888!important;
+  img {
+    opacity: 0.8;
+  }
+  span {
+    font-size: 0.6em;
+    vertical-align: 60%;
+  }
+}
+
+.hi-brand {
+  position: absolute;
+  top: -2em;
+  right: 30%;
+  height: 160px;
+}
+
+#songs {
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 0.3em;
+  padding: 0.5em;
+  box-shadow: 0 0 15px 3px rgba(0,0,0,.25)!important;
+  border-radius: 0.1em!important;
+}
+#songs td, #songs th{
+  width: 400px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.box {
+  padding: 3em 1em!important;
+  border: 1px solid #bbb;
+  background-color: #fff!important;
+  box-shadow: 0 0 15px 3px rgba(0,0,0,.25)!important;
+  border-radius: 0.1em!important;
+}
+
+.reveal {
+
+  .plusplus {
+    position: absolute;
+    font-weight: bold;
+    font-size: 5em;
+    bottom: 0.8em;
+    right: 25%;
+    color: #000;
+  }
+
+  input[type=text] {
+    border: 1px solid #CCC;
+    border-radius: 0.3em;
+    line-height: 36px;
+    font-size: 18px;
+    color: #555;
+    box-shadow: inset 0px 2px 7px rgba(0, 0, 0, 0.3);
+    padding: 0 0.8em;
+    vertical-align: 20%;
+  }
+
+  .output {
+    text-align: left;
+    margin-top: 1em;
+  }
+
+  .progress {
+    height: 0.5em;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.3);
+    background: #eee!important;
+    span {
+      background-color: #3a8573!important;
+      box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .box pre {
+    margin-left: -1.8em;
+  }
+
+  blockquote {
+    position: relative;
+    line-height: 1.4;
+    &:before {
+      content: '\201C';
+      position: absolute;
+      font-size: 7em;
+      top: -0.2em;
+      left: -0.2em;
+    }
+
+    small {
+      position: absolute;
+      left: 3em;
+      bottom: 2.5em;
+      font-style: normal;
+    }
+  }
+
+  .slides {
+    section {
+      &:first-child {
+        figure {
+          margin-top: 1em!important;
+          img {
+            border: none;
+            margin-bottom: 0;
+          }
+
+          figcaption {
+            font-size: 0.8em;
+          }
+        }
+      }
+
+      .job-title {
+        font-weight: bold;
+        font-size: 2.8em;
+        -webkit-transform: rotate(-14deg);
+        margin: 0;
+        color: #177513;
+        position: absolute;
+        font-family: impact;
+        top: -1em;
+        text-shadow: 5px 4px 1px rgba(0, 0, 0, 0.8);
+        letter-spacing: 3px;
+        border: 10px solid green;
+        border-radius: 0.3em;
+        padding: 0.3em;
+        box-shadow: inset 0px 0px 177px green;
+        line-height: 1.2em;
+      }
+
+      .question-mark {
+        display: inline-block;
+        margin: 0;
+        font-size: 12em;
+        vertical-align: 24%;
+        margin-left: 0.1em;
+      }
+
+      .fragment.hi-brand.roll-in.visible {
+        -webkit-transform: rotateZ(14deg);
+        -moz-transform: rotateZ(14deg);
+        -ms-transform: rotateZ(14deg);
+        -o-transform: rotateZ(14deg);
+        transform: rotateZ(14deg);
+      }
+      .hi-brand {
+        border: none;
+        box-shadow: 5px 6px 15px rgba(0, 0, 0, 0.45);
+        margin: 0;
+      }
+    }
+  }
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------

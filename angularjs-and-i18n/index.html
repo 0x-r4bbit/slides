@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en" ng-app="slides">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>AngularJS and i18n - Kod.io 2014 by @PascalPrecht</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href='http://fonts.googleapis.com/css?family=Inika' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/couchcommerce.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="reveal">
+      <a class="kodio_brand" href="http://linz.kod.io">
+        <img src="img/kod.io-logo-black.png" height="40">
+        <span>#kodio_2014</span>
+      </a>
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" ng-controller="LangCtrl">
+        <section>
+          <div class="box">
+            <h1 style="font-size: 3em;">AngularJS and i18n</h1>
+            <h3 style="margin-top: 1em;">Beyond basic localization</h3>
+          </div>
+          <p style="margin-top: 1em;">
+            <small>By <a href="http://github.com/PascalPrecht">Pascal Precht</a> / <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a></small>
+          </p>
+        </section>
+
+        <section style="position: relative;">
+          <h2 style="text-align: left;">Hi, I'm Pascal.</h2>
+          <h4 style="text-align: left;">Innovation Engineer</h4>
+          <img data-fragment-index="1" class="hi-brand fragment roll-in" src="img/couch_brand.png">
+          <h4 data-fragment-index="2" class="job-title fragment current-visible">ANIMATED GIF EXECUTER&trade;</h4>
+        </section>
+
+        <section data-background="img/animated-gif-executer.gif"></section>
+
+        <!-- Example of nested vertical slides -->
+        <section>
+          <section style="position: relative;">
+            <img style="display:inline-block; border: none; box-shadow: none; background: none;" src="img/angularjs-shield.png">
+            <h1 class="question-mark fragment grow">?</h1>
+          </section>
+          <section>
+            <blockquote class="box">
+              "AngularJS is what HTML would have been, had it been designed for applications."
+              <small>- Miško Hevery</small>
+            </blockquote>
+          </section>
+          <section>
+            <img style="border: none; background: none; box-shadow: none;" src="img/HTML5_Logo_512.png">
+            <span class="fragment roll-in plusplus">++</span>
+          </section>
+        </section>
+
+        <section>
+          <h2 style="margin-bottom: 0.8em;">Two way data-binding</h2>
+          <div class="box">
+            <h4 style="text-align: left;">The code:</h4>
+            <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+            &lt;label&gt;How do you like Kod.io? It's&lt;/label&gt;
+&lt;input type="text" ng-model="word"&gt;
+&lt;p&gt;Kod.io is {{word}}&lt;/p&gt;!
+
+            </code></pre>
+            <div class="output fragment">
+              <h4 style="ext-align: left;">The output:</h4>
+              <div style="background: #ddd; padding: 0.5em; border-radius: 0.2em;">
+              <p><label>How do you like Kod.io? It's</label> <input type="text" ng-model="word">!</p>
+              <p>Kod.io is {{word}}!</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <section ng-controller="FilterCtrl">
+            <p style="text-align: left; padding-left: 1.5em;">
+              <label>Search for a Song:</label>
+              <input type="text" ng-model="search">
+            </p>
+
+            <table id="songs" style="margin-top: 0.8em;">
+              <tr>
+                <th>Song</th>
+                <th>Interpret</th>
+              </tr>
+              <tr ng-repeat="song in songs | orderBy:'title' | filter:search">
+                <td>{{song.title}}</td>
+                <td>{{song.artist}}</td>
+              </tr>
+            </table>
+          </section>
+          <section>
+            <div class="box">
+            <h4 style="text-align: left;">The code:</h4>
+            <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+&lt;section ng-controller="FilterCtrl"&gt;
+  &lt;input type="text" ng-model="search"&gt;
+  &lt;table&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Song&lt;/td&gt;
+      &lt;td&gt;Interpret&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr ng-repeat="song in songs | orderBy:'title' | filter:search"&gt;
+      &lt;td&gt;{{song.title}}&lt;/td&gt;
+      &lt;td&gt;{{song.artist}}&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/section&gt;
+            </code></pre>
+            </div>
+          </section>
+        </section>
+
+        <section data-background="img/house-bored.gif">
+          <h2 style="color: #fff;">Still not impressed?</h2>
+        </section>
+
+        <section>
+          <section>
+            <h2 style="margin-bottom: 0.8em;">Drag me!</h2>
+            <div style="padding-bottom: 2em!important; padding-top: 2em!important;" class="box">
+              <div style="background-image: url(img/angularjs-shield.png); width: 400px; height: 410px; margin: 0 auto;" draggable></div>
+            </div>
+          </section>
+          <section>
+            <div class="box" style="padding-top: 1em!important; padding-bottom: 1em!important;">
+              <h4 style="text-align: left;">The code:</h4>
+              <pre class="fragment"><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+              &lt;div draggable&gt;&lt;/div&gt;
+
+              </code></pre>
+              <pre class="fragment"><code data-trim contenteditable ng-non-bindable style="max-height: 500px; font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+app.directive('draggable', function($document) {
+  var startX=0, startY=0, x = 0, y = 0;
+  return function(scope, element, attr) {
+    element.css({
+      position: 'relative',
+      cursor: 'pointer'
+    });
+    element.bind('mousedown', function(event) {
+      startX = event.screenX - x;
+      startY = event.screenY - y;
+      $document.bind('mousemove', mousemove);
+      $document.bind('mouseup', mouseup);
+    });
+
+    function mousemove(event) {
+      y = event.screenY - startY;
+      x = event.screenX - startX;
+      element.css({
+        top: y + 'px',
+        left:  x + 'px'
+      });
+    }
+
+    function mouseup() {
+      $document.unbind('mousemove', mousemove);
+      $document.unbind('mouseup', mouseup);
+    }
+  }
+});
+              </code></pre>
+            </div>
+          </section>
+        </section>
+
+        <section data-background="img/impressive.gif">
+        <h2 class="fragment" style="color: #fff; margin-top: 8em;">Oh really? <br>Now that's impressive.</h2>
+        </section>
+
+        <section class="box">
+          <h2>There's so much more</h2>
+
+          <ul style="margin-top: 1.5em;">
+            <li class="fragment">Dependency Injection</li>
+            <li class="fragment">Views and Routes</li>
+            <li class="fragment">Animations</li>
+            <li class="fragment">Testability</li>
+          </ul>
+
+          <p style="margin-top: 2em;" class="fragment">Go and check out the <a href="http://docs.angularjs.org/guide">docs</a>!<p>
+        </section>
+
+        <section>
+          <h2>What about i18n?</h2>
+        </section>
+
+        <section>
+          <blockquote class="box">
+            "<b>Internationalization</b> is the process of developing products in such a way that they can be localized for languages and cultures easily."
+          </blockquote>
+        </section>
+
+        <section>
+          <blockquote class="box">
+            "<b>Localization</b> is the process of adapting applications and text to enable their usability in a particular cultural or linguistic market."
+          </blockquote>
+        </section>
+
+        <section data-background="img/Uh_wtf_gif.gif">
+          <h1 class="fragment" style="margin-top: 2em; color: #fff; text-align: left;">...WTF?</h1>
+        </section>
+
+        <section>
+          <h2 style="margin-bottom: 0.8em;">In other words:</h2>
+          <div style="padding-bottom: 2.5em!important; padding-top: 2.5em!important;" class="box">
+            <p class="fragment">Internationalizing an application means <b>abstracting all of the strings</b> and other locale-specific bits out of an application.</p>
+            <p style="margin-top: 1em;" class="fragment">Localizing an application means <b>providing translations</b> and localized formats for the abstracted bits.</p>
+          </div>
+        </section>
+
+        <section>
+            <h2 style="margin-bottom: 0.8em;">i18n support in Angular</h2>
+            <div class="box">
+              <!-- <ul style="margin-top: 1.5em;"> -->
+              <ul>
+                <li class="fragment"><a href="http://docs.angularjs.org/api/ng/filter/date">datetime</a>, <a href="http://docs.angularjs.org/api/ng/filter/number">number</a> and <a href="http://docs.angularjs.org/api/ng/filter/currency">currency</a> filters</li>
+                <li class="fragment">Pluralization with <a href="http://docs.angularjs.org/api/ng/directive/ngPluralize">ngPluralize</a> directive</li>
+                <li class="fragment">All localizable Angular components depend on <a href="http://docs.angularjs.org/api/ng/service/$locale">$locale</a> service</li>
+                <li class="fragment">Provided <a href="https://github.com/angular/angular.js/tree/master/src/ngLocale" target="_blank">locales</a> (really, take a look!)</li>
+              </ul>
+            </div>
+        </section>
+
+        <section>
+          <h2 style="margin-bottom: 0.8em;">Date filter</h2>
+          <div class="box">
+            <h4 style="text-align: left;">The code:</h4>
+            <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+            {{ 1288323623006 | date:'fullDate' }}
+{{ 1288323623006 | date:'yyyy-MM-dd HH:mm:ss' }}
+            </code></pre>
+            <div class="output fragment">
+              <h4 style="ext-align: left;">The output:</h4>
+              <div style="background: #ddd; padding: 0.5em; border-radius: 0.2em;">
+                {{ 1288323623006 | date:'fullDate' }}<br>
+                {{ 1288323623006 | date:'yyyy-MM-dd HH:mm:ss' }}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 style="margin-bottom: 0.8em;">Number filter</h2>
+          <div class="box">
+            <h4 style="text-align: left;">The code:</h4>
+            <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+              Default formatting: {{number | number}}
+No fractions: {{number | number:0}}
+            </code></pre>
+            <div class="output fragment">
+              <h4 style="ext-align: left;">The output:</h4>
+              <div style="background: #ddd; padding: 0.5em; border-radius: 0.2em;">
+                <p><label>Enter a number:</label> <input type="text" ng-model="number"></p>
+                <p>Default formatting: {{number | number}}</p>
+                <p>No fractions: {{number | number:0}}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 style="margin-bottom: 0.8em;">Currency filter</h2>
+          <div class="box">
+            <h4 style="text-align: left;">The code:</h4>
+            <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+Default currency symbol ($): {{amount | currency}}
+Custom currency identifier (USD$): {{amount | currency:"USD$"}}
+            </code></pre>
+            <div class="output fragment">
+              <h4 style="ext-align: left;">The output:</h4>
+              <div style="background: #ddd; padding: 0.5em; border-radius: 0.2em;">
+                <p><label>Enter a number:</label> <input type="text" ng-model="amount"></p>
+                <p>Default currency symbol ($): {{amount | currency}}</p>
+                <p>Custom currency identifier (USD$): {{amount | currency:"USD$"}}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 style="margin-bottom: 0.8em;">ngPluralize</h2>
+            <div class="box" style="padding-top: 1em!important; padding-bottom: 1em!important;">
+            <h4 style="text-align: left;">The code:</h4>
+            <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+&lt;label&gt;Enter a number:&lt;/label&gt;
+&lt;input type="text" ng-model="personCount"&gt;
+&lt;ng-pluralize 
+  count="personCount"
+  when="{'0': 'Nobody is viewing.',
+        'one': '1 person is viewing.',
+        'other': '{} people are viewing.'}"
+  &gt;&lt;/ng-pluralize&gt;
+            </code></pre>
+            <div class="output fragment">
+              <h4 style="ext-align: left;">The output:</h4>
+              <div style="background: #ddd; padding: 0.5em; border-radius: 0.2em;">
+                <p><label>Enter a number:</label> <input type="text" ng-model="personCount"></p>
+                <p><ng-pluralize count="personCount"
+                                  when="{'0': 'Nobody is viewing.',
+                                      'one': '1 person is viewing.',
+                                      'other': '{} people are viewing.'}">
+                  </ng-pluralize></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Unfortunately... <span class="fragment">that's it.</span></h2>
+        </section>
+
+        <section data-background="img/oh-noes.gif">
+          <h1 class="fragment" style="margin-top: 2em; color: #fff; text-align: left;">Oh noes!</h1>
+        </section>
+
+        <section data-background="img/i-like-that.gif">
+          <h2 class="fragment" style="margin-top: 7em; color: #fff; text-align: right;">I got you covered.</h2>
+        </section>
+
+        <section>
+          <h2>Introducing...</h2>
+          <div class="fragment">
+            <img style="border: none; background: none; box-shadow: none;"src="img/angular-translate_globus_medium.png">
+            <h2>angular-translate</h2>
+          </div>
+        </section>
+
+        <section>
+          <h2 style="margin-bottom: 0.8em;">angular-translate features:</h2>
+          <div class="box" style="padding-top: 2em!important; padding-bottom: 2em!important;">
+            <ul>
+              <li class="fragment">Typical components: service, filter, directive</li>
+              <li class="fragment">Variable replacement</li>
+              <li class="fragment">Multi-Language</li>
+              <li class="fragment">Fallback languages</li>
+              <li class="fragment">Asynchronous loading</li>
+            </ul>
+            <p class="fragment" style="margin-top: 1em;">...and many more.</p>
+          </div>
+        </section>
+
+        <section>
+          <section>
+            <h2>Teaching your app a language</h2>
+          </section>
+
+          <section>
+            <div class="box">
+            <h4 style="text-align: left;">The JavaScript code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+var app = angular.module('myApp', ['pascalprecht.translate']);
+
+app.config(function ($translateProvider) {
+  $translateProvider
+    .translations('en', {
+      'APP_TITLE': 'Hey this is my app title',
+      'SOME_TEXT': 'Here\'s some text.'
+    })
+    .translations('de', {
+      'APP_TITLE': 'Hey, dass ist mein App-Title',
+      'SOME_TEXT': 'Hier ist etwas Text.'
+    })
+    .preferredLanguage('en');
+});
+              </code></pre>
+          </div>
+          </section>
+
+          <section>
+            <div class="box">
+            <h4 style="text-align: left;">The HTML code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+              &lt;h1 translate="APP_TITLE"&gt;&lt;/h1&gt;
+&lt;p translate="SOME_TEXT"&gt;&lt;/p&gt;
+              </code></pre>
+            <div class="output fragment">
+              <h4 style="ext-align: left;">The output:</h4>
+              <div style="background: #ddd; padding: 0.5em; border-radius: 0.2em;">
+                <p translate="APP_TITLE"></p>
+                <p translate="SOME_TEXT"></p>
+              </div>
+            </div>
+          </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Changing language at runtime</h2>
+          </section>
+
+          <section>
+            <div class="box">
+              <h4 style="text-align: left;">The HTML code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+              &lt;div ng-controller="LangCtrl"&gt;
+  &lt;button ng-click="changeLanguage('en')"&gt;english&lt;/button&gt;
+  &lt;button ng-click="changeLanguage('de')"&gt;german&lt;/button&gt;
+  &lt;h1 translate="APP_TITLE"&gt;&lt;/h1&gt;
+  &lt;p translate="SOME_TEXT"&gt;&lt;/p&gt;
+&lt;/div&gt;
+              </code></pre>
+          </div>
+          </section>
+
+          <section>
+            <div class="box">
+            <h4 style="text-align: left;">The JavaScript code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+app.controller('LangCtrl', function ($scope, $translate) {
+  $scope.changeLanguage = function (langKey) {
+    $translate.use(langKey);
+  };
+});
+              </code></pre>
+            <div class="output fragment">
+              <h4 style="ext-align: left;">The output:</h4>
+              <div style="background: #ddd; padding: 0.5em; border-radius: 0.2em;">
+                <div>
+                <button ng-click="changeLanguage('en')" translate="ENGLISH"></button>
+                <button ng-click="changeLanguage('de')" translate="GERMAN"></button>
+                  <p translate="APP_TITLE"></p>
+                  <p translate="SOME_TEXT"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Variable replacement</h2>
+          </section>
+
+          <section>
+            <div class="box" style="padding-bottom: 2em!important; padding-top: 2em!important">
+            <h4 style="text-align: left;">The JavaScript code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em; max-height: 450px;">
+app.config(function ($translateProvider) {
+  $translateProvider
+    .translations('en', {
+      'USER_LOGIN': 'Hello, you are logged in as {{user}}',
+      'SOME_OTHER_TEXT': 'I need {{count}} beers right now!'
+    })
+    .translations('de', {
+      'USER_LOGIN': 'Hallo, du bist eingeloggt als {{user}}',
+      'SOME_OTHER_TEXT': 'Ich brauche jetzt {{count}} Bier!'
+    })
+    .preferredLanguage('en');
+});
+              </code></pre>
+          </div>
+          </section>
+          <section>
+            <div class="box" style="padding-bottom: 2em!important; padding-top: 2em!important">
+            <h4 style="text-align: left;">The HTML code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+&lt;p translate="USER_LOGIN" translate-value-user="{{user}}"&gt;&lt;/p&gt;
+&lt;p translate="SOME_OTHER_TEXT" translate-value-count="{{count}}"&gt;&lt;/p&gt;
+              </code></pre>
+            <div class="output fragment">
+              <h4 style="ext-align: left;">The output:</h4>
+              <div style="background: #ddd; padding: 0.5em; border-radius: 0.2em;">
+                <p><label>Name:</label> <input type="text" ng-model="user"> <label>{{ 'COUNT' | translate }}:</label> <input type="text" ng-model="count"></p>
+                <button ng-click="changeLanguage('en')" translate="ENGLISH"></button>
+                <button ng-click="changeLanguage('de')" translate="GERMAN"></button>
+                <p translate="USER_LOGIN" translate-value-user="{{user}}"></p>
+                <p translate="SOME_OTHER_TEXT" translate-value-count="{{count}}"></p>
+              </div>
+            </div>
+          </div>
+          </section>
+        </section>
+
+        <section data-background="img/crazy-dance.gif">
+          <h2 class="fragment" style="margin-top: -5em; color: #fff;">Gimme more awesomeness!</h2>
+        </section>
+
+        <section>
+          <section>
+            <h2>Asynchronous Loading</h2>
+          </section>
+          <section>
+            <h2 style="margin-bottom: 0.8em;">Static files loader</h2>
+            <div class="box" style="padding-bottom: 2em!important; padding-top: 2em!important">
+            <h4 style="text-align: left;">The JavaScript code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em; max-height: 450px;">
+app.config(function ($translateProvider) {
+  $translateProvider.useStaticFilesLoader({
+    prefix: 'lang-',
+    suffix: '.json'
+  })
+  .preferredLanguage('en');
+});
+              </code></pre>
+
+              <p class="fragment" style="margin-top: 1em;">Request: <code>/lang-{langKey}.json</code>
+          </div>
+          </section>
+
+          <section>
+            <h2 style="margin-bottom: 0.3em;">Custom loader</h2>
+            <div class="box" style="padding-bottom: 1em!important; padding-top: 1em!important">
+            <h4 style="text-align: left;">The JavaScript code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em; max-height: 480px;">
+app.config(function ($translateProvider, $provide) {
+  $provide.factory('customLoader', function ($timeout, $q) {
+    return function (options) {
+      var deferred = $q.defer();
+      $timeout(function () {
+        deferred.resolve({
+          'FOO': 'bar',
+          'BAR': 'foo'
+        });
+      }, 5000);
+      return deferred.promise;
+    };
+  });
+  $translateProvider
+    .useLoader('customLoader')
+    .preferredLanguage('en');
+});
+              </code></pre>
+          </div>
+          </section>
+        </section>
+
+        <section>
+          <h2>Just one more thing!</h2>
+          <h4 class="fragment">Ever seen a cat with Samuel Jackson face?<h4>
+        </section>
+
+
+        <section data-background="img/samuel_cat.gif">
+          <div class="fragment">
+          <h1 style="margin-top: 2em; color: #fff; text-align: left;">Thanks.</h1>
+          <p style="margin-top: 2em; text-align: left; color: #fff;">
+          <a style="color: #fff" href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>
+          <a style="color: #fff" href="http://plus.google.com/+PascalPrecht">+PascalPrecht</a><br>
+          <a style="color: #fff" href="http://github.com/PascalPrecht">github.com/PascalPrecht</a><br>
+          <a style="color: #fff;" href="http://pascalprecht.github.io/slides/angularjs-and-i18n">pascalprecht.github.io/slides/angularjs-and-i18n</a>
+          </p>
+        </div>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="js/locale_en-us.js"></script>
+    <!-- <script src="js/locale_de-de.js"></script> -->
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+      angular.module('slides', ['ngLocale', 'pascalprecht.translate']);
+
+      angular.module('slides').config(function ($translateProvider) {
+        $translateProvider
+          .translations('en', {
+            'APP_TITLE': 'Hey this is my app title',
+            'SOME_TEXT': 'Here\'s some text.',
+            'USER_LOGIN': 'Hello, you are logged in as {{user}}',
+            'SOME_OTHER_TEXT': 'I need {{count}} beers right now!',
+            'COUNT': 'Count',
+            'GERMAN': 'german',
+            'ENGLISH': 'english'
+          })
+          .translations('de', {
+            'APP_TITLE': 'Hey dass ist mein App-Title',
+            'SOME_TEXT': 'Hier ist etwas Text.',
+            'USER_LOGIN': 'Hallo, du bist eingeloggt als {{user}}',
+            'SOME_OTHER_TEXT': 'Ich brauche jetzt {{count}} Bier!',
+            'COUNT': 'Anzahl',
+            'GERMAN': 'deutsch',
+            'ENGLISH': 'english'
+          })
+          .preferredLanguage('en');
+      });
+
+      angular.module('slides').controller('LangCtrl', function ($scope, $translate) {
+          $scope.user = 'Pascal';
+          $scope.count = '10';
+          $scope.personCount = 0;
+
+          $scope.changeLanguage = function (langKey) {
+            $translate.use(langKey);
+          };
+      });
+
+      angular.module('slides').controller('FilterCtrl', ['$scope', 'Songs', function ($scope, Songs) {
+        $scope.songs = Songs;
+      }]);
+
+      angular.module('slides').factory('Songs', function () {
+        var Songs = [
+          {
+            title: 'Bangarang',
+            artist: 'Skrillex'
+          },
+          {
+            title: 'Harder Better Faster Stronger',
+            artist: 'Daftpunk'
+          },
+          {
+            title: 'Badwings',
+            artist: 'Glitchmob'
+          },
+          {
+            title: 'Golddust',
+            artist: 'DJ Fresh'
+          },
+          {
+            title: 'Jeffer',
+            artist: 'Boys Noize'
+          },
+          {
+            title: 'Whole World locked',
+            artist: 'Break Science'
+          },
+          {
+            title: 'Right In',
+            artist: 'Skrillex'
+          },
+          {
+            title: 'Breezeblock',
+            artist: 'Camo & Crooked'
+          },
+          {
+            title: 'Black Sands',
+            artist: 'Bonobo'
+          },
+          {
+            title: 'Prelude',
+            artist: 'Bonobo'
+          },
+          {
+            title: 'Around the world',
+            artist: 'Da Chip'
+          },
+          {
+            title: 'Genesis',
+            artist: 'Justice'
+          },
+          {
+            title: 'Phantom',
+            artist: 'Justice'
+          },
+        ];
+
+        return Songs;
+      });
+
+      angular.module('slides').directive('draggable', function($document) {
+          var startX=0, startY=0, x = 0, y = 0;
+          return function(scope, element, attr) {
+            element.css({
+             position: 'relative',
+             cursor: 'pointer'
+            });
+            element.bind('mousedown', function(event) {
+              startX = event.screenX - x;
+              startY = event.screenY - y;
+              $document.bind('mousemove', mousemove);
+              $document.bind('mouseup', mouseup);
+            });
+
+            function mousemove(event) {
+              y = event.screenY - startY;
+              x = event.screenX - startX;
+              element.css({
+                top: y + 'px',
+                left:  x + 'px'
+              });
+            }
+
+            function mouseup() {
+              $document.unbind('mousemove', mousemove);
+              $document.unbind('mouseup', mouseup);
+            }
+          }
+        });
+    </script>
+
+  </body>
+</html>
