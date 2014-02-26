@@ -367,6 +367,10 @@ Custom currency identifier (USD$): {{amount | currency:"USD$"}}
         </section>
 
         <section>
+          <img style="border: none; background: none; box-shadow: none;" src="img/conceptual_overview.png">
+        </section>
+
+        <section>
           <section>
             <h2>Teaching your app a language</h2>
           </section>
@@ -468,11 +472,11 @@ app.config(function ($translateProvider) {
   $translateProvider
     .translations('en', {
       'USER_LOGIN': 'Hello, you are logged in as {{user}}',
-      'SOME_OTHER_TEXT': 'I need {{count}} beers right now!'
+      'SOME_OTHER_TEXT': 'I need {{count | number}} beers right now!'
     })
     .translations('de', {
       'USER_LOGIN': 'Hallo, du bist eingeloggt als {{user}}',
-      'SOME_OTHER_TEXT': 'Ich brauche jetzt {{count}} Bier!'
+      'SOME_OTHER_TEXT': 'Ich brauche jetzt {{count | number}} Bier!'
     })
     .preferredLanguage('en');
 });
@@ -502,6 +506,57 @@ app.config(function ($translateProvider) {
 
         <section data-background="img/crazy-dance.gif">
           <h2 class="fragment" style="margin-top: -5em; color: #fff;">Gimme more awesomeness!</h2>
+        </section>
+
+        <section>
+          <section>
+            <h2>Fallback languages</h2>
+          </section>
+          <section>
+            <div class="box" style="padding-bottom: 1em!important; padding-top: 1em!important">
+            <h4 style="text-align: left;">The JavaScript code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em; max-height: 475px;">
+app.config(function ($translateProvider) {
+  $translateProvider
+    .translations('en', {
+      'USER_LOGIN': 'Hello, you are logged in as {{user}}',
+      'SOME_OTHER_TEXT': 'I need {{count | number}} beers right now!'
+    })
+    .translations('de', {
+      'USER_LOGIN': 'Hallo, du bist eingeloggt als {{user}}',
+      'SOME_OTHER_TEXT': 'Ich brauche jetzt {{count | number}} Bier!'
+    })
+    .translations('fr', {
+      'GREETING': 'Salut!'
+    })
+    .preferredLanguage('en')
+    .fallbackLanguage('fr');
+});
+              </code></pre>
+
+          </div>
+          </section>
+
+          <section>
+            <div class="box" style="padding-bottom: 1em!important; padding-top: 1em!important">
+            <h4 style="text-align: left;">The HTML code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+&lt;p translate="USER_LOGIN" translate-value-user="{{user}}"&gt;&lt;/p&gt;
+&lt;p translate="SOME_OTHER_TEXT" translate-value-count="{{count}}"&gt;&lt;/p&gt;
+&lt;p translate="GREETING"&gt;&lt;/p&gt;
+              </code></pre>
+              <div class="output fragment">
+                <h4 style="ext-align: left;">The output:</h4>
+                <div style="background: #ddd; padding: 0.5em; border-radius: 0.2em;">
+                  <button ng-click="changeLanguage('en')" translate="ENGLISH"></button>
+                  <button ng-click="changeLanguage('de')" translate="GERMAN"></button>
+                  <p translate="USER_LOGIN" translate-value-user="{{user}}"></p>
+                  <p translate="SOME_OTHER_TEXT" translate-value-count="{{count}}"></p>
+                  <p translate="GREETING"></p>
+                </div>
+              </div>
+            </div>
+          </section>
         </section>
 
         <section>
@@ -550,6 +605,24 @@ app.config(function ($translateProvider, $provide) {
 });
               </code></pre>
           </div>
+          </section>
+
+          <section>
+            <div class="box" style="padding-bottom: 1em!important; padding-top: 1em!important">
+            <h4 style="text-align: left;">The HTML code:</h4>
+              <pre><code data-trim contenteditable ng-non-bindable style="font-size: 22px; line-height: 1.3; padding-left: 0.8em;">
+&lt;p translate="FOO"&gt;&lt;/p&gt;
+&lt;p translate="BAR"&gt;&lt;/p&gt;
+              </code></pre>
+              <div class="output fragment">
+                <h4 style="ext-align: left;">The output:</h4>
+                <div style="background: #ddd; padding: 0.5em; border-radius: 0.2em;">
+                  <button ng-click="changeLanguage('es')" translate="EXECUTE"></button>
+                  <p translate="FOO"></p>
+                  <p translate="BAR"></p>
+                </div>
+              </div>
+            </div>
           </section>
         </section>
 
@@ -610,26 +683,45 @@ app.config(function ($translateProvider, $provide) {
 
       angular.module('slides', ['ngLocale', 'pascalprecht.translate']);
 
-      angular.module('slides').config(function ($translateProvider) {
+      angular.module('slides').config(function ($translateProvider, $provide) {
+        $provide.factory('customLoader', function ($timeout, $q) {
+          return function (options) {
+            var deferred = $q.defer();
+            $timeout(function () {
+              deferred.resolve({
+                'FOO': 'bar',
+                'BAR': 'foo'
+              });
+            }, 5000);
+            return deferred.promise;
+          };
+        });
         $translateProvider
           .translations('en', {
             'APP_TITLE': 'Hey this is my app title',
             'SOME_TEXT': 'Here\'s some text.',
             'USER_LOGIN': 'Hello, you are logged in as {{user}}',
-            'SOME_OTHER_TEXT': 'I need {{count}} beers right now!',
+            'SOME_OTHER_TEXT': 'I need {{count | number}} beers right now!',
             'COUNT': 'Count',
             'GERMAN': 'german',
-            'ENGLISH': 'english'
+            'ENGLISH': 'english',
+            'EXECUTE': 'Run'
           })
           .translations('de', {
             'APP_TITLE': 'Hey dass ist mein App-Title',
             'SOME_TEXT': 'Hier ist etwas Text.',
             'USER_LOGIN': 'Hallo, du bist eingeloggt als {{user}}',
-            'SOME_OTHER_TEXT': 'Ich brauche jetzt {{count}} Bier!',
+            'SOME_OTHER_TEXT': 'Ich brauche jetzt {{count | number}} Bier!',
             'COUNT': 'Anzahl',
             'GERMAN': 'deutsch',
-            'ENGLISH': 'english'
+            'ENGLISH': 'english',
+            'EXECUTE': 'Ausfuehren'
           })
+          .translations('fr', {
+            'GREETING': 'Salut!'
+          })
+          .useLoader('customLoader')
+          .fallbackLanguage('fr')
           .preferredLanguage('en');
       });
 
