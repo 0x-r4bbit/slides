@@ -43,6 +43,9 @@ button {
   font-size: 20px;
   border: none;
   margin-bottom: 1em;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .backgrounds {
   top: 0;

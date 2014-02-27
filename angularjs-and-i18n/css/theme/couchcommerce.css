@@ -17,6 +17,8 @@ button {
   font-size: 20px;
   border: none;
   margin-bottom: 1em; }
+  button:hover {
+    cursor: pointer; }
 
 .backgrounds {
   top: 0; }
