@@ -1,1 +1,1 @@
-#[View slides](http://pascalprecht.github.com/slides/angularjs-and-i18n)
+#[View slides](http://pascalprecht.github.com/slides/i18n-with-angular-translate-2)
