@@ -1,0 +1,107 @@
+/**
+ * A simple theme for reveal.js presentations, similar
+ * to the default theme. The accent color is darkblue.
+ *
+ * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
+ * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Ubuntu', sans-serif;
+$mainColor: #000;
+$headingFont: 'Lobster', cursive;
+$headingColor: #000;
+$headingTextShadow: none;
+$headingTextTransform: none;
+$backgroundColor: #fff;
+$linkColor: #7C2;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: rgba(0, 0, 0, 0.99);
+
+body {
+  // background-color: #2c2c2c!important;
+}
+.reveal {
+  section img {
+    border: none!important;
+    box-shadow: none!important;
+  }
+  .progress {
+    height: 0.5em;
+    background: #2c2c2c!important;
+  }
+
+  ul {
+    margin-top: 1.8em;
+    li {
+      margin-top: 0.8em;
+    }
+  }
+
+  pre {
+    box-shadow: none;
+    code {
+      max-height: none;
+      padding: 1em;
+      border-radius: 0.3em;
+    }
+  }
+}
+
+.locator-strategies {
+  margin-top: 1.8em!important;
+
+  th {
+    font-weight: normal!important;
+    text-align: center!important;
+    padding-bottom: 0.3em;
+  }
+  td {
+    text-align: left;
+    width: 50%;
+    font-size: 0.6em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background: #DDD;
+    padding-left: 1em;
+  }
+}
+
+.reveal .wd-locator-strategies {
+  list-style: none;
+}
+
+.reveal h4.job-title {
+  font-weight: bold;
+  font-size: 6em;
+  -webkit-transform: rotate(-14deg);
+  margin: 0;
+  color: #7C2;
+  position: absolute;
+  font-family: impact;
+  top: -0.8em;
+  left: 0.25em;
+  text-shadow: 5px 4px 1px rgba(0, 0, 0, 0.8);
+  letter-spacing: 3px;
+  border: 10px solid #7C2;
+  border-radius: 0.3em;
+  padding:  0.3em 1em;
+  box-shadow: inset 0px 0px 177px #7C2;
+  line-height: 1.2em;
+}
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
