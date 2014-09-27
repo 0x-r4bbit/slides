@@ -1,0 +1,1012 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Componentize all the things!</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/jsist.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://jsist.org#talks">
+      <img height="50" src="img/jsist-logo.png">
+      <span style="color: #ccc; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">#jsist2014</span>
+    </a>
+
+    <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 1em; z-index: 2;" href="http://twitter.com/Web_Components">
+      <span style="color: #AAA; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@Web_Components</span>
+    </a>
+
+    <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 9em; z-index: 2;" href="http://twitter.com/PascalPrecht">
+      <span style="color: #AAA; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@PascalPrecht</span>
+    </a>
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section class="slide-background" data-background="img/wc-logo.svg">
+          <div style="margin-left: -3em;">
+            <h2 style="background: rgba(255, 255, 255, 0.5); display: inline-block;  margin-top: 1.5em; margin-left: 0; padding: 0.4em 0.2em; text-align: left; font-size: 100px; font-weight: bold; color: #222; line-height: 1em;text-transform: uppercase;">Componentize all the things!</h2>
+            <div style="text-align: left; margin-left: 0.5em;margin-top: .5em;">
+              <img style="float: left; margin-right: 0.5em; border-radius: 50%; height: 120px; border: 5px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
+              <div style="padding-top: 1.2em;">
+                <span class="name">Pascal Precht</span>
+                <span class="twitter">@PascalPrecht</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <img style="border-radius: 50%; height: 350px; border: 5px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
+          <span class="name" style="font-size: 40px" >Pascal Precht</span>
+        </section>
+
+        <section>
+          <img src="img/pascatuerk.png">
+        </section>
+
+        <section data-background="">
+          <img src="img/pimphair-big.png">
+        </section>
+
+        <section data-background="">
+          <img src="img/pimphair-big-2.png">
+        </section>
+
+        <section>
+          <img class="pulse" style="height: 200px; margin: 0 auto;" src="img/thoughtram-brain.png">
+          <img style="margin: 0 auto; display: block; margin-top: 0.8em;"src="img/thoughtram-tagline.png">
+        </section>
+
+        <!-- Example of nested vertical slides -->
+        <section>
+          <p style="font-size: 50px;"><span class="fragment" data-fragment-index="2">Oh my gosh this talk on Web Components by</span> <span style="font-weight: bold;">@PascalPrecht</span> <span class="fragment" data-fragment-index="2">blows my mind!</span> <span data-fragment-index="1" class="fragment" style="font-weight: bold;">#jsist2014</span></p>
+        </section>
+
+        <section data-background="#3A99D7" data-background-transition="slide">
+          <h2 style="color: #fff; font-weight: bold;">Web Components</h2>
+        </section>
+
+        <section>
+          <img class="fragment" style="position: absolute; top: 2em; left: 0;" src="img/wc-logo.svg">
+          <img class="fragment" style="" src="img/p-logo.svg">
+          <img class="fragment" style="position: absolute; right: 0; top: 2em;" src="img/x-tag-logo.png">
+          <img class="fragment" style="position: absolute; top: 0; right: 7em; width: 500px; transform: rotate(-10deg);" src="img/wtf.png">
+        </section>
+
+        <section>
+          <p style="font-size: 1.2em; line-height: 1.5;">Web Components are a <strong>collection</strong> of standards that change the way we build web applications.</p>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Four technologies</h2>
+          <ul class="fragment specs-list">
+            <li><img src="img/icon-templates.png"><p><strong>HTML Templates</strong> - Inert chunks of clonable DOM</p></li>
+            <li><img src="img/icon-shadowdom.png"><p><strong>Shadow DOM</strong> - Style & DOM encapsulation</p></li>
+            <li><img src="img/icon-customelements.png"><p><strong>Custom Elements</strong> - Define and use new DOM elements</p></li>
+            <li><img src="img/icon-htmlimports.png"><p><strong>HTML Imports</strong> - Include/Reuse other HTML documents</p></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Four technologies</h2>
+          <ul class="specs-list">
+            <li><img src="img/icon-templates.png"><p><strong>HTML Templates</strong> - Inert chunks of clonable DOM</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-shadowdom.png"><p><strong>Shadow DOM</strong> - Style & DOM encapsulation</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-customelements.png"><p><strong>Custom Elements</strong> - Define and use new DOM elements</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-htmlimports.png"><p><strong>HTML Imports</strong> - Include/Reuse other HTML documents</p></li>
+          </ul>
+        </section>
+
+        <section data-background="#3A99D7" data-background-transition="slide">
+          <h2 style="color: #fff; font-weight: bold;">HTML Templates</h2>
+        </section>
+
+        <section>
+          <p style="font-size: 1.2em; line-height: 1.5; ">Inert chunks of clonable DOM that can be activated for later use.</p>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">What we did before...</h2>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Offscreen DOM</h2>
+          <pre class="fragment" style="font-size: 0.7em; margin-top: 2.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;div id="mytemplate" hidden&gt;
+  &lt;img src="logo.png"&gt;
+  &lt;div class="comment"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <ul style="margin-top: 1em; max-width: 800px;">
+            <li class="fragment"><span style="color: green;">We can clone the DOM</span></li>
+            <li class="fragment"><span style="color: green;">Nothing is rendered</span></li>
+            <li class="fragment"><span style="color: #B80707;">Not inert, network request is made for the image</span></li>
+            <li class="fragment"><span style="color: #B80707;">Styling is painful, all styles must be prefixed with <code style="color: #333;">#mytemplate</code></span></li>
+          </ul>
+
+          <aside class="notes">
+            - no garuantees on future naming collisions
+          </aside>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Overloading script</h2>
+          <pre style="font-size: 0.65em; margin-top: 2.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;script id="mytemplate" type="text/x-handlebars-template"&gt;
+  &lt;img src="logo.png"&gt;
+  &lt;div class="comment"&gt;&lt;/div&gt;
+&lt;/script&gt;</code></pre>
+          <ul style="margin-top: 1em; max-width: 800px;">
+            <li class="fragment"><span style="color: green;">Nothing rendered, <code style="color: #222;">&lt;script&gt;</code> is <code style="color: #222;">display: none;</code> by default</span></li>
+            <li class="fragment"><span style="color: green;">It's inert (yay!), JS isn't parsed because of its type</span></li>
+            <li class="fragment"><span style="color: #B80707;">Security issues, run-time string of user-supplied data can easily lead to XSS vulnerabilities</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-size: 1.4em; font-weight: bold;">HTML Templates to the rescue!</h2>
+
+          <pre style="font-size: 0.7em; margin-top: 2.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;template id="mytemplate"&gt;
+  &lt;img src="path/to/source.png" alt="great image"&gt;
+  &lt;div class="comment"&gt;&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+
+          <ul class="fragment" style="margin-top: 1em; max-width: 800px;">
+            <li class="fragment"><span style="color: green;">Clonable DOM</span></li>
+            <li class="fragment"><span style="color: green;">Parsed, not rendered</span></li>
+            <li class="fragment"><span style="color: green;">Stylesheets/Images aren't loaded, media isn't played, scripts don't run</span></li>
+          </ul>
+
+          <aside class="notes">
+            - templates can be placed anywhere inside of head, body or frameset
+          </aside>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Activating a template</h2>
+          <p style="margin-top: 1.8em;">You can activate templates by cloning their <code class="inline">content</code> document fragment.</p>
+          <pre style="font-size: 0.7em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var t = document.querySelector('#mytemplate');
+
+t.content.querySelector('img').src = 'logo.png';
+document.body.appendChild(t.content.cloneNode(true));
+</code></pre>
+          <h3 style="margin-top: 1em; font-weight: bold;"><a target="_blank" href="http://plnkr.co/edit/VcUbJb620oploLCAPiEt?p=preview">Demo</a></h3>
+        </section>
+
+        <section>
+          <h3 style="font-weight: bold;">A few gotchas to know about...</h3>
+        </section>
+
+        <section>
+          <h2>No prerendering</h2>
+          <ul style="margin-top: 1em;">
+            <li>Templates can't be "precompiled" like you can with libs like handlebars</li>
+            <li>Assets, images, JS processing can't be preloaded</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-size: 1.5em;">Nested templates behaviour</h2>
+
+          <p style="margin-top: 2em;">Activating outer template will not activate inner templates.</p>
+          <pre style="font-size: 0.7em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;template&gt;
+  &lt;ul&gt;
+    &lt;template&gt;
+      &lt;li&gt;Stuff&lt;/li&gt;
+    &lt;/template&gt;
+  &lt;/ul&gt;
+&lt;/template&gt;</code></pre>
+
+          <aside class="notes">
+            - Also no interpolation available, i.e. filling template with values from a JS object)
+          </aside>
+        </section>
+
+        <section data-background="img/can-i-use-templates.png">
+        </section>
+
+        <section data-background="img/ie-status.png">
+        </section>
+
+        <!-- <section> -->
+        <!--   <img src="img/patch.png"> -->
+        <!-- </section> -->
+
+        <section>
+          <h2 style="font-weight: bold;">Reads</h2>
+
+          <ul style="margin-top: 1em;">
+            <li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/template/">HTML5Rocks.com - HTML's New Template Tag</a></li>
+            <li><a href="https://html.spec.whatwg.org/multipage/scripting.html#the-template-element">WhatWG HTML Templates specification</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Four technologies</h2>
+          <ul class="specs-list">
+            <li ><img src="img/icon-templates.png"><p><strong>HTML Templates</strong> - Inert chunks of clonable DOM</p></li>
+            <li style="opacity: 0.3;"><img src="img/icon-shadowdom.png"><p><strong>Shadow DOM</strong> - Style & DOM encapsulation</p></li>
+            <li style="opacity: 0.3;"><img src="img/icon-customelements.png"><p><strong>Custom Elements</strong> - Define and use new DOM elements</p></li>
+            <li style="opacity: 0.3;"><img src="img/icon-htmlimports.png"><p><strong>HTML Imports</strong> - Include/Reuse other HTML documents</p></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Four technologies</h2>
+          <ul class="specs-list">
+            <li style="opacity: 0.3;"><img src="img/icon-templates.png"><p><strong>HTML Templates</strong> - Inert chunks of clonable DOM</p></li>
+            <li><img src="img/icon-shadowdom.png"><p><strong>Shadow DOM</strong> - Style & DOM encapsulation</p></li>
+            <li style="opacity: 0.3;"><img src="img/icon-customelements.png"><p><strong>Custom Elements</strong> - Define and use new DOM elements</p></li>
+            <li style="opacity: 0.3;"><img src="img/icon-htmlimports.png"><p><strong>HTML Imports</strong> - Include/Reuse other HTML documents</p></li>
+          </ul>
+        </section>
+
+        <section data-background="#3A99D7" data-background-transition="slide">
+          <h2 style="color: #fff; font-weight: bold;">Shadow DOM</h2>
+        </section>
+
+        <section data-background="img/hulksmash.gif">
+          <h2 style="color: #fff; width: 650px; text-align: left; margin-top: 4em; position: absolute; font-size: 2.5em; right: -2em; text-shadow: 3px 0 0 #000;">Shadow DOM is a beast!</h2>
+        </section>
+
+        <section>
+          <p style="font-size: 1.2em; line-height: 1.5;">Shadow DOM gives us <strong>DOM tree</strong> encapsulation and <strong>style boundaries</strong>.</p>
+        </section>
+
+        <section>
+          <p style="font-size: 1.2em; line-height: 1.5;">The web platform offered only one built-in mechanism to isolate one chunk of code to another - <strong><code>&lt;iframe&gt;</code></strong></p>
+        </section>
+
+        <section data-background="img/wtf-picard.jpeg">
+          <p style="position: absolute; right: -4em; top: -3em; background-color: rgba(255, 255, 255, 0.5); color: #000; font-style: italic; line-height: 1.5; max-width: 700px; font-size: 1.4em; padding: 0.5em;">What do you mean I must put each of my custom buttons in a separate <strong>iframe</strong>? What kind of insane are you?</p>
+        </section>
+
+        <section>
+          <code class="inline" style="font-size: 1.8em;">&lt;input type="time"&gt;</code>
+          <p style="margin-top: 2em;"><input style="height: 50px; font-size: 2em;" type="time"></p>
+        </section>
+
+        <section>
+          <code class="inline" style="font-size: 1.2em;">&lt;details&gt;Content goes here&lt;/details&gt;</code>
+          <details style="margin-top: 2em;">
+            Merhaba millet! Bu konuşma Web Components hakkında!
+          </details>
+        </section>
+
+        <section>
+          <img src="img/shadow-trees.svg">
+
+          <aside class="notes">
+            - shadow host has shadow root
+            - Light DOM, Shadow DOM
+            - older tree, younger tree
+          </aside>
+        </section>
+
+        <section>
+          <img src="img/shadow-rendering.svg">
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Creating Shadow DOM</h2>
+
+          <p style="margin-top: 1.8em;"><code class="inline">.createShadowRoot()</code> creates a <strong>shadow root</strong> on a <strong>host element</strong>.</p>
+
+          <pre class="fragment" style="font-size: 0.8em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;button&gt;Hello World!&lt;/button&gt;</code></pre>
+
+          <div class="fragment">
+            <pre style="font-size: 0.7em; margin-top: 1.2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var host = document.querySelector('button');
+var shadowRoot = host.createShadowRoot();
+shadowRoot.textContent = 'Hello Jsist!';</code></pre>
+
+            <h3 style="margin-top: 1em;"><a target="_blank" href="http://plnkr.co/edit/7N0Xw9eHRtnTPR7o5uAg?p=preview">Demo</a></h3>
+          </div>
+        </section>
+
+        <section>
+          <h2 style="">It's just HTML</h2>
+
+          <p style="margin-top: 1.5em;">Use typical JS APIs to put nodes into your Shadow DOM (<code class="inline">.innerHTML</code>, <code class="inline">.appendChild()</code>...).</p>
+          <div>
+          <pre style="font-size: 0.7em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var host = document.querySelector('#host');
+var shadowRoot = host.createShadowRoot();
+
+var p = document.createElement('p');
+p.innerHTML = 'This is HTML code';
+
+/**
+ * Both work
+ */
+shadowRoot.innerHTML = '&lt;p&gt;This is HTML code&lt;/p&gt;';
+shadowRoot.appendChild(p);</code></pre>
+
+        </section>
+
+        <section>
+          <p style="font-size: 1.3em; line-height: 1.4;">So that means we can use <strong>HTML Templates</strong> together with <strong>Shadow DOM</strong>?</p>
+          <h4 class="job-title fragment current-visible">YES!</h4>
+        </section>
+
+        <section>
+          <h2 style="font-size: 1.8em; font-weight: bold;">Shadow DOM <span style="color: red;">&lt;3</span> Templates</h2>
+
+          <p style="margin-top: 1.5em;">Simply combine the things we just learned.</p>
+
+          <pre style="font-size: 0.7em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;template id="custom-template"&gt;
+  &lt;p&gt;This is HTML Code&lt;/p&gt;
+&lt;/template&gt;</code></pre>
+          <div>
+          <pre style="font-size: 0.65em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var host = document.querySelector('#host');
+var shadowRoot = host.createShadowRoot();
+var t = document.querySelector('#custom-template');
+
+shadowRoot.appendChild(t.content.cloneNode(true));</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <p style="font-size: 1.4em; line-height: 1.4;">Great! But is there also a way to <strong>separate</strong> the <strong>content from presentation</strong>?</p>
+          <h4 class="job-title fragment current-visible">YES!</h4>
+        </section>
+
+        <section>
+          <h2>Insertion Points</h2>
+
+          <p style="margin-top: 1.5em"><code class="inline">&lt;content&gt;&lt;/content&gt;</code> lets you create insertion points that <strong>cherry-pick</strong> content from the shadow host.</p>
+        </section>
+
+        <section>
+          <h3>Let's create a special button</h3>
+          <pre style="font-size: 0.65em; margin-top: 2.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;template id="special-button-template"&gt;
+  &lt;style&gt;
+    .special-button {
+      background: #bada55;
+      color: red;
+      padding: 1em;
+      border-radius: 0.3em;
+      font-size: 1em;
+    }
+  &lt;/style&gt;
+  &lt;button class="special-button"&gt;Special Button!&lt;/button&gt;
+&lt;/template&gt;</code></pre>
+
+
+        </section>
+
+        <section>
+          <pre style="font-size: 0.8em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;span id="special-button"&gt;&lt;/span&gt;</code></pre>
+          <button style="margin-top: 1em;" class="fragment special-button">Special Button!</button>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.8em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;span id="special-button"&gt;Special Button!&lt;/span&gt;</code></pre>
+          <button style="margin-top: 1em;" class="special-button">Special Button!</button>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.8em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;span id="special-button"&gt;Merhaba!&lt;/span&gt;</code></pre>
+          <button style="margin-top: 1em;" class="special-button">Merhaba!</button>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.65em; margin-top: 2.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;template id="special-button-template"&gt;
+  &lt;style&gt;
+    .special-button {
+      background: #bada55;
+      color: red;
+      padding: 1em;
+      border-radius: 0.3em;
+      font-size: 1em;
+    }
+  &lt;/style&gt;
+  &lt;button class="special-button"&gt;Special Button!&lt;/button&gt;
+&lt;/template&gt;</code></pre>
+
+          <h3 style="visibility: hidden; margin-top: 1em; font-weight: bold;"><a target="_blank" href="http://plnkr.co/edit/FfYcJlAgSbAAlE6lNXo0?p=preview">Demo</a></h3>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.65em; margin-top: 2.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;template id="special-button-template"&gt;
+  &lt;style&gt;
+    .special-button {
+      background: #bada55;
+      color: red;
+      padding: 1em;
+      border-radius: 0.3em;
+      font-size: 1em;
+    }
+  &lt;/style&gt;
+  &lt;button class="special-button"&gt;&lt;content&gt;&lt/content&gt;&lt;/button&gt;
+&lt;/template&gt;</code></pre>
+
+          <h3 style="margin-top: 1em; font-weight: bold;" class="fragment"><a target="_blank" href="http://plnkr.co/edit/FfYcJlAgSbAAlE6lNXo0?p=preview">Demo</a></h3>
+        </section>
+
+        <section>
+          <p style="font-size: 1.2em; line-height: 1.4;"><strong>Insertions Points</strong> are to Web Components, what <strong>transclusion</strong> is to AngularJS (sort of).</p>
+        </section>
+
+        <section>
+          <p style="font-size: 1.3em; line-height: 1.4;">Can we <strong>decide what content is projected</strong> and which not?</p>
+          <h4 class="job-title fragment current-visible">YES!</h4>
+        </section>
+
+        <section>
+          <h3 style="font-size: 1.4em">Cherry-picking content projection</h3>
+
+          <p style="margin-top: 1.3em; font-size: 1.2em; line-height: 1.4;"><code class="inline">select</code> attribute uses CSS selectors to specify where children are projected.</p>
+          <pre style="font-size: 0.65em; margin-top: 1em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;div id="host"&gt;
+  &lt;h1&gt;My Title&lt;/h1&gt;
+  &lt;h2&gt;My Subtitle&lt;/h2&gt;
+  &lt;div&gt;...other content...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <pre style="font-size: 0.65em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;hgroup&gt;
+  &lt;content select="h2"&gt;&lt;/content&gt;
+  &lt;content select="h1:first-child"&gt;&lt;/content&gt;
+&lt;/hgroup&gt;</code></pre>
+        </section>
+
+        <section>
+          <p style="font-size: 1.3em; line-height: 1.4;">Wow! Can we even <strong>select descendents</strong> for projection like <code class="inline">select="table tr"</code>?</p>
+          <h4 class="job-title-no fragment current-visible">NO!</h4>
+        </section>
+
+        <section>
+          <h2>Style Encapsulation</h2>
+          <p style="margin-top: 1.8em;">Shadow DOM comes with a <strong>shadow boundary</strong> that enables style encapsulation for free. Styles are scoped to <strong>shadow root</strong></p>
+
+            <pre style="font-size: 0.6em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;div&gt;
+  &lt;h3&gt;Light DOM&lt;/h3&gt;
+&lt;/div&gt;
+&lt;script&gt;
+var host = document.querySelector('div').createShadowRoot();
+host.innerHTML = '&lt;style&gt;h3 { color: red; }&lt;/style&gt;' +
+                 '&lt;h3&gt;Shadow DOM&lt;/h3&gt;';
+&lt;/script&gt;</code></pre>
+
+          <h3 style="margin-top: 0.5em; color: red;">Shadow DOM</h3>
+          <aside class="notes">
+            - styles only apply to h3 in shadowRoot
+            - other styles don't bleed in
+          </aside>
+        </section>
+
+        <section>
+          <h2>Styling the host element</h2>
+          <p style="margin-top: 1.8em;"><code class="inline">:host</code> allows us to style the element hosting a shadow tree.</p>
+            <pre style="font-size: 0.6em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;button&gt;My button&lt;/button&gt;
+&lt;script&gt;
+var button = document.querySelector('button');
+var host = button.createShadowRoot();
+host.innerHTML = '&lt;style&gt;' +
+                 ':host { text-transform: uppercase; }' +
+                 '&lt;/style&gt;' +
+                 '&lt;content&gt;&lt;/content&gt;';
+&lt;/script&gt;</code></pre>
+
+            <button style="font-size: 1.3em; margin-top: 0.8em; text-transform: uppercase;">My button</button>
+        </section>
+
+        <section>
+          <h2>Moar host selectors</h2>
+          <ul style="margin-top: 1.3em;">
+            <li><code class="inline">:host(selector)</code> - Matches if host itself <code class="inline">selector</code></li>
+            <li style="margin-top: 1.2em;"><code class="inline">:host(:hover/:active)</code> - Know pseudo selectors</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Context selectors</h2>
+          <p style="margin-top: 1.5em;"><code class="inline">:host-context(selector)</code> - Matches if host element or any of its ancestors match <code class="inline">selector</code></p>
+          <pre style="font-size: 0.6em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;div class="theme-name"&gt;
+  &lt;x-foo&gt;&lt;/x-foo&gt;
+&lt;/div&gt;</code></pre>
+          <pre style="font-size: 0.6em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">:host-context(.theme-name) {
+  /* styles */
+}</code></pre>
+        </section>
+
+        <section>
+          <h3>Styling Shadow DOM from outside</h3>
+
+          <p style="margin-top: 1.5em;">We have <strong>two new selectors</strong> to cross the shadow boundaries and style Shadow DOM from the outside world.</p>
+
+          <ul style="margin-top: 1.5em;">
+            <li><code class="inline">::shadow</code> - matches the shadow root itself</li>
+            <li><code class="inline">/deep/</code> - Crosses into any number of shadow trees</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>The <code class="inline">::shadow</code> pseudo-element</h3>
+
+          <pre style="font-size: 0.6em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;style&gt;
+  #host::shadow span {
+    color: red;
+  }
+&lt;/style&gt;
+
+&lt;div id="host"&gt;
+  &lt;span&gt;Light DOM&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          <pre style="font-size: 0.6em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var host = document.querySelector('div');
+var root = host.createShadowRoot();
+
+root.innerHTML = '&lt;span&gt;Shadow DOM&lt;/span&gt;' +
+                 '&lt;content&gt;&lt;/content&gt;';</code></pre>
+
+          <div class="fragment">
+            <span style="color: red;">Shadow DOM</span><span>Light DOM</span>
+          </div>
+        </section>
+
+        <section>
+          <h3>The <code class="inline">/deep/</code> combinator</h3>
+          <p style="margin-top: 1.8em;">Useful when having multiple levels of Shadow DOM (very common when working with <strong>Custom Elements</strong>.</p>
+
+          <pre style="font-size: 0.8em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">x-tabs /deep/ x-panel {
+  /* styles */
+}</code></pre>
+
+          <p style="margin-top: 1.3em;">^ Select all <code class="inline">x-panel</code> elements that are descendents of <code class="inline">x-tab</code> anywhere in the tree.</p>
+          <aside class="notes">
+            - completely ignores shadow boundaries
+            - crosses into any number of shadow trees
+          </aside>
+        </section>
+
+        <section data-background="img/can-i-use-sd.png">
+        </section>
+
+        <section data-background="img/ie-status-sd.png">
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Reads</h2>
+
+          <ul style="margin-top: 1em;">
+            <li><a href="http://www.html5rocks.com/tutorials/webcomponents/shadowdom/">HTML5Rocks.com - Shadow DOM 101</a></li>
+            <li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/">HTML5Rocks.com - Shadow DOM 201</a></li>
+            <li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/">HTML5Rocks.com - Shadow DOM 301</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Four technologies</h2>
+          <ul class="specs-list">
+            <li style="opacity: 0.3"><img src="img/icon-templates.png"><p><strong>HTML Templates</strong> - Inert chunks of clonable DOM</p></li>
+            <li><img src="img/icon-shadowdom.png"><p><strong>Shadow DOM</strong> - Style & DOM encapsulation</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-customelements.png"><p><strong>Custom Elements</strong> - Define and use new DOM elements</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-htmlimports.png"><p><strong>HTML Imports</strong> - Include/Reuse other HTML documents</p></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Four technologies</h2>
+          <ul class="specs-list">
+            <li style="opacity: 0.3"><img src="img/icon-templates.png"><p><strong>HTML Templates</strong> - Inert chunks of clonable DOM</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-shadowdom.png"><p><strong>Shadow DOM</strong> - Style & DOM encapsulation</p></li>
+            <li><img src="img/icon-customelements.png"><p><strong>Custom Elements</strong> - Define and use new DOM elements</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-htmlimports.png"><p><strong>HTML Imports</strong> - Include/Reuse other HTML documents</p></li>
+          </ul>
+        </section>
+
+        <section data-background="#3A99D7" data-background-transition="slide">
+          <h2 style="color: #fff; font-weight: bold;">Custom Elements</h2>
+        </section>
+
+        <section>
+          <p style="font-size: 1.3em; line-height: 1.4;"><strong>Custom Elements</strong> allow web developers to define new types of HTML elements.</p>
+        </section>
+
+        <section>
+          <h3>Custom Elements Features</h3>
+
+          <ul style="margin-top: 1.5em;">
+            <li>Define new HTML/DOM Elements</li>
+            <li>Extend existing elements</li>
+            <li>Bundle together custom functionality into a single tag</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Registering new elements</h3>
+
+          <p style="margin-top: 1.5em;"><code class="inline">document.registerElement()</code> let's you create custom elements.</p>
+          <pre style="font-size: 0.7em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var MyElement = document.registerElement('my-element');
+document.body.appendChild(new MyElement());</code></pre>
+          <p style="margin-top: 1em;">Or with an optional prototype</p>
+          <pre style="font-size: 0.7em; margin-top: 1.2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var MyElement = document.registerElement('my-element', {
+  prototype: Object.create(HTMLElement.prototype)
+});</code></pre>
+          <aside class="notes">
+            - name must contain a dash
+          </aside>
+        </section>
+
+        <section>
+          <h3>Extend native/custom elements</h3>
+
+          <p style="margin-top: 1.5em;">Simply inherit prototype from <code class="inline">HTML[type]Element</code> and add <code class="inline">extends</code> property accordingly.</p>
+          <pre style="font-size: 0.65em; line-height: 1.4; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var MegaButton = document.registerElement('mega-button', {
+  prototype: Object.create(HTMLButtonElement.prototype, {
+    /* new APIs */
+  }),
+  extends: 'button'
+});</code></pre>
+          <pre style="font-size: 0.6em; line-height: 1.4; margin-top: 1em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;"><button is="mega-button"></button></code></pre>
+          <p>Custom elements that inherit from native elements are called type extension custom elements.</p>
+
+          <aside class="notes">
+            - Custom elements can be declared or created before their definition is registered
+            - Until upgraded they're called unresolved elements
+          </aside>
+        </section>
+
+        <section>
+          <h3>Instantiate Custom Elements</h3>
+
+          <div class="fragment">
+          <p style="margin-top: 1.5em;">Declarative:</p>
+          <pre style="font-size: 0.7em; line-height: 1.4; margin-top: 0.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;"><my-element></my-element></code></pre>
+        </div>
+          <div class="fragment">
+          <p style="margin-top: 0.8em;">Via DOM APIs:</p>
+          <pre style="font-size: 0.7em; line-height: 1.4; margin-top: 0.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var myElement = document.createElement('my-element');</code></pre>
+        </div>
+          <div class="fragment">
+            <p style="margin-top: 0.8em;">Using <code class="inline">new</code>:</p>
+          <pre style="font-size: 0.7em; line-height: 1.4; margin-top: 0.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var myElement = new MyElement();
+document.body.appendChild(myElement);</code></pre>
+        </div>
+        </section>
+
+        <section>
+          <h3>Lifecycle callback methods</h3>
+          <ul style="margin-top: 1.5em;">
+            <li><code class="inline">createdCallback</code> - instance of the element is created</li>
+            <li><code class="inline">attachedCallback</code> - instance was inserted into the document</li>
+            <li><code class="inline">detachedCallback</code> - instance was removed into the document</li>
+            <li><code class="inline">attributeChangedCallback</code> - attribute was added, removed or updated</li>
+          </ul>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.7em; line-height: 1.4; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var proto = Object.create(HTMLElement.prototype);
+
+proto.createdCallback = function() {...};
+proto.attachedCallback = function() {...};
+
+var XFoo = document.registerElement('x-foo', {
+  prototype: proto
+});</code></pre>
+        </section>
+
+        <section>
+          <p style="font-size: 1.3em; line-height: 1.4;">Alright, so can we <strong>add markup</strong> to our custom element?</p>
+          <h4 class="job-title-sure fragment current-visible">SURE!</h4>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.7em; line-height: 1.4; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var proto = Object.create(HTMLElement.prototype);
+
+proto.createdCallback = function() {
+  this.innerHTML = '&lt;p&gt;HTML goes here&lt;/p&gt;';
+};
+
+var XFoo = document.registerElement('x-foo', {
+  prototype: proto
+});</code></pre>
+        </section>
+
+        <section data-background="img/amazed.gif">
+          <h2 style="color: #fff; width: 650px; text-align: left; margin-top: 4em; position: absolute; font-size: 2.5em; left: -2em; top: -3em; text-shadow: 3px 0 0 #000;">Also works with Templates and Shadow DOM?</h2>
+          <h4 style="top: 0em;" class="job-title-sure fragment current-visible">SURE!</h4>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.7em; line-height: 1.4; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var proto = Object.create(HTMLElement.prototype);
+
+proto.createdCallback = function() {
+  var t = document.querySelector('#sdtemplate');
+  var clone = t.content.cloneNode(true);
+  this.createShadowRoot().appendChild(clone);
+};
+
+var XFoo = document.registerElement('x-foo', {
+  prototype: proto
+});</code></pre>
+        </section>
+
+        <section data-background="img/can-i-use-ce.png">
+          </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Reads</h2>
+
+          <ul style="margin-top: 1em;">
+            <li><a href="http://customelements.io/">customelements.io</a></li>
+            <li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/customelements/">HTML5Rocks.com - Custom Elements</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Four technologies</h2>
+          <ul class="specs-list">
+            <li style="opacity: 0.3"><img src="img/icon-templates.png"><p><strong>HTML Templates</strong> - Inert chunks of clonable DOM</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-shadowdom.png"><p><strong>Shadow DOM</strong> - Style & DOM encapsulation</p></li>
+            <li><img src="img/icon-customelements.png"><p><strong>Custom Elements</strong> - Define and use new DOM elements</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-htmlimports.png"><p><strong>HTML Imports</strong> - Include/Reuse other HTML documents</p></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Four technologies</h2>
+          <ul class="specs-list">
+            <li style="opacity: 0.3"><img src="img/icon-templates.png"><p><strong>HTML Templates</strong> - Inert chunks of clonable DOM</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-shadowdom.png"><p><strong>Shadow DOM</strong> - Style & DOM encapsulation</p></li>
+            <li style="opacity: 0.3"><img src="img/icon-customelements.png"><p><strong>Custom Elements</strong> - Define and use new DOM elements</p></li>
+            <li><img src="img/icon-htmlimports.png"><p><strong>HTML Imports</strong> - Include/Reuse other HTML documents</p></li>
+          </ul>
+        </section>
+
+        <section data-background="#3A99D7" data-background-transition="slide">
+          <h2 style="color: #fff; font-weight: bold;">HTML Imports</h2>
+        </section>
+
+        <section>
+          <h2>#include for the web</h2>
+        </section>
+
+        <section>
+          <h2>Why Imports?</h2>
+
+          <p style="margin-top: 1.8em;">Different types of the web that can be loaded:</p>
+
+          <ul style="margin-top: 1em;">
+            <li><code class="inline">&lt;script src&gt;</code> - For JavaScript</li>
+            <li><code class="inline">&lt;link rel="stylesheet"&gt;</code> - For Stylesheets</li>
+            <li><code class="inline">&lt;img&gt;</code>, <code class="inline">&lt;video&gt;</code>, <code class="inline">&lt;audio&gt;</code>...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>So what about HTML itself?</h3>
+        </section>
+
+        <section>
+          <h2>Here are our options</h2>
+
+          <ul style="margin-top: 1em;">
+            <li><strong><code class="inline">&lt;iframe&gt;</code></strong> - super heavy, super restrictive, frustrating to script in/out</li>
+            <li style="margin-top: 1em;"><strong><code class="inline">AJAX</code></strong> - <code class="inline">xhr.responseType="document"</code>, wtf? We need JS to load HTML?</li>
+            <li style="margin-top: 1em;"><strong>Hacks</strong> - embedded in strings, hidden as comments</li>
+          </ul>
+        </section>
+
+        <section data-background="img/crying.gif">
+        </section>
+
+        <section>
+          <h3>HTML Imports to the rescue!</h3>
+
+          <p style="margin-top: 1.8em;">Use <code class="inline">&lt;link rel="import"&gt;</code> to import external HTML documents.</p>
+
+          <pre style="font-size: 0.8em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;link rel="import" href="path/to/import.html"&gt;</code></pre>
+        </section>
+
+        <section>
+          <h2>Turns this...</h2>
+          <pre style="font-size: 0.8em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;"><link rel="stylesheet" href="bootstrap.css">
+<link rel="stylesheet" href="fonts.css">
+<script src="jquery.js"></script>
+<script src="bootstrap.js"></script>
+<script src="bootstrap-tooltip.js"></script>
+<script src="bootstrap-dropdown.js"></script></code></pre>
+        </section>
+
+        <section>
+          <h2>...into this.</h2>
+
+          <pre style="font-size: 0.8em; margin-top: 1.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">&lt;link rel="import" href="bootstrap.html"&gt;</code></pre>
+        </section>
+
+        <section>
+          <h2>Getting the content</h2>
+          <pre style="font-size: 0.6em; margin-top: 3.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var content = document.querySelector('link[rel="import"]').import</code></pre>
+        </section>
+
+        <section>
+          <h3 style="font-size: 1.4em;">Cloning contents into main document</h3>
+
+          <pre style="font-size: 0.7em; margin-top: 2.5em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var link = document.querySelector('link[rel="import"]');
+var content = link.import;
+          
+var el = content.querySelector('.widget');
+
+document.body.appendChild(el);</code></pre>
+
+          <p style="margin-top: 1em;">Content is inert until cloned into the DOM!</p>
+        </section>
+
+        <section data-background="img/can-i-use-imports.png">
+        </section>
+
+        <section>
+          <h2 style="font-weight: bold;">Reads</h2>
+
+          <ul style="margin-top: 1em;">
+            <li><a href="http://www.stevesouders.com/blog/2013/12/02/html-imports-scope-security-and-suggestions/">Steve Souders - Scope, Security and Suggestions</a></li>
+            <li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/">HTML5Rocks.com - #includes for the web</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Putting it all together...</h2>
+          <h3 style="margin-top: 1em;"><a href="http://plnkr.co/edit/AQEiooIQ5T3b9smXPNu9?p=preview">Demo</a></h3>
+        </section>
+
+        <section data-background="img/mindblown.gif">
+        </section>
+
+        <section data-background="#3A99D7" data-background-transition="slide">
+          <h3 style="color: #fff; font-size: 1.5em; font-weight: bold;">So what about Polymer and X-Tag?</h3>
+        </section>
+
+        <section>
+          <p style="font-size: 1.4em;"><strong>Both</strong> make the development of web components <strong>easier and better</strong>!</p>
+          <h4 class="job-title-sure fragment current-visible">FACT!</h4>
+        </section>
+
+        <section data-background="img/polymer-website.png">
+
+          <aside class="notes">
+            - Data binding
+            - layout attributes
+            - touch & gesture support
+            - Web animations
+          </aside>
+        </section>
+
+        <section data-background="img/x-tag-website.png">
+        </section>
+
+        <section>
+          <h3>Declaring elements with Polymer</h3>
+        <pre style="font-size: 0.65em; line-height: 1.4; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;"><polymer-element name="foo-element" constructor="FooElement">
+  <template>
+    <!-- shadow DOM here -->
+    <p>This is a foo-element.</p>
+  </template>
+  <script>
+    Polymer({
+      // properties and methods here
+    });
+  </script>
+</polymer-element></code></pre>
+        </section>
+
+        <section>
+          <h3>Declaring elements with X-Tag</h3>
+          <pre style="font-size: 0.65em; line-height: 1.4; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">var frag = xtag.createFragment('<p>This is a foo-element.</p>');
+
+xtag.register('foo-element', {
+  lifecycle: {
+    created: function () {
+      this.appendChild(frag.cloneNode(true));
+    }
+  }
+});</code></pre>
+        </section>
+
+        <section>
+          <p style="font-size: 1.4em"><strong>X-Tag</strong> doesn't use Shadow DOM by default.</p>
+        </section>
+        <section>
+          <h3>Shadow DOM is optional in X-Tag</h3>
+          <pre style="font-size: 0.65em; line-height: 1.4; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">xtag.register('my-element', {
+  lifecycle: {
+    created: function () {
+      var tpl = document.querySelector('#my-template');
+      var shadow = this.createShadowRoot()
+      shadow.appendChild(tpl.content.cloneNode(true));
+    }
+  }
+});</code></pre>
+
+        </section>
+
+        <section>
+          <h2>Reads</h2>
+          <ul style="margin-top: 1em;">
+            <li><a href="http://pascalprecht.github.io/2014/07/21/polymer-vs-x-tag-here-is-the-difference/">Polymer vs. X-Tag - Here's the difference</a></li>
+            <li><a href="http://pascalprecht.github.io/2014/07/14/inheritance-and-composition-with-polymer/">Inheritance and Composition in Polymer</a></li>
+            <li><a href="http://pascalprecht.github.io/2014/08/01/sharing-styles-across-web-components-with-polymer-and-core-style/">Sharing styles across Web Components with Polymer and core-style</a></li>
+
+        </section>
+
+        <section data-background="img/wc-website.png">
+        </section>
+
+        <section class="slide-background" data-background="img/wc-logo.svg">
+          <div style="margin-left: -3em;">
+            <h2 style="background: rgba(255, 255, 255, 0.5); display: inline-block;  margin-top: 2em; margin-left: -4em; padding: 0.4em 0.2em; text-align: left; font-size: 100px; font-weight: bold; color: #222; line-height: 1em;text-transform: uppercase;">Thank you.</h2>
+            <div style="text-align: left; margin-left: 0.5em;margin-top: .5em;">
+              <img style="float: left; margin-right: 0.5em; border-radius: 50%; height: 120px; border: 5px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
+              <div style="padding-top: 1.2em;">
+                <span class="name">Pascal Precht</span>
+                <span class="twitter">@PascalPrecht</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

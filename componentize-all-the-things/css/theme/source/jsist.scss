@@ -1,0 +1,164 @@
+/**
+ * A simple theme for reveal.js presentations, similar
+ * to the default theme. The accent color is darkblue.
+ *
+ * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
+ * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+
+@-webkit-keyframes pulse_animation {
+  0% { -webkit-transform: scale(1); }
+  30% { -webkit-transform: scale(1); }
+  40% { -webkit-transform: scale(1.05); }
+  50% { -webkit-transform: scale(1); }
+  60% { -webkit-transform: scale(1); }
+  70% { -webkit-transform: scale(1.03); }
+  80% { -webkit-transform: scale(1); }
+  100% { -webkit-transform: scale(1); }
+}
+
+.pulse {
+  -webkit-animation-name: 'pulse_animation';
+  -webkit-animation-duration: 2300ms;
+  -webkit-transform-origin:70% 70%;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: "Open Sans", sans-serif;
+$mainColor: #222;
+$headingFont: "Open Sans", sans-serif;
+$headingColor: #222;
+$headingTextShadow: none;
+$headingTextTransform: none;
+$backgroundColor: #fff;
+$linkColor: #2c2c2c;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: rgba(0, 0, 0, 0.99);
+
+.reveal {
+
+  .slide-background[data-background-hash="img/wc-logo.svgnullnullnullnullnullnull"] {
+    background-size: 1400px auto;
+    background-position: 16em -5em;
+  }
+
+  section img {
+    border: none!important;
+    box-shadow: none!important;
+  }
+
+  .name, .twitter {
+    display: block;
+    vertical-align: top;
+    color: #222;
+    font-size: 25px;
+    line-height: 30px;
+  }
+
+  .specs-list {
+    list-style: none;
+    margin-top: 1em;
+    img {
+      float: left;
+      margin-right: 0.5em;
+    }
+    li {
+      clear: both;
+    }
+
+    p {
+      padding-top: 0.5em;
+    }
+  }
+
+  h2, h3 {
+    font-weight: bold;
+  }
+  ul li {
+    margin-top: 0.3em;
+  }
+
+  code.inline {
+    background-color: #DDD;
+  }
+}
+
+.reveal h4.job-title {
+  font-weight: bold;
+  font-size: 6em;
+  -webkit-transform: rotate(-14deg);
+  margin: 0;
+  color: #7C2;
+  position: absolute;
+  font-family: impact;
+  top: -0.5em;
+  left: 0.25em;
+  text-shadow: 5px 4px 1px rgba(0, 0, 0, 0.8);
+  letter-spacing: 3px;
+  border: 10px solid #7C2;
+  border-radius: 0.3em;
+  padding:  0.3em 1em;
+  box-shadow: inset 0px 0px 177px #7C2;
+  line-height: 1.2em;
+}
+
+.reveal h4.job-title-no {
+  font-weight: bold;
+  font-size: 6em;
+  -webkit-transform: rotate(-14deg);
+  margin: 0;
+  color: red;
+  position: absolute;
+  font-family: impact;
+  top: -0.5em;
+  left: 0.5em;
+  text-shadow: 5px 4px 1px rgba(0, 0, 0, 0.8);
+  letter-spacing: 3px;
+  border: 10px solid red;
+  border-radius: 0.3em;
+  padding:  0.3em 1em;
+  box-shadow: inset 0px 0px 177px red;
+  line-height: 1.2em;
+}
+
+.reveal h4.job-title-sure {
+  font-weight: bold;
+  font-size: 6em;
+  -webkit-transform: rotate(-14deg);
+  margin: 0;
+  color: #7C2;
+  position: absolute;
+  font-family: impact;
+  top: -0.5em;
+  right: 0em;
+  text-shadow: 5px 4px 1px rgba(0, 0, 0, 0.8);
+  letter-spacing: 3px;
+  border: 10px solid #7C2;
+  border-radius: 0.3em;
+  padding:  0.3em 1em;
+  box-shadow: inset 0px 0px 177px #7C2;
+  line-height: 1.2em;
+}
+.special-button {
+  background: #bada55;
+  color: red;
+  padding: 1em;
+  border-radius: 0.3em;
+  font-size: 1em;
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
