@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Better i18n for your Angular apps</title>
+
+    <meta name="description" content="Slide deck about the i18n effort for Angular">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/default.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://ng-conf.org">
+      <img style="opacity: 0.8;"height="50" src="img/ng-conf-logo.svg">
+    </a>
+    <a style="font-family: Source Sans Pro; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 1em; z-index: 2;" href="http://twitter.com/chirayuk">
+      <span style="color: #888; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@Chirayuk</span>
+    </a>
+
+    <a style="font-family: Source Sans Pro; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 6em; z-index: 2;" href="http://twitter.com/PascalPrecht">
+      <span style="color: #888; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@PascalPrecht</span>
+    </a>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1 style="margin-top: 0.7em; text-transform: none; font-size: 2.7em;">Better i18n<br>for your Angular apps</h1>
+          <p style="margin-top: 0.5em; font-size: 1em;">A first look at Angular's new i18n story</p>
+          <div style="margin-top: 1.5em;">
+            <img style="border: 4px solid #D84437; box-shadow: none; margin: 0; margin-right: 0.6em; border-radius: 50%; width: 100px;" src="img/chirayu.jpg">
+            <img style="border: 4px solid #0f9d58; box-shadow: none; margin: 0; margin-left: 0.6em; border-radius: 50%; width: 100px;" src="img/pascal.jpg">
+          </div>
+          <p style="margin-top: 0.3em;">
+            <small>By <a href="http://hakim.se">Chirayu Krishnappa</a> and <a href="http://twitter.com/hakimel">Pascal Precht</a></small>
+          </p>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <h3 class="fragment">It all began at ng-europe...</h3>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img class="fragment" style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-1.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-2.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-3.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-4.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-5.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-6.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-7.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-8.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" class="sunglasses-slide" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img class="sunglasses" src="img/deal-with-it.png">
+          </div>
+        </section>
+
+        <section>
+          <img style="border: none; box-shadow: none;" src="img/rip-angular-translate.png">
+        </section>
+
+        <section data-background="img/just-kidding.jpg">
+          <h1 style="margin-left: 3em; margin-top: 2em; font-size: 3.5em; color: #fff; transform: rotate(-14deg);">Just kidding!</h1>
+        </section>
+        <section>
+          <img style="width: 800px; border: none; box-shadow: none;" src="img/aaron.png">
+        </section>
+
+        <section>
+          <p><strong>Internationalization (i18n)</strong> is the process of developing products in such a way that they can be localized for languages and cultures easily.</p>
+          <p class="fragment" style="margin-top: 2em;"><strong>Localization (l10n)</strong> is the process of adapting applications and text to enable their usability in a particular cultural or linguistic market.</p>
+        </section>
+
+        <section>
+          <h2 style="font-size: 1.4em;">I18n support in the Angular world (today)</h2>
+          <ul style="max-width: 75%; margin-top: 0em;">
+            <li class="fragment"><strong>ngLocale</strong> - Static Angular extension used by built-in components (<code>currency</code>, <code>date</code>, ...)</li>
+            <li class="fragment"><strong>angular-gettext</strong> - gettext utilities for Angular</li>
+            <li class="fragment"><strong>angular-translate</strong> - i18n support through translation IDs</li>
+            <li class="fragment">...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Problems with current solutions</h2>
+          <p>May or may not apply to all of them.</p>
+          <ul style="width: 75%;">
+            <li class="fragment">No way to annotate translations with meta information for translator</li>
+            <li class="fragment">ID abstraction instead of language as default</li>
+            <li class="fragment">Poor pluralization support</li>
+            <li class="fragment">Works only on the client</li>
+            <li class="fragment">Many more! (<a href="https://docs.google.com/document/d/1mwyOFsAD-bPoXTk3Hthq0CAcGXCUw-BtTJMR4nGTY-0/">Angular and i18n: A new world</a>)
+          </ul>
+        </section>
+
+        <section>
+          <p><strong>We want a first-class i18n story for Angular v1 and v2!</strong></p>
+        </section>
+
+        <section>
+          <h2>Main Goals</h2>
+          <ul>
+            <li class="fragment"><strong>Tool support</strong> - Message extraction, Format Transformer, Application Generator, ...)</li>
+            <li class="fragment"><strong>Server/Client-side Support</strong> - Static Mode, Dynamic Mode</li>
+            <li class="fragment"><strong>Gender and Pluralization</strong> - Using ICU MessageFormat syntax</li>
+            <li class="fragment"><strong>Performance</strong> - It's a feature</li>
+            <li class="fragment">...</li>
+          </ul>
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#F4B400">
+          <h1>Syntax</h1>
+        </section>
+
+        <section>
+          <h2>Annotating text blocks</h2>
+          <pre class="fragment"><code><span>
+  <!--i18n: Label to show the current length
+  of the comments and the maximum length
+  allowed.-->
+  Limit is 255 characters for commits.
+  Current {{item.comment.length || 0}}.
+  <!--/i18n-->
+</span></code></pre>
+        </section>
+        <section>
+          <h2>Annotating text blocks</h2>
+          <pre><code><span>
+  <!--i18n-->
+  Limit is 255 characters for commits.
+  Current {{item.comment.length || 0}}.
+  <!--/i18n-->
+</span></code></pre>
+          <p style="margin-top: 1.5em;">Descriptions are optional.</p>
+        </section>
+
+        <section>
+          <h2>Annotating text blocks</h2>
+          <pre><code><span i18n="Label to show the current length
+  of the comments and the maximum length
+  allowed.">
+  Limit is 255 characters for commits.
+  Current {{item.comment.length || 0}}.
+</span></code></pre>
+<p style="margin-top: 1.5em;">We can use the <code>i18n</code> attribute to annotate whole blocks.</p>
+        </section>
+
+        <section>
+          <h2>Annotating text blocks</h2>
+          <pre><code>&lt;span&gt;
+  Limit is 255 characters for commits.
+  Current {{item.comment.length || 0}}.
+&lt;/span&gt;</code></pre>
+          <p style="margin-top: 1.5em;">Omitting <code>i18n</code> annotation entirely means <strong>implicit syntax</strong>.</p>
+        </section>
+
+        <section>
+          <h2>Annotating html blocks</h2>
+          <pre><code>&lt;div i18n="Label to show the current length
+  of the comments and the maximum length
+  allowed."&gt;
+  &lt;p&gt;Limit is 255 characters for commits.
+  Current {{item.comment.length || 0}}.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          <p style="margin-top: 1.5em;">This would also work when using comment syntax.</p>
+        </section>
+
+        <section>
+          <h3>We can even annotate element attributes!</h3>
+        </section>
+
+        <section>
+          <h2>Annotating attributes</h2>
+          <pre><code style="font-size: 1.4em;">&lt;input
+  placeholder="First Name"
+  i18n-placeholder="Placeholder for user input"
+  &gt;
+</code></pre>
+<p style="margin-top: 1.5em;"><strong>Works for custom elements and Web Components</strong> as well.</p>
+        </section>
+        <section>
+          <h2>Annotating attributes</h2>
+          <pre><code style="font-size: 1.4em;">&lt;input
+  placeholder="First Name"
+  i18n-placeholder
+  &gt;
+</code></pre>
+<p style="margin-top: 1.5em;"><strong>Works for custom elements and Web Components</strong> as well.</p>
+        </section>
+
+        <section>
+          <h2>Achieved goals</h2>
+          <p style="margin-top: 1.5em">With this syntax, the following requirements are fulfilled:</p>
+          <ul>
+            <li class="fragment">Developers can add new i18n solution to existing apps</li>
+            <li class="fragment">No build step require due to <strong>dynamic mode</strong></li>
+            <li class="fragment">New syntax needs to be valid HTML (for dynamic mode support)</li>
+          </ul>
+        </section>
+
+        <section data-background="img/applause.gif">
+          <h1 style="color: #fff; margin-top: 5em; margin-left: 2em;">*Audience claps*</h1>
+        </section>
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#4285F4">
+          <h1 style="font-size: 2.3em;">Pluralization and Gender</h1>
+        </section>
+
+        <section>
+          <h2>Pluralization and Gender?</h2>
+          <div class="fragment" style="margin-top: 1.5em;">
+          <p style="text-align: left;">Pluralization:</p>
+          <pre style="margin-top: 1em!important;"><code style="font-size: 1.4em;">You have 1 new message.
+You have 2 new messages.</code></pre>
+        </div>
+        <div class="fragment" style="margin-top: 1.5em;">
+          <p style="text-align: left;">Gender:</p>
+          <pre style="margin-top: 1em!important;"><code style="font-size: 1.4em;">She has sent you an email.
+They have sent you an email.</code></pre>
+        </div>
+        </section>
+        <section>
+          <h2>Pluralization and Gender?</h2>
+          <div style="margin-top: 2em;">
+          <p style="text-align: left;">Both combined and nested:</p>
+          <pre style="margin-top: 1em!important;"><code style="font-size: 1.4em;">He found 1 result in 2 categories.
+She found 1 result in 2 categories.
+He found 2 results in 1 category.
+She found 2 results in 1 category.
+They found 2 results in 2 categories.</code></pre>
+        </div>
+        </section>
+        <section>
+          <h2 style="font-size: 1.5em;">First-class MessageFormat integration</h2>
+          <p style="margin-top: 1em;">Some reasons why we decided to do so:</p>
+          <ul style="max-width: 78%;">
+            <li class="fragment">Standard syntax, translators are familiar with it</li>
+            <li class="fragment">Syntax is compact and easy to used in Angular templates</li>
+            <li class="fragment">Can be used inside attributes</li>
+            <li class="fragment">Supports nesting of plurals and gender selections</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>MessagFormat Syntax</h2>
+          <pre class="fragment"><code style="max-height: 500px; font-size: 1.4em;">{GENDER, select,
+    male {He}
+  female {She}
+   other {They}
+} found {NUM_RESULTS, plural,
+            one {1 result}
+          other {# results}
+        } in {NUM_CATEGORIES, plural,
+                  one {1 category}
+                other {# categories}
+             }.</code></pre>
+
+        </section>
+
+        <section>
+          <h2>Angular specific concerns</h2>
+          <ul style="margin-top: 1em;">
+            <li class="fragment">MF's argument syntax is restricted to <a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5B%3APattern_Syntax%3A%5D&abb=on&g=">Pattern_Syntax</a> (a.k.a. no expressions allowed)</li>
+            <li class="fragment">Angular uses double curlies for interpolation, conflicts with MF's syntax</li>
+            <li class="fragment">A curly inside Angular expression represents an object, while in MF it causes mode switch</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>MessageFormat in Angular</h2>
+          <div class="fragment">
+          <pre><code style="max-height: 500px; margin-top: 3.5em; font-size: 1em;">{{recipients.length, plural,
+  =0 { You, {{user.name}}, have not sent any messages. }
+  =1 { You, {{user.name}}, have sent a message. }
+  other { You have sent {{recipients.length}} people messages. }
+}}</code></pre>
+          <p style="margin-top: 1.5em;">MessageFormat syntax can be used <strong>inside</strong> Angular expressions.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>MessageFormat in Angular</h2>
+          <div>
+          <pre><code style="max-height: 500px; margin-top: 3.5em!important;font-size: 1em;">{{recipient.gender, select,
+  female { You, {{user.name}}, have sent her messages. }
+  male { You, {{user.name}}, have sent him messages. }
+  other { You, {{user.name}}, have sent them messages. }
+}}</code></pre>
+          <p style="margin-top: 1.5em;">MessageFormat syntax can be used <strong>inside</strong> Angular expressions.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>MessageFormat in Angular</h2>
+
+          <pre><code style="max-height: 500px; font-size: 1em;">{{recipients.length, plural,
+  =0 {You, {{user.name}}, have not sent any messages.}
+  =1 {recipients[0].gender, select,
+        female {You, {{user.name}}, sent her a message.}
+        male {You, {{user.name}}, sent him a message.}
+        other {You, {{user.name}}, sent them a message.}
+     }
+  other {You sent {{recipients.length}} people messages.}
+}}</code></pre>
+        </section>
+
+        <section>
+          <h3>What if we need HTML in our messages?</h3>
+        </section>
+
+        <section>
+          <h2>Proposed Syntax (TBD)</h2>
+          <pre><code style="max-height: 500px; font-size: 1em;"><ng-msg plural="recipients.length">
+  <ng-when value="=0">
+    You, {{user.name}}, have not sent any messages.
+  </ng-when>
+  <ng-when value="=1">
+      <ng-msg select="recipients[0].gender">
+          <ng-when value="female">
+              You, <b>{{user.name}}</b>, sent her a message.
+          </ng-when>
+      </ng-msg>
+  </ng-when>
+</ng-msg></code></pre>
+
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#0F9D58">
+          <h1>Tools</h1>
+        </section>
+
+        <section>
+          <h2 class="fragment">Tools and Libraries</h2>
+
+          <ul>
+            <li class="fragment"><strong>Template Discovery</strong> - Resolves references to templates (directive templates, <code>script[type="ng/template"]</code>)</li>
+            <li class="fragment"><strong>Offline Message Extractor</strong> - Message extraction and ID generation</li>
+            <li class="fragment"><strong>File Format Transformer</strong> - Support for XMB/XTB, XLIFF 1.2 and gettext/po</li>
+            <li class="fragment"><strong>Static App Generator</strong> - Generate application templates for different locales</li>
+          </ul>
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#D84437">
+          <h1>Status and Plans</h1>
+        </section>
+
+        <section>
+          <h2 class="fragment">Current Status</h2>
+
+          <ul style="margin-top: 1.5em;">
+            <li class="fragment"><code>$$messageFormat</code> - Enables Pluralization and Gender in Angular expressions (<strong>Shipped in 1.4</strong>)</li>
+            <li class="fragment"><code>Offline Message Extractor</code> - Python prototype implemented, JavaScript port in the making</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Next steps</h2>
+          <ul style="margin-top: 1.5em;">
+            <li class="fragment"><code>Online Message Extractor</code> - Perform pre-compile stage for dynamic mode</li>
+            <li class="fragment"><code>$templateCache</code> integration for locale templates</li>
+            <li class="fragment">Migration story for existing libraries like <code>angular-translate</code></li>
+            <li class="fragment">Proper Bidi support</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>We're always looking for help!</h2>
+
+          <p style="margin-top: 1.5em;">Here's a list of places to get started:</p>
+
+          <ul>
+            <li><a href="http://github.com/angular/i18n">github.com/angular/i18n</a></li>
+            <li><a href="https://docs.google.com/document/d/1mwyOFsAD-bPoXTk3Hthq0CAcGXCUw-BtTJMR4nGTY-0/view">Angular and i18n: The new world</a></li>
+            <li><a href="https://docs.google.com/document/d/1-pLAhklbR7CMLkY4pYgwjoDCLyNlNGVnO_lDZiuN9KA/view">Document with tasks for 1.0</a></li>
+          </ul>
+        </section>
+        <section>
+          <h1 style="text-transform: none; font-size: 2.7em;">Thanks.</h1>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
