@@ -134,6 +134,7 @@
             <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
             <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
             <img class="sunglasses" src="img/deal-with-it.png">
+            <span class="thug-life fragment">THUG LIFE</span>
           </div>
         </section>
 
@@ -196,28 +197,7 @@
 
         <section>
           <h2>Annotating text blocks</h2>
-          <pre class="fragment"><code><span>
-  <!--i18n: Label to show the current length
-  of the comments and the maximum length
-  allowed.-->
-  Limit is 255 characters for commits.
-  Current {{item.comment.length || 0}}.
-  <!--/i18n-->
-</span></code></pre>
-        </section>
-        <section>
-          <h2>Annotating text blocks</h2>
-          <pre><code><span>
-  <!--i18n-->
-  Limit is 255 characters for commits.
-  Current {{item.comment.length || 0}}.
-  <!--/i18n-->
-</span></code></pre>
-          <p style="margin-top: 1.5em;">Descriptions are optional.</p>
-        </section>
-
-        <section>
-          <h2>Annotating text blocks</h2>
+          <div class="fragment">
           <pre><code><span i18n="Label to show the current length
   of the comments and the maximum length
   allowed.">
@@ -225,15 +205,7 @@
   Current {{item.comment.length || 0}}.
 </span></code></pre>
 <p style="margin-top: 1.5em;">We can use the <code>i18n</code> attribute to annotate whole blocks.</p>
-        </section>
-
-        <section>
-          <h2>Annotating text blocks</h2>
-          <pre><code>&lt;span&gt;
-  Limit is 255 characters for commits.
-  Current {{item.comment.length || 0}}.
-&lt;/span&gt;</code></pre>
-          <p style="margin-top: 1.5em;">Omitting <code>i18n</code> annotation entirely means <strong>implicit syntax</strong>.</p>
+</div>
         </section>
 
         <section>
@@ -241,10 +213,46 @@
           <pre><code>&lt;div i18n="Label to show the current length
   of the comments and the maximum length
   allowed."&gt;
-  &lt;p&gt;Limit is 255 characters for commits.
+  &lt;p&gt;Limit is 255 characters for comments.
   Current {{item.comment.length || 0}}.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-          <p style="margin-top: 1.5em;">This would also work when using comment syntax.</p>
+          <p style="margin-top: 1.5em;">Can contain HTML elements.</p>
+        </section>
+
+        <section>
+          <h3>Do I always need to introduce an extra element?</h3>
+        </section>
+
+        <section>
+          <h2>Annotating text blocks (comments)</h2>
+          <pre><code><span>
+  <!--i18n: Label to show the current length
+  of the comments and the maximum length
+  allowed.-->
+  Limit is 255 characters for comments.
+  Current {{item.comment.length || 0}}.
+  <!--/i18n-->
+</span></code></pre>
+        </section>
+
+        <section>
+          <h2>Annotating text blocks (comments)</h2>
+          <pre><code><span>
+  <!--i18n-->
+  Limit is 255 characters for comments.
+  Current {{item.comment.length || 0}}.
+  <!--/i18n-->
+</span></code></pre>
+          <p style="margin-top: 1.5em;">Descriptions are optional.</p>
+        </section>
+
+        <section>
+          <h2>Implicit Syntax</h2>
+          <pre><code>&lt;span&gt;
+  Limit is 255 characters for comments.
+  Current {{item.comment.length || 0}}.
+&lt;/span&gt;</code></pre>
+          <p style="margin-top: 1.5em;">Omitting <code>i18n</code> annotation entirely means <strong>implicit syntax</strong>.</p>
         </section>
 
         <section>
@@ -262,12 +270,8 @@
         </section>
         <section>
           <h2>Annotating attributes</h2>
-          <pre><code style="font-size: 1.4em;">&lt;input
-  placeholder="First Name"
-  i18n-placeholder
-  &gt;
-</code></pre>
-<p style="margin-top: 1.5em;"><strong>Works for custom elements and Web Components</strong> as well.</p>
+          <pre><code style="font-size: 1.6em;">&lt;input placeholder="First Name"&gt;</code></pre>
+<p style="margin-top: 1.5em;">We can provide default descriptions for common attributes, so no annotating would be required.</p>
         </section>
 
         <section>
@@ -275,7 +279,7 @@
           <p style="margin-top: 1.5em">With this syntax, the following requirements are fulfilled:</p>
           <ul>
             <li class="fragment">Developers can add new i18n solution to existing apps</li>
-            <li class="fragment">No build step require due to <strong>dynamic mode</strong></li>
+            <li class="fragment">No build step required due to <strong>dynamic mode</strong></li>
             <li class="fragment">New syntax needs to be valid HTML (for dynamic mode support)</li>
           </ul>
         </section>
@@ -303,7 +307,7 @@ They have sent you an email.</code></pre>
         <section>
           <h2>Pluralization and Gender?</h2>
           <div style="margin-top: 2em;">
-          <p style="text-align: left;">Both combined and nested:</p>
+          <p style="text-align: left;">Both can be combined:</p>
           <pre style="margin-top: 1em!important;"><code style="font-size: 1.4em;">He found 1 result in 2 categories.
 She found 1 result in 2 categories.
 He found 2 results in 1 category.
@@ -383,27 +387,6 @@ They found 2 results in 2 categories.</code></pre>
      }
   other {You sent {{recipients.length}} people messages.}
 }}</code></pre>
-        </section>
-
-        <section>
-          <h3>What if we need HTML in our messages?</h3>
-        </section>
-
-        <section>
-          <h2>Proposed Syntax (TBD)</h2>
-          <pre><code style="max-height: 500px; font-size: 1em;"><ng-msg plural="recipients.length">
-  <ng-when value="=0">
-    You, {{user.name}}, have not sent any messages.
-  </ng-when>
-  <ng-when value="=1">
-      <ng-msg select="recipients[0].gender">
-          <ng-when value="female">
-              You, <b>{{user.name}}</b>, sent her a message.
-          </ng-when>
-      </ng-msg>
-  </ng-when>
-</ng-msg></code></pre>
-
         </section>
 
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#0F9D58">

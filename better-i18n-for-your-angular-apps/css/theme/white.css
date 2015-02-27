@@ -68,6 +68,24 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .hljs-string, .hljs-value {
   color: #D84437 !important; }
 
+.reveal .thug-life {
+  font-weight: bold;
+  font-size: 4em !important;
+  -webkit-transform: rotate(-14deg);
+  margin: 0;
+  color: #333;
+  font-family: impact;
+  top: -1.2em;
+  left: 0.5em;
+  position: absolute;
+  text-shadow: 5px 4px 1px rgba(0, 0, 0, 0.5);
+  letter-spacing: 3px;
+  border: 15px solid #444 !important;
+  padding: 0.5em;
+  border-radius: 0.3em;
+  box-shadow: inset 0px 0px 177px #333;
+  line-height: 1.2em; }
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
