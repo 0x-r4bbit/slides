@@ -328,7 +328,29 @@ They found 2 results in 2 categories.</code></pre>
 
         <section>
           <h2>MessagFormat Syntax</h2>
-          <pre class="fragment"><code style="max-height: 500px; font-size: 1.4em;">{GENDER, select,
+          <div class="fragment">
+          <pre ><code style="max-height: 500px; font-size: 1.4em;">{GENDER, select,
+    male {He found one category.}
+  female {She found one category.}
+   other {They found one category.}
+}
+</code></pre>
+          <p style="margin-top: 1.5em;">Gender selection</p>
+        </div>
+        </section>
+
+        <section>
+          <h2>MessagFormat Syntax</h2>
+          <pre><code style="max-height: 500px; font-size: 1.4em;">You have {NUM_RESULTS, plural,
+    one {1 message.}
+  other {# messages.}
+}</code></pre>
+          <p style="margin-top: 1.5em;">Plural selection</p>
+        </section>
+
+        <section>
+          <h2>MessagFormat Syntax</h2>
+          <pre><code style="max-height: 500px; font-size: 1.4em;">{GENDER, select,
     male {He}
   female {She}
    other {They}
@@ -397,9 +419,8 @@ They found 2 results in 2 categories.</code></pre>
           <h2 class="fragment">Tools and Libraries</h2>
 
           <ul>
-            <li class="fragment"><strong>Template Discovery</strong> - Resolves references to templates (directive templates, <code>script[type="ng/template"]</code>)</li>
             <li class="fragment"><strong>Offline Message Extractor</strong> - Message extraction and ID generation</li>
-            <li class="fragment"><strong>File Format Transformer</strong> - Support for XMB/XTB, XLIFF 1.2 and gettext/po</li>
+            <li class="fragment"><strong>File Format Transformer</strong> - Support for XMB, XLIFF 1.2 and gettext/po</li>
             <li class="fragment"><strong>Static App Generator</strong> - Generate application templates for different locales</li>
           </ul>
         </section>
@@ -412,8 +433,8 @@ They found 2 results in 2 categories.</code></pre>
           <h2 class="fragment">Current Status</h2>
 
           <ul style="margin-top: 1.5em;">
-            <li class="fragment"><code>$$messageFormat</code> - Enables Pluralization and Gender in Angular expressions (<strong>Shipped in 1.4</strong>)</li>
-            <li class="fragment"><code>Offline Message Extractor</code> - Python prototype implemented, JavaScript port in the making</li>
+            <li class="fragment">Plural and Gender support for Angular interpolations (<strong>Shipped in 1.4</strong>)</li>
+            <li class="fragment"><code>Offline Message Extractor</code> - Prototype completed, implementation in progress.</li>
           </ul>
         </section>
 
@@ -421,7 +442,6 @@ They found 2 results in 2 categories.</code></pre>
           <h2>Next steps</h2>
           <ul style="margin-top: 1.5em;">
             <li class="fragment"><code>Online Message Extractor</code> - Perform pre-compile stage for dynamic mode</li>
-            <li class="fragment"><code>$templateCache</code> integration for locale templates</li>
             <li class="fragment">Migration story for existing libraries like <code>angular-translate</code></li>
             <li class="fragment">Proper Bidi support</li>
           </ul>
