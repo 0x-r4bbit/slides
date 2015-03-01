@@ -376,7 +376,7 @@ They found 2 results in 2 categories.</code></pre>
         <section>
           <h2>MessageFormat in Angular</h2>
           <div class="fragment">
-          <pre><code style="max-height: 500px; margin-top: 3.5em; font-size: 1em;">{{recipients.length, plural,
+          <pre><code style="max-height: 500px; margin-top: 3.5em;">{{recipients.length, plural,
   =0 { You, {{user.name}}, have not sent any messages. }
   =1 { You, {{user.name}}, have sent a message. }
   other { You have sent {{recipients.length}} people messages. }
@@ -388,7 +388,7 @@ They found 2 results in 2 categories.</code></pre>
         <section>
           <h2>MessageFormat in Angular</h2>
           <div>
-          <pre><code style="max-height: 500px; margin-top: 3.5em!important;font-size: 1em;">{{recipient.gender, select,
+          <pre><code style="max-height: 500px; margin-top: 3.5em!important;">{{recipient.gender, select,
   female { You, {{user.name}}, have sent her messages. }
   male { You, {{user.name}}, have sent him messages. }
   other { You, {{user.name}}, have sent them messages. }
