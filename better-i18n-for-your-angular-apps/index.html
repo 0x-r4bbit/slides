@@ -59,6 +59,208 @@
           <p style="margin-top: 0.3em;">
             <small>By <a href="http://hakim.se">Chirayu Krishnappa</a> and <a href="http://twitter.com/hakimel">Pascal Precht</a></small>
           </p>
+          <aside class="notes">
+            <ul>
+              <li>Hello my name is Chirayu and I'm # and this is Pascal and he is #</li>
+              <li>We've done a ton of research on i18n and today we want o share our solution with you</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="img/success.png">
+          <h2 style="color: #fff; margin-left: 6em; width: 600px; font-size: 2em;">Imagine you've successfully launched  your web app.</h2>
+          <aside class="notes">
+            <ul>
+              <li>Web app successfully launched</li>
+              <li>Turned out to be very successful in own country</li>
+              <li>You want make your app accessible to others as well</li>
+              <li>Yet not sure what's required and involved when it comes to i18n</li>
+              <li>IT'S AN AFTER THOUGHT!</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>What does internationalization (i18n) even mean?</h2>
+          <ul style="width: 80%; margin-top: 0.8em;">
+            <li class="fragment">Translating application messages... that's it right? <strong>No!</strong></li>
+            <li class="fragment">Localizing for each country and region should be easy</li>
+            <li class="fragment">This is <strong>more than just changing locale, currency, date</strong> etc.</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>i18n !== translating text from one locale to another</li>
+              <li>Writing app in a way that localizing it for each country and region is easy</li>
+              <li>Integrated process with translators</li>
+            </ul>
+          </aside>
+        </section>
+
+
+        <section data-background="img/shocked-cat.gif">
+          <h1 style="color: #fff; margin-left: -2em; width: 500px;">Holy...!</h1>
+          <aside class="notes">
+            <ul>
+              <li>What if I'm not prepared for such a progress?</li>
+              <li>Also what about legacy apps?</li>
+              <li>Do I have to start all over again?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>A good solution lets you localize your apps in whatever shape they are.</h3>
+          <aside class="notes">
+            <ul>
+              <li>It shouldn't matter how old your web app is</li>
+              <li>We should be able to make incremential changes</li>
+              <li>That's the vision for core i18n support in Angular</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img style="background: none; margin: 0; border: none; box-shadow: none;" src="img/i18n-process.svg">
+          <aside class="notes">
+            <ul>
+              <li>Let's take a look at what the i18n process could look like</li>
+              <li>Developer writes HTML templates</li>
+              <li>Templates can be directive or router view tpls in Angular world</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img style="background: none; margin: 0; border: none; box-shadow: none;" src="img/i18n-process-2.svg">
+          <aside class="notes">
+            <ul>
+              <li>Messages get extracted in locale they are written in</li>
+              <li>We provide tools for this, but you can integrate them into your toolchain as well</li>
+              <li>Somehow bundled and transformed to file format that translator needs</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img style="background: none; margin: 0; border: none; box-shadow: none;" src="img/i18n-process-3.svg">
+          <aside class="notes">
+            <ul>
+              <li>Message bundles are given to translator</li>
+              <li>Translator translate bundles to other locale</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img style="background: none; margin: 0; border: none; box-shadow: none;" src="img/i18n-process-4.svg">
+          <aside class="notes">
+            <ul>
+              <li>Translator returns translated bundles in new locale</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img style="background: none; margin: 0; border: none; box-shadow: none;" src="img/i18n-process-5.svg">
+          <aside class="notes">
+            <ul>
+              <li>Developer generates new templates from given bundles</li>
+              <li>Again, we provide tools for this</li>
+              <li>As we can see, this process is iterative</li>
+              <li>We might add messages to the template over time etc.</li>
+              <li>How often do we translate?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Static vs. Dynamic</h2>
+
+          <aside class="notes">
+            <ul>
+              <li>Another big question that comes up: Static vs. Dynamic</li>
+              <li>Do we want to deliver one app per locale or not</li>
+              <li>What we show you today works for both</li>
+              <li>Static is generally better because...</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 2em;"><p>Limit is 255 characters.</p></code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Let's take a look at our app template</li>
+              <li>Hint text for comment textbox</li>
+              <li>What if we wanted to translate it?</li>
+              <li>Extracting this message lacks context</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>What makes a high quality translation?</h2>
+          <ul style="width: 85%; margin-top: 1em;">
+            <li class="fragment">Translators <strong>really</strong> care about context</li>
+            <li class="fragment">What do the words "<strong>on</strong>" and "<strong>off</strong>" mean without context?</li>
+            <li class="fragment">Screenshots of application views are even better</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Context is king</li>
+              <li>"On" and "Off" could be a toggling setting</li>
+              <li>Screenshots enable translators to see places where messages are displayed</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 2em;"><p>Limit is 255 characters.</p></code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Coming back to our example, what is the information we want to provide the translator?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.9em; line-height: 50px; word-break: break-word;">&lt;p i18n="Label to show the maximum length of characters allowed in comments."&gt;
+  Limit is 255 characters.
+&lt;/p&gt;</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Our solution lets you add i18n attributes</li>
+              <li>Translation now has a much higher quality</li>
+              <li>However, not required to start off with context</li>
+              <li>Can contain HTML as well</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 2em; line-height: 55px;">&lt;input
+  ng-model="name"
+  placeholder="Enter name"&gt;</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Another example are attributes</li>
+              <li>HTML is already declarative</li>
+              <li>We can provide default messages for common attributes</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 2em; line-height: 60px; word-break: break-word">&lt;input
+  ng-model="name"
+  placeholder="Enter name"
+  i18n-placeholder="Placeholder to show user where to enter the name of a friend."&gt;</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>We can provide explicit description with i18n-* attribute</li>
+              <li>Also works for web components/ custom attributes</li>
+            </ul>
+          </aside>
         </section>
 
         <!-- <section data-background="img/ng-europe-logo.png" data-state="ngeurope"> -->
