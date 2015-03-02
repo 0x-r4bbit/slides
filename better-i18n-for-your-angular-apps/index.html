@@ -187,6 +187,28 @@
         </section>
 
         <section>
+          <h2>Declarative syntax rules</h2>
+          <pre><code style="font-size: 2em;"><p>Limit is 255 characters.</p></code></pre>
+            <input placeholder="Firstname Lastname" ng-model="user.name">
+          </code></pre>
+          <br>
+          The placeholder text is automatically extracted for translation.  This is one example of the "implicit syntax."
+        </section>
+
+        <section>
+          <h2>Declarative syntax rules</h2>
+          <pre><code style="font-size: 2em;"><p>Limit is 255 characters.</p></code></pre>
+            <span>{{recipients.length, plural,
+                      =0 {You have sent no gifts today.}
+                      =1 {You sent one gift to {{ recipients[0].name }}.}
+                      other {You sent {{recipients.length}} gifts today.}
+                  }}</span>
+          </code></pre>
+          You can write plural and gender based messages (and nest them) in your templates (including attributes.)<br>
+          <b>Advantage</b>: They will be extracted and converted into ICU MessageFormat messages that the translators understand.
+        </section>
+
+        <section>
           <pre><code style="font-size: 2em;"><p>Limit is 255 characters.</p></code></pre>
           <aside class="notes">
             <ul>
@@ -196,6 +218,21 @@
               <li>Extracting this message lacks context</li>
             </ul>
           </aside>
+        </section>
+
+        <section>
+          <h2>What does the translator see?</h2>
+          (this is an example. translators have more UI around this)<br>
+          <img src="img/limit255-no-context.png" style="background: none; margin: 0; border: none; box-shadow: none;"></img>
+        </section>
+
+        <section>
+          (NOTE: maybe show an image of a translator scratching their head?)<br>
+          <h2>Huh!</h2>
+          <ul>
+            <li><b>What</b> limit?</li>
+            <li>Informational message?  Instruction?  Where is it displayed?</li>
+          </ul>
         </section>
 
         <section>
@@ -238,9 +275,14 @@
         </section>
 
         <section>
+          <h2>What does the now translator see?</h2>
+          <img src="img/limit255-with-context.png" style="background: none; margin: 0; border: none; box-shadow: none;"></img>
+        </section>
+
+        <section>
           <pre><code style="font-size: 2em; line-height: 55px;">&lt;input
   ng-model="name"
-  placeholder="Enter name"&gt;</code></pre>
+  placeholder="Firstname Lastname"&gt;</code></pre>
           <aside class="notes">
             <ul>
               <li>Another example are attributes</li>
@@ -251,16 +293,53 @@
         </section>
 
         <section>
+          <h2>Translators view</h2>
+          <img src="img/input-no-context.png" style="background: none; margin: 0; border: none; box-shadow: none;"></img>
+          <br>(Extraction tool adds a default description which helps a little.)
+        </section>
+
+        <section>
           <pre><code style="font-size: 2em; line-height: 60px; word-break: break-word">&lt;input
   ng-model="name"
   placeholder="Enter name"
-  i18n-placeholder="Placeholder to show user where to enter the name of a friend."&gt;</code></pre>
+  i18n-placeholder="Text input placeholder for the full name of a friend."&gt;</code></pre>
           <aside class="notes">
             <ul>
               <li>We can provide explicit description with i18n-* attribute</li>
               <li>Also works for web components/ custom attributes</li>
             </ul>
           </aside>
+        </section>
+
+        <section>
+          <h2>Translators view</h2>
+          <img src="img/input-with-context.png" style="background: none; margin: 0; border: none; box-shadow: none;"></img>
+        </section>
+
+        <section>
+          <h2>My app is translated.  Ship it!</h2>
+          Later ...
+          <h4>Bug report</h4>Your UI has text that's cut off.  The spacing is all weird and some messages are still in English.
+        </section>
+
+        <section>
+          <h2>Solution: Pseudotranslation</h2>
+          Pseudotranslation provides INSTANT translation into gibberish.  Such gibberish will have features such as:
+          <ul>
+            <li>Sentences size doubled by repeating words</li>
+            <li>characters munged in some way such as being accented</li>
+            <li>Brackets on either end to easily see text that's cut off</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Example</h2>
+          The message "Enter you name" might be pseudotranslated in one scheme to "[Enter Ën̈ẗër̈ your ÿöür̈ name n̈äm̈ë]".  Make it part of your workflow (pseudotranslate on save.)
+          <ul>
+            <li>Catch text that's cut off</li>
+            <li>Catch issues with spacing</li>
+            <li>Catch messages that came from Javascript or were others not extracted</li>
+          </ul>
         </section>
 
         <!-- <section data-background="img/ng-europe-logo.png" data-state="ngeurope"> -->
