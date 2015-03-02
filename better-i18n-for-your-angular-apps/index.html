@@ -185,27 +185,33 @@
             </ul>
           </aside>
         </section>
-
         <section>
           <h2>Declarative syntax rules</h2>
-          <pre><code style="font-size: 2em;"><p>Limit is 255 characters.</p></code></pre>
-            <input placeholder="Firstname Lastname" ng-model="user.name">
-          </code></pre>
-          <br>
-          The placeholder text is automatically extracted for translation.  This is one example of the "implicit syntax."
+          <pre><code style="font-size: 1.8em; line-height: 55px;">&lt;input
+  ng-model="user.name"
+  placeholder="Firstname Lastname"&gt;</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>The placeholder text is automatically extracted for translation.  This is one example of the "implicit syntax."</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h2>Declarative syntax rules</h2>
-          <pre><code style="font-size: 2em;"><p>Limit is 255 characters.</p></code></pre>
-            <span>{{recipients.length, plural,
-                      =0 {You have sent no gifts today.}
-                      =1 {You sent one gift to {{ recipients[0].name }}.}
-                      other {You sent {{recipients.length}} gifts today.}
-                  }}</span>
-          </code></pre>
-          You can write plural and gender based messages (and nest them) in your templates (including attributes.)<br>
-          <b>Advantage</b>: They will be extracted and converted into ICU MessageFormat messages that the translators understand.
+          <pre><code style="font-size: 1.3em; line-height: 55px;">{{recipients.length, plural,
+
+  =0 {You have sent no gifts today.}
+  =1 {You sent one gift to {{ recipients[0].name }}.}
+  other {You sent {{recipients.length}} gifts today.}
+
+}}</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>You can write plural and gender based messages (and nest them) in your templates (including attributes.)</li>
+              <li><b>Advantage</b>: They will be extracted and converted into ICU MessageFormat messages that the translators understand.</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -222,17 +228,24 @@
 
         <section>
           <h2>What does the translator see?</h2>
-          (this is an example. translators have more UI around this)<br>
-          <img src="img/limit255-no-context.png" style="background: none; margin: 0; border: none; box-shadow: none;"></img>
+          <img src="img/limit255-no-context.png" style="background: none; margin: 0; margin-top: 1.5em; border: none; box-shadow: none;"></img>
+          <p style="margin-top: 1.5em;">(This is an example. Translators have more UI around this)</p>
+          <aside class="notes">
+            <ul>
+              <li>This is what the translator sees</li>
+              <li></li>
+            </ul>
+          </aside>
         </section>
 
-        <section>
-          (NOTE: maybe show an image of a translator scratching their head?)<br>
-          <h2>Huh!</h2>
-          <ul>
-            <li><b>What</b> limit?</li>
-            <li>Informational message?  Instruction?  Where is it displayed?</li>
-          </ul>
+        <section data-background="img/wtf-picard.jpeg">
+          <h1 style="font-size: 2.4em; color: #000; background: rgba(255, 255, 255, 0.5); margin-left: 6em; width: 600px;">Limit?<br>What "Limit"?!</h1>
+          <aside class="notes">
+            <ul>
+              <li><b>What</b> limit?</li>
+              <li>Informational message?  Instruction?  Where is it displayed?</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -276,13 +289,18 @@
 
         <section>
           <h2>What does the now translator see?</h2>
-          <img src="img/limit255-with-context.png" style="background: none; margin: 0; border: none; box-shadow: none;"></img>
+          <img src="img/limit255-with-context.png" style="background: none; margin: 0; margin-top: 1.5em; border: none; box-shadow: none; width: 1000px; max-width: none;"></img>
+        </section>
+
+        <section data-background="img/picard-happy.jpg">
+          <h1 style="font-size: 2.4em; color: #000; background: rgba(255, 255, 255, 0.5); margin-left: 8em; width: 400px;">"Limit"!</h1>
         </section>
 
         <section>
-          <pre><code style="font-size: 2em; line-height: 55px;">&lt;input
+          <pre><code style="font-size: 1.8em; line-height: 55px;">&lt;input
   ng-model="name"
   placeholder="Firstname Lastname"&gt;</code></pre>
+          <p style="margin-top: 2em;">We can provide default messages for common attributes.</p>
           <aside class="notes">
             <ul>
               <li>Another example are attributes</li>
@@ -294,8 +312,12 @@
 
         <section>
           <h2>Translators view</h2>
-          <img src="img/input-no-context.png" style="background: none; margin: 0; border: none; box-shadow: none;"></img>
-          <br>(Extraction tool adds a default description which helps a little.)
+          <img src="img/input-no-context.png" style="background: none; margin: 0; margin-top: 1.5em; border: none; box-shadow: none;">
+          <aside class="notes">
+            <ul>
+              <li>(Extraction tool adds a default description which helps a little.)</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -313,7 +335,7 @@
 
         <section>
           <h2>Translators view</h2>
-          <img src="img/input-with-context.png" style="background: none; margin: 0; border: none; box-shadow: none;"></img>
+          <img src="img/input-with-context.png" style="background: none; margin: 0; margin-top: 1.5em; border: none; box-shadow: none;"></img>
         </section>
 
         <section>
@@ -324,31 +346,45 @@
 
         <section>
           <h2>Solution: Pseudotranslation</h2>
-          Pseudotranslation provides INSTANT translation into gibberish.  Such gibberish will have features such as:
-          <ul>
-            <li>Sentences size doubled by repeating words</li>
-            <li>characters munged in some way such as being accented</li>
-            <li>Brackets on either end to easily see text that's cut off</li>
+          <p style="margin-top: 1em;">Pseudotranslation provides <strong>INSTANT</strong> translation into gibberish. Such gibberish will have features such as:</p>
+          <ul style="margin-top: 0em; width: 85%;">
+            <li class="fragment">Sentences size doubled by repeating words</li>
+            <li class="fragment">Characters munged in some way such as being accented</li>
+            <li class="fragment">Brackets on either end to easily see text that's cut off</li>
           </ul>
         </section>
 
         <section>
           <h2>Example</h2>
-          The message "Enter you name" might be pseudotranslated in one scheme to "[Enter Ën̈ẗër̈ your ÿöür̈ name n̈äm̈ë]".  Make it part of your workflow (pseudotranslate on save.)
-          <ul>
-            <li>Catch text that's cut off</li>
-            <li>Catch issues with spacing</li>
-            <li>Catch messages that came from Javascript or were others not extracted</li>
-          </ul>
+          <div class="fragment">
+          <p style="text-align: left;margin-top: 1em;">Message:</p>
+          <pre style="margin-top: 1em!important;"><code style="font-size: 2em;">Enter your name</code></pre>
+        </div>
+
+          <div class="fragment">
+          <p style="margin-top: 2em;text-align: left;">Pseudotranslated Message:</p>
+          <pre style="margin-top: 1em!important;"><code style="font-size: 2em;">[Enter Ën̈ẗër̈ your ÿöür̈ name n̈äm̈ë]</code></pre>
+        </div>
+          <aside class="notes">
+            <ul>
+              <li>Catch text that's cut off</li>
+              <li>Catch issues with spacing</li>
+              <li>Catch messages that came from Javascript or were others not extracted</li>
+              <li>Make it part of your workflow (pseudotranslate on save.)</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h2>Status</h2>
-          <ul>
-            <li>Angular1.4 is shipping with declarative support of plurals and gender. (MessageFormat)</li>
-            <li>Command line extraction tools are moving from prototype to production code (no timeline)</li>
-            <li>Angular2 support begins next month</li>
+          <ul style="width: 80%; margin-top: 1em;">
+            <li class="fragment">Angular1.4 is shipping with declarative support of plurals and gender. (MessageFormat)</li>
+            <li class="fragment">Command line extraction tools are moving from prototype to production code (no timeline)</li>
+            <li class="fragment">Angular2 support begins next month</li>
           </ul>
+        </section>
+        <section>
+          <h1 style="text-transform: none; font-size: 2.7em;">Thanks.</h1>
         </section>
 
         <!-- <section data-background="img/ng-europe-logo.png" data-state="ngeurope"> -->
