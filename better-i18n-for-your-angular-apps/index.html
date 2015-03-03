@@ -198,23 +198,6 @@
         </section>
 
         <section>
-          <h2>Declarative syntax rules</h2>
-          <pre><code style="font-size: 1.3em; line-height: 55px;">{{recipients.length, plural,
-
-  =0 {You have sent no gifts today.}
-  =1 {You sent one gift to {{ recipients[0].name }}.}
-  other {You sent {{recipients.length}} gifts today.}
-
-}}</code></pre>
-          <aside class="notes">
-            <ul>
-              <li>You can write plural and gender based messages (and nest them) in your templates (including attributes.)</li>
-              <li><b>Advantage</b>: They will be extracted and converted into ICU MessageFormat messages that the translators understand.</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
           <pre><code style="font-size: 2em;"><p>Limit is 255 characters.</p></code></pre>
           <aside class="notes">
             <ul>
@@ -288,7 +271,7 @@
         </section>
 
         <section>
-          <h2>What does the now translator see?</h2>
+          <h2>What does the translator now see?</h2>
           <img src="img/limit255-with-context.png" style="background: none; margin: 0; margin-top: 1.5em; border: none; box-shadow: none; width: 1000px; max-width: none;"></img>
         </section>
 
@@ -336,6 +319,99 @@
         <section>
           <h2>Translators view</h2>
           <img src="img/input-with-context.png" style="background: none; margin: 0; margin-top: 1.5em; border: none; box-shadow: none;"></img>
+        </section>
+
+        <section>
+          <h2>Placeholders</h2><br>
+          <pre><code style="font-size: 2em;"><p>Limit is {{N}} characters.</p></code></pre><br>
+          <div class="fragment">What happens when there's an interpolation?</div>
+        </section>
+
+        <section>
+          <h2>Translator's View</h2><br>
+          <img src="img/limitN-no-context.png" style="background: none; margin: 0; margin-top: 1.5em; border: none; box-shadow: none;"></img>
+        </section>
+
+        <section>
+          <h2>Placeholders</h2><br>
+          Placeholders are opaque.  Translators can reorder placeholders but cannot rewrite their contents.
+        </section>
+
+        <section>
+          <h2>Translator's View</h2><br>
+          <img src="img/limitN-with-context.png" style="background: none; margin: 0; margin-top: .5em; border: none; box-shadow: none; width: 70%; height: auto"></img>
+        </section>
+
+        <section>
+          <h2>Plurals and Gender</h2><br>
+          <h4 class="fragment">How do pluralize declaratively?</h4>
+        </section>
+
+        <section>
+          <h2>How can we pluralize declaratively?</h2>
+          <ul style="width: 80%; margin-top: 0.8em;">
+            <li class="fragment">Use <code>ngPluralize</code></li>
+            <li class="fragment">Use <code>ngSwitch</code></li>
+          </ul>
+          <br><br><div class="fragment"><i>They're not declarative enough!</i></div>
+        </section>
+
+        <section>
+          <h2>How can we pluralize declaratively?</h2>
+          <div class="fragment">Plural rules vary dramatically across languages.</div><br>
+          <div class="fragment">Example: In Russian, it matters whether the least significant digit of the number is 1 (except for 11), [2, 3, 4] (except for 12, 13, 14), or [5, 6, 7, 8, 9, 0].</div>
+        </section>
+
+        <section>
+          <h2>How can we pluralize declaratively?</h2>
+          <ul style="width: 80%; margin-top: 0.8em;">
+            <li class="fragment">Your translator needs to add or remove categories as they apply to the target locale.</li>
+            <li class="fragment">They should see all the categories together.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How can we pluralize declaratively?</h2>
+          <pre><code style="font-size: 1.3em; line-height: 55px;">{{numMessages, plural,
+         =0 { You have no new messages }
+         =1 { You have one new message }
+      other { You have # new messages }
+}}</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>You can write plural and gender based messages (and nest them) in your templates (including attributes.)</li>
+              <li><b>Advantage</b>: They will be extracted and converted into ICU MessageFormat messages that the translators understand.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>What does the translator see?</h2>
+          <pre><code style="font-size: 1.3em; line-height: 55px;">{numMessages, plural,
+         =0 { You have no new messages }
+         =1 { You have one new message }
+      other { You have # new messages }
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>What does the translator see?</h2>
+          <ul style="width: 80%; margin-top: 0.8em;">
+            <li class="fragment">Nearly the same thing but with single curlies and simplified expressions.</code></li>
+            <li class="fragment">It's the ICU MessageFormat standard syntax.</code></li>
+            <li class="fragment">Translators understand it.</code></li>
+            <li class="fragment">Their console automatically provides them the categories to fill in for their target language</code></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Declarative Gender</h2>
+          <pre><code style="font-size: 1.3em; line-height: 55px;">{friendGender, select,
+       male { Invite him }
+     female { Invite her }
+      other { Invite them }
+}</code></pre>
+          <br>Similar to plurals.  You can nest them or combine them in other ways.
         </section>
 
         <section>
