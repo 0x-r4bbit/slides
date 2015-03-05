@@ -68,7 +68,7 @@
         </section>
 
         <section data-background="img/success.png">
-          <h2 style="color: #fff; margin-left: 6em; width: 600px; font-size: 2em;">Imagine you've successfully launched  your web app.</h2>
+          <h2 style="color: #fff; margin-left: 5.5em; width: 600px; font-size: 2em;">Imagine you've successfully launched  your web app.</h2>
           <aside class="notes">
             <ul>
               <li>Web app successfully launched</li>
@@ -214,13 +214,13 @@
           <aside class="notes">
             <ul>
               <li>This is what the translator sees</li>
-              <li></li>
+              <li>Message id is generated automatically and used internally to identify messages (across software)</li>
             </ul>
           </aside>
         </section>
 
         <section data-background="img/wtf-picard.jpeg">
-          <h1 style="font-size: 2.4em; color: #000; background: rgba(255, 255, 255, 0.5); margin-left: 6em; width: 600px;">Limit?<br>What "Limit"?!</h1>
+          <h1 style="font-size: 2.2em; color: #000; background: rgba(255, 255, 255, 0.5); margin-left: 5em; width: 600px;">Limit?<br>What "Limit"?!</h1>
           <aside class="notes">
             <ul>
               <li><b>What</b> limit?</li>
@@ -235,6 +235,7 @@
             <li class="fragment">Translators <strong>really</strong> care about context</li>
             <li class="fragment">What do the words "<strong>on</strong>" and "<strong>off</strong>" mean without context?</li>
             <li class="fragment">Screenshots of application views are even better</li>
+            <li class="fragment">(And EVEN better) Live Previews</li>
           </ul>
           <aside class="notes">
             <ul>
@@ -270,11 +271,11 @@
 
         <section>
           <h2>What does the translator now see?</h2>
-          <img src="img/limit255-with-context.png" style="background: none; margin: 0; margin-top: 1.5em; border: none; box-shadow: none; width: 1000px; max-width: none;"></img>
+          <img src="img/limit255-with-context.png" style="background: none; margin: 0; margin-top: 1.5em; border: none; box-shadow: none; width: 960px; max-width: none;"></img>
         </section>
 
         <section data-background="img/picard-happy.jpg">
-          <h1 style="font-size: 2.4em; color: #000; background: rgba(255, 255, 255, 0.5); margin-left: 8em; width: 400px;">"Limit"!</h1>
+          <h1 style="font-size: 2.4em; color: #000; background: rgba(255, 255, 255, 0.5); margin-left: 6.5em; width: 400px;">"Limit"!</h1>
         </section>
 
         <section>
@@ -306,7 +307,7 @@
   ng-model="name"
   placeholder="Enter name"
   i18n-placeholder="Text input placeholder for the full name of a friend."&gt;</code></pre>
-          <figure class="fragment" style="position: absolute; right: -2em; top: -3em; transform: rotateZ(-24deg);">
+          <figure class="fragment" style="position: absolute; right: 0em; top: -3em; transform: rotateZ(-24deg);">
             <img style="border: none; box-shadow: none; width: 300px; transform: rotateZ(-13deg);" src="img/wc-logo.svg">
             <figcaption>
               <span style="display: block; width: 300px; font-weight: bold; color: #fff; text-shadow: 0px 2px 10px #000;">WebComponents ready!</span>
@@ -341,7 +342,7 @@
 
         <section>
           <h2>Translator's View</h2><br>
-          <img src="img/limitN-no-context.png" style="background: none; margin: 0; margin-top: 0em; border: none; box-shadow: none;">
+          <img src="img/limitN-no-context.png" style="background: none; margin: 0; margin-top: 0em; border: none; box-shadow: none; width: 700px;">
           <aside class="notes">
             <ul>
               <li>Placeholders are opaque.</li>
@@ -410,11 +411,11 @@
 
         <section>
           <h2>Declarative Gender</h2>
-          <pre><code style="font-size: 1.7em; line-height: 55px;">{friendGender, select,
+          <pre><code style="font-size: 1.7em; line-height: 55px;">{{friendGender, select,
        male { Invite him }
      female { Invite her }
       other { Invite them }
-}</code></pre>
+}}</code></pre>
           <p style="margin-top: 1em;">Similar to plurals.  You can nest them or combine them in other ways.</p>
         </section>
 
@@ -473,15 +474,16 @@
         </section>
 
         <section data-background="img/when-can-I-start.gif">
-          <h1 style="font-size: 2.4em; color: #000; background: rgba(255, 255, 255, 0.5); margin-left: -2em; width: 500px;">Alright, when I can start?</h1>
+          <h1 style="font-size: 2.4em; color: #000; background: rgba(255, 255, 255, 0.5); margin-left: -0.5em; width: 500px;">Alright, when I can start?</h1>
         </section>
 
         <section>
           <h2>Status</h2>
           <ul style="width: 80%; margin-top: 1em;">
             <li class="fragment">Angular 1.4 is shipping with declarative support of plurals and gender. (MessageFormat)</li>
+
             <li class="fragment">Command line extraction tools are moving from prototype to production code (no timeline)</li>
-            <li class="fragment">Angular2 support begins <strong>next month</strong></li>
+            <li class="fragment">Angular 2 support begins <strong>next month</strong></li>
           </ul>
         </section>
         <section>
