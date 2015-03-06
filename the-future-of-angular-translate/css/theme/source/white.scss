@@ -1,0 +1,150 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * Copyright (C) 2015 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+
+$mainFontSize: 38px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+$linkColor: #4285F4;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+}
+
+.reveal .progress {
+  height: 0.5em;
+  background: #474747!important;
+  span {
+    background: #0f9d58!important;
+  }
+}
+
+.reveal .slide-background[data-background-hash="img/ng-europe-logo.pngnullnullnullnullnullnullnullnull"] {
+  background-size: 24%;
+  background-position: right -6% top -3%;
+}
+
+.reveal code {
+  background: #f0f0f0;
+  padding: 0 10px;
+  border-radius: 0.2em;
+  font-size: 0.9em;
+}
+
+.reveal pre {
+  box-shadow: none!important;
+  margin-top: 3em!important;
+  code {
+    background: transparent!important;
+    color: #222!important;
+    font-size: 1.5em;
+    line-height: 42px;
+  }
+}
+
+.reveal li {
+  margin-top: 0.6em;
+}
+
+.reveal img {
+  max-height: none!important;
+}
+
+.sunglasses-slide {
+  .sunglasses {
+    position: absolute;
+    left: 1.4em;
+    top: 1.2em;
+    width: 200px;
+    box-shadow: none;
+    background: none;
+    border: none!important;
+    transform: translateY(-100%);
+    transition: transform 1s ease;
+  }
+
+  &.present .sunglasses {
+    transform: translateY(0);
+    transition-delay: 1s;
+  }
+}
+
+.sub-section-slide {
+  h1,
+  h2 {
+    color: #fff!important;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  &.present h1,
+  &.present h2 {
+    opacity: 1;
+  }
+}
+.hljs-prompt,
+.hljs-constant {
+  color: #222!important;
+}
+.hljs-number {
+  color: #0F9D58!important;
+}
+
+.hljs-string,
+.hljs-value {
+  color: #D84437!important;
+}
+
+.reveal .thug-life {
+  font-weight: bold;
+  font-size: 4em!important;
+  -webkit-transform: rotate(-14deg);
+  margin: 0;
+  color: #333;
+  font-family: impact;
+  top: -1.2em;
+  left: 0.5em;
+  position: absolute;
+  text-shadow: 5px 4px 1px rgba(0, 0, 0, 0.5);
+  letter-spacing: 3px;
+  border: 15px solid #444!important;
+  padding: 0.5em;
+  border-radius: 0.3em;
+  box-shadow: inset 0px 0px 177px #333;
+  line-height: 1.2em;
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------

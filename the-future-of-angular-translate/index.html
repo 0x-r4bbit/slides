@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Better i18n for your Angular apps</title>
+
+    <meta name="description" content="Slide deck about the i18n effort for Angular">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/default.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://ng-conf.org">
+      <img style="opacity: 0.8;"height="50" src="img/ng-conf-logo.svg">
+    </a>
+    <a style="font-family: Source Sans Pro; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 1em; z-index: 2;" href="http://twitter.com/chirayuk">
+      <span style="color: #888; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@Chirayuk</span>
+    </a>
+
+    <a style="font-family: Source Sans Pro; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 6em; z-index: 2;" href="http://twitter.com/PascalPrecht">
+      <span style="color: #888; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@PascalPrecht</span>
+    </a>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <h3 class="fragment">It all began at ng-europe...</h3>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img class="fragment" style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-1.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-2.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-3.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-4.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-5.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-6.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-7.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img style="position: absolute; left: 7.5em; top: -4em; width: 400px; box-shadow: none; background: none; border: none;" src="img/speech-bubble-8.svg">
+          </div>
+        </section>
+
+        <section data-background="img/ng-europe-logo.png" class="sunglasses-slide" data-state="ngeurope">
+          <div>
+            <img style="position: absolute; left: 0; box-shadow: none; border: none; height: 250px; width: 250px;" src="img/Igor_Minar.png">
+            <img style="position: absolute; right: 0em; top: -8em; box-shadow: none; border: none; width: 250px; border-radius: 50%;" src="img/pascal-ngeurope.jpg">
+            <img class="sunglasses" src="img/deal-with-it.png">
+            <span class="thug-life fragment">THUG LIFE</span>
+          </div>
+        </section>
+
+        <section>
+          <img style="border: none; box-shadow: none;" src="img/rip-angular-translate.png">
+        </section>
+
+        <section data-background="img/just-kidding.jpg">
+          <h1 style="margin-left: 3em; margin-top: 2em; font-size: 3.5em; color: #fff; transform: rotate(-14deg);">Just kidding!</h1>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
