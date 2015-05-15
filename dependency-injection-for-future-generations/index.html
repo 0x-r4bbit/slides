@@ -1307,7 +1307,7 @@ class App {
 })
 class App {
   constructor(@Inject(NameService) NameService) {
-    this.name = nameService.getName();
+    this.name = NameService.getName();
   }
 }
           
@@ -1327,7 +1327,7 @@ bootstrap(App);</code></pre>
 })
 class App {
   <span style="color: #fff;">constructor(@Inject(NameService) NameService) {
-    this.name = nameService.getName();
+    this.name = NameService.getName();
   }</span>
 }
           
@@ -1347,7 +1347,7 @@ bootstrap(App);</static-code></pre>
 })
 class App {
   <span style="color: #fff;">constructor(NameService: NameService) {
-    this.name = nameService.getName();
+    this.name = NameService.getName();
   }</span>
 }
           
@@ -1358,6 +1358,26 @@ bootstrap(App);</static-code></pre>
           </aside>
         </section>
 
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
+  selector: 'app',
+  <span style="color: #fff;">injectables: [NameService]</span>
+})
+@View({
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
+})
+class App {
+  <span style="color: #fff;">constructor(NameService: NameService) {
+    this.name = NameService.getName();
+  }</span>
+}
+          
+bootstrap(App);</static-code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
         <section data-background="img/shield-large.svg" class="deck-slide">
           <div class="fragment">
           <div style="margin-left: -4em; margin-top: 8em;">
