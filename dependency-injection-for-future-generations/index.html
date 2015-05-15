@@ -1197,6 +1197,167 @@ var childInj = Injector.resolveAndCreateChild([
         <section data-background="img/excited-baby.gif">
         </section>
 
+        <section>
+          <h2 style="font-size: 2em;">How is it used in Angular 2 then?<h2>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
+  selector: 'app'
+})
+@View({
+  template: '<h1>Hello {{name}}!</h1>'
+})
+class App {
+  constructor() {
+    this.name = 'World';
+  }
+}
+          
+bootstrap(App);</code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
+  selector: 'app'
+})
+@View({
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
+})
+<span style="color: #fff;">class App {
+  constructor() {
+    this.name = 'World';
+  }
+}</span>
+          
+bootstrap(App);</static-code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;"><span style="color: #fff;">@Component({
+  selector: 'app'
+})
+@View({
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
+})</span>
+class App {
+  constructor() {
+    this.name = 'World';
+  }
+}
+          
+bootstrap(App);</static-code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
+  selector: 'app'
+})
+@View({
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
+})
+class App {
+  constructor() {
+    this.name = 'World';
+  }
+}
+          
+<span style="color: #fff;">bootstrap(App);</span></static-code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">class NameService {
+  constructor() {
+    this.name = 'Pascal';
+  }
+
+  getName() {
+    return this.name;
+  }
+}</code></pre>
+          <pre class="fragment" style="font-size: 0.94em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">bootstrap(App, [NameService]);</code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
+  selector: 'app'
+})
+@View({
+  template: '<h1>Hello {{name}}!</h1>'
+})
+class App {
+  constructor(@Inject(NameService) NameService) {
+    this.name = nameService.getName();
+  }
+}
+          
+bootstrap(App);</code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
+  selector: 'app'
+})
+@View({
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
+})
+class App {
+  <span style="color: #fff;">constructor(@Inject(NameService) NameService) {
+    this.name = nameService.getName();
+  }</span>
+}
+          
+bootstrap(App);</static-code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
+  selector: 'app'
+})
+@View({
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
+})
+class App {
+  <span style="color: #fff;">constructor(NameService: NameService) {
+    this.name = nameService.getName();
+  }</span>
+}
+          
+bootstrap(App);</static-code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
         <section data-background="img/shield-large.svg" class="deck-slide">
           <div class="fragment">
           <div style="margin-left: -4em; margin-top: 8em;">
