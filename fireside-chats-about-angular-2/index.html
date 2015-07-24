@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Fireside Chats about Angular 2</title>
+
+    <meta name="description" content="Fireside Chats about Angular 2">
+    <meta name="author" content="Pascal Precht">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 1em; z-index: 2;" href="http://twitter.com/PascalPrecht">
+      <span style="color: #555; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@PascalPrecht #frankenJS</span>
+    </a>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section data-background="img/shield-large.svg" class="deck-slide">
+          <div style="margin-left: -4em; margin-top: 8em;">
+          <h1 style="font-size: 2.8em; text-align: left;">Fireside Chats</h1>
+          <h3 style="margin-left: 0.1em; text-align: left;">about Angular 2</h3>
+          <img style="margin-top: 1em; float: left; border-radius: 50%; height: 150px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
+          <p style="float: left; margin-left: 1em; margin-top: 2.2em; text-align: left;">By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>FrankenJS July, 2015</p>
+        </div>
+          <aside class="notes">
+            <ul>
+              <li>Hi everyone, we are...</li>
+              <li>we spent the last weeks understanding Angular 2, to show you how it works</li>
+              <li>the talk is not a comparison</li>
+              <li>we want to learn how to use it!</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="img/soap-bubble-gun-man.jpg">
+          <div class="fragment">
+          <span style="font-size: 2em; font-weight: bold; text-shadow: -2px 4px #000; position: absolute; left: 1.5em; top: -2em; transform: rotateZ(-28deg);">This is me</span>
+          <span style="position: absolute; font-size: 1.2em; font-weight: bold; text-shadow: -2px 4px #000; right: -4em; top: 1em;transform: rotateZ(20deg);">That's my soap bubble gun</span>
+        </div>
+        <aside class="notes">
+          <ul>
+            <li>Before we get started I need to show you something cool</li>
+            <li>I bought a selfie-stick, a bubble gun and sun glasses</li>
+            <li>Here's what you can do with it</li>
+          </ul>
+        </aside>
+        </section>
+
+        <section data-background="img/bubbles.gif">
+        </section>
+
+        <section>
+          <p style="font-size: 48px;"><span class="fragment" data-fragment-index="2">Oh my gosh this talk on Angular 2 by</span> <span style="font-weight: bold;">@PascalPrecht</span> <span class="fragment" data-fragment-index="2">blows my mind!</span> <span data-fragment-index="1" class="fragment" style="font-weight: bold;">#FrankenJS</span></p>
+        </section>
+
+        <section>
+          <h3>Let's talk about Angular 2!</h3>
+        </section>
+
+        <section>
+          <h1 style="color: #F97474;" class="blink">Warning!</h1>
+          <p style="margin-top: 2em; font-size: 1.2em; line-height: 1.6em;">Everything in this talk is based on alpha developer previews. Things might change in the future.</p>
+          <p style="margin-top: 2em;">(Do not try this in production!)</p>
+        </section>
+
+
+        <section data-background="img/shocked.gif">
+          <h2 style="margin-right:5em; margin-top: 7em;">Angular 2 reactions...</h2>
+          <aside class="notes">
+            <ul>
+              <li>there have been a lot of bad feelings and complanings about ng2</li>
+              <li>new concepts, different syntax, breaking changes..</li>
+              <li>we're gonna explain the reasoning behind it</li>
+              <li>so you will also realise, it's not so bad at all :)</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Here's what we build today</h2>
+          <img style="border: none; box-shadow: none; background: none;" src="img/app.png">
+          <aside class="notes">
+            <ul>
+              <li>SHOW APPLICATION</li>
+              <li>Assembled of several components</li>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background-transition="zoom">
+          <h1>ES6</h1>
+          <p style="margin-top: 1em;">(Some features we need to understand first.)</p>
+          <aside class="notes">
+            <ul>
+              <li>Before we can start, we need to understand a few ES6 features</li>
+              <li>ECMAScript is a specification for a language that we know as JavaScript..</li>
+              <li>Version 6 is the next upcoming version and it comes with some neat features</li>
+              <li>ES6 IS NOT REQUIRED!!</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Classes</h2>
+          <p>ES6 classes are syntactical sugar over objects and prototypes.</p>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">class Car {
+  constructor(name) {
+    this.name = name;
+    this.milesDriven = 0;
+  }
+
+  drive(miles) {
+    this.milesDriven = this.milesDriven + miles;
+  }
+}
+
+let bmw = new Car('BMW');
+bmw.drive(10);
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Modules</h2>
+          <p>A module format that everybody is happy with<br>(AMD, CommonJS - I'm looking at you!).</p>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">// ----- Car.js
+export class Car {
+
+  constructor(name) {
+    this.name = name;
+    this.milesDriven = 0;
+  }
+
+  drive(miles) {
+    this.milesDriven = this.milesDriven + miles;
+  }
+}
+
+export class Convertible extends Car { ... }
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Modules</h2>
+          <p>A module format that everybody is happy with<br>(AMD, CommonJS - I'm looking at you!).</p>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em;">// ----- app.js
+import { Car, Convertible } from 'Car'
+
+let bmw = new Car('BMW');
+let mercedes = new Convertible('Mercedes');
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="img/success.png">
+          <h2 style="color: #fff; margin-left: 6em; margin-top: 5em; width: 600px; font-size: 2em;">Let's build that app!</h2>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">import {
+  bootstrap,
+  Component,
+  View
+} from 'angular2/angular2'
+
+
+
+
+
+
+
+
+          
+          
+    
+          </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>We start with a class</li>
+              <li>This is just a class, it doesn't have any special meaning</li>
+              <li>How can we make it a component?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">import {
+  bootstrap,
+  Component,
+  View
+} from 'angular2/angular2'
+
+
+
+
+
+
+
+class FiresideChatsApp {
+  constructor() {
+    this.name = 'Fireside Chats';
+  }
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Angular 2 uses the concept of annotations</li>
+              <li>They add meta data to a class</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">import {
+  bootstrap,
+  Component,
+  View
+} from 'angular2/angular2'
+
+@Component({
+  selector: 'fireside-chats-app'
+})
+@View({
+  template: '<h1>{{name}}</h1>'
+})
+class FiresideChatsApp {
+  constructor() {
+    this.name = 'Fireside Chats';
+  }
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>So why and how do those annotations work?</li>
+              <li>NOT part of the language</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Bootstrapping an app</h2>
+          <div class="fragment">
+          <p style="margin-top: 1em;">We can bootstrap our application with a component as entry point.</p>
+          <pre style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">bootstrap(FiresideChatsApp);</code></pre>
+          <pre style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">&lt;body&gt;
+  ...
+  <fireside-chats-app></fireside-chats-app>
+  ...
+&lt;/body&gt;</code></pre>
+        </div>
+        </section>
+
+        <section data-background="img/hooray.gif">
+          <h2 class="fragment" style="margin-top: 5em; font-size: 3em; margin-left: 4em;">Demo</h2>
+          <aside class="notes">
+            <ul>
+              <li>Yay, you've built your first Angular 2 app!</li>
+              <li>Let's see what it looks like in action...</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Chatter Card Component</h2>
+          <img style="border: none; box-shadow: none; background: none; height: 500px;" src="img/chatter-card.png">
+          <aside class="notes">
+            <ul>
+              <li>Of course, "hello World" is not interesting</li>
+              <li>Let's build our first component, chatter-card.</li>
+              <li>Here's what data it needs</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+            <pre style="font-size: 1em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">{
+  name: "Celestino Bellone",
+  avatar: "path/to/profile.png",
+  twitterHandle: "c_bellone",
+  description: "Poor tennis player..."
+}
+</code></pre>
+
+          <aside class="notes">
+            <ul>
+              <li>What the object looks like</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 1em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">@Component({
+  selector: 'chatter-card'
+})
+@View({
+  templateUrl: 'chatter-card.html'
+})
+class ChatterCard {
+
+}
+</code></pre>
+
+          <aside class="notes">
+            <ul>
+              <li>Our component implementation</li>
+              <li>Nothing new here, let's take a look at the template</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>chatter-card.html</h3>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><img [src]="item.avatar">
+
+<a [href]="'http://twitter.com' + item.twitterHandle">
+  @{{item.twitterHandle}}
+</a>
+
+<h4>{{item.name}}</h4>
+<p>{{item.description}}</p></code></pre>
+
+          <aside class="notes">
+            <ul>
+              <li>We have an image, a link, and some interpolations</li>
+              <li>But wait, what are those brackets in the attribute names?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="img/albundy_shock.gif">
+          <h2 style="margin-top: 5em; margin-left: 4em; font-size: 3em;">Brackets?!</h2>
+          <aside class="notes">
+            <ul>
+              <li>This can't be valid HTML!</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>2 Things: Escaping and Property Binding</h3>
+        </section>
+
+        <section>
+          <h2>Problems with interpolations</h2>
+          <p style="margin-top: 2.5em;">Why can't we just do this?</p>
+          <pre style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><img src="{{someDynamicValue}}"></code></pre>
+
+          <pre class="fragment" style="font-size: 0.9em; margin-top: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><img ng-src="{{someDynamicValue}}"></code></pre>
+          <aside class="notes">
+            <ul>
+              <li>2 Things: Escaping and properties</li>
+              <li>Let's start with escaping</li>
+              <li>Interpolations don't work for attributes like `src` and `href`</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Properties and Attributes</h2>
+          <div class="fragment">
+          <!-- <p style="margin-top: 1em;">DOM elements have attributes and properties.</p> -->
+          <pre style="font-size: .8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><input value="Angular 2">
+<img src="path/to/img.png">
+</code></pre>
+</div>
+          <div class="fragment">
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">var input = document.querySelector('input');
+input.value; // 'Angular 2'
+var img = document.querySelector('img');
+img.src = // 'path/to/img.png'
+</code></pre>
+<p>Web Components have the same APIs!</p>
+</div>
+          <aside class="notes">
+            <ul>
+              <li>Why do we want to write to properties?</li>
+              <li>Attributes can only be strings</li>
+              <li>Properties are updated along an element's lifecycle</li>
+              <li>We read from properties</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Property Binding</h2>
+          <p style="margin-top: 2em;">Angular 2 binds to element properties instead of attributes in order to work with <strong>any</strong> element.</p>
+          <div class="fragment">
+          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><div title="Angular 2"></div>
+<div [title]="'Angular 2'"></div>
+<div [title]="user.firstname"></div>
+</code></pre>
+<p style="margin-top: 1.5em;">Using <code>[]</code> syntax, we can bind to element properties.<br>A binding value is always an expression.</p>
+</div>
+          <aside class="notes">
+            <ul>
+              <li>Angular 2 needs to be able to pass other types then strings to elements</li>
+              <li>Therefore, angular binds to properties rather than attributes</li>
+              <li>Properties can have any value</li>
+              <li>Prevents custom elements from accidentally reading literal expressions.</li>
+              <li>Works with any element (native, custom, polymer, ...)</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="img/angry.gif">
+          <h3 style="margin-right: 9em; margin-top: 10em;">My editor doesn't like it!</h3>
+          <aside class="notes">
+            <ul>
+              <li>What if my editor and|or html preprocessor has problems with that syntax?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Canonical Syntax</h2>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><div bind-title="'Carmen'"></div>
+<my-component bind-foo="someExpression"></my-component>
+</code></pre>
+<p style="margin-top: 2em;"><code>bind-*</code> is equivalent to <code>[*]</code></p>
+          <aside class="notes">
+            <ul>
+              <li>Since [] is just a shorthand syntax, we can also write the canonical form</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>String Interpolation</h2>
+          <p style="margin-top: 2em;">String interpolation syntax is also just a shorthand.</p>
+          <pre style="font-size: .8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><span>Hello {{name}}</span></code></pre>
+          <p style="margin-top: 1.5em;">Is equivalent to:</p>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><span [text]="'Hello ' + expr.toString()"></span></code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Property bindings are the only bindings that Angular 2 supports</li>
+              <li>So how do string interpolations work then?</li>
+              <li>Turns out it's basically the same. Interpolation syntax is also just a shorthand</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="img/impressive.gif">
+        </section>
+
+        <section>
+          <h3>chatter-card.html</h3>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><img [src]="item.avatar">
+
+<a [href]="'http://twitter.com' + item.twitterHandle">
+  @{{item.twitterHandle}}
+</a>
+
+<h4>{{item.name}}</h4>
+<p>{{item.description}}</p></code></pre>
+          <p>But where does <code>item</code> come from?</p>
+          <aside class="notes">
+            <ul>
+              <li>Coming back to our chatter-card template...</li>
+              <li>How does `item` get there?</li>
+              <li>It turns the same rules we've just learned apply to angular components</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.9em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">@Component({
+  selector: 'chatter-card'
+
+})
+@View({
+  templateUrl: 'chatter-card.html'
+})
+class ChatterCard {
+
+}
+</code></pre>
+
+          <aside class="notes">
+            <ul>
+              <li>We sill need to tell our component to reflect changes to the property</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.9em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">@Component({
+  selector: 'chatter-card',
+  properties: ['item']
+})
+@View({
+  templateUrl: 'chatter-card.html'
+})
+class ChatterCard {
+
+}
+</code></pre>
+
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><chatter-card [item]="someExpression"></chatter-card></code></pre>
+        </section>
+
+        <section>
+          <h2>Demo</h2>
+        </section>
+
+        <section>
+          <h2>Chatter Card Component</h2>
+          <img style="border: none; box-shadow: none; background: none; height: 500px;" src="img/chatter-card.png">
+          <aside class="notes">
+            <ul>
+              <li>We forgot soemthing</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>chatter-card.html</h3>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><img [src]="item.avatar">
+
+<a [href]="'http://twitter.com' + item.twitterHandle">
+  @{{item.twitterHandle}}
+</a>
+
+
+  <h4>{{item.name}}</h4>
+  <p>{{item.description}}</p>
+
+
+
+
+
+          </code></pre>
+
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>chatter-card.html</h3>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><img [src]="item.avatar">
+
+<a [href]="'http://twitter.com' + item.twitterHandle">
+  @{{item.twitterHandle}}
+</a>
+
+<div [hidden]="!showDetails">
+  <h4>{{item.name}}</h4>
+  <p>{{item.description}}</p>
+</div>
+
+
+          
+          </code></pre>
+
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>chatter-card.html</h3>
+          <pre style="font-size: 0.8em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><img [src]="item.avatar">
+
+<a [href]="'http://twitter.com' + item.twitterHandle">
+  @{{item.twitterHandle}}
+</a>
+
+<div [hidden]="!showDetails">
+  <h4>{{item.name}}</h4>
+  <p>{{item.description}}</p>
+</div>
+
+<a (click)="toggle()">
+  {{showDetails ? 'Less' : 'More'}} details
+</a></code></pre>
+
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2>Demo</h2>
+        </section>
+
+
+        <section>
+          <h2>Let's add a list!</h2>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><h1>Fireside Chats</h1>
+
+
+  <chatter-card [item]="item"></chatter-card>
+
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><h1>Fireside Chats</h1>
+
+<div *ng-for="#item of organisers">
+  &lt;chatter-card [item]="item"&gt;&lt;/chatter-card&gt;
+</div>
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+        <section data-background="img/albundy_shock.gif">
+          <h2 style="margin-top: 5em; margin-left: 4em; font-size: 3em;">Again?!</h2>
+          <aside class="notes">
+            <ul>
+              <li>This can't be valid HTML!</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Directives</h2>
+          <div class="fragment">
+          <p style="margin-top: 2em;">Viewport is a directive which can control instantiation of child views which are then inserted into the DOM.</p>
+          <pre style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;"><p *ng-if="showMessage">
+  This is an error message.
+</p>
+</code></pre>
+          <p style="margin-top: 1.5em;">Can only be placed on <code>&lt;template&gt;</code> elements.</p>
+        </div>
+          <aside class="notes">
+            <ul>
+              <li>Viewport directives control instantiation of child views</li>
+              <li>E.g. If, For, Switch, ...</li>
+              <li>Can only be placed on template elements</li>
+              <li>Wait, we don't see a template here? And what's it with the * symbol?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="img/wait.gif">
+          <h2 style="margin-top: 8em;">Wait... Template?</h2>
+        </section>
+
+        <section>
+          <h2>Inline Templates (implicit)</h2>
+          <div class="fragment">
+          <p style="margin-top: 2em;">Angular 2 uses inline templates to enable declarative DOM structure changes. Templates can be used implicit or explicit.</p>
+            <pre style="font-size: 1em; line-height: 1.5em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">Hello {{user}}!
+<p template="ng-if: showMessage">
+  This is an error message.
+</p></code></pre>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>Turns out that this was also a shorthand syntax</li>
+              <li>We can't change DOM structure with element properties</li>
+              <li>We need ability to define child templates, &lt;template&gt; is perfect for that.</li>
+              <li>Templates can be implicit as attribute, or explicit as element</li>
+              <li>Still no template element, what would that look like?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Inline Templates</h2>
+          <p style="margin-top: 2em;">Angular 2 uses inline templates to enable declarative DOM structure changes. Templates can be used implicit or explicit.</p>
+            <pre style="font-size: 1em; line-height: 1.2em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">Hello {{user}}!
+<template [ng-if]="showMessage">
+  <p>
+    This is an error message.
+  </p>
+</template></code></pre>
+          <aside class="notes">
+            <ul>
+              <li>This is the long form.</li>
+              <li>Technically identical.</li>
+              <li>template element is part of web component spec</li>
+              <li>only one viewport directive per template allowed</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Demo</h2>
+        </section>
+
+        <section data-background="img/shield-large.svg" class="deck-slide">
+          <div class="fragment">
+          <div style="margin-left: -4em; margin-top: 8em;">
+          <h1 style="font-size: 2.8em; text-align: left;">Thanks.</h1>
+          <img style="margin-top: 1em; float: left; border-radius: 50%; height: 150px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
+          <p style="float: left; margin-left: 1em; margin-top: 2.2em; text-align: left;">By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>#FrankenJS July, 2015</p>
+        </div>
+      </div>
+        <aside class="notes">
+        </aside>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
