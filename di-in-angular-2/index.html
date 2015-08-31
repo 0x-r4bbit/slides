@@ -37,7 +37,7 @@
   <body>
 
     <a style="color: #999;font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://gotocon.com/amsterdam-2015/">
-      <span>#gotoams</span>
+      <span>#ngBelgium</span>
     </a>
     <div class="reveal">
 
@@ -46,12 +46,12 @@
         <section data-background="img/shield-large.svg" class="deck-slide">
           <div style="margin-left: -4em; margin-top: 6em;">
           <h1 style="font-size: 2.8em; text-align: left;">Dependency Injection</h1>
-          <h3 style="margin-left: 0.1em; text-align: left;">For future generations</h3>
+          <h3 style="margin-left: 0.1em; text-align: left;">in Angular 2</h3>
           <div style="clear: both; text-align: left; margin-top: 2.2em;">
             <img style="display: inline-block;margin-top: 0em; border-radius: 50%; height: 120px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
-            <img style="display: inline-block; margin-left: 0.5em; margin-top: 0em; border-radius: 50%; height: 120px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/carmen.jpeg">
+            <!-- <img style="display: inline-block; margin-left: 0.5em; margin-top: 0em; border-radius: 50%; height: 120px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/carmen.jpeg"> -->
           </div>
-          <p style="font-size: 0.9em; line-height: 45px; margin-top: -0.2em; text-align: left;">By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a> and <a href="http://twitter.com/CarmenPopoviciu">@CarmenPopoviciu</a> a.k.a. ng-duo<br>GOTO Amsterdam June, 2015</p>
+          <p style="font-size: 0.9em; line-height: 45px; margin-top: -0.2em; text-align: left;">By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>AngularJS Meetup Brussels August, 2015</p>
         </div>
         <aside class="notes">
           <ul>
@@ -64,32 +64,35 @@
         </aside>
         </section>
 
-        <!-- <section data-background="img/soap-bubble-gun-man.jpg"> -->
-        <!--   <div class="fragment"> -->
-        <!--   <span style="font-size: 2em; font-weight: bold; text-shadow: -2px 4px #000; position: absolute; left: 1.5em; top: -2em; transform: rotateZ(-28deg);">This is me</span> -->
-        <!--   <span style="position: absolute; font-size: 1.2em; font-weight: bold; text-shadow: -2px 4px #000; right: -4em; top: 1em;transform: rotateZ(20deg);">That's my soap bubble gun</span> -->
-        <!-- </div> -->
-        <!-- <aside class="notes"> -->
-        <!--   <ul> -->
-        <!--     <li>Before we get started I need to show you something cool</li> -->
-        <!--     <li>I bought a selfie-stick, a bubble gun and sun glasses</li> -->
-        <!--     <li>Here's what you can do with it</li> -->
-        <!--   </ul> -->
-        <!-- </aside> -->
-        <!-- </section> -->
+        <section data-background="img/soap-bubble-gun-man.jpg">
+          <div class="fragment">
+          <span style="font-size: 2em; font-weight: bold; text-shadow: -2px 4px #000; position: absolute; left: 1.5em; top: -2em; transform: rotateZ(-28deg);">This is me</span>
+          <span style="position: absolute; font-size: 1.2em; font-weight: bold; text-shadow: -2px 4px #000; right: -4em; top: 1em;transform: rotateZ(20deg);">That's my soap bubble gun</span>
+        </div>
+        <aside class="notes">
+          <ul>
+            <li>Before we get started I need to show you something cool</li>
+            <li>I bought a selfie-stick, a bubble gun and sun glasses</li>
+            <li>Here's what you can do with it</li>
+          </ul>
+        </aside>
+        </section>
 
-        <!-- <section data-background="img/bubbles.gif"> -->
-        <!-- </section> -->
+        <section data-background="img/bubbles.gif">
+        </section>
+        <section>
+          <p style="font-size: 48px;"><span class="fragment" data-fragment-index="2">Oh my gosh this talk on Angular 2's DI by</span> <span style="font-weight: bold;">@PascalPrecht</span> <span class="fragment" data-fragment-index="2">blows my mind!</span> <span data-fragment-index="1" class="fragment" style="font-weight: bold;">#ngBelgium</span></p>
+        </section>
 
-        <!-- <section> -->
-        <!--   <h3>Let's talk about dependency injection!</h3> -->
-        <!-- <aside class="notes"> -->
-        <!--   <ul> -->
-        <!--     <li>First we need to understand what it is and why we need it</li> -->
-        <!--     <li>Here's my talk on Dependency Injection in one slide</li> -->
-        <!--   </ul> -->
-        <!-- </aside> -->
-        <!-- </section> -->
+        <section>
+          <h3>Let's talk about dependency injection!</h3>
+        <aside class="notes">
+          <ul>
+            <li>First we need to understand what it is and why we need it</li>
+            <li>Here's my talk on Dependency Injection in one slide</li>
+          </ul>
+        </aside>
+        </section>
 
         <section data-background="#fff">
           <img style="box-shadow: none; border: none; width: 1000px;" src="img/tweet.png">
@@ -654,7 +657,7 @@ app.service('OtherService', function (<span style="color: #fff;">Car</span>) {
           <h2>We still have some problems though:</h2>
           <ul style="margin-top: 1em; font-size: 1.1em;">
             <li class="fragment"><strong>Internal cache</strong> - Dependencies are served as Singletons</li>
-            <li class="fragment" style="margin-top: 1em;"><strong>Synchronous by default</strong> - Async only possible through hacks</li>
+            <!-- <li class="fragment" style="margin-top: 1em;"><strong>Synchronous by default</strong> - Async only possible through hacks</li> -->
             <li class="fragment" style="margin-top: 1em;"><strong>Namespace collision</strong> - A token is available in app only once</li>
             <li class="fragment" style="margin-top: 1em;"><strong>Built into the framework</strong> - Not possible to use without framework</li>
           </ul>
@@ -1101,175 +1104,175 @@ expect(V8).toBeInstanceOf(Engine)</code></pre>
 
         </section>
 
-        <section>
-          <h2 style="margin-top: 1em;">What about asynchronicity?</h2>
-        </section>
+        <!-- <section> -->
+        <!--   <h2 style="margin-top: 1em;">What about asynchronicity?</h2> -->
+        <!-- </section> -->
+
+        <!-- <section> -->
+        <!--   <h2><code>.toAsyncFactory()</code></h2> -->
+        <!--   <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">bind(Engine).toAsyncFactory(() => { -->
+  <!-- return new Promise((resolve) => { -->
+    <!-- fetch('/engineData.json') -->
+      <!-- .then((data) => { -->
+        <!-- resolve(new Engine(data)); -->
+      <!-- }); -->
+  <!-- }); -->
+<!-- })</code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
+
+        <!-- <section> -->
+        <!--   <h2><code>.toAsyncFactory()</code></h2> -->
+        <!--   <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777;padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">bind(Engine).toAsyncFactory(() => { -->
+  <!-- <span style="color: #fff;">return new Promise((resolve) => {</span> -->
+    <!-- fetch('/engineData.json') -->
+      <!-- .then((data) => { -->
+        <!-- resolve(new Engine(data)); -->
+      <!-- }); -->
+  <!-- <span style="color: #fff;">});</span> -->
+<!-- })</static-code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
+
+        <!-- <section> -->
+        <!--   <h2><code>.toAsyncFactory()</code></h2> -->
+        <!--   <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777;padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">bind(Engine).toAsyncFactory(() => { -->
+  <!-- return new Promise((resolve) => { -->
+    <!-- <span style="color: #fff;">fetch('/engineData.json') -->
+      <!-- .then((data) => {</span> -->
+        <!-- resolve(new Engine(data)); -->
+      <!-- <span style="color: #fff;">});</span> -->
+  <!-- }); -->
+<!-- })</static-code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
+
+        <!-- <section> -->
+        <!--   <h2><code>.toAsyncFactory()</code></h2> -->
+        <!--   <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777;padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">bind(Engine).toAsyncFactory(() => { -->
+  <!-- return new Promise((resolve) => { -->
+    <!-- fetch('/engineData.json') -->
+      <!-- .then((data) => { -->
+        <!-- <span style="color: #fff;">resolve(new Engine(data));</span> -->
+      <!-- }); -->
+  <!-- }); -->
+<!-- })</static-code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
+
+        <!-- <section> -->
+        <!--   <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">injector.asyncGet(Engine);</code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
         <section>
-          <h2><code>.toAsyncFactory()</code></h2>
-          <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">bind(Engine).toAsyncFactory(() => {
-  return new Promise((resolve) => {
-    fetch('/engineData.json')
-      .then((data) => {
-        resolve(new Engine(data));
-      });
-  });
-})</code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
+          <p style="font-size: 50px;">We can have optional dependencies too!</p>
         </section>
 
-        <section>
-          <h2><code>.toAsyncFactory()</code></h2>
-          <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777;padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">bind(Engine).toAsyncFactory(() => {
-  <span style="color: #fff;">return new Promise((resolve) => {</span>
-    fetch('/engineData.json')
-      .then((data) => {
-        resolve(new Engine(data));
-      });
-  <span style="color: #fff;">});</span>
-})</static-code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
+        <!-- <section> -->
+        <!--   <h2>Injecting Promises</h2> -->
+        <!--   <pre style="font-size: 0.85em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">class Car { -->
+  <!-- constructor(@InjectPromise(Engine) enginePromise) { -->
+    <!-- enginePromise.then((engine) => { -->
+      <!-- ... -->
+    <!-- }); -->
+  <!-- } -->
+<!-- }</code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
-        <section>
-          <h2><code>.toAsyncFactory()</code></h2>
-          <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777;padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">bind(Engine).toAsyncFactory(() => {
-  return new Promise((resolve) => {
-    <span style="color: #fff;">fetch('/engineData.json')
-      .then((data) => {</span>
-        resolve(new Engine(data));
-      <span style="color: #fff;">});</span>
-  });
-})</static-code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
+        <!-- <section> -->
+        <!--   <h2>Injecting Promises</h2> -->
+        <!--   <pre style="font-size: 0.85em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">class Car { -->
+  <!-- constructor(<span style="color: #fff;">@InjectPromise(Engine) enginePromise</span>) { -->
+    <!-- enginePromise.then((engine) => { -->
+      <!-- ... -->
+    <!-- }); -->
+  <!-- } -->
+<!-- }</static-code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
-        <section>
-          <h2><code>.toAsyncFactory()</code></h2>
-          <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777;padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">bind(Engine).toAsyncFactory(() => {
-  return new Promise((resolve) => {
-    fetch('/engineData.json')
-      .then((data) => {
-        <span style="color: #fff;">resolve(new Engine(data));</span>
-      });
-  });
-})</static-code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
+        <!-- <section> -->
+        <!--   <h2>Injecting Promises</h2> -->
+        <!--   <pre style="font-size: 0.85em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">class Car { -->
+  <!-- constructor(@InjectPromise(Engine) enginePromise) { -->
+    <!-- <span style="color: #fff;">enginePromise.then((engine) => { -->
+      <!-- ... -->
+    <!-- });</span> -->
+  <!-- } -->
+<!-- }</static-code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
-        <section>
-          <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">injector.asyncGet(Engine);</code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
+        <!-- <section> -->
+        <!--   <h2>Injecting Factory Functions</h2> -->
+        <!--   <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 45px; max-height: 700px;">class Car { -->
+  <!-- constructor(@InjectLazy(Engine) engineFn) { -->
+    <!-- if (someCondition) { -->
+      <!-- this.engine = engineFn(); -->
+    <!-- } -->
+  <!-- } -->
+<!-- }</code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
-        <section>
-          <h2>More DI decorators</h2>
-        </section>
+        <!-- <section> -->
+        <!--   <h2>Injecting Factory Functions</h2> -->
+        <!--   <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 45px; max-height: 700px;">class Car { -->
+  <!-- constructor(<span style="color: #fff;">@InjectLazy(Engine) engineFn</span>) { -->
+    <!-- if (someCondition) { -->
+      <!-- this.engine = engineFn(); -->
+    <!-- } -->
+  <!-- } -->
+<!-- }</static-code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
-        <section>
-          <h2>Injecting Promises</h2>
-          <pre style="font-size: 0.85em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">class Car {
-  constructor(@InjectPromise(Engine) enginePromise) {
-    enginePromise.then((engine) => {
-      ...
-    });
-  }
-}</code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Injecting Promises</h2>
-          <pre style="font-size: 0.85em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">class Car {
-  constructor(<span style="color: #fff;">@InjectPromise(Engine) enginePromise</span>) {
-    enginePromise.then((engine) => {
-      ...
-    });
-  }
-}</static-code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Injecting Promises</h2>
-          <pre style="font-size: 0.85em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">class Car {
-  constructor(@InjectPromise(Engine) enginePromise) {
-    <span style="color: #fff;">enginePromise.then((engine) => {
-      ...
-    });</span>
-  }
-}</static-code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Injecting Factory Functions</h2>
-          <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 45px; max-height: 700px;">class Car {
-  constructor(@InjectLazy(Engine) engineFn) {
-    if (someCondition) {
-      this.engine = engineFn();
-    }
-  }
-}</code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Injecting Factory Functions</h2>
-          <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 45px; max-height: 700px;">class Car {
-  constructor(<span style="color: #fff;">@InjectLazy(Engine) engineFn</span>) {
-    if (someCondition) {
-      this.engine = engineFn();
-    }
-  }
-}</static-code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Injecting Factory Functions</h2>
-          <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 45px; max-height: 700px;">class Car {
-  constructor(@InjectLazy(Engine) engineFn) {
-    <span style="color: #fff;">if (someCondition) {
-      this.engine = engineFn();
-    }</span>
-  }
-}</static-code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
+        <!-- <section> -->
+        <!--   <h2>Injecting Factory Functions</h2> -->
+        <!--   <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 45px; max-height: 700px;">class Car { -->
+  <!-- constructor(@InjectLazy(Engine) engineFn) { -->
+    <!-- <span style="color: #fff;">if (someCondition) { -->
+      <!-- this.engine = engineFn(); -->
+    <!-- }</span> -->
+  <!-- } -->
+<!-- }</static-code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
         <section>
           <h2>Optional dependencies</h2>
@@ -1288,9 +1291,10 @@ expect(V8).toBeInstanceOf(Engine)</code></pre>
         <section>
           <h2>Problems solved in new DI:</h2>
           <ul style="margin-top: 1em; font-size: 1.1em;">
-            <li class="fragment" style="margin-top: 1em;">Allows asynchronous and synchronous strategy - <span style="color: #57E757; font-weight: bold;">Solved!</span></li>
+            <!-- <li class="fragment" style="margin-top: 1em;">Allows asynchronous and synchronous strategy - <span style="color: #57E757; font-weight: bold;">Solved!</span></li> -->
             <li class="fragment" style="margin-top: 1em;">No namespace conflicts - <span style="color: #57E757; font-weight: bold;">Solved!</li>
             <li class="fragment" style="margin-top: 1em;">Can be used standalone - <span style="color: #57E757; font-weight: bold;">Solved!</li>
+            <li class="fragment" style="margin-top: 1em;">Optional dependencies- <span style="color: #57E757; font-weight: bold;">Solved!</li>
               <li class="fragment" style="margin-top: 1em;">Dependencies are served as Singletons - <span style="font-weight: bold;">???</span></li>
           </ul>
         </section>
@@ -1309,7 +1313,7 @@ expect(V8).toBeInstanceOf(Engine)</code></pre>
   Engine
 ]);
 
-var childInj = Injector.resolveAndCreateChild([
+var childInj = inj.resolveAndCreateChild([
   Engine
 ]);
 
@@ -1327,7 +1331,7 @@ childInj.get(Engine) !== inj.get(Engine)
   Engine
 ]);
 
-var childInj = <span style="color: #fff;">Injector.resolveAndCreateChild([
+var childInj = <span style="color: #fff;">inj.resolveAndCreateChild([
   Engine
 ]);</span>
 
@@ -1345,7 +1349,7 @@ childInj.get(Engine) !== inj.get(Engine)
   Engine
 ]);
 
-var childInj = Injector.resolveAndCreateChild([
+var childInj = inj.resolveAndCreateChild([
   Engine
 ]);
 
@@ -1447,91 +1451,91 @@ class App {
           </aside>
         </section>
 
-        <section>
-          <h2>Bootstrapping an app</h2>
-          <p style="margin-top: 2em;">Angular 2 apps are bootstrapped with a single entry component.</p>
-          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { bootstrap } from 'angular2/angular2';
+        <!-- <section> -->
+        <!--   <h2>Bootstrapping an app</h2> -->
+        <!--   <p style="margin-top: 2em;">Angular 2 apps are bootstrapped with a single entry component.</p> -->
+        <!--   <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { bootstrap } from 'angular2/angular2'; -->
 
-...
+<!-- ... -->
 
-bootstrap(App);</code></pre>
-          <p style="margin-top: 2em;"><code>bootstrap()</code> creates a root injector <strong>and</strong> an app injector.</p>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
+<!-- bootstrap(App);</code></pre> -->
+        <!--   <p style="margin-top: 2em;"><code>bootstrap()</code> creates a root injector <strong>and</strong> an app injector.</p> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
-        <section>
-          <p style="margin-top: 2em;">Default app injector bindings are created for us and merged with custom bindings.</p>
-          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">return [
-  bind(DOCUMENT_TOKEN)
-      .toValue(DOM.defaultDoc()),
-  Lexer,
-  Parser,
-  ...
-];</code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
+        <!-- <section> -->
+        <!--   <p style="margin-top: 2em;">Default app injector bindings are created for us and merged with custom bindings.</p> -->
+        <!--   <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">return [ -->
+  <!-- bind(DOCUMENT_TOKEN) -->
+      <!-- .toValue(DOM.defaultDoc()), -->
+  <!-- Lexer, -->
+  <!-- Parser, -->
+  <!-- ... -->
+<!-- ];</code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
-        <section>
-          <p style="margin-top: 2em;">Custom bindings are passed to <code>bootstrap()</code></p>
-          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { bootstrap } from 'angular2/angular2';
+        <!-- <section> -->
+        <!--   <p style="margin-top: 2em;">Custom bindings are passed to <code>bootstrap()</code></p> -->
+        <!--   <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { bootstrap } from 'angular2/angular2'; -->
 
-...
+<!-- ... -->
 
-bootstrap(App, [
-  bind(NameService).toClass(NameService)
-]);</code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
+<!-- bootstrap(App, [ -->
+  <!-- bind(NameService).toClass(NameService) -->
+<!-- ]);</code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
-        <section>
-          <p style="margin-top: 2em;">Custom bindings are passed to <code>bootstrap()</code></p>
-          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { bootstrap } from 'angular2/angular2';
+        <!-- <section> -->
+        <!--   <p style="margin-top: 2em;">Custom bindings are passed to <code>bootstrap()</code></p> -->
+        <!--   <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { bootstrap } from 'angular2/angular2'; -->
 
-...
+<!-- ... -->
 
-<span style="color: #fff;">bootstrap(App, [
-  bind(NameService).toClass(NameService)
-]);</span></code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
+<!-- <span style="color: #fff;">bootstrap(App, [ -->
+  <!-- bind(NameService).toClass(NameService) -->
+<!-- ]);</span></code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
 
-        <section>
-          <p style="margin-top: 2em;">Custom bindings are passed to <code>bootstrap()</code></p>
-          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { bootstrap } from 'angular2/angular2';
+        <!-- <section> -->
+        <!--   <p style="margin-top: 2em;">Custom bindings are passed to <code>bootstrap()</code></p> -->
+        <!--   <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { bootstrap } from 'angular2/angular2'; -->
 
-...
+<!-- ... -->
 
-<span style="color: #fff;">bootstrap(App, [
-  NameService
-]);</span></code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
-
+<!-- <span style="color: #fff;">bootstrap(App, [ -->
+  <!-- NameService -->
+<!-- ]);</span></code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
   selector: 'app'
+
 })
 @View({
   template: '<h1>Hello {{name}}!</h1>'
 })
 class App {
-  constructor(@Inject(NameService) NameService) {
-    this.name = NameService.getName();
+  constructor() {
+    this.name = 'World';
   }
 }</code></pre>
           <aside class="notes">
@@ -1539,58 +1543,53 @@ class App {
             </ul>
           </aside>
         </section>
-
         <section>
-          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code class="hljs" style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
+  selector: 'app',
+  bindings: [NameService]
 })
 @View({
   template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
 })
 class App {
-  <span style="color: #fff;">constructor(@Inject(NameService) NameService) {
-    this.name = NameService.getName();
-  }</span>
-}</static-code></pre>
+  constructor() {
+    this.name = 'World';
+  }
+}</code></pre>
           <aside class="notes">
             <ul>
             </ul>
           </aside>
         </section>
-
-        <section>
-          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
-})
-@View({
-  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
-})
-class App {
-  <span style="color: #fff;">constructor(NameService: NameService) {
-    this.name = NameService.getName();
-  }</span>
-}</static-code></pre>
-          <aside class="notes">
-            <ul>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <p style="font-size: 1.5em;">Injector bindings can be overriden per component configuration.</p>
-        </section>
-
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
   selector: 'app',
-  <span style="color: #fff;">appInjector: [NameService]</span>
+  <span style="color: #fff;">bindings: [NameService]</span>
 })
 @View({
   template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
 })
 class App {
-  <span style="color: #fff;">constructor(NameService: NameService) {
-    this.name = NameService.getName();
+  constructor() {
+    this.name = 'World';
+  }
+}</static-code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
+  selector: 'app',
+  <span style="color: #fff;">bindings: [NameService]</span>
+})
+@View({
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
+})
+class App {
+  <span style="color: #fff;">constructor(@Inject(NameService) nameService) {
+    this.name = nameService.getName();
   }</span>
 }</static-code></pre>
           <aside class="notes">
@@ -1598,15 +1597,61 @@ class App {
             </ul>
           </aside>
         </section>
+        <section>
+          <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
+  selector: 'app',
+  <span style="color: #fff;">bindings: [NameService]</span>
+})
+@View({
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
+})
+class App {
+  <span style="color: #fff;">constructor(NameService: nameService) {
+    this.name = nameService.getName();
+  }</span>
+}</static-code></pre>
+          <aside class="notes">
+            <ul>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- <section> -->
+        <!--   <p style="font-size: 1.5em;">Injector bindings can be overriden per component configuration.</p> -->
+        <!-- </section> -->
+
+        <!-- <section> -->
+        <!--   <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({ -->
+  <!-- selector: 'app', -->
+  <!-- <span style="color: #fff;">appInjector: [NameService]</span> -->
+<!-- }) -->
+<!-- @View({ -->
+  <!-- template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;' -->
+<!-- }) -->
+<!-- class App { -->
+  <!-- <span style="color: #fff;">constructor(NameService: NameService) { -->
+    <!-- this.name = NameService.getName(); -->
+  <!-- }</span> -->
+<!-- }</static-code></pre> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
+
+        <section>
+          <h2>Host and Visibility</h2>
+        </section>
+
         <section data-background="img/shield-large.svg" class="deck-slide">
           <div class="fragment">
           <div style="margin-left: -4em; margin-top: 8em;">
           <h1 style="font-size: 2.8em; text-align: left;">Thanks.</h1>
           <div style="clear: both; text-align: left; margin-top: 2.2em;">
             <img style="display: inline-block;margin-top: 0em; border-radius: 50%; height: 120px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
-            <img style="display: inline-block; margin-left: 0.5em; margin-top: 0em; border-radius: 50%; height: 120px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/carmen.jpeg">
+            <!-- <img style="display: inline-block; margin-left: 0.5em; margin-top: 0em; border-radius: 50%; height: 120px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/carmen.jpeg"> -->
           </div>
-          <p style="font-size: 0.9em; line-height: 45px; margin-top: -0.2em; text-align: left;"><a href="http://twitter.com/PascalPrecht">@PascalPrecht</a> and <a href="http://twitter.com/CarmenPopoviciu">@CarmenPopoviciu</a> a.k.a. ng-duo<br>GOTO Amsterdam June, 2015</p>
+          <p style="font-size: 0.9em; line-height: 45px; margin-top: -0.2em; text-align: left;"><a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>AngularJS Meetup Brussels August, 2015</p>
           <p style="font-size: 0.9em; line-height: 45px; margin-top: -0.2em; text-align: left;">Article: <a href="http://blog.thoughtram.io/angular/2015/05/18/dependency-injection-in-angular-2.html">Dependency Injection in Angular 2</a></p>
         </div>
         </div>
