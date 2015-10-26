@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Dependency Injection for future generations - By Pascal Precht</title>
+    <title>Dependency Injection in Angular 2 - By Pascal Precht</title>
 
     <meta name="description" content="The slide deck of Pascal Precht's talk at JSConf Budapest">
     <meta name="author" content="Hakim El Hattab">
@@ -39,8 +39,8 @@
       <span style="color: #999; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@PascalPrecht</span>
     </a>
 
-    <a style="color: #999;font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://codetalks.de">
-      <span>#codetalkshh</span>
+    <a style="color: #999;font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://.de">
+      <span>#ipc15</span>
     </a>
     <div class="reveal">
 
@@ -54,7 +54,7 @@
             <img style="display: inline-block;margin-top: 0em; border-radius: 50%; height: 120px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
             <!-- <img style="display: inline-block; margin-left: 0.5em; margin-top: 0em; border-radius: 50%; height: 120px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/carmen.jpeg"> -->
           </div>
-          <p style="font-size: 0.9em; line-height: 45px; margin-top: -0.2em; text-align: left;">By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>CodeTalks Hamburg, 2015</p>
+          <p style="font-size: 0.9em; line-height: 45px; margin-top: -0.2em; text-align: left;">By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>WebTechConf Munich, 2015</p>
         </div>
         <aside class="notes">
           <ul>
@@ -69,8 +69,12 @@
 
         <section data-background="img/soap-bubble-gun-man.jpg">
           <div class="fragment">
-          <span style="font-size: 2em; font-weight: bold; text-shadow: -2px 4px #000; position: absolute; left: 1.5em; top: -2em; transform: rotateZ(-28deg);">This is me</span>
-          <span style="position: absolute; font-size: 1.2em; font-weight: bold; text-shadow: -2px 4px #000; right: -4em; top: 1em;transform: rotateZ(20deg);">That's my soap bubble gun</span>
+          <!-- <span style="font-size: 2em; font-weight: bold; text-shadow: -2px 4px #000; position: absolute; left: 1.5em; top: -2em; transform: rotateZ(-28deg);">This is me</span> -->
+          <span style="font-size: 2em; font-weight: bold; text-shadow: -2px 4px #000; position: absolute; left: -1.5em; top: -1em; text-align: left;">
+            Pascal Precht<br>
+            Angular GDE<br>
+            Trainer at @thoughtram</span>
+          <span style="position: absolute; font-size: 1em; font-weight: bold; text-shadow: -2px 4px #000; right: -4em; top: 1em;transform: rotateZ(20deg);">That's my soap bubble gun</span>
         </div>
         <aside class="notes">
           <ul>
@@ -84,7 +88,7 @@
         <section data-background="img/bubbles.gif">
         </section>
         <section>
-          <p style="font-size: 48px;"><span class="fragment" data-fragment-index="2">Oh my gosh this talk on Angular 2's DI by</span> <span style="font-weight: bold;">@PascalPrecht</span> <span class="fragment" data-fragment-index="2">blows my mind!</span> <span data-fragment-index="1" class="fragment" style="font-weight: bold;">#codetalkshh</span></p>
+          <p style="font-size: 48px;"><span class="fragment" data-fragment-index="2">Oh my gosh this talk on Angular 2's DI by</span> <span style="font-weight: bold;">@PascalPrecht</span> <span class="fragment" data-fragment-index="2">blows my mind!</span> <span data-fragment-index="1" class="fragment" style="font-weight: bold;">#ipc15</span></p>
         </section>
 
         <section>
@@ -707,7 +711,7 @@ app.service('OtherService', function (<span style="color: #fff;">Car</span>) {
         </section>
 
         <section>
-          <pre class="fragment" style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector } from 'angular2/core';
+          <pre class="fragment" style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector } from 'angular2/angular2';
 
 var injector = Injector.resolveAndCreate([
   Car,
@@ -726,7 +730,7 @@ var car = injector.get(Car);</code></pre>
 
 
         <section>
-          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector } from 'angular2/core';
+          <pre style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector } from 'angular2/angular2';
 
 <span style="color: #fff;">var injector = Injector.resolveAndCreate([
   Car,
@@ -747,7 +751,7 @@ var car = injector.get(Car);</static-code></pre>
         </section>
 
         <section>
-          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector } from 'angular2/core';
+          <pre style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector } from 'angular2/angular2';
 
 var injector = Injector.resolveAndCreate([
   Car,
@@ -786,7 +790,7 @@ class Car {
         </section>
 
         <section>
-          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Inject } from 'angular2/core';
+          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Inject } from 'angular2/angular2';
 
 class Car {
   constructor(
@@ -807,7 +811,7 @@ class Car {
         <section data-background="img/gif-wtf-4.gif"></section>
 
         <section>
-          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Inject } from 'angular2/core';
+          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Inject } from 'angular2/angular2';
 
 class Car {
   constructor(
@@ -847,7 +851,7 @@ Inject(Engine)(Car)</code></pre>
         </section>
 
         <section>
-          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Inject } from 'angular2/core';
+          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Inject } from 'angular2/angular2';
 
 class Car {
   constructor(
@@ -892,7 +896,7 @@ Car.parameters = [
         </section>
 
         <section>
-          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector } from 'angular2/core';
+          <pre style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector } from 'angular2/angular2';
 
 <span style="color: #fff;">var injector = Injector.resolveAndCreate([
   Car,
@@ -910,7 +914,7 @@ var car = injector.get(Car);</static-code></pre>
           </aside>
         </section>
         <section>
-          <pre style="font-size: 1em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector } from 'angular2/core';
+          <pre style="font-size: 0.9em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector } from 'angular2/angular2';
 
 var injector = Injector.resolveAndCreate([
   <span style="color: #fff;">Car,
@@ -930,13 +934,13 @@ var car = injector.get(Car);</static-code></pre>
         </section>
 
         <section>
-          <pre style="font-size: 0.95em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector, <span style="color: #fff;">bind</span> } from 'angular2/core';
+          <pre style="font-size: 0.80em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector, <span style="color: #fff;">provide</span> } from 'angular2/angular2';
 
 var injector = Injector.resolveAndCreate([
-  <span style="color: #fff;">bind(Car).toClass(Car),
-  bind(Engine).toClass(Engine),
-  bind(Tires).toClass(Tires),
-  bind(Doors).toClass(Doors)</span>
+  <span style="color: #fff;">provide(Car, {useClass: Car}),
+  provide(Engine, {useClass: Engine}),
+  provide(Tires, {useClass: Tires}),
+  provide(Doors, {useClass: Doors})</span>
 ]);
           
 var car = injector.get(Car);</static-code></pre>
@@ -949,13 +953,13 @@ var car = injector.get(Car);</static-code></pre>
         </section>
 
         <section>
-          <pre style="font-size: 0.95em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector, <span style="color: #fff;">bind</span> } from 'angular2/core';
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector, <span style="color: #fff;">provide</span> } from 'angular2/angular2';
 
 var injector = Injector.resolveAndCreate([
-  <span style="color: #fff;">bind(<span style="color:#42F0F0">Car</span>).toClass(Car),
-  bind(<span style="color: #42F0F0;">Engine</span>).toClass(Engine),
-  bind(<span style="color: #42F0F0;">Tires</span>).toClass(Tires),
-  bind(<span style="color: #42F0F0;">Doors</span>).toClass(Doors)</span>
+  <span style="color: #fff;">provide(<span style="color:#42F0F0">Car</span>, {useClass: Car}),
+  provide(<span style="color: #42F0F0;">Engine</span>, {useClass: Engine}),
+  provide(<span style="color: #42F0F0;">Tires</span>, {useClass: Tires}),
+  provide(<span style="color: #42F0F0;">Doors</span>, {useClass: Doors})</span>
 ]);
           
 var car = injector.get(Car);</static-code></pre>
@@ -967,13 +971,13 @@ var car = injector.get(Car);</static-code></pre>
         </section>
 
         <section>
-          <pre style="font-size: 0.95em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector, <span style="color: #fff;">bind</span> } from 'angular2/core';
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector, <span style="color: #fff;">provide</span> } from 'angular2/angular2';
 
 var injector = Injector.resolveAndCreate([
-  <span style="color: #fff;">bind(Car).toClass(<span style="color: #42F0F0;">Car</span>),
-  bind(Engine).toClass(<span style="color: #42F0F0;">Engine</span>),
-  bind(Tires).toClass(<span style="color: #42F0F0;">Tires</span>),
-  bind(Doors).toClass(<span style="color: #42F0F0;">Doors</span>)</span>
+  <span style="color: #fff;">provide(Car, {useClass: <span style="color: #42F0F0;">Car</span>}),
+  provide(Engine, {useClass: <span style="color: #42F0F0;">Engine</span>}),
+  provide(Tires, {useClass: <span style="color: #42F0F0;">Tires</span>}),
+  provide(Doors, {useClass: <span style="color: #42F0F0;">Doors</span>})</span>
 ]);
           
 var car = injector.get(Car);</static-code></pre>
@@ -985,18 +989,21 @@ var car = injector.get(Car);</static-code></pre>
         </section>
 
         <section>
-          <pre style="font-size: 0.95em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector, bind } from 'angular2/core';
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector, provide } from 'angular2/angular2';
 
 var injector = Injector.resolveAndCreate([
-  <span style="color: #fff;">bind(Car).toClass(Car),
-  <span style="color: #F4B94C">bind(Engine).toClass(MockEngine)</span>,
-  bind(Tires).toClass(Tires),
-  bind(Doors).toClass(Doors)</span>
+  <span style="color: #fff;">provide(Car, {useClass: Car}),
+  <span style="color: #F4B94C">provide(Engine, {useClass: MockEngine})</span>,
+  provide(Tires, {useClass: Tires}),
+  provide(Doors, {useClass: Doors})</span>
 ]);
           
 var car = injector.get(Car);</static-code></pre>
           <aside class="notes">
             <ul>
+              <li>We can map to whatever class we want</li>
+              <li>Also, no name conflicts anymore!</li>
+              <li>Allows us to swap out a dependency in a single place</li>
             </ul>
           </aside>
         </section>
@@ -1006,13 +1013,13 @@ var car = injector.get(Car);</static-code></pre>
         </section>
 
         <section>
-          <pre style="font-size: 0.95em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector, bind } from 'angular2/core';
+          <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="padding: 1em; color: #777; border-radius: 0.3em; line-height: 40px; max-height: 700px;">import { Injector, provide } from 'angular2/angular2';
 
 var injector = Injector.resolveAndCreate([
-  <span style="color: #fff;">bind(Car).toClass(Car),
-  <span style="color: #F4B94C">bind(Engine).toClass(MockEngine)</span>,
-  bind(Tires).toClass(Tires),
-  bind(Doors).toClass(Doors)</span>
+  <span style="color: #fff;">provide(Car, {useClass: Car}),
+  <span style="color: #F4B94C">provide(Engine, {useClass: MockEngine})</span>,
+  provide(Tires, {useClass: Tires}),
+  provide(Doors, {useClass: Doors})</span>
 ]);
           
 var car = injector.get(Car);</static-code></pre>
@@ -1026,7 +1033,7 @@ var car = injector.get(Car);</static-code></pre>
         </section>
 
         <section>
-          <h2>More Binding Instructions</h2>
+          <h2>More Provider Instructions</h2>
         </section>
 
         <section>
@@ -1036,9 +1043,10 @@ var car = injector.get(Car);</static-code></pre>
         </section>
 
         <section>
-          <h2>Binding to values</h2>
-          <pre style="font-size: 1em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">bind('APIEndpoint')
-  .toValue('http://api.myapp.com')</code></pre>
+          <h2>Providing values</h2>
+          <pre style="font-size: 1em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">provide('APIEndpoint', {
+  useValue: 'http://api.myapp.com'  
+})</code></pre>
 
           <pre class="fragment" style="font-size: 1em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">constructor(@Inject('APIEndpoint') api) {
   ...
@@ -1051,12 +1059,12 @@ var car = injector.get(Car);</static-code></pre>
         </section>
 
         <section>
-          <h2>Binding to aliases</h2>
+          <h2>Providing aliases</h2>
           <pre style="font-size: 1.2em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 50px; max-height: 700px;">class Engine {}
 class V8 {}
 
-bind(Engine).toClass(Engine)
-bind(V8).toAlias(Engine)
+provide(Engine, {useClass: Engine})
+provide(V8, {useExisting: Engine})
 
 expect(V8).toBeInstanceOf(Engine)</code></pre>
           <aside class="notes">
@@ -1086,13 +1094,15 @@ expect(V8).toBeInstanceOf(Engine)</code></pre>
 
   }
 }</static-code></pre>
-          <p style="margin-top: 1.5em;">We don't want to introduce a binding for <code>boolean</code> here.</p>
+          <p style="margin-top: 1.5em;">We don't want to introduce a provider for <code>boolean</code> here.</p>
         </section>
 
         <section>
-          <h2>Binding to factories</h2>
-          <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">bind(ExceptionHandler).toFactory(() => {
-  return new ExceptionHandler(false);
+          <h2>Providing factories</h2>
+          <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">provide(ExceptionHandler, {
+  useFactory: () => {
+    return new ExceptionHandler(false);
+  }
 })</code></pre>
           <p style="margin-top: 2em; visibility: hidden;">Of course, a factory can have dependencies</p>
           <aside class="notes">
@@ -1104,10 +1114,13 @@ expect(V8).toBeInstanceOf(Engine)</code></pre>
         </section>
 
         <section>
-          <h2>Binding to factories</h2>
-          <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">bind(ExceptionHandler).toFactory((logger) => {
-  return new ExceptionHandler(logger, false);
-}, [Logger])</code></pre>
+          <h2>Providing factories</h2>
+          <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">provide(ExceptionHandler, {
+  useFactory: (logger) => {
+    return new ExceptionHandler(logger, false);
+  },
+  deps: [Logger]
+})</code></pre>
           <p style="margin-top: 2em; ">Of course, a factory can have dependencies</p>
           <aside class="notes">
             <ul>
@@ -1116,16 +1129,20 @@ expect(V8).toBeInstanceOf(Engine)</code></pre>
         </section>
 
         <section>
-          <h2>Binding to factories</h2>
-          <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">bind(ExceptionHandler).toFactory((<span style="color: #fff;">logger</span>) => {
-  return new ExceptionHandler(<span style="color: #fff;">logger</span>, false);
-}, <span style="color: #fff;">[Logger]</span>)</code></pre>
+          <h2>Providing factories</h2>
+          <pre style="font-size: 0.95em; margin-top: 2em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">provide(ExceptionHandler, {
+  useFactory: (<span style="color: #fff;">logger</span>) => {
+    return new ExceptionHandler(<span style="color: #fff;">logger</span>, false);
+  },
+  <span style="color: #fff;">deps: [Logger]</span>
+})</static-code></pre>
           <p style="margin-top: 2em; ">Of course, a factory can have dependencies</p>
           <aside class="notes">
             <ul>
             </ul>
           </aside>
         </section>
+
         <section>
           <p style="font-size: 50px;">We can have optional dependencies too!</p>
         </section>
@@ -1410,9 +1427,7 @@ var childInj = inj.resolveAndCreateChild([
 
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
-})
-@View({
+  selector: 'app',
   template: '<h1>Hello {{name}}!</h1>'
 })
 class App {
@@ -1431,9 +1446,7 @@ class App {
 
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
-})
-@View({
+  selector: 'app',
   template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
 })
 <span style="color: #fff;">class App {
@@ -1452,9 +1465,7 @@ class App {
 
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;"><span style="color: #fff;">@Component({
-  selector: 'app'
-})
-@View({
+  selector: 'app',
   template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
 })</span>
 class App {
@@ -1473,9 +1484,7 @@ class App {
 
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
-})
-@View({
+  selector: 'app',
   template: '<h1>Hello {{name}}!</h1>'
 })
 class App {
@@ -1494,9 +1503,7 @@ class App {
 
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
-})
-@View({
+  selector: 'app',
   template: '<h1>Hello {{name}}!</h1>'
 })
 class App {
@@ -1515,10 +1522,8 @@ bootstrap(App);
 
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color:#777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
-})
-@View({
-  template: '&lt;h1&gt;Hello {{name}}!&gtl;/h1&gt;'
+  selector: 'app',
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
 })
 class App {
   constructor() {
@@ -1626,10 +1631,8 @@ class App {
         <!-- </section> -->
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color:#777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
-})
-@View({
-  template: '&lt;h1&gt;Hello {{name}}!&gtl;/h1&gt;'
+  selector: 'app',
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
 })
 class App {
   constructor() {
@@ -1647,10 +1650,8 @@ class App {
 
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color:#777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
-})
-@View({
-  template: '&lt;h1&gt;Hello {{name}}!&gtl;/h1&gt;'
+  selector: 'app',
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
 })
 class App {
   constructor() {
@@ -1668,10 +1669,8 @@ class App {
 
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color:#777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
-})
-@View({
-  template: '&lt;h1&gt;Hello {{name}}!&gtl;/h1&gt;'
+  selector: 'app',
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
 })
 class App {
   <span style="color: #fff;">constructor(@Inject(NameService) nameService) {
@@ -1689,10 +1688,8 @@ class App {
 
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color:#777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
-  selector: 'app'
-})
-@View({
-  template: '&lt;h1&gt;Hello {{name}}!&gtl;/h1&gt;'
+  selector: 'app',
+  template: '&lt;h1&gt;Hello {{name}}!&lt;/h1&gt;'
 })
 class App {
   <span style="color: #fff;">constructor(nameService: NameService) {
@@ -1721,8 +1718,8 @@ class App {
 
 
 
-})
-@View({
+
+
   template: '<h1>Hello other {{name}}!</h1>'
 })
 class ChildComponent {
@@ -1741,11 +1738,11 @@ class ChildComponent {
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><code style="padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
   selector: 'child-component',
-  bindings: [
-    bind(NameService).toClass(OtherNameService)
-  ]
-})
-@View({
+  providers: [
+    provide(NameService, {
+      useClass: OtherNameService
+    })
+  ],
   template: '<h1>Hello other {{name}}!</h1>'
 })
 class ChildComponent {
@@ -1763,11 +1760,11 @@ class ChildComponent {
         <section>
           <pre style="font-size: 0.91em; margin-top: 1.8em; box-shadow: none;"><static-code class="hljs" style="color: #777; padding: 1em; border-radius: 0.3em; line-height: 40px; max-height: 700px;">@Component({
   selector: 'child-component',
-  <span style="color: #fff;">bindings: [
-    bind(NameService).toClass(OtherNameService)
-  ]</span>
-})
-@View({
+  <span style="color: #fff;">providers: [
+    provide(NameService, {
+      useClass: OtherNameService
+    })
+  ]</span>,
   template: '&lt;h1&gt;Hello other {{name}}!&gt;/h1&gt;'
 })
 class ChildComponent {
@@ -1831,7 +1828,7 @@ class ChildComponent {
             <img style="display: inline-block;margin-top: 0em; border-radius: 50%; height: 120px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
             <!-- <img style="display: inline-block; margin-left: 0.5em; margin-top: 0em; border-radius: 50%; height: 120px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/carmen.jpeg"> -->
           </div>
-          <p style="font-size: 0.9em; line-height: 45px; margin-top: -0.2em; text-align: left;"><a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>CodeTalks Hamburg, September, 2015</p>
+          <p style="font-size: 0.9em; line-height: 45px; margin-top: -0.2em; text-align: left;"><a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>WebTechConf Munich, September, 2015</p>
           <p style="font-size: 0.9em; line-height: 45px; margin-top: -0.2em; text-align: left;">Article: <a href="http://blog.thoughtram.io/angular/2015/05/18/dependency-injection-in-angular-2.html">Dependency Injection in Angular 2</a></p>
         </div>
         </div>
