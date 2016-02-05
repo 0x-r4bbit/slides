@@ -37,7 +37,7 @@
   <body>
 
     <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 1em; z-index: 2;" href="http://twitter.com/PascalPrecht">
-      <span style="color: #555; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@PascalPrecht #JOIN</span>
+      <span style="color: #555; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@PascalPrecht #HannoverJS</span>
     </a>
 
     <div class="reveal">
@@ -49,7 +49,7 @@
           <h1 style="font-size: 2.8em; text-align: left;">Fireside Chats</h1>
           <h3 style="margin-left: 0.1em; text-align: left;">about Angular 2</h3>
           <img style="margin-top: 1em; float: left; border-radius: 50%; height: 150px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
-          <p style="float: left; margin-left: 1em; margin-top: 2.2em; text-align: left;">By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>JOIN September, 2015</p>
+          <p style="float: left; margin-left: 1em; margin-top: 2.2em; text-align: left;">By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>HannoverJS November, 2015</p>
         </div>
           <aside class="notes">
             <ul>
@@ -63,7 +63,11 @@
 
         <section data-background="img/soap-bubble-gun-man.jpg">
           <div class="fragment">
-          <span style="font-size: 2em; font-weight: bold; text-shadow: -2px 4px #000; position: absolute; left: 1.5em; top: -2em; transform: rotateZ(-28deg);">This is me</span>
+          <!-- <span style="font-size: 2em; font-weight: bold; text-shadow: -2px 4px #000; position: absolute; left: 1.5em; top: -2em; transform: rotateZ(-28deg);">This is me</span> -->
+          <span style="font-size: 2em; font-weight: bold; text-shadow: -2px 4px #000; position: absolute; left: -1.5em; top: -1em; text-align: left;">
+            Pascal Precht<br>
+            Angular GDE<br>
+            Trainer at @thoughtram</span>
           <span style="position: absolute; font-size: 1.2em; font-weight: bold; text-shadow: -2px 4px #000; right: -4em; top: 1em;transform: rotateZ(20deg);">That's my soap bubble gun</span>
         </div>
         <aside class="notes">
@@ -79,7 +83,7 @@
         </section>
 
         <section>
-          <p style="font-size: 48px;"><span class="fragment" data-fragment-index="2">Oh my gosh this talk on Angular 2 by</span> <span style="font-weight: bold;">@PascalPrecht</span> <span class="fragment" data-fragment-index="2">blows my mind!</span> <span data-fragment-index="1" class="fragment" style="font-weight: bold;">#JOIN</span></p>
+          <p style="font-size: 48px;"><span class="fragment" data-fragment-index="2">Oh my gosh this talk on Angular 2 by</span> <span style="font-weight: bold;">@PascalPrecht</span> <span class="fragment" data-fragment-index="2">blows my mind!</span> <span data-fragment-index="1" class="fragment" style="font-weight: bold;">#HannoverJS</span></p>
         </section>
 
         <section>
@@ -204,7 +208,6 @@ let mercedes = new Convertible('Mercedes');
           <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">import {
   bootstrap,
   Component,
-  View
 } from 'angular2/angular2'
 
 
@@ -215,8 +218,6 @@ let mercedes = new Convertible('Mercedes');
 
 
           
-          
-    
           </code></pre>
           <aside class="notes">
             <ul>
@@ -231,10 +232,7 @@ let mercedes = new Convertible('Mercedes');
           <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">import {
   bootstrap,
   Component,
-  View
 } from 'angular2/angular2'
-
-
 
 
 
@@ -258,13 +256,10 @@ class FiresideChatsApp {
           <pre style="font-size: 0.8em; margin-top: 1.8em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">import {
   bootstrap,
   Component,
-  View
 } from 'angular2/angular2'
 
 @Component({
-  selector: 'fireside-chats-app'
-})
-@View({
+  selector: 'fireside-chats-app',
   template: '<h1>{{name}}</h1>'
 })
 class FiresideChatsApp {
@@ -334,9 +329,7 @@ class FiresideChatsApp {
 
         <section>
           <pre style="font-size: 1em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">@Component({
-  selector: 'chatter-card'
-})
-@View({
+  selector: 'chatter-card',
   templateUrl: 'chatter-card.html'
 })
 class ChatterCard {
@@ -508,11 +501,9 @@ img.src = // 'path/to/img.png'
 
         <section>
           <pre style="font-size: 0.9em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">@Component({
-  selector: 'chatter-card'
-
-})
-@View({
+  selector: 'chatter-card',
   templateUrl: 'chatter-card.html'
+
 })
 class ChatterCard {
 
@@ -529,10 +520,8 @@ class ChatterCard {
         <section>
           <pre style="font-size: 0.9em; margin-top: 1.8em; line-height: 1.5em; box-shadow: none; "><code style="padding: 1em; border-radius: 0.3em;max-height: 500px;">@Component({
   selector: 'chatter-card',
-  properties: ['item']
-})
-@View({
-  templateUrl: 'chatter-card.html'
+  templateUrl: 'chatter-card.html',
+  inputs: ['item']
 })
 class ChatterCard {
 
@@ -752,7 +741,7 @@ class ChatterCard {
           <div style="margin-left: -4em; margin-top: 8em;">
           <h1 style="font-size: 2.8em; text-align: left;">Thanks.</h1>
           <img style="margin-top: 1em; float: left; border-radius: 50%; height: 150px; border: 2px solid #fff!important; box-shadow: 0 0 0 2px #ccc!important;" src="img/me.jpeg">
-          <p style="float: left; margin-left: 1em; margin-top: 2.2em; text-align: left;">By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>#JOIN September, 2015</p>
+          <p style="float: left; margin-left: 1em; margin-top: 2.2em; text-align: left;">By <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br>#HannoverJS November, 2015</p>
         </div>
       </div>
         <aside class="notes">
