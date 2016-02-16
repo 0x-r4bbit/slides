@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Angular 2 Change Detection Explained</title>
+
+    <meta name="description" content="Presentation slides on how Angular 2 Change Detection works">
+    <meta name="author" content="Pascal Precht">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section data-background="img/shield-large.svg" class="deck-slide">
+          <hgroup>
+          <h1 style="font-size: 3em;">Angular 2</h1>
+          <h3>Change Detection Explained</h3>
+          </hgroup>
+          <div class="profile">
+            <img src="img/pascal.png">
+            <p>@PascalPrecht<br/>
+          #ngnl2016</p>
+          </div>
+        </section>
+
+        <!-- <section> -->
+        <!--   <h3>"CD* makes you OCD*"</h3> -->
+        <!--   <p>- Jurgen Van De Moere</p> -->
+        <!--   <div class="fragment" style="position: relative;"> -->
+        <!--     <p style="position: absolute; right: 3.5em;bottom: -6em;"><small>* OCD = Obsessive–compulsive disorder</small></p> -->
+        <!--   </div> -->
+        <!-- </section> -->
+
+        <section>
+          <h2 class="headline">Change Detection?</h2>
+        </section>
+
+        <section>
+          <img src="img/cd-1.svg">
+        </section>
+
+        <section>
+          <img src="img/cd-2.svg">
+        </section>
+
+        <section>
+          <img src="img/cd-3.svg">
+        </section>
+
+        <section>
+          <img src="img/cd-4.svg">
+        </section>
+
+        <section>
+          <h2 style="line-height: 1.5em;">Change Detection Goal: <br>Data Projection*</h2>
+
+          <div class="fragment" style="position: relative;">
+            <p style="position: absolute; right: 3.5em;bottom: -6em;"><small>* <a style="border-bottom: 2px dotted #fff;"href="http://teropa.info/blog/2015/03/02/change-and-its-detection-in-javascript-frameworks.html">Change and its detection in JavaScript frameworks</a> by @teropa</small></p>
+            <div style="position: absolute; right: 0em; bottom: -6em;">
+              <img style="border-radius: 50%; border: 3px solid #fff!important; width: 120px; height: 120px; transform: rotateZ(0deg);" src="img/teropa.png">
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="headline">What causes change?</h2>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.6em;">&lt;h1&gt;{{firstname}} {{lastname}}&lt;/h1&gt;
+
+<button (click)="changeName()">
+  Change name
+</button>
+          </code></pre>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.4em;">@Component()
+class App {
+
+  firstname:string = 'Pascal';
+  lastname:string = 'Precht';
+
+  changeName() {
+    this.firstname = 'Brad';
+    this.lastname = 'Green';
+  }
+}
+</code></pre>
+<p>&nbsp;</p>
+        </section>
+
+        <section>
+          <pre><hl-code style="font-size: 1.4em;">@Component()
+class App {
+
+  firstname:string = 'Pascal';
+  lastname:string = 'Precht';
+
+  <span>changeName() {
+    this.firstname = 'Brad';
+    this.lastname = 'Green';
+  }</span>
+}
+</hl-code></pre>
+<p class="fragment">Application state changed!</p>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.2em;">@Component()
+class ContactsApp {
+
+  contacts:Contact[] = [];
+
+  constructor(private http:Http) { }
+
+  ngOnInit() {
+    this.http.get('/contacts')
+      .map(res => res.json())
+      .subscribe((contacts) => {
+        this.contacts = contacts;
+      });
+  }
+}
+</code></pre>
+<p>&nbsp;</p>
+        </section>
+
+        <section>
+          <pre><hl-code style="font-size: 1.2em;">@Component()
+class ContactsApp {
+
+  contacts:Contact[] = [];
+
+  constructor(private http:Http) { }
+
+  ngOnInit() {
+    <span>this.http.get('/contacts')
+      .map(res => res.json())
+      .subscribe((contacts) => {
+        this.contacts = contacts;
+      });</span>
+  }
+}</hl-code></pre>
+<p class="fragment">Application state changed!</p>
+        </section>
+
+        <section>
+          <h2>Things that cause change</h2>
+          <ul>
+            <li class="fragment"><strong>Events</strong> - <code>click</code>, <code>submit</code>, ...</li>
+            <li class="fragment"><strong>XHR</strong> - Fetching data from a remote server</li>
+            <li class="fragment"><strong>Timers</strong> - <code>setTimeout()</code>, <code>setInterval()</code></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="headline">Who notifies Angular?</h2>
+        </section>
+
+        <section data-background="img/magic.gif">
+        </section>
+
+        <section>
+          <h1>Zones</h1>
+        </section>
+
+
+        <section>
+          <p style="font-size: 1.5em;">Let's understand JavaScript first.</p>
+        </section>
+
+        <section>
+          <h2>Call Stack</h2>
+          <img src="img/cs-1.svg">
+        </section>
+
+        <section>
+          <h2>Call Stack</h2>
+          <img src="img/cs-2.svg">
+        </section>
+
+        <section>
+          <h2>Call Stack</h2>
+          <img src="img/cs-3.svg">
+        </section>
+
+        <section>
+          <h2>Call Stack</h2>
+          <img src="img/cs-4.svg">
+        </section>
+
+        <section>
+          <h2>Call Stack</h2>
+          <img src="img/cs-5.svg">
+        </section>
+
+        <section>
+          <h2>Call Stack</h2>
+          <img src="img/cs-6.svg">
+        </section>
+
+        <section>
+          <h2>Call Stack</h2>
+          <img src="img/cs-5.svg">
+        </section>
+
+        <section>
+          <h2>Call Stack</h2>
+          <img src="img/cs-4.svg">
+        </section>
+
+        <section>
+          <h2>Call Stack</h2>
+          <img src="img/cs-2.svg">
+        </section>
+
+        <section data-background="img/picard-slow-clap.gif">
+        </section>
+
+        <section>
+          <h2 class="headline">What about async?</h2>
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-1.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-2.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-3.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-2.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-4.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-5.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-6.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-7.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-8.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-9.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-11.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-10.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-12.svg">
+        </section>
+
+        <section>
+          <h2>Event Loop</h2>
+          <img src="img/cs-async-1.svg">
+        </section>
+
+        <!-- <section data-background="img/philip-roberts.png"> -->
+        <!--   <h2 style="padding: 0.5em; background: rgba(255,255,255,0.5);"><a style="color: #333;" href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">What the heck is the event loop anyway?</a></h2> -->
+        <!-- </section> -->
+
+        <section>
+          <p>This profiler won't capture self-time of any async operation</p>
+          <pre><code style="font-size: 1.6em;">profiler.start();
+
+foo();
+setTimeout(doSth, 0);
+bar();
+
+profiler.stop();</code></pre>
+        </section>
+
+        <section>
+          <p style="font-size: 1.2em;">Zones can perform an operation each time code enters or exits a zone.</p>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.6em;">
+
+  foo();
+  setTimeout(doSth, 0);
+  bar();
+
+          </code></pre>
+<p>&nbsp;</p>
+        </section>
+
+        <section>
+<pre><code style="font-size: 1.6em;">zone.run(() => {
+  foo();
+  setTimeout(doSth, 0);
+  bar();
+});</code></pre>
+<p class="fragment"><code>setTimeout()</code> at this time is already monkey-patched</p>
+        </section>
+
+        <section>
+          <p>Zones hooks can be extended</p>
+<pre class="fragment"><code style="font-size: 1.6em;">zone.fork({
+  beforeTask: function () {...},
+  afterTask: function () {...},
+  ...
+})
+.run(() => {
+  foo();
+  setTimeout(doSth, 0);
+  bar();
+});</code></pre>
+        </section>
+
+        <section>
+          <p>Zones hooks can be extended</p>
+          <pre><hl-code style="font-size: 1.6em;"><span>zone.fork({
+  beforeTask: function () {...},
+  afterTask: function () {...},
+  ...
+})</span>
+.run(() => {
+  foo();
+  setTimeout(doSth, 0);
+  bar();
+});</hl-code></pre>
+        </section>
+
+        <section>
+          <h2>Angular has its own Zone</h2>
+          <p><code>NgZone</code> is a <strong>forked zone</strong> with additional APIs based on Observables</p>
+
+          <ul>
+            <li class="fragment"><code>onTurnStart()</code> - Emits before turn starts</li>
+            <li class="fragment"><code>onTurnDone()</code> - Emits after turn is done</li>
+            <li class="fragment">...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>In a nutshell</h2>
+          <pre class="fragment"><code style="font-size: 1.4em;">class ApplicationRef {
+
+  changeDetectorsRefs = [];
+
+  constructor(private zone: NgZone) {
+    this.zone.onTurnDone
+      .subscribe(() => this.tick());
+  }
+
+  tick() {
+    this.changeDetectorsRefs
+      .forEach((ref) => ref.detectChanges());
+  }
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>In a nutshell</h2>
+          <pre><hl-code style="font-size: 1.4em;">class ApplicationRef {
+
+  changeDetectorsRefs = [];
+
+  constructor(private zone: NgZone) {
+    <span>this.zone.onTurnDone
+      .subscribe(() => this.tick());</span>
+  }
+
+  tick() {
+    this.changeDetectorsRefs
+      .forEach((ref) => ref.detectChanges());
+  }
+}</hl-code></pre>
+        </section>
+
+        <section>
+          <h2>In a nutshell</h2>
+          <pre><hl-code style="font-size: 1.4em;">class ApplicationRef {
+
+  changeDetectorsRefs = [];
+
+  constructor(private zone: NgZone) {
+    this.zone.onTurnDone
+      .subscribe(() => this.tick());
+  }
+
+  tick() {
+    <span>this.changeDetectorsRefs
+      .forEach((ref) => ref.detectChanges());</span>
+  }
+}</hl-code></pre>
+        </section>
+
+        <section data-background="img/mind-blown2.gif">
+        </section>
+
+        <section>
+          <h2 class="headline">Change Detection</h2>
+        </section>
+
+        <section>
+          <img style=""class="" src="img/cd-tree.svg">
+          <p>&nbsp;</p>
+        </section>
+
+        <section>
+          <img style="" src="img/cd-tree-2.svg">
+          <p style="margin-top: -3em!important;">Each component has its own Change Detector</p>
+        </section>
+
+        <section>
+          <img style="" src="img/cd-tree.svg">
+          <p>&nbsp;</p>
+        </section>
+
+        <section>
+          <img style="" src="img/cd-tree-3.svg">
+          <p>&nbsp;</p>
+        </section>
+
+        <section>
+          <img style="" src="img/cd-tree-4.svg">
+          <p>&nbsp;</p>
+        </section>
+
+        <section>
+          <img style="" src="img/cd-tree-5.svg">
+          <p>&nbsp;</p>
+        </section>
+
+        <section>
+          <img style="" src="img/cd-tree-6.svg">
+          <p>&nbsp;</p>
+        </section>
+
+        <section>
+          <img style="" src="img/cd-tree-7.svg">
+          <p class="fragment" style="margin-top: -4.5em!important;">Change Detection is always performed in the <strong>same order</strong> starting from root</p>
+        </section>
+
+        <section>
+          <h1>Demo</h1>
+        </section>
+
+        <section>
+          <h2 style="font-size: 1.4em!important;">How fast is it?</h2>
+          <div class="fragment" style="position: relative;">
+            <img style="margin-top: 1.5em!important; border-radius: 50%; border: 3px solid #fff!important; width: 300px; transform: rotateZ(0deg);" src="img/victor.jpg">
+            <p>Victor Savkin, Angular Core Team @Google</p>
+            <img class="fragment" style="position: absolute; top: -3em; right: -5em;" src="img/speech-bubble.svg">
+          </div>
+        </section>
+
+        <section>
+          <p style="font-size: 1.4em!important;">Angular generates VM friendly code for better performance</p>
+          <p><small>(Can perform hundreds of thousands of simple checks in a few milliseconds)</small></p>
+        </section>
+
+        <section>
+          <h2>Facts</h2>
+          <ul>
+            <li class="fragment">Change Detection Graph is a directed tree</li>
+            <li class="fragment">Way more predictable</li>
+            <li class="fragment">Gets stable after a single pass - Digest TTL = 1</li>
+            <li class="fragment">Generates VM friendly code for better performance</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="headline">Smarter Change Detection</h2>
+        </section>
+
+        <section>
+          <h1 class="headline">Mutable Objects</h1>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.3em;">@Component({
+  template: '&lt;v-card [vData]="vData"&gt;&lt;/v-card&gt;'
+})
+class VCardApp {
+
+  constructor() {
+    this.vData = {
+      name: 'Christoph Burgdorf',
+      email: 'christoph@thoughtram.io'
+    }
+  }
+
+  changeData() {
+    this.vData.name = 'Pascal Precht';
+  }
+}</code></pre>
+        </section>
+
+        <section>
+          <pre><hl-code style="font-size: 1.3em;">@Component({
+  template: '&lt;v-card <span>[vData]="vData"</span>&gt;&lt;/v-card&gt;'
+})
+class VCardApp {
+
+  constructor() {
+    <span>this.vData = {
+      name: 'Christoph Burgdorf',
+      email: 'christoph@thoughtram.io'
+    }</span>
+  }
+
+  changeData() {
+    this.vData.name = 'Pascal Precht';
+  }
+}</hl-code></pre>
+        </section>
+
+        <section>
+          <pre><hl-code style="font-size: 1.3em;">@Component({
+  template: '&lt;v-card [vData]="vData"&gt;&lt;/v-card&gt;'
+})
+class VCardApp {
+
+  constructor() {
+    this.vData = {
+      name: 'Christoph Burgdorf',
+      email: 'christoph@thoughtram.io'
+    }
+  }
+
+  <span>changeData() {
+    this.vData.name = 'Pascal Precht';
+  }</span>
+}</hl-code></pre>
+        </section>
+
+        <section>
+          <img src="img/immutable-1.svg">
+        </section>
+
+        <section>
+          <img src="img/immutable-2.svg">
+        </section>
+
+        <section>
+          <img src="img/immutable-3.svg">
+        </section>
+
+        <section>
+          <img src="img/immutable-4.svg">
+        </section>
+
+        <section>
+          <img src="img/immutable-5.svg">
+        </section>
+
+        <section>
+          <img src="img/immutable-6.svg">
+        </section>
+
+        <section>
+          <img src="img/immutable-7.svg">
+          <p style="margin-top: -3.5em!important;">Reference is the same, but property could've changed (mutable), so we need to check</p>
+        </section>
+
+        <section>
+          <img style="" src="img/cd-tree-7.svg">
+          <p style="margin-top: -4em!important;">Angular is conservative by default and checks every component every single time</p>
+        </section>
+
+        <section>
+          <h2 class="headline">Immutable Objects</h2>
+        </section>
+
+        <section>
+          <pre style="margin-top: 3em!important;"><code style="font-size: 1.2em;">var vData = someAPIForImmutables.create({
+              name: 'Pascal Precht'
+            });
+
+var vData2 = vData.set('name', 'Christoph Burgdorf');
+
+vData1 === vData2 // false
+          </code></pre>
+          <p>&nbsp;</p>
+        </section>
+
+        <section>
+          <pre style="margin-top: 3em!important;"><hl-code style="font-size: 1.2em;"><span>var vData = someAPIForImmutables.create({
+              name: 'Pascal Precht'
+            });</span>
+
+var vData2 = vData.set('name', 'Christoph Burgdorf');
+
+vData1 === vData2 // false
+          </hl-code></pre>
+          <p>&nbsp;</p>
+        </section>
+
+        <section>
+          <pre style="margin-top: 3em!important;"><hl-code style="font-size: 1.2em;">var vData = someAPIForImmutables.create({
+              name: 'Pascal Precht'
+            });
+
+<span>var vData2 = vData.set('name', 'Christoph Burgdorf');</span>
+
+vData1 === vData2 // false
+          </hl-code></pre>
+          <p >&nbsp;</p>
+        </section>
+
+        <section>
+
+          <pre style="margin-top: 3em!important;"><hl-code style="font-size: 1.2em;">var vData = someAPIForImmutables.create({
+              name: 'Pascal Precht'
+            });
+
+var vData2 = vData.set('name', 'Christoph Burgdorf');
+
+<span>vData1 === vData2 // false</span>
+          </hl-code></pre>
+          <p class="fragment">Making a change, always results in a new reference</p>
+        </section>
+
+        <section>
+          <h2>Reducing the number of checks</h2>
+
+          <p style="margin-top: 2em!important;">Angular can skip entire Change Detection subtrees when inputs properties don't change*.</p>
+
+          <p style="margin-top: 2em!important;"><small>*We learned that: change = new reference</small></p>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.3em;">@Component({
+  template: `
+    &lt;h2&gt;{{vData.name}}&lt;/h2&gt;
+    &lt;span&gt;{{vData.email}}&lt;/span&gt;
+  `
+
+})
+class VCardCmp {
+  @Input() vData;
+}</code></pre>
+          <p>&nbsp;</p>
+        </section>
+
+        <section>
+          <pre><hl-code style="font-size: 1.3em;">@Component({
+  template: `
+    &lt;h2&gt;<span>{{vData.name}}</span>&lt;/h2&gt;
+    &lt;span&gt;<span>{{vData.email}}</span>&lt;/span&gt;
+  `
+
+})
+class VCardCmp {
+  <span>@Input() vData;</span>
+}</hl-code></pre>
+          <p><code>VCardCmp</code> only depends on inputs</p>
+        </section>
+
+        <!-- <section> -->
+        <!--   <pre><code style="font-size: 1.3em;">@Component({ -->
+  <!-- template: ` -->
+    <!-- &lt;h2&gt;{{vData.name}}&lt;/h2&gt; -->
+    <!-- &lt;span&gt;{{vData.email}}&lt;/span&gt; -->
+  <!-- ` -->
+
+<!-- }) -->
+<!-- class VCardCmp { -->
+  <!-- @Input() vData; -->
+<!-- }</code></pre> -->
+        <!--   <p>&nbsp;</p> -->
+        <!-- </section> -->
+
+        <!-- <section> -->
+        <!--   <pre><code style="font-size: 1.3em;">@Component({ -->
+  <!-- template: ` -->
+    <!-- &lt;h2&gt;{{vData.name}}&lt;/h2&gt; -->
+    <!-- &lt;span&gt;{{vData.email}}&lt;/span&gt; -->
+  <!-- `, -->
+  <!-- changeDetection: ChangeDetectionStrategy.OnPush -->
+<!-- }) -->
+<!-- class VCardCmp { -->
+  <!-- @Input() vData; -->
+<!-- }</code></pre> -->
+        <!--   <p>&nbsp;</p> -->
+        <!-- </section> -->
+
+        <section>
+          <pre><hl-code style="font-size: 1.3em;">@Component({
+  template: `
+    &lt;h2&gt;{{vData.name}}&lt;/h2&gt;
+    &lt;span&gt;{{vData.email}}&lt;/span&gt;
+  `,
+  <span>changeDetection: ChangeDetectionStrategy.OnPush</span>
+})
+class VCardCmp {
+  @Input() vData;
+}</hl-code></pre>
+          <p>Run change detection if any <strong>input</strong> has changed</p>
+        </section>
+
+        <section>
+          <img src="img/immutable-3.svg">
+        </section>
+
+        <section>
+          <img src="img/immutable-4.svg">
+        </section>
+
+        <section>
+          <img src="img/immutable-8.svg">
+        </section>
+
+        <section>
+          <img src="img/immutable-9.svg">
+        </section>
+
+        <section>
+          <img src="img/immutable-10.svg">
+          <p style="margin-top: -3em!important;" class="fragment">Skip subtree, as input hasn't changed</p>
+        </section>
+
+        <section>
+          <img src="img/cd-tree.svg">
+        </section>
+
+        <section>
+          <img src="img/cd-tree-9.svg">
+        </section>
+
+        <section>
+          <img src="img/cd-tree-8.svg">
+        </section>
+
+        <section>
+          <h1>Demo</h1>
+          <!-- <h1><a href="http://plnkr.co/edit/aVRQMWr2AbAc9hy5uGrD?p=preview" target="_black">Demo</a></h1> -->
+        </section>
+
+        <section>
+          <img style="border-radius: 50%; border: 4px solid #fff!important;" src="img/jurgen.jpg">
+          <p style="margin-top: 0!important;"><a style="color: #fff;" href="http://twitter.com/jvandemo">@jvandemo</a></p>
+          <p><a target="_blank" href="http://www.jvandemo.com/how-i-optimized-minesweeper-using-angular-2-and-immutable-js-to-make-it-insanely-fast/">How I optimized minesweeper using Angular 2 and Immutable.js &rarr;</a></p>
+        </section>
+
+        <section>
+          <h1>Observables</h1>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.3em;">@Component()
+class CartBadgeCmp {
+
+  @Input() addItemStream:Observable&lt;any&gt;;
+  counter = 0;
+
+
+
+  ngOnInit() {
+    this.addItemStream.subscribe(() => {
+      this.counter++; // application state changed
+
+    })
+  }
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre><hl-code style="font-size: 1.3em;">@Component()
+class CartBadgeCmp {
+
+  <span>@Input() addItemStream:Observable&lt;any&gt;;
+  counter = 0;</span>
+
+
+
+  ngOnInit() {
+    this.addItemStream.subscribe(() => {
+      this.counter++; // application state changed
+
+    })
+  }
+}
+</hl-code></pre>
+        </section>
+
+        <section>
+          <pre><hl-code style="font-size: 1.3em;">@Component()
+class CartBadgeCmp {
+
+  @Input() addItemStream:Observable&lt;any&gt;;
+  counter = 0;
+
+
+
+  ngOnInit() {
+    <span>this.addItemStream.subscribe(() => {
+      this.counter++; // application state changed
+
+    })</span>
+  }
+}
+</hl-code></pre>
+        </section>
+
+        <section>
+          <img src="img/cd-tree-10.svg">
+        </section>
+
+        <section>
+          <img src="img/cd-tree-11.svg">
+        </section>
+
+        <section>
+          <img src="img/cd-tree-15.svg">
+          <p class="fragment" style="margin-top: -4em!important;">Observable reference is still exactly the same,<br> CD propagation stops</p>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.3em;">@Component()
+class CartBadgeCmp {
+
+  @Input() addItemStream:Observable&lt;any&gt;;
+  counter = 0;
+
+
+
+  ngOnInit() {
+    this.addItemStream.subscribe(() => {
+      this.counter++; // application state changed
+
+    })
+  }
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre><hl-code style="font-size: 1.3em;">@Component()
+class CartBadgeCmp {
+
+  @Input() addItemStream:Observable&lt;any&gt;;
+  counter = 0;
+
+  <span>constructor(private cd: ChangeDetectorRef) {}</span>
+
+  ngOnInit() {
+    this.addItemStream.subscribe(() => {
+      this.counter++; // application state changed
+      <span>this.cd.markForCheck();</span> // marks path
+    })
+  }
+}
+</hl-code></pre>
+        </section>
+        <section>
+          <img src="img/cd-tree-10.svg">
+        </section>
+
+        <section>
+          <img src="img/cd-tree-11.svg">
+        </section>
+
+        <section>
+          <img src="img/cd-tree-12.svg">
+          <p style="margin-top: -4em!important;">Mark path until root for check</p>
+        </section>
+
+        <section>
+          <img src="img/cd-tree-13.svg">
+          <p style="margin-top: -4em!important;">Perform change detection as usual</p>
+        </section>
+
+        <section>
+          <img src="img/cd-tree-10.svg">
+          <p style="margin-top: -4em!important;">Restore original state</p>
+        </section>
+
+        <section data-background="img/mindblown.gif">
+        </section>
+
+        <section>
+          <h1>Demo</h2>
+        </section>
+
+        <section>
+          <h2>One more thing...</h2>
+        </section>
+
+        <section>
+          <h2 class="headline">Even more control</h2>
+          <pre><code style="font-size: 1.2em;">@Component()
+class AnotherCmp {
+
+  notifier:Observable&lt;any&gt;;
+
+  constructor(private cd: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.cd.detach();
+    this.notifier.subscribe((attach) => {
+      attach ? this.cd.reattach() : this.cd.detach();
+    });
+  }
+}
+</code></pre>
+        </section>
+
+        <section>
+          <h2 class="headline">Even more control</h2>
+          <pre><hl-code style="font-size: 1.2em;">@Component()
+class AnotherCmp {
+
+  <span>notifier:Observable&lt;any&gt;;</span>
+
+  constructor(private cd: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    <span>this.cd.detach();
+    this.notifier.subscribe((attach) => {
+      attach ? this.cd.reattach() : this.cd.detach();
+    });</span>
+  }
+}
+</hl-code></pre>
+        </section>
+
+        <section>
+          <h1>Demo</h1>
+        </section>
+
+        <section data-background="img/good-day.gif">
+        </section>
+
+        <section data-background="img/shield-large.svg" style="text-align: left;" class="deck-slide">
+          <h1 style="margin-top: 2em;">Thanks.</h1>
+          <div style="margin-left: 0em;!important"class="profile">
+            <img src="img/pascal.png">
+            <p>@PascalPrecht<br/>
+          Angular GDE and Trainer</p>
+          </div>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
