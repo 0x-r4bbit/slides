@@ -50,6 +50,15 @@
             <p>@PascalPrecht<br/>
           #ngnl2016</p>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>Hi, I'm Pascal</li>
+              <li>spent the last couple weeks understanding CD</li>
+              <li>Today I'd like to share my learnings with you</li>
+              <li>How to make your apps faster</li>
+              <li>AMA later</li>
+            </ul>
+          </aside>
         </section>
 
         <!-- <section> -->
@@ -66,18 +75,48 @@
 
         <section>
           <img src="img/cd-1.svg">
+          <aside class="notes">
+            <ul>
+              <li>The basic task: take internal state of program, make it visible</li>
+              <li>State can be objects, arrays, strings, numbers</li>
+              <li>They are JavaScript Data Structures</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <img src="img/cd-2.svg">
+          <aside class="notes">
+            <ul>
+              <li>State might end up as paragraphs, forms, links, buttons, ...</li>
+              <li>On the web, it's the DOM</li>
+              <li>We call this rendering</li>
+              <li>We project data to visible UI</li>
+              <li>Actually simple: input (data) -> output (html)</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <img src="img/cd-3.svg">
+          <aside class="notes">
+            <ul>
+              <li>Gets tricky when data changes over time</li>
+              <li>User interacts with UI, data returns from a server, ...</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <img src="img/cd-4.svg">
+          <aside class="notes">
+            <ul>
+              <li>UI needs to reflect this change</li>
+              <li>Rebuilding DOM trees is super expensive</li>
+              <li>We want to keep those operations low</li>
+              <li>Different ways to handle this, VDOM, Server,...</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -89,6 +128,12 @@
               <img style="border-radius: 50%; border: 3px solid #fff!important; width: 120px; height: 120px; transform: rotateZ(0deg);" src="img/teropa.png">
             </div>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>At the end of the day we want to project data</li>
+              <li>Goal: Detect changes, maybe update UI, or inform UI</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -182,10 +227,21 @@ class ContactsApp {
             <li class="fragment"><strong>XHR</strong> - Fetching data from a remote server</li>
             <li class="fragment"><strong>Timers</strong> - <code>setTimeout()</code>, <code>setInterval()</code></li>
           </ul>
+          <aside class="notes">
+            <ul>
+              <li>It's all asynchronous!</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h2 class="headline">Who notifies Angular?</h2>
+          <aside class="notes">
+            <ul>
+              <li>Who tells Angular to update the UI?</li>
+              <li>It's Angular, so it's obvious right?</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-background="img/magic.gif">
@@ -193,21 +249,46 @@ class ContactsApp {
 
         <section>
           <h1>Zones</h1>
+          <aside class="notes">
+            <ul>
+              <li>Just kidding</li>
+            </ul>
+          </aside>
         </section>
 
 
         <section>
           <p style="font-size: 1.5em;">Let's understand JavaScript first.</p>
+          <aside class="notes">
+            <ul>
+              <li>Let me take you on a journey</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h2>Call Stack</h2>
           <img src="img/cs-1.svg">
+          <aside class="notes">
+            <ul>
+              <li>it's single threaded</li>
+              <li>Has a single call stack</li>
+              <li>JS can execute only one thing at a time</li>
+              <li>Let's visualise what that means</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h2>Call Stack</h2>
           <img src="img/cs-2.svg">
+          <aside class="notes">
+            <ul>
+              <li>Call stack records where in the program we are</li>
+            </ul>
+          </aside>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -243,6 +324,11 @@ class ContactsApp {
         <section>
           <h2>Call Stack</h2>
           <img src="img/cs-2.svg">
+          <aside class="notes">
+            <ul>
+              <li>Done. Yay JavaScript</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-background="img/picard-slow-clap.gif">
@@ -250,11 +336,18 @@ class ContactsApp {
 
         <section>
           <h2 class="headline">What about async?</h2>
+          <p><small>(Because... JavaScript)</small></p>
         </section>
 
         <section>
           <h2>Event Loop</h2>
           <img src="img/cs-async-1.svg">
+          <aside class="notes">
+            <ul>
+              <li>Couple new things: Web APIs, Task Queue, Event Loop</li>
+              <li>Web APIs provided by browser takes care of "threading"</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -280,6 +373,12 @@ class ContactsApp {
         <section>
           <h2>Event Loop</h2>
           <img src="img/cs-async-5.svg">
+          <aside class="notes">
+            <ul>
+              <li>setTimeout is a function provided by the browser</li>
+              <li>schedules a timer with a callback</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -295,6 +394,13 @@ class ContactsApp {
         <section>
           <h2>Event Loop</h2>
           <img src="img/cs-async-8.svg">
+          <aside class="notes">
+            <ul>
+              <li>WebAPI can't just modify your code, would pop up otherwise</li>
+              <li>That's where task queue comes into play</li>
+              <li>Once a WebAPI is done, push to task queue</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -310,6 +416,12 @@ class ContactsApp {
         <section>
           <h2>Event Loop</h2>
           <img src="img/cs-async-10.svg">
+          <aside class="notes">
+            <ul>
+              <li>Event loop looks at stack and task queue</li>
+              <li>if stack === empty, take first task, execute on stack</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -320,25 +432,40 @@ class ContactsApp {
         <section>
           <h2>Event Loop</h2>
           <img src="img/cs-async-1.svg">
+          <aside class="notes">
+            <ul>
+              <li>task has been deferred until stack is clear</li>
+              <li>same applies to other web APIS (XHR, addEventListener, ...</li>
+            </ul>
+          </aside>
         </section>
 
-        <!-- <section data-background="img/philip-roberts.png"> -->
-        <!--   <h2 style="padding: 0.5em; background: rgba(255,255,255,0.5);"><a style="color: #333;" href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">What the heck is the event loop anyway?</a></h2> -->
+        <section data-background="img/philip-roberts.png">
+          <h2 style="padding: 0.5em; background: rgba(255,255,255,0.5);"><a style="color: #333;" href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">What the heck is the event loop anyway?</a></h2>
+          <aside class="notes">
+            <ul>
+              <li>That was a rip-off of Philip Roberts talk </li>
+              <li>Why is this important now?</li>
+              <li>Same happens inside Angular</li>
+              <li>just that we need to notify when task is done</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- <section> -->
+        <!--   <p>That's why this profiler won't capture self-time of any async operation</p> -->
+        <!--   <pre><code style="font-size: 1.6em;">profiler.start(); -->
+
+<!-- foo(); -->
+<!-- setTimeout(doSth, 0); -->
+<!-- bar(); -->
+
+<!-- profiler.stop();</code></pre> -->
         <!-- </section> -->
 
         <section>
-          <p>This profiler won't capture self-time of any async operation</p>
-          <pre><code style="font-size: 1.6em;">profiler.start();
-
-foo();
-setTimeout(doSth, 0);
-bar();
-
-profiler.stop();</code></pre>
-        </section>
-
-        <section>
-          <p style="font-size: 1.2em;">Zones can perform an operation each time code enters or exits a zone.</p>
+          <h2>Zones to the rescue</h2>
+          <p style="font-size: 1.2em;">Zones can perform an operation each time code enters or exits a task.</p>
         </section>
 
         <section>
@@ -359,6 +486,16 @@ profiler.stop();</code></pre>
   bar();
 });</code></pre>
 <p class="fragment"><code>setTimeout()</code> at this time is already monkey-patched</p>
+          <aside class="notes">
+            <ul>
+              <li>we use zones.js</li>
+              <li>This code now runs in a zone</li>
+              <li>run() === task</li>
+              <li>What we can't see: async operations are monkey-patched</li>
+              <li>Async OP === inner zone === task</li>
+              <li>Hooks exist but noop</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -387,6 +524,15 @@ profiler.stop();</code></pre>
   setTimeout(doSth, 0);
   bar();
 });</hl-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Forking a zone returns a new "child" zone</li>
+              <li>inheritance</li>
+              <li>Enables custom hook definition</li>
+              <li>We can even augment existing hooks</li>
+              <li>Now... why is that interesting?</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -398,63 +544,72 @@ profiler.stop();</code></pre>
             <li class="fragment"><code>onTurnDone()</code> - Emits after turn is done</li>
             <li class="fragment">...</li>
           </ul>
+          <aside class="notes">
+            <ul>
+              <li>Angular does exactly that - extending a Zone</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
-          <h2>In a nutshell</h2>
-          <pre class="fragment"><code style="font-size: 1.4em;">class ApplicationRef {
+          <h2>Again, what notifies Angular?</h2>
+          <pre class="fragment"><code style="font-size: 1.4em;">this.zone.onTurnDone
+  .subscribe(() => {
+    this.zone.run(() => this.tick() })
+  })</code></pre>
 
-  changeDetectorsRefs = [];
-
-  constructor(private zone: NgZone) {
-    this.zone.onTurnDone
-      .subscribe(() => this.tick());
-  }
-
-  tick() {
-    this.changeDetectorsRefs
-      .forEach((ref) => ref.detectChanges());
-  }
+<pre class="fragment"><code style="font-size: 1.4em;">tick() {
+  this.changeDetectorsRefs
+    .forEach((ref) => ref.detectChanges())
 }</code></pre>
         </section>
 
-        <section>
-          <h2>In a nutshell</h2>
-          <pre><hl-code style="font-size: 1.4em;">class ApplicationRef {
+        <!-- <section> -->
+        <!--   <h2>In a nutshell</h2> -->
+        <!--   <pre><hl-code style="font-size: 1.4em;">class ApplicationRef { -->
 
-  changeDetectorsRefs = [];
+  <!-- changeDetectorsRefs = []; -->
 
-  constructor(private zone: NgZone) {
-    <span>this.zone.onTurnDone
-      .subscribe(() => this.tick());</span>
-  }
+  <!-- constructor(private zone: NgZone) { -->
+    <!-- <span>this.zone.onTurnDone -->
+      <!-- .subscribe(() => this.tick());</span> -->
+  <!-- } -->
 
-  tick() {
-    this.changeDetectorsRefs
-      .forEach((ref) => ref.detectChanges());
-  }
-}</hl-code></pre>
-        </section>
+  <!-- tick() { -->
+    <!-- this.changeDetectorsRefs -->
+      <!-- .forEach((ref) => ref.detectChanges()); -->
+  <!-- } -->
+<!-- }</hl-code></pre> -->
+        <!-- </section> -->
 
-        <section>
-          <h2>In a nutshell</h2>
-          <pre><hl-code style="font-size: 1.4em;">class ApplicationRef {
+        <!-- <section> -->
+        <!--   <h2>In a nutshell</h2> -->
+        <!--   <pre><hl-code style="font-size: 1.4em;">class ApplicationRef { -->
 
-  changeDetectorsRefs = [];
+  <!-- changeDetectorsRefs = []; -->
 
-  constructor(private zone: NgZone) {
-    this.zone.onTurnDone
-      .subscribe(() => this.tick());
-  }
+  <!-- constructor(private zone: NgZone) { -->
+    <!-- this.zone.onTurnDone -->
+      <!-- .subscribe(() => this.tick()); -->
+  <!-- } -->
 
-  tick() {
-    <span>this.changeDetectorsRefs
-      .forEach((ref) => ref.detectChanges());</span>
-  }
-}</hl-code></pre>
-        </section>
+  <!-- tick() { -->
+    <!-- <span>this.changeDetectorsRefs -->
+      <!-- .forEach((ref) => ref.detectChanges());</span> -->
+  <!-- } -->
+<!-- }</hl-code></pre> -->
+        <!-- </section> -->
 
         <section data-background="img/mind-blown2.gif">
+        </section>
+
+        <section>
+          <h2>More on that here</h2>
+          <p>There's way more we can do with Zones.</p>
+          <ul>
+            <li><a target="_blank" href="http://blog.thoughtram.io/angular/2016/01/22/understanding-zones.html">Understanding Zones</a></li>
+            <li><a target="_blank" href="http://blog.thoughtram.io/angular/2016/02/01/zones-in-angular-2.html">Zones in Angular 2</a></li>
+          </ul>
         </section>
 
         <section>
@@ -464,6 +619,12 @@ profiler.stop();</code></pre>
         <section>
           <img style=""class="" src="img/cd-tree.svg">
           <p>&nbsp;</p>
+          <aside class="notes">
+            <ul>
+              <li>Okay, so how is CD performed?</li>
+              <li>First thing to note: MULTIPLE CD's !</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -499,6 +660,14 @@ profiler.stop();</code></pre>
         <section>
           <img style="" src="img/cd-tree-7.svg">
           <p class="fragment" style="margin-top: -4.5em!important;">Change Detection is always performed in the <strong>same order</strong> starting from root</p>
+          <aside class="notes">
+            <ul>
+              <li>Data flows top down</li>
+              <li>Makes it more predictable</li>
+              <li>No cycle, Component always update view</li>
+              <li>Gets stable after single pass</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -517,6 +686,14 @@ profiler.stop();</code></pre>
         <section>
           <p style="font-size: 1.4em!important;">Angular generates VM friendly code for better performance</p>
           <p><small>(Can perform hundreds of thousands of simple checks in a few milliseconds)</small></p>
+          <p class="fragment"><a href="http://mrale.ph/blog/2015/01/11/whats-up-with-monomorphism.html">What's up with monomorphism &rarr;</a></p>
+          <aside class="notes">
+            <ul>
+              <li>Each CD is generated JIT</li>
+              <li>Monomorphic code, shape of objects don't change</li>
+              <li>VM love that code</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -524,13 +701,25 @@ profiler.stop();</code></pre>
           <ul>
             <li class="fragment">Change Detection Graph is a directed tree</li>
             <li class="fragment">Way more predictable</li>
-            <li class="fragment">Gets stable after a single pass - Digest TTL = 1</li>
+            <li class="fragment">Gets stable after a single pass</li>
             <li class="fragment">Generates VM friendly code for better performance</li>
           </ul>
+          <aside class="notes">
+            <ul>
+              <li>This is cool, but we can make it even better</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h2 class="headline">Smarter Change Detection</h2>
+          <aside class="notes">
+            <ul>
+              <li>Angular checks each component every single time</li>
+              <li>Even if they haven't changed</li>
+              <li>Because objects in JS are mutable</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -626,10 +815,24 @@ class VCardApp {
         <section>
           <img style="" src="img/cd-tree-7.svg">
           <p style="margin-top: -4em!important;">Angular is conservative by default and checks every component every single time</p>
+          <aside class="notes">
+            <ul>
+              <li>What if we could tell Angular that some thing haven't changed?</li>
+              <li>Turns out we can</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h2 class="headline">Immutable Objects</h2>
+          <aside class="notes">
+            <ul>
+              <li>Immutable objects give us certain guarantees</li>
+              <li>Those we can use</li>
+              <li>But what does that mean?</li>
+              <li>Let's understand immutability</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -642,6 +845,12 @@ var vData2 = vData.set('name', 'Christoph Burgdorf');
 vData1 === vData2 // false
           </code></pre>
           <p>&nbsp;</p>
+          <aside class="notes">
+            <ul>
+              <li>Immutable objects guarantee that they can't change</li>
+              <li>If there's a change, we get a new reference</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -679,6 +888,11 @@ var vData2 = vData.set('name', 'Christoph Burgdorf');
 <span>vData1 === vData2 // false</span>
           </hl-code></pre>
           <p class="fragment">Making a change, always results in a new reference</p>
+          <aside class="notes">
+            <ul>
+              <li>How can we take advantage of this guarantee?</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -687,6 +901,14 @@ var vData2 = vData.set('name', 'Christoph Burgdorf');
           <p style="margin-top: 2em!important;">Angular can skip entire Change Detection subtrees when inputs properties don't change*.</p>
 
           <p style="margin-top: 2em!important;"><small>*We learned that: change = new reference</small></p>
+          <aside class="notes">
+            <ul>
+              <li>If we use immutable</li>
+              <li>We can tell Angular to only check when a change happened</li>
+              <li>Because change === new reference</li>
+              <li>if ref is equal == no change, skip tree</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -756,7 +978,12 @@ class VCardCmp {
 class VCardCmp {
   @Input() vData;
 }</hl-code></pre>
-          <p>Run change detection if any <strong>input</strong> has changed</p>
+          <p>Perform change detection on view only if <strong>input</strong> has changed</p>
+          <aside class="notes">
+            <ul>
+              <li>Again, if we use immutables, change means new reference</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -805,10 +1032,18 @@ class VCardCmp {
 
         <section>
           <h1>Observables</h1>
+          <aside class="notes">
+            <ul>
+              <li>Another type that gives us guarantees are observables</li>
+              <li>Notify when a change has happend</li>
+              <li>However, reference stays the same</li>
+              <li>How do we deal with that?</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
-          <pre><code style="font-size: 1.3em;">@Component()
+          <pre><code style="font-size: 1.3em;">@Component() // assuming OnPush
 class CartBadgeCmp {
 
   @Input() addItemStream:Observable&lt;any&gt;;
@@ -824,10 +1059,18 @@ class CartBadgeCmp {
   }
 }
 </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Imagine a shopping cart badge cmp</li>
+              <li>We assume it's onPush</li>
+              <li>However, reference stays the same</li>
+              <li>How do we deal with that?</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
-          <pre><hl-code style="font-size: 1.3em;">@Component()
+          <pre><hl-code style="font-size: 1.3em;">@Component() // assuming OnPush
 class CartBadgeCmp {
 
   <span>@Input() addItemStream:Observable&lt;any&gt;;
@@ -866,6 +1109,11 @@ class CartBadgeCmp {
 
         <section>
           <img src="img/cd-tree-10.svg">
+          <aside class="notes">
+            <ul>
+              <li>Our application tree is OnPush everywhere</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -873,7 +1121,7 @@ class CartBadgeCmp {
         </section>
 
         <section>
-          <img src="img/cd-tree-15.svg">
+          <img src="img/cd-tree-10.svg">
           <p class="fragment" style="margin-top: -4em!important;">Observable reference is still exactly the same,<br> CD propagation stops</p>
         </section>
 
@@ -894,6 +1142,11 @@ class CartBadgeCmp {
   }
 }
 </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>How can we tell Angular to check without changing strategy?</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
