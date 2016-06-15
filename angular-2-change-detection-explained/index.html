@@ -36,6 +36,13 @@
 
   <body>
 
+    <a style="font-family: 'Source Sans Pro', Helvetica, sans-serif;text-decoration: none; font-size: 1.4em;position: absolute; top: 1em; left: 4.5em; z-index: 2; color: #eee;" href="http://twitter.com/PascalPrecht">
+      <span>@PascalPrecht</span>
+    </a>
+
+    <a style="font-family: 'Source Sans Pro', Helvetica, sans-serif; color: #eee;text-decoration: none; font-size: 1.4em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://enterjs.de">
+      <span>#ejs16</span>
+    </a>
     <div class="reveal">
 
       <!-- Any section element inside of this container is displayed as a slide -->
@@ -47,8 +54,9 @@
           </hgroup>
           <div class="profile">
             <img src="img/pascal.png">
-            <p>@PascalPrecht<br/>
-          #ngnl2016</p>
+            <p><a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br/>
+            GDE for the Angular Team<br>
+            Trainer at <a href="http://twitter.com/thoughtram">@thoughtram</a></p>
           </div>
           <aside class="notes">
             <ul>
@@ -59,6 +67,11 @@
               <li>AMA later</li>
             </ul>
           </aside>
+        </section>
+
+        <section data-background="img/thoughtram-website.png">
+        </section>
+        <section data-background="img/5thingsAngular.png">
         </section>
 
         <section>
@@ -504,9 +517,9 @@ class ContactsApp {
         <section>
           <p>Zones hooks can be extended</p>
 <pre class="fragment"><code style="font-size: 1.6em;">zone.fork({
-  beforeTask: function () {...},
-  afterTask: function () {...},
-  ...
+  name: 'loggerZone',
+  onEnter: () => { console.log('start'); },
+  onLeave: () => { console.log('end'); }
 })
 .run(() => {
   foo();
@@ -518,9 +531,9 @@ class ContactsApp {
         <section>
           <p>Zones hooks can be extended</p>
           <pre><hl-code style="font-size: 1.6em;"><span>zone.fork({
-  beforeTask: function () {...},
-  afterTask: function () {...},
-  ...
+  name: 'loggerZone',
+  onEnter: () => { console.log('start'); },
+  onLeave: () => { console.log('end'); }
 })</span>
 .run(() => {
   foo();
@@ -543,8 +556,8 @@ class ContactsApp {
           <p><code>NgZone</code> is a <strong>forked zone</strong> with additional APIs based on Observables</p>
 
           <ul>
-            <li class="fragment"><code>onTurnStart()</code> - Emits before turn starts</li>
-            <li class="fragment"><code>onTurnDone()</code> - Emits after turn is done</li>
+            <li class="fragment"><code>onMicrotaskEmpty()</code> - Emits after turn is done</li>
+            <li class="fragment"><code>onError()</code> - Emits when error occoured</li>
             <li class="fragment">...</li>
           </ul>
           <aside class="notes">
@@ -556,7 +569,7 @@ class ContactsApp {
 
         <section>
           <h2>Again, what notifies Angular?</h2>
-          <pre class="fragment"><code style="font-size: 1.4em;">this.zone.onTurnDone
+          <pre class="fragment"><code style="font-size: 1.4em;">this.zone.onMicrotaskEmpty
   .subscribe(() => {
     this.zone.run(() => this.tick() })
   })</code></pre>
@@ -731,7 +744,8 @@ class ContactsApp {
 
         <section>
           <pre><code style="font-size: 1.3em;">@Component({
-  template: '&lt;v-card [vData]="vData"&gt;&lt;/v-card&gt;'
+  template: '&lt;v-card [vData]="vData"&gt;&lt;/v-card&gt;',
+  directves: [VCardCmp]
 })
 class VCardApp {
 
@@ -750,7 +764,8 @@ class VCardApp {
 
         <section>
           <pre><hl-code style="font-size: 1.3em;">@Component({
-  template: '&lt;v-card <span>[vData]="vData"</span>&gt;&lt;/v-card&gt;'
+  template: '&lt;v-card <span>[vData]="vData"</span>&gt;&lt;/v-card&gt;',
+  <span>directves: [VCardCmp]</span>
 })
 class VCardApp {
 
@@ -769,7 +784,8 @@ class VCardApp {
 
         <section>
           <pre><hl-code style="font-size: 1.3em;">@Component({
-  template: '&lt;v-card [vData]="vData"&gt;&lt;/v-card&gt;'
+  template: '&lt;v-card [vData]="vData"&gt;&lt;/v-card&gt;',
+  directves: [VCardCmp]
 })
 class VCardApp {
 
@@ -922,7 +938,7 @@ var vData2 = vData.set('name', 'Christoph Burgdorf');
   `
 
 })
-class VCardCmp {
+export class VCardCmp {
   @Input() vData;
 }</code></pre>
           <p>&nbsp;</p>
@@ -936,7 +952,7 @@ class VCardCmp {
   `
 
 })
-class VCardCmp {
+export class VCardCmp {
   <span>@Input() vData;</span>
 }</hl-code></pre>
           <p><code>VCardCmp</code> only depends on inputs</p>
@@ -1251,10 +1267,11 @@ class AnotherCmp {
 
         <section data-background="img/shield-large.svg" style="text-align: left;" class="deck-slide">
           <h1 style="margin-top: 2em;">Thanks.</h1>
-          <div style="margin-left: 0em;!important"class="profile">
+          <div style="margin-left: 0!important;"class="profile">
             <img src="img/pascal.png">
-            <p>@PascalPrecht<br/>
-          Angular GDE and Trainer</p>
+            <p><a href="http://twitter.com/PascalPrecht">@PascalPrecht</a><br/>
+            GDE for the Angular Team<br>
+            Trainer at <a href="http://twitter.com/thoughtram">@thoughtram</a></p>
           </div>
         </section>
       </div>

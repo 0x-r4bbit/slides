@@ -17,9 +17,11 @@
 
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: #0c4eb2;
-
 $mainColor: #fff;
-$headingColor: #fff;
+// $headingColor: #fff;
+// $backgroundColor: #7c2;
+// $mainColor: #333;
+// $headingColor: #333;
 
 $mainFontSize: 38px;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
@@ -71,13 +73,19 @@ section.has-dark-background {
         width: 120px;
         border-radius: 50%;
         display: inline-block;
+        margin-top: -2em;
+        vertical-align: baseline;
       }
 
       p {
         display: inline-block;
         vertical-align: 110%;
-        font-size: 0.8em;
+        font-size: 0.65em;
         margin-left: 0.5em;
+      }
+
+      a {
+        color: #fff;
       }
     }
   }
@@ -95,8 +103,8 @@ section.has-dark-background {
         width: 60px;
         position: absolute;
         right: -1.2em;
-        top: -0.8em;
-        background-image: url("/img/ngnl-logo.svg");
+        top: -1em;
+        background-image: url("/img/enterjs-logo.svg");
         background-repeat: no-repeat;
         background-size: cover;
         transform: rotateZ(-16deg);
