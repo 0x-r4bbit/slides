@@ -1,0 +1,239 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+
+$mainFontSize: 38px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: #fae042;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+}
+
+.reveal {
+
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif!important;
+
+  img {
+    border: none!important;
+    box-shadow: none!important;
+  }
+
+  blockquote {
+    box-shadow: none!important;
+
+    p {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #595f6f;
+    }
+  }
+
+  ul {
+    margin-top: 0.5em!important;
+    li {
+      margin-top: 0.6em;
+    }
+  }
+
+  pre {
+    margin: 0;
+    box-shadow: none!important;
+    code,
+    x-code {
+      background: transparent;
+      line-height: 1.3;
+      color: #595f6f;
+      padding: 0!important;
+      max-height: 800px!important;
+    }
+
+    x-code {
+      color: #ccc;
+    }
+
+    .hljs-attribute,
+    .hljs-tag, 
+    .hljs-built_in,
+    .hljs-keyword,
+    .hljs-title,
+    .hljs-type,
+    .hljs-literal,
+    .hljs-variable,
+    .hljs-meta,
+    .hljs-name {
+      color: #595f6f;
+    }
+
+    .hljs-string,
+    .hljs-number {
+      color: #d52533;
+    }
+  }
+
+  .progress {
+    height: 10px;
+
+    span {
+      background: #d52533!important;
+    }
+  }
+
+
+  .slide-background.deck-slide {
+    background-image: url('/images/shield-large.svg'), url('/images/react-logo.svg');
+    background-position: top -80px left -350px, top -80px right -350px;
+    background-size: 750px, 800px;
+  }
+
+  .slide-background.angular-bg {
+    background-image: url('/images/shield-large.svg');
+    background-position: top -80px left -350px;
+    background-size: 750px;
+    opacity: 0.1;
+    transition: opacity 1s ease;
+
+    &.bg-start {
+      opacity: 0;
+      &.present {
+        opacity: 0.3;
+        transition-delay: 0.5s;
+      }
+    }
+  }
+
+  .slide-background.react-bg {
+    background-image: url('/images/react-logo.svg');
+    background-position: top -80px right -350px;
+    background-size: 800px;
+    opacity: 0.1;
+    transition: opacity 1s ease;
+
+    &.bg-start {
+      transition: opacity 1s ease;
+      opacity: 0;
+      &.present {
+        opacity: 0.3;
+        transition-delay: 0.5s;
+      }
+    }
+  }
+
+  .section-slide {
+    h2 {
+      font-size: 2.2em;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    &.present h2 {
+      opacity: 1;
+      transition-delay: 800ms;
+    }
+  }
+
+  .delay-content {
+    > div {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    &.present {
+      > div {
+        opacity: 1;
+        transition-delay: 800ms;
+      }
+    }
+  }
+
+  .milk-glass {
+    background: rgba(255, 255, 255,0.8);
+    padding: 1em;
+    margin-top: 4em;
+  }
+
+  .title {
+    margin-bottom: 0;
+  }
+
+  .tagline {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .speakers {
+    list-style: none;
+    margin-top: 2em;
+    font-size: 0.6em; 
+
+    img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      vertical-align: -180%;
+      border-color: #fae042;
+      box-shadow: none;
+    }
+
+    li {
+      display: inline-block;
+      margin-left: 1em;
+
+      &:first-child {
+        margin-left: 0em;
+      }
+    }
+
+    span {
+      display: inline-block;
+
+      &.speaker-info {
+        margin-left: 0.5em;
+        font-weight: bold;
+      }
+    }
+
+    a {
+      font-size: 0.8em;
+      display: block;
+      font-weight: normal;
+      color: #ebca01;
+    }
+  }
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------

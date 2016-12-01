@@ -1,0 +1,1083 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Angular and React - A talk by Oliver Zeigermann and Pascal Precht</title>
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,300,500,700">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+        <section class="deck-slide">
+          <div class="milk-glass">
+            <h1 class="title">Angular and React</h1>
+            <p class="tagline"><strong>Friends</strong> learning from each other</p>
+          </div>
+
+          <ul class="speakers">
+            <li>
+              <img src="images/pascal.png">
+              <span class="speaker-info">
+                <span>Pascal Precht</span>
+                <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a>
+              </span>
+            </li>
+            <li>
+              <img src="images/oliver.jpg">
+              <span class="speaker-info">
+                <span>Oliver Zeigermann</span>
+                <a href="http://twitter.com/DJCordhose">@DJCordhose</a>
+              </span>
+            </li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Hello everyone!</li>
+              <li>How was lunch? Time to wake up! :)</li>
+              <li>This is Oliver and Pascal</li>
+              <li>Today we want to talk about Angular and React</li>
+              <li>And how friends can learn from each other</li>
+            </ul>
+          </aside>
+        </section>
+        
+        <section>
+          <h2 style="font-size: 2em;">Yet another <strong>VS</strong> talk?</h2>
+          <p class="fragment">Definitely <strong style="border-bottom: 4px solid #d52533;">not</strong>.</p>
+          <aside class="notes">
+            <p>Before we get started, let's clarify:</p>
+            <ul>
+              <li>You might be wondering if this is another vs talk</li>
+              <li>It's not and we want to make that very clear</li>
+              <li>...</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/twitter-react-angular2.png">
+          <aside class="notes">
+            <ul>
+              <li>In fact, it turns out we can <strong>learn</strong> from each other</li>
+              <li>learing one framework might help learning another one</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <blockquote>
+            <p>"Angular 2 is closer to React than it is to AngularJS."</p>
+          </blockquote>
+          <p style="text-align: left; padding-left: 4em; margin-top: 2em;">&mdash; Oliver Zeigermann</p>
+          <aside class="notes">
+            <p>It gets even better:</p>
+            <ul>
+              <li>Some people even say Ng2 is closer to R thant it is to NG1</li>
+              <li>It just makes sense to learn both</li>
+              <li>And that's what we want to do today</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2 style="font-size: 2em;">Three Scenarios</h2>
+
+          <ul>
+            <li><strong>Runtime Performance Tuning</strong> - How to make it faster?</li>
+            <li><strong>Server-side Rendering</strong> - Make it run on the server</li>
+            <li><strong>3rd-Party Library Integration</strong> - Render an SVG chart using 3rd-party lib</li>
+            <li class="fragment" style="border-top: 4px solid #555; padding-top: 0.5em;"><strong>Framework Scope</strong> - Responsibility. What's inside? What's not?</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Many Ppl wonder, which one to use?</li>
+              <li>We want to take a look at 3 common scenarios</li>
+              <li>Learn how they are done in each framework</li>
+              <li>Elaborate on pros and cons</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="#fae042" class="section-slide">
+          <h2>Runtime Performance Tuning</h2>
+          <aside class="notes">
+            <ul>
+              <li>Let's start off with performance tuning</li>
+              <li>important: Performance is many different things</li>
+              <li>We focus on runtime performance</li>
+              <li>Depending on use case, performance can be different</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="delay-content">
+          <div>
+          <h2>Example: SVG Boxes</h2> 
+          <a target="_blank" href="http://djcordhose.github.com/angular2-react/code/vanilla"><img src="images/svg-boxes.png"></a>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>We've chosen a visual scenario - easier to grasp</li>
+              <li>Render 5000 draggable boxes</li>
+              <li>This is the vanilla version</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.4em;">&lt;svg width="550" height="550" id="svg"&gt;
+  &lt;ig id="g"&gt;
+
+
+
+
+  &lt;/g&gt;
+&lt;/svg&gt;
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Well, that looks good</li>
+              <li>Let's take a look at the code that is needed</li>
+              <li>One SVG element as canvas</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><x-code style="font-size: 1.4em;">&lt;svg width="550" height="550" id="svg"&gt;
+  &lt;ig id="g"&gt;
+    <span style="color: #000;">&lt;rect width="10" height="10" x="..." y="..."&gt;
+    &lt;rect width="10" height="10" x="..." y="..."&gt;
+    &lt;rect width="10" height="10" x="..." y="..."&gt;
+    ...</span>
+  &lt;/g&gt;
+&lt;/svg&gt;
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>We want to generate boxes dynamically</li>
+              <li>this is what the DOM should look like at after all</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.4em;">function drawBox(box) {
+  const rect =
+    document.createElementNS('...', 'rect');
+  rect.setAttribute('width', 10);
+  rect.setAttribute('height', 10);
+  rect.setAttribute('x', box.x);
+  rect.setAttribute('y', box.y);
+  ...
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>drawBox()</code> takes care of creating/drawing</li>
+              <li>Notice that x and y are dynamic</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><x-code style="font-size: 1.4em;">function drawBox(box) {
+  <span style="color: #000;">const rect =
+    document.createElementNS('...', 'rect');</span>
+  rect.setAttribute('width', 10);
+  rect.setAttribute('height', 10);
+  rect.setAttribute('x', box.x);
+  rect.setAttribute('y', box.y);
+  ...
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>drawBox()</code> takes care of creating/drawing</li>
+              <li>Notice that x and y are dynamic</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><x-code style="font-size: 1.4em;">function drawBox(<span style="color: #000;">box</span>) {
+  const rect =
+    document.createElementNS('...', 'rect');
+  rect.setAttribute('width', 10);
+  rect.setAttribute('height', 10);
+  <span style="color: #000;">rect.setAttribute('x', box.x);
+  rect.setAttribute('y', box.y);</span>
+  ...
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>drawBox()</code> takes care of creating/drawing</li>
+              <li>Notice that x and y are dynamic</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.4em;">function createBoxes(amount) {
+  for (let i = 0; i &lt; amount; i++) {
+    const x = getRandomInt(0, 500);
+    const y = getRandomInt(0, 500);
+    const box = {
+        x,
+        y
+    };
+    drawBox(box);
+  }
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>createBoxes</code> calls <code>drawBox()</code></li>
+              <li>uses random coordinates</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><x-code style="font-size: 1.4em;">function createBoxes(<span style="color: #000;">amount</span>) {
+  <span style="color: #000;">for (let i = 0; i &lt; amount; i++) {</span>
+    const x = getRandomInt(0, 500);
+    const y = getRandomInt(0, 500);
+    const box = {
+        x,
+        y
+    };
+    drawBox(box);
+  <span style="color: #000;">}</span>
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>createBoxes</code> calls <code>drawBox()</code></li>
+              <li>uses random coordinates</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><x-code style="font-size: 1.4em;">function createBoxes(amount) {
+  for (let i = 0; i &lt; amount; i++) {
+    <span style="color: #000;">const x = getRandomInt(0, 500);
+    const y = getRandomInt(0, 500);
+    const box = {
+        x,
+        y
+    };</span>
+    drawBox(box);
+  }
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>createBoxes</code> calls <code>drawBox()</code></li>
+              <li>uses random coordinates</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><x-code style="font-size: 1.4em;">function createBoxes(amount) {
+  for (let i = 0; i &lt; amount; i++) {
+    const x = getRandomInt(0, 500);
+    const y = getRandomInt(0, 500);
+    const box = {
+        x,
+        y
+    };
+    <span style="color: #000;">drawBox(box);</span>
+  }
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>createBoxes</code> calls <code>drawBox()</code></li>
+              <li>uses random coordinates</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.4em;">createBoxes(5000);
+
+svg = document.getElementById('svg');
+svg.addEventListener('mousedown', onMouseDown);
+svg.addEventListener('mouseup', onMouseUp);
+svg.addEventListener('mousemove', onMouseMove);
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><x-code style="font-size: 1.4em;">createBoxes(5000);
+
+svg = document.getElementById('svg');
+<span style="color: #000;">svg.addEventListener('mousedown', onMouseDown);
+svg.addEventListener('mouseup', onMouseUp);
+svg.addEventListener('mousemove', onMouseMove);</span>
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><code style="font-size: 1.19em;">function onMouseMove(event) {
+  if (currentBox != null) {
+    currentBox.setAttribute('x', event.clientX + offsetX);
+    currentBox.setAttribute('y', event.clientY + offsetY);
+  }
+}</code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>onMouseMove()</code> is the really interesting handler</li>
+              <li>It takes care of updating the box coordinates</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <pre><x-code style="font-size: 1.19em;">function onMouseMove(<span style="color: #000;">event</span>) {
+  if (currentBox != null) {
+    <span style="color: #000;">currentBox.setAttribute('x', event.clientX + offsetX);
+    currentBox.setAttribute('y', event.clientY + offsetY);</span>
+  }
+}</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>onMouseMove()</code> is the really interesting handler</li>
+              <li>It takes care of updating the box coordinates</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2 style="font-size: 2.2em;">Characteristics</h2>
+          
+          <p>The <strong>VanillaJS implementation</strong> is very fast by default:</p>
+          <ul>
+            <li>Only one box at a time needs update</li>
+            <li>Executes as little code as possible</li>
+            <li>No additional (framework) overhead</li>
+          </ul>
+        </section>
+
+        <section class="react-bg bg-start">
+          <h1 style="font-size: 3.5em;">React</h1>
+          <p><strong><a href="http://djcordhose.github.com/angular2-react/code/react/0-start/public/">DEMO &rarr;</a></strong></p>
+          <aside class="notes">
+            <ul>
+              <li>Let's take a look at the same thing in React</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="images/ahhhhh.gif">
+        </section>
+
+        <section class="react-bg">
+          <pre><code style="font-size: 1.2em;">export class App extends React.Component {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Here's the code:</li>
+              <li>we start off with a component class</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><code style="font-size: 1.2em;">export class App extends React.Component {
+  constructor() {
+    const boxes = [];
+    // ... create boxes 
+    this.state = { boxes: boxes, currentId: null };
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Next: constructor</li>
+              <li>takes care of creating boxes</li>
+              <li>Same logic we've already seen</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
+  constructor() {
+    const boxes = [];
+    // ... create boxes 
+    <span style="color: #000;">this.state = { boxes: boxes, currentId: null };</span>
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li><strong>Important:</strong> sets component state</li>
+              <li>We can access <code>state</code> later</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
+  constructor() {
+    const boxes = [];
+    // ... create boxes
+    this.state = { boxes: boxes, currentId: null };
+  }
+
+  <span style="color: #000;">render() {
+    const {boxes} = this.state;
+    return (
+      &lt;svg
+        onMouseDown={(event) => this.onMouseDown(event)}
+        onMouseUp={(event) => this.onMouseUp(event)}
+        onMouseMove={(event) => this.onMouseMove(event)}&gt;
+        &lt;g&gt;
+          { boxes.map((box) => &lt;Box box={box}/&gt;) }
+        &lt;/g&gt;
+    );
+  }</span>
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Next: <code>render()</code></li>
+              <li>renders child components, in our case SVG</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
+  constructor() {
+    const boxes = [];
+    // ... create boxes
+    this.state = { boxes: boxes, currentId: null };
+  }
+
+  render() {
+    <span style="color: #000;">const {boxes} = this.state;</span>
+    return (
+      &lt;svg
+        onMouseDown={(event) => this.onMouseDown(event)}
+        onMouseUp={(event) => this.onMouseUp(event)}
+        onMouseMove={(event) => this.onMouseMove(event)}&gt;
+        &lt;g&gt;
+          <span style="color: #000;">{ boxes.map((box) => &lt;Box box={box}/&gt;) }</span>
+        &lt;/g&gt;
+    );
+  }
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>fetches <code>boxes</code> state</li>
+              <li>uses those to render <code>Box</code> components</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><code style="font-size: 1.4em;">export class Box extends React.Component {
+  render() {
+    const {box} = this.props;
+
+    return &lt;rect width="10" height="10"
+            x={box.x} y={box.y}/&gt;;
+  }
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>Box</code> is another react component</li>
+              <li>Renders single <code>rect</code> element with coordinates</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.4em;">export class Box extends React.Component {
+  render() {
+    <span style="color: #000;">const {box} = this.props;</span>
+
+    return &lt;rect width="10" height="10"
+            x={box.x} y={box.y}/&gt;;
+  }
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Fetches props</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.4em;">export class Box extends React.Component {
+  render() {
+    const {box} = this.props;
+
+    <span style="color: #000;">return &lt;rect width="10" height="10"
+            x={box.x} y={box.y}/&gt;;</span>
+  }
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
+  constructor() {
+    const boxes = [];
+    // ... create boxes
+    this.state = { boxes: boxes, currentId: null };
+  }
+
+  render() {
+    <span style="color: #000;">const {boxes} = this.state;</span>
+    return (
+      &lt;svg
+        onMouseDown={(event) => this.onMouseDown(event)}
+        onMouseUp={(event) => this.onMouseUp(event)}
+        onMouseMove={(event) => this.onMouseMove(event)}&gt;
+        &lt;g&gt;
+          <span style="color: #000;">{ boxes.map((box) => &lt;Box box={box}/&gt;) }</span>
+        &lt;/g&gt;
+    );
+  }
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Okay cool... what else?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
+  constructor() {
+    const boxes = [];
+    // ... create boxes
+    this.state = { boxes: boxes, currentId: null };
+  }
+
+  render() {
+    const {boxes} = this.state;
+    return (
+      &lt;svg
+        <span style="color: #000;">onMouseDown={(event) => this.onMouseDown(event)}
+        onMouseUp={(event) => this.onMouseUp(event)}
+        onMouseMove={(event) => this.onMouseMove(event)}</span>&gt;
+        &lt;g&gt;
+          { boxes.map((box) => &lt;Box box={box}/&gt;) }
+        &lt;/g&gt;
+    );
+  }
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>We attach event handler on the SVG</li>
+              <li>same thing we did in vanilla</li>
+            </ul>
+          </aside>
+        </section>
+
+
+        <section class="react-bg">
+          <pre><code style="font-size: 1.4em;">onMouseMove(event) {
+  const {boxes} = this.state; 
+  const box = boxes[this.state.currentId];
+  box.x = event.clientX + this.offsetX;
+  box.y = event.clientY + this.offsetY;
+  this.setState({boxes});
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>onMouseMove()</code> again updates box coordinates</li>
+              <li>also updates component <code>state</code></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.4em;">onMouseMove(event) {
+  const {boxes} = this.state; 
+  <span style="color: #000;">const box = boxes[this.state.currentId];</span>
+  box.x = event.clientX + this.offsetX;
+  box.y = event.clientY + this.offsetY;
+  this.setState({boxes});
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>onMouseMove()</code> again updates box coordinates</li>
+              <li>also updates component <code>state</code></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.4em;">onMouseMove(event) {
+  const {boxes} = this.state; 
+  const box = boxes[this.state.currentId];
+  <span style="color: #000;">box.x = event.clientX + this.offsetX;
+  box.y = event.clientY + this.offsetY;
+  this.setState({boxes});</span>
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li><code>onMouseMove()</code> again updates box coordinates</li>
+              <li>also updates component <code>state</code></li>
+            </ul>
+          </aside>
+        </section>
+
+
+        <section class="react-bg">
+          <h2 style="font-size: 2.5em;">Why slow?</h2>
+          <p>React's change detection happens in <strong>Virtual DOM</strong> level</p>
+            <ul>
+              <li>Every mouse move re-renders full application (all boxes)</li>
+              <li>Only difference between old and new Virtual DOM affects real DOM</li>
+            </ul>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <h2 style="font-size: 2.5em;">Making it faster</h2>
+          <p>React comes with a component lifecycle hook <strong>shouldComponentUpdate()</strong></p>
+            <ul>
+              <li>Gives us <strong>more control</strong> over when a component needs to be rendered</li>
+              <li><strong>Immutable data structures</strong> can speed up model check</li>
+            </ul>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><code style="font-size: 1.4em;">export class Box extends React.Component {
+
+
+
+
+
+  render() {
+    const {box} = this.props;
+    return &lt;rect width="10" height="10"
+            x={box.x} y={box.y}/&gt;;
+  }
+}
+</code></pre>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.4em;">export class Box extends React.Component {
+
+  <span style="color: #000;">shouldComponentUpdate(nextProps) {
+    return this.props.box !== nextProps.box;
+  }</span>
+
+  render() {
+    const {box} = this.props;
+    return &lt;rect width="10" height="10"
+            x={box.x} y={box.y}/&gt;;
+  }
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li><strong>Notice:</strong> We have to manually check props</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2><a href="http://djcordhose.github.io/angular2-react/code/react/1-advanced-change-detection/public/" target="_blank">Demo &rarr;</a></h2>
+        </section>
+
+        <section class="angular-bg bg-start">
+          <h1 style="font-size: 3.5em;">Angular</h1>
+          <p><strong><a href="#">DEMO &rarr;</a></strong></p>
+        </section>
+
+        <section class="angular-bg">
+          <pre><code style="font-size: 1.3em;">@Component({
+  template: `
+    &lt;svg (mousedown)="mouseDown($event)"
+      (mouseup)="mouseUp($event)"
+      (mousemove)="mouseMove($event)"&gt;
+
+      &lt;svg:g square-box
+        *ngFor="let box of boxes"
+        [box]="box"&gt;
+      &lt;/svg:g&gt;
+
+    &lt;/svg&gt;
+  `
+})
+export class AppComponent implements OnInit {
+  ...
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="angular-bg">
+          <pre><x-code style="font-size: 1.3em;">@Component({
+  template: `
+    <span style="color: #000;">&lt;svg (mousedown)="mouseDown($event)"
+      (mouseup)="mouseUp($event)"
+      (mousemove)="mouseMove($event)"&gt;</span>
+
+      &lt;svg:g square-box
+        *ngFor="let box of boxes"
+        [box]="box"&gt;
+      &lt;/svg:g&gt;
+
+    <span style="color: #000;">&lt;/svg&gt;</span>
+  `
+})
+export class AppComponent implements OnInit {
+  ...
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="angular-bg">
+          <pre><x-code style="font-size: 1.3em;">@Component({
+  template: `
+    &lt;svg (mousedown)="mouseDown($event)"
+      (mouseup)="mouseUp($event)"
+      (mousemove)="mouseMove($event)"&gt;
+
+      <span style="color: #000;">&lt;svg:g square-box
+        *ngFor="let box of boxes"
+        [box]="box"&gt;
+      &lt;/svg:g&gt;</span>
+
+    &lt;/svg&gt;
+  `
+})
+export class AppComponent implements OnInit {
+  ...
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="angular-bg">
+          <pre><x-code style="font-size: 1.3em;">@Component({
+  template: `
+    &lt;svg (mousedown)="mouseDown($event)"
+      (mouseup)="mouseUp($event)"
+      (mousemove)="mouseMove($event)"&gt;
+
+      &lt;svg:g <span style="color: #000;">square-box</span>
+        *ngFor="let box of boxes"
+        [box]="box"&gt;
+      &lt;/svg:g&gt;
+
+    &lt;/svg&gt;
+  `
+})
+export class AppComponent implements OnInit {
+  ...
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="angular-bg">
+          <pre><code style="font-size: 1.4em;">@Component({
+  selector: '[square-box]',
+  template: `
+    &lt;svg:rect 
+      [attr.x]="box.x"
+      [attr.y]="box.y"
+      width="10"
+      height="10"&gt;
+    &lt;/svg:rect&gt;
+  `
+})
+export class BoxComponent {
+  @Input() box;
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="angular-bg">
+          <pre><x-code style="font-size: 1.4em;">@Component({
+  selector: '[square-box]',
+  template: `
+    &lt;svg:rect 
+      <span style="color: #000;">[attr.x]="box.x"
+      [attr.y]="box.y"</span>
+      width="10"
+      height="10"&gt;
+    &lt;/svg:rect&gt;
+  `
+})
+export class BoxComponent {
+  <span style="color: #000;">@Input() box;</span>
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2 style="font-size: 2.5em;">Observations</h2>
+
+          <p>Implementing the Angular 2 version, we came up with the following observations:</p>
+            <ul>
+              <li>Unoptimized about as fast as React's optimized implementation</li>
+              <li>Still slow, Angular checks every component on every event</li>
+            </ul>
+        </section>
+
+        <section>
+          <h2 style="font-size: 2.5em;">Making it faster</h2>
+          <p>Angular's allows us to control a component's <strong>ChangeDetectionStrategy</strong></p>
+            <ul>
+              <li><strong>Skips subtrees</strong> for change detection if set to <strong>OnPush</strong> and no inputs have changed</li>
+              <li>Works great with <strong>immutable data structures</strong></li>
+            </ul>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="angular-bg">
+          <pre><code style="font-size: 1.4em;">@Component({
+  selector: '[square-box]',
+  template: `
+    &lt;svg:rect 
+      [attr.x]="box.x"
+      [attr.y]="box.y"
+      width="10"
+      height="10"&gt;
+    &lt;/svg:rect&gt;
+  `
+
+})
+export class BoxComponent {
+  @Input() box;
+}
+</code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="angular-bg">
+          <pre><x-code style="font-size: 1.4em;">@Component({
+  selector: '[square-box]',
+  template: `
+    &lt;svg:rect 
+      [attr.x]="box.x"
+      [attr.y]="box.y"
+      width="10"
+      height="10"&gt;
+    &lt;/svg:rect&gt;
+  `,
+  <span style="color: #000;">changeDetection: ChangeDetectionStrategy.OnPush</span>
+})
+export class BoxComponent {
+  @Input() box;
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2><a href="#" target="_blank">Demo &rarr;</a></h2>
+        </section>
+
+
+        <section data-background="#fae042" class="section-slide">
+          <h2>Server-side Rendering</h2>
+        </section>
+        <section data-background="#fae042" class="section-slide">
+          <h2>3rd-Party Library Integration</h2>
+        </section>
+
+        <section data-background="#fae042" class="section-slide">
+          <h2>Framework Scope</h2>
+        </section>
+
+        <section data-background="#fae042" class="section-slide">
+          <h2>Conclusion</h2>
+        </section>
+
+        <section>
+          <h2 style="font-size: 2.5em;">Conclusion</h2>
+
+          <ul>
+            <li>Number one</li>
+            <li>Number two</li>
+          </ul>
+        </section>
+
+				<section class="deck-slide">
+          <h1>Thanks.</h1>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+        transition: 'none',
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
