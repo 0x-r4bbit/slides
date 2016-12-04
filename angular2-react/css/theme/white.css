@@ -18,9 +18,9 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
       font-size: 1.8em;
       font-weight: bold;
       color: #595f6f; }
-  .reveal ul {
+  .reveal ul, .reveal ol {
     margin-top: 0.5em !important; }
-    .reveal ul li {
+    .reveal ul li, .reveal ol li {
       margin-top: 0.6em; }
   .reveal pre {
     margin: 0;
@@ -43,6 +43,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
     .reveal pre .hljs-literal,
     .reveal pre .hljs-variable,
     .reveal pre .hljs-meta,
+    .reveal pre .hljs-selector-tag,
     .reveal pre .hljs-name {
       color: #595f6f; }
     .reveal pre .hljs-string,
@@ -53,11 +54,11 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
     .reveal .progress span {
       background: #d52533 !important; }
   .reveal .slide-background.deck-slide {
-    background-image: url("images/shield-large.svg"), url("images/react-logo.svg");
+    background-image: url("/images/shield-large.svg"), url("/images/react-logo.svg");
     background-position: top -80px left -350px, top -80px right -350px;
     background-size: 750px, 800px; }
   .reveal .slide-background.angular-bg {
-    background-image: url("images/shield-large.svg");
+    background-image: url("/images/shield-large.svg");
     background-position: top -80px left -350px;
     background-size: 750px;
     opacity: 0.1;
@@ -68,7 +69,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
         opacity: 0.3;
         transition-delay: 0.5s; }
   .reveal .slide-background.react-bg {
-    background-image: url("images/react-logo.svg");
+    background-image: url("/images/react-logo.svg");
     background-position: top -80px right -350px;
     background-size: 800px;
     opacity: 0.1;

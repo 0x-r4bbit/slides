@@ -61,7 +61,7 @@ section.has-dark-background {
     }
   }
 
-  ul {
+  ul, ol {
     margin-top: 0.5em!important;
     li {
       margin-top: 0.6em;
@@ -93,6 +93,7 @@ section.has-dark-background {
     .hljs-literal,
     .hljs-variable,
     .hljs-meta,
+    .hljs-selector-tag,
     .hljs-name {
       color: #595f6f;
     }
@@ -113,13 +114,13 @@ section.has-dark-background {
 
 
   .slide-background.deck-slide {
-    background-image: url('images/shield-large.svg'), url('images/react-logo.svg');
+    background-image: url('/images/shield-large.svg'), url('/images/react-logo.svg');
     background-position: top -80px left -350px, top -80px right -350px;
     background-size: 750px, 800px;
   }
 
   .slide-background.angular-bg {
-    background-image: url('images/shield-large.svg');
+    background-image: url('/images/shield-large.svg');
     background-position: top -80px left -350px;
     background-size: 750px;
     opacity: 0.1;
@@ -135,7 +136,7 @@ section.has-dark-background {
   }
 
   .slide-background.react-bg {
-    background-image: url('images/react-logo.svg');
+    background-image: url('/images/react-logo.svg');
     background-position: top -80px right -350px;
     background-size: 800px;
     opacity: 0.1;

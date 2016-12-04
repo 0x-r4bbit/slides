@@ -142,8 +142,8 @@
         </section>
 
         <section>
-          <pre><code style="font-size: 1.4em;">&lt;svg width="550" height="550" id="svg"&gt;
-  &lt;ig id="g"&gt;
+          <pre><code style="font-size: 1.4em;">&lt;svg&gt;
+  &lt;g&gt;
 
 
 
@@ -161,8 +161,8 @@
         </section>
 
         <section>
-          <pre><x-code style="font-size: 1.4em;">&lt;svg width="550" height="550" id="svg"&gt;
-  &lt;ig id="g"&gt;
+          <pre><x-code style="font-size: 1.4em;">&lt;svg&gt;
+  &lt;g&gt;
     <span style="color: #000;">&lt;rect width="10" height="10" x="..." y="..."&gt;
     &lt;rect width="10" height="10" x="..." y="..."&gt;
     &lt;rect width="10" height="10" x="..." y="..."&gt;
@@ -394,17 +394,12 @@ svg.addEventListener('mousemove', onMouseMove);</span>
 
         <section class="react-bg bg-start">
           <h1 style="font-size: 3.5em;">React</h1>
-          <p><strong><a href="http://djcordhose.github.com/angular2-react/code/react/0-start/public/">DEMO &rarr;</a></strong></p>
           <aside class="notes">
             <ul>
               <li>Let's take a look at the same thing in React</li>
             </ul>
           </aside>
         </section>
-
-        <section data-background="images/ahhhhh.gif">
-        </section>
-
         <section class="react-bg">
           <pre><code style="font-size: 1.2em;">export class App extends React.Component {
 
@@ -436,43 +431,12 @@ svg.addEventListener('mousemove', onMouseMove);</span>
         </section>
 
         <section class="react-bg">
-          <pre><code style="font-size: 1.2em;">export class App extends React.Component {
-  constructor() {
+          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
+  <span style="color: #000;">constructor() {
     const boxes = [];
     // ... create boxes 
     this.state = { boxes: boxes, currentId: null };
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-</code></pre>
-          <aside class="notes">
-            <ul>
-              <li>Next: constructor</li>
-              <li>takes care of creating boxes</li>
-              <li>Same logic we've already seen</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section class="react-bg">
-          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
-  constructor() {
-    const boxes = [];
-    // ... create boxes 
-    <span style="color: #000;">this.state = { boxes: boxes, currentId: null };</span>
-  }
+  }</span>
 
 
 
@@ -490,6 +454,9 @@ svg.addEventListener('mousemove', onMouseMove);</span>
 </x-code></pre>
           <aside class="notes">
             <ul>
+              <li>Next: constructor</li>
+              <li>takes care of creating boxes</li>
+              <li>Same logic we've already seen</li>
               <li><strong>Important:</strong> sets component state</li>
               <li>We can access <code>state</code> later</li>
             </ul>
@@ -507,10 +474,9 @@ svg.addEventListener('mousemove', onMouseMove);</span>
   <span style="color: #000;">render() {
     const {boxes} = this.state;
     return (
-      &lt;svg
-        onMouseDown={(event) => this.onMouseDown(event)}
-        onMouseUp={(event) => this.onMouseUp(event)}
-        onMouseMove={(event) => this.onMouseMove(event)}&gt;
+      &lt;svg onMouseDown={(event) => this.onMouseDown(event)}
+           onMouseUp={(event) => this.onMouseUp(event)}
+           onMouseMove={(event) => this.onMouseMove(event)}&gt;
         &lt;g&gt;
           { boxes.map((box) => &lt;Box box={box}/&gt;) }
         &lt;/g&gt;
@@ -535,12 +501,40 @@ svg.addEventListener('mousemove', onMouseMove);</span>
   }
 
   render() {
+    const {boxes} = this.state;
+    return (
+      &lt;svg <span style="color: #000;">onMouseDown={(event) => this.onMouseDown(event)}
+           onMouseUp={(event) => this.onMouseUp(event)}
+           onMouseMove={(event) => this.onMouseMove(event)}</span>&gt;
+        &lt;g&gt;
+          { boxes.map((box) => &lt;Box box={box}/&gt;) }
+        &lt;/g&gt;
+    );
+  }
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>We attach event handler on the SVG</li>
+              <li>same thing we did in vanilla</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
+  constructor() {
+    const boxes = [];
+    // ... create boxes
+    this.state = { boxes: boxes, currentId: null };
+  }
+
+  render() {
     <span style="color: #000;">const {boxes} = this.state;</span>
     return (
-      &lt;svg
-        onMouseDown={(event) => this.onMouseDown(event)}
-        onMouseUp={(event) => this.onMouseUp(event)}
-        onMouseMove={(event) => this.onMouseMove(event)}&gt;
+      &lt;svg onMouseDown={(event) => this.onMouseDown(event)}
+           onMouseUp={(event) => this.onMouseUp(event)}
+           onMouseMove={(event) => this.onMouseMove(event)}&gt;
         &lt;g&gt;
           <span style="color: #000;">{ boxes.map((box) => &lt;Box box={box}/&gt;) }</span>
         &lt;/g&gt;
@@ -560,9 +554,8 @@ svg.addEventListener('mousemove', onMouseMove);</span>
           <pre><code style="font-size: 1.4em;">export class Box extends React.Component {
   render() {
     const {box} = this.props;
-
     return &lt;rect width="10" height="10"
-            x={box.x} y={box.y}/&gt;;
+                 x={box.x} y={box.y}/&gt;;
   }
 }
 </code></pre>
@@ -578,9 +571,8 @@ svg.addEventListener('mousemove', onMouseMove);</span>
           <pre><x-code style="font-size: 1.4em;">export class Box extends React.Component {
   render() {
     <span style="color: #000;">const {box} = this.props;</span>
-
     return &lt;rect width="10" height="10"
-            x={box.x} y={box.y}/&gt;;
+                 x={box.x} y={box.y}/&gt;;
   }
 }
 </x-code></pre>
@@ -595,9 +587,8 @@ svg.addEventListener('mousemove', onMouseMove);</span>
           <pre><x-code style="font-size: 1.4em;">export class Box extends React.Component {
   render() {
     const {box} = this.props;
-
     <span style="color: #000;">return &lt;rect width="10" height="10"
-            x={box.x} y={box.y}/&gt;;</span>
+                 x={box.x} y={box.y}/&gt;;</span>
   }
 }
 </x-code></pre>
@@ -608,66 +599,6 @@ svg.addEventListener('mousemove', onMouseMove);</span>
             </ul>
           </aside>
         </section>
-
-        <section class="react-bg">
-          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
-  constructor() {
-    const boxes = [];
-    // ... create boxes
-    this.state = { boxes: boxes, currentId: null };
-  }
-
-  render() {
-    <span style="color: #000;">const {boxes} = this.state;</span>
-    return (
-      &lt;svg
-        onMouseDown={(event) => this.onMouseDown(event)}
-        onMouseUp={(event) => this.onMouseUp(event)}
-        onMouseMove={(event) => this.onMouseMove(event)}&gt;
-        &lt;g&gt;
-          <span style="color: #000;">{ boxes.map((box) => &lt;Box box={box}/&gt;) }</span>
-        &lt;/g&gt;
-    );
-  }
-}
-</x-code></pre>
-          <aside class="notes">
-            <ul>
-              <li>Okay cool... what else?</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section class="react-bg">
-          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
-  constructor() {
-    const boxes = [];
-    // ... create boxes
-    this.state = { boxes: boxes, currentId: null };
-  }
-
-  render() {
-    const {boxes} = this.state;
-    return (
-      &lt;svg
-        <span style="color: #000;">onMouseDown={(event) => this.onMouseDown(event)}
-        onMouseUp={(event) => this.onMouseUp(event)}
-        onMouseMove={(event) => this.onMouseMove(event)}</span>&gt;
-        &lt;g&gt;
-          { boxes.map((box) => &lt;Box box={box}/&gt;) }
-        &lt;/g&gt;
-    );
-  }
-}
-</x-code></pre>
-          <aside class="notes">
-            <ul>
-              <li>We attach event handler on the SVG</li>
-              <li>same thing we did in vanilla</li>
-            </ul>
-          </aside>
-        </section>
-
 
         <section class="react-bg">
           <pre><code style="font-size: 1.4em;">onMouseMove(event) {
@@ -720,6 +651,12 @@ svg.addEventListener('mousemove', onMouseMove);</span>
           </aside>
         </section>
 
+        <section class="react-bg">
+          <h1><strong><a href="http://djcordhose.github.com/angular2-react/code/react/0-start/public/">DEMO &rarr;</a></strong></h1>
+        </section>
+
+        <section data-background="images/ahhhhh.gif">
+        </section>
 
         <section class="react-bg">
           <h2 style="font-size: 2.5em;">Why slow?</h2>
@@ -787,12 +724,11 @@ svg.addEventListener('mousemove', onMouseMove);</span>
         </section>
 
         <section>
-          <h2><a href="http://djcordhose.github.io/angular2-react/code/react/1-advanced-change-detection/public/" target="_blank">Demo &rarr;</a></h2>
+          <h1><a href="http://djcordhose.github.io/angular2-react/code/react/1-advanced-change-detection/public/" target="_blank">Demo &rarr;</a></h1>
         </section>
 
         <section class="angular-bg bg-start">
           <h1 style="font-size: 3.5em;">Angular</h1>
-          <p><strong><a href="#">DEMO &rarr;</a></strong></p>
         </section>
 
         <section class="angular-bg">
@@ -950,18 +886,28 @@ export class BoxComponent {
             </ul>
           </aside>
         </section>
+        <section class="angular-bg">
+          <h1><strong><a href="#">DEMO &rarr;</a></strong></h1>
+        </section>
 
-        <section>
+        <section class="angular-bg">
           <h2 style="font-size: 2.5em;">Observations</h2>
 
-          <p>Implementing the Angular 2 version, we came up with the following observations:</p>
             <ul>
-              <li>Unoptimized about as fast as React's optimized implementation</li>
+              <li><strong>Unoptimized about as fast as React</strong>'s optimized implementation</li>
               <li>Still slow, Angular checks every component on every event</li>
             </ul>
         </section>
 
-        <section>
+        <section class="angular-bg">
+          <h2 style="font-size: 2em;">Can we make it faster?</h2>
+
+          <ul>
+            <li><strong>OnPush</strong> change detection doesn't help here :(</li>
+          </ul>
+        </section>
+
+        <section class="angular-bg">
           <h2 style="font-size: 2.5em;">Making it faster</h2>
           <p>Angular's allows us to control a component's <strong>ChangeDetectionStrategy</strong></p>
             <ul>
@@ -1026,14 +972,502 @@ export class BoxComponent {
           </aside>
         </section>
 
-        <section>
-          <h2><a href="#" target="_blank">Demo &rarr;</a></h2>
+        <section class="angular-bg">
+          <h1><a href="#" target="_blank">Demo &rarr;</a></h1>
         </section>
-
 
         <section data-background="#fae042" class="section-slide">
           <h2>Server-side Rendering</h2>
         </section>
+
+        <section>
+          <h2 style="font-size: 2.5em;">Motivations</h2>
+
+          <p>There are many reasons to render an app on the server, some of them are:</p>
+
+          <ul>
+            <li><strong>First-Page-Impressions</strong> - Keep the user bei-Laune&trade;</li>
+            <li><strong>Preview</strong> - When sharing links on Social Media</li>
+            <li><strong>SEO</strong> - Because web</li>
+          </ul>
+          <p style="margin-top: 1.2em;"><strong>Bonus:</strong> Application code can be shared between client and server!</p>
+        </section>
+
+        <section>
+          <h2 style="font-size: 2.5em;">Challenges</h2>
+          <ol>
+            <li><strong>Universal</strong> - Make framework run on the server</li>
+            <li><strong>State Transition</strong> - Server-side state needs to be transferred to client</li>
+          </ol>
+        </section>
+
+        <section class="react-bg bg-start delay-content">
+          <div>
+          <pre><code style="font-size: 1.4em;">const server = express();
+
+app.get('/', (req, res) => {
+  const html = renderApp(5000);
+  res.send(html);
+});
+          
+app.listen(3000, () => console.log('Running...'));</code></pre>
+          </div>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.4em;">const server = express();
+
+<span style="color: #000;">app.get('/', (req, res) => {
+  const html = renderApp(5000);
+  res.send(html);
+});</span>
+          
+app.listen(3000, () => console.log('Running...'));</x-code></pre>
+        </section>
+
+        <section class="react-bg">
+          <pre><code style="font-size: 1.3em;">import App from '../common/App';
+import { renderToString } from 'react-dom/server';
+
+function renderApp(numberOfBoxes) {
+  const boxes = createBoxes(numberOfBoxes);
+
+  const html = renderToString(&lt;App boxes={boxes}/&gt;);
+
+  return renderPage(html, boxes);
+}</code></pre>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.3em;">import App from '../common/App';
+import { renderToString } from 'react-dom/server';
+
+function renderApp(numberOfBoxes) {
+  <span style="color: #000;">const boxes = createBoxes(numberOfBoxes);
+
+  const html = renderToString(&lt;App boxes={boxes}/&gt;);</span>
+
+  return renderPage(html, boxes);
+}</x-code></pre>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.3em;">import App from '../common/App';
+import { renderToString } from 'react-dom/server';
+
+function renderApp(numberOfBoxes) {
+  const boxes = createBoxes(numberOfBoxes);
+
+  const html = renderToString(&lt;App boxes={boxes}/&gt;);
+
+  <span style="color: #000;">return renderPage(html, boxes);</span>
+}</x-code></pre>
+        </section>
+
+        <section class="react-bg">
+          <pre><code style="font-size: 1.1em;">function renderPage(html, data) {
+  return `
+    &lt;html&gt;
+      &lt;body&gt;
+
+        &lt;div id="mount"&gt;${html}&lt;/div&gt;
+
+        &lt;script&gt;
+          window.__INITIAL_STATE__ = ${JSON.stringify(data)};
+        &lt;/script&gt;
+        &lt;script src="dist/main.js"&gt;&lt;/script&gt;
+
+      &lt;/body&gt;
+    &lt;/html&gt;
+  `;
+}</code></pre>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.1em;">function renderPage(<span style="color: #000;">html</span>, data) {
+  return `
+    &lt;html&gt;
+      &lt;body&gt;
+
+        <span style="color: #000;">&lt;div id="mount"&gt;${html}&lt;/div&gt;</span>
+
+        &lt;script&gt;
+          window.__INITIAL_STATE__ = ${JSON.stringify(data)};
+        &lt;/script&gt;
+        &lt;script src="dist/main.js"&gt;&lt;/script&gt;
+
+      &lt;/body&gt;
+    &lt;/html&gt;
+  `;
+}</x-code></pre>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.1em;">function renderPage(html, <span style="color: #000;">data</span>) {
+  return `
+    &lt;html&gt;
+      &lt;body&gt;
+
+        &lt;div id="mount"&gt;${html}&lt;/div&gt;
+
+        <span style="color: #000;">&lt;script&gt;
+          window.__INITIAL_STATE__ = ${JSON.stringify(data)};
+        &lt;/script&gt;
+        &lt;script src="dist/main.js"&gt;&lt;/script&gt;</span>
+
+      &lt;/body&gt;
+    &lt;/html&gt;
+  `;
+}</x-code></pre>
+        </section>
+
+        <section class="react-bg">
+          <pre><code style="font-size: 1.3em;">// on the client...
+
+const initialState = window.__INITIAL_STATE__;
+const { boxes } = initialState;
+
+const mountNode = document.getElementById('mount');
+ReactDOM.render(&lt;App boxes={boxes}/&gt;, mountNode);
+</code></pre>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.3em;">// on the client...
+
+<span style="color: #000;">const initialState = window.__INITIAL_STATE__;
+const { boxes } = initialState;</span>
+
+const mountNode = document.getElementById('mount');
+ReactDOM.render(&lt;App boxes={boxes}/&gt;, mountNode);
+</x-code></pre>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.3em;">// on the client...
+
+const initialState = window.__INITIAL_STATE__;
+const { boxes } = initialState;
+
+<span style="color: #000;">const mountNode = document.getElementById('mount');
+ReactDOM.render(&lt;App boxes={boxes}/&gt;, mountNode);</span>
+</x-code></pre>
+        </section>
+
+        <section class="react-bg">
+          <h1><a href="https://github.com/DJCordhose/angular2-react/tree/gh-pages/code/react/2-universal-rendering" target="_blank">Demo &rarr;</a></h1>
+        </section>
+
+        <section class="angular-bg bg-start delay-content">
+          <div>
+            <pre><code style="font-size: 1.2em;">// browser.module.ts
+
+import { BrowserModule } from '@angular/platform-browser';
+
+@NgModule({
+  bootstrap: [AppComponent],
+  declarations: [AppComponent, SquareBoxComponent],
+  imports: [BrowserModule]
+})
+export class AppModule {}</code></pre>
+          </div>
+        </section>
+
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.2em;">// browser.module.ts
+
+<span style="color: #000;">import { BrowserModule } from '@angular/platform-browser';</span>
+
+@NgModule({
+  bootstrap: [AppComponent],
+  declarations: [AppComponent, SquareBoxComponent],
+  <span style="color: #000;">imports: [BrowserModule]</span>
+})
+export class AppModule {}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><code style="font-size: 1.2em;">// node.module.ts
+
+
+
+
+
+@NgModule({
+  bootstrap: [AppComponent],
+  declarations: [AppComponent, SquareBoxComponent],
+  imports: []
+})
+export class AppModule {}</code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.2em;">// node.module.ts
+
+<span style="color: #000;">import { CommonModule } from '@angular/common';
+import { UniversalModule } from 'angular2-universal/node';</span>
+
+
+@NgModule({
+  bootstrap: [AppComponent],
+  declarations: [AppComponent, SquareBoxComponent],
+  <span style="color: #000;">imports: [CommonModule, UniversalModule]</span>
+})
+export class AppModule {}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><code style="font-size: 1.2em;">import { createEngine } from 'angular2-express-engine';
+import { AppModule } from './app/node.module';
+            
+const app = express();
+
+app.engine('.html', createEngine({ ngModule: AppModule });
+
+app.get('/', (req, res) => {
+  res.render('index', { req, res });
+});
+</code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+            <pre><x-code style="font-size: 1.2em;">import { createEngine } from 'angular2-express-engine';
+import { AppModule } from './app/node.module';
+            
+<span style="color: #000;">const app = express();
+
+app.engine('.html', createEngine({ ngModule: AppModule });</span>
+
+app.get('/', (req, res) => {
+  res.render('index', { req, res });
+});
+</x-code></pre>
+        </section>
+
+
+        <section class="angular-bg">
+          <pre><x-code style="font-size: 1.2em;">import { createEngine } from 'angular2-express-engine';
+import { AppModule } from './app/node.module';
+            
+const app = express();
+
+app.engine('.html', createEngine({ ngModule: AppModule });
+
+<span style="color: #000;">app.get('/', (req, res) => {
+  res.render('index', { req, res });
+});</span>
+</x-code></pre>
+        </section>
+
+        <section class="angular-bg">
+          <h2 style="font-size: 2em;">How to preserve state?</h2>
+        </section>
+        <section class="angular-bg">
+          <div>
+            <pre><code style="font-size: 1.15em;">// node.module.ts
+@NgModule({
+  ...
+  providers: [StateService]
+})
+export class AppModule {
+
+  constructor(private state: StateService) {}
+
+  universalDoDehydrate = (universalCache) => {
+    this.state.set('boxes', createBoxes(5000));
+
+    const values = this.state.valuesAsJson()
+    universalCache['StateService'] = JSON.stringify(values);
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.15em;">// node.module.ts
+@NgModule({
+  ...
+  <span style="color: #000;">providers: [StateService]</span>
+})
+export class AppModule {
+
+  <span style="color: #000;">constructor(private state: StateService) {}</span>
+
+  universalDoDehydrate = (universalCache) => {
+    this.state.set('boxes', createBoxes(5000));
+
+    const values = this.state.valuesAsJson()
+    universalCache['StateService'] = JSON.stringify(values);
+  }
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.15em;">// node.module.ts
+@NgModule({
+  ...
+  providers: [StateService]
+})
+export class AppModule {
+
+  constructor(private state: StateService) {}
+
+  <span style="color: #000;">universalDoDehydrate = (universalCache) => {</span>
+    this.state.set('boxes', createBoxes(5000));
+
+    const values = this.state.valuesAsJson()
+    universalCache['StateService'] = JSON.stringify(values);
+  <span style="color: #000;">}</span>
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.15em;">// node.module.ts
+@NgModule({
+  ...
+  providers: [StateService]
+})
+export class AppModule {
+
+  constructor(private state: StateService) {}
+
+  universalDoDehydrate = (universalCache) => {
+    <span style="color: #000;">this.state.set('boxes', createBoxes(5000));</span>
+
+    const values = this.state.valuesAsJson()
+    universalCache['StateService'] = JSON.stringify(values);
+  }
+}</x-code></pre>
+          </div>
+        </section>
+
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.15em;">// node.module.ts
+@NgModule({
+  ...
+  providers: [StateService]
+})
+export class AppModule {
+
+  constructor(private state: StateService) {}
+
+  universalDoDehydrate = (universalCache) => {
+    this.state.set('boxes', createBoxes(5000));
+
+    <span style="color: #000;">const values = this.state.valuesAsJson()
+    universalCache['StateService'] = JSON.stringify(values);</span>
+  }
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><code style="font-size: 1.15em;">// browser.module.ts
+
+@NgModule({
+  ...
+  providers: [StateService]
+})
+export class AppModule {
+
+  constructor(private state: StateService) {
+    const values = window[UNIVERSAL_CACHE]['StateService'];
+    this.state.valuesFromJson(values);   
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.15em;">// browser.module.ts
+
+@NgModule({
+  ...
+  <span style="color: #000;">providers: [StateService]</span>
+})
+export class AppModule {
+
+  <span style="color: #000;">constructor(private state: StateService) {</span>
+    const values = window[UNIVERSAL_CACHE]['StateService'];
+    this.state.valuesFromJson(values);   
+  <span style="color: #000;">}</span>
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.15em;">// browser.module.ts
+
+@NgModule({
+  ...
+  providers: [StateService]
+})
+export class AppModule {
+
+  constructor(private state: StateService) {
+    <span style="color: #000;">const values = window[UNIVERSAL_CACHE]['StateService'];
+    this.state.valuesFromJson(values);</span>
+  }
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><code style="font-size: 1.15em;">@Component({...})
+export class AppComponent {
+
+  boxes = [];
+
+  constructor(private state: StateService) {}
+
+  ngOnInit() {
+    this.boxes = state.get('boxes');
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.15em;">@Component({...})
+export class AppComponent {
+
+  boxes = [];
+
+  <span style="color: #000;">constructor(private state: StateService) {}</span>
+
+  ngOnInit() {
+    <span style="color: #000;">this.boxes = state.get('boxes');</span>
+  }
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1><a href="#">Demo &rarr;</a></h1>
+        </section>
+
+
         <section data-background="#fae042" class="section-slide">
           <h2>3rd-Party Library Integration</h2>
         </section>
