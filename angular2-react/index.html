@@ -329,8 +329,8 @@ svg.addEventListener('mousemove', onMouseMove);
 </code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>we create boxes</li>
+              <li>and attach handlers for dragging to the canvas</li>
             </ul>
           </aside>
         </section>
@@ -345,8 +345,8 @@ svg.addEventListener('mousemove', onMouseMove);</span>
 </x-code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>we create boxes</li>
+              <li>and attach handlers for dragging to the canvas</li>
             </ul>
           </aside>
         </section>
@@ -578,7 +578,8 @@ svg.addEventListener('mousemove', onMouseMove);</span>
 </x-code></pre>
           <aside class="notes">
             <ul>
-              <li>Fetches props</li>
+              <li><code>Box</code> is another react component</li>
+              <li>Renders single <code>rect</code> element with coordinates</li>
             </ul>
           </aside>
         </section>
@@ -594,8 +595,8 @@ svg.addEventListener('mousemove', onMouseMove);</span>
 </x-code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li><code>Box</code> is another react component</li>
+              <li>Renders single <code>rect</code> element with coordinates</li>
             </ul>
           </aside>
         </section>
@@ -655,9 +656,6 @@ svg.addEventListener('mousemove', onMouseMove);</span>
           <h1><strong><a href="http://djcordhose.github.com/angular2-react/code/react/0-start/public/">DEMO &rarr;</a></strong></h1>
         </section>
 
-        <section data-background="images/ahhhhh.gif">
-        </section>
-
         <section class="react-bg">
           <h2 style="font-size: 2.5em;">Why slow?</h2>
           <p>React's change detection happens in <strong>Virtual DOM</strong> level</p>
@@ -677,9 +675,41 @@ svg.addEventListener('mousemove', onMouseMove);</span>
               <li><strong>Immutable data structures</strong> can speed up model check</li>
             </ul>
           <aside class="notes">
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><code style="font-size: 1.4em;">onMouseMove(event) {
+  const {boxes} = this.state; 
+  boxes[this.state.currentId] = {
+    x: event.clientX + this.offsetX,
+    y: event.clientY + this.offsetY
+  };
+  this.setState({boxes});
+}
+</code></pre>
+          <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>We change the reference</li>
+              <li>enables us to take advantage of <code>shouldComponentUpdate()</code></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.4em;">onMouseMove(event) {
+  const {boxes} = this.state; 
+  <span style="color: #000;">boxes[this.state.currentId] = {
+    x: event.clientX + this.offsetX,
+    y: event.clientY + this.offsetY
+  };</span>
+  this.setState({boxes});
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>We change the reference</li>
+              <li>enables us to take advantage of <code>shouldComponentUpdate()</code></li>
             </ul>
           </aside>
         </section>
@@ -729,6 +759,11 @@ svg.addEventListener('mousemove', onMouseMove);</span>
 
         <section class="angular-bg bg-start">
           <h1 style="font-size: 3.5em;">Angular</h1>
+          <aside class="notes">
+            <ul>
+              <li>Alright let's take a look at Angular</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="angular-bg">
@@ -752,8 +787,8 @@ export class AppComponent implements OnInit {
 </code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>Pretty much the same thing</li>
+              <li>We have a component that renders an SVG</li>
             </ul>
           </aside>
         </section>
@@ -779,8 +814,7 @@ export class AppComponent implements OnInit {
 </x-code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>Event handlers are attached as well...</li>
             </ul>
           </aside>
         </section>
@@ -806,8 +840,8 @@ export class AppComponent implements OnInit {
 </x-code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>For each box model we render a <code>SquareBox</code></li>
+              <li>The code to create boxes is literally the same</li>
             </ul>
           </aside>
         </section>
@@ -833,8 +867,8 @@ export class AppComponent implements OnInit {
 </x-code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>For each box model we render a <code>SquareBox</code></li>
+              <li>The code to create boxes is literally the same</li>
             </ul>
           </aside>
         </section>
@@ -857,8 +891,8 @@ export class BoxComponent {
 </code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>Also very similar, <code>SquareBox</code> takes a box</li>
+              <li>And changes rect attributes</li>
             </ul>
           </aside>
         </section>
@@ -881,8 +915,8 @@ export class BoxComponent {
 </x-code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>Also very similar, <code>SquareBox</code> takes a box</li>
+              <li>And changes rect attributes</li>
             </ul>
           </aside>
         </section>
@@ -895,16 +929,8 @@ export class BoxComponent {
 
             <ul>
               <li><strong>Unoptimized about as fast as React</strong>'s optimized implementation</li>
-              <li>Still slow, Angular checks every component on every event</li>
+              <li>Jankee, Angular checks every component on every event</li>
             </ul>
-        </section>
-
-        <section class="angular-bg">
-          <h2 style="font-size: 2em;">Can we make it faster?</h2>
-
-          <ul>
-            <li><strong>OnPush</strong> change detection doesn't help here :(</li>
-          </ul>
         </section>
 
         <section class="angular-bg">
@@ -941,8 +967,8 @@ export class BoxComponent {
 </code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>Coming back to our component...</li>
+              <li>We change the change detection strategy like this..</li>
             </ul>
           </aside>
         </section>
@@ -966,14 +992,29 @@ export class BoxComponent {
 </x-code></pre>
           <aside class="notes">
             <ul>
-              <li></li>
-              <li></li>
+              <li>Coming back to our component...</li>
+              <li>We change the change detection strategy like this..</li>
             </ul>
           </aside>
         </section>
 
         <section class="angular-bg">
           <h1><a href="#" target="_blank">Demo &rarr;</a></h1>
+        </section>
+
+        <section class="angular-bg">
+          <h2 style="font-size: 2.5em;">Result</h2>
+          <ul>
+            <li><strong>OnPush</strong> not very helpful in flat component trees</li>
+            <li>Boxes are still checked and only skip subtree (very few bindings)</li>
+            <li>Can be improved by changing application code (Segmentation Model)</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Again, this doesn't mean Angular is slow</li>
+              <li>5000 is a ridiculously high number of components</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-background="#fae042" class="section-slide">
@@ -995,10 +1036,10 @@ export class BoxComponent {
 
         <section>
           <h2 style="font-size: 2.5em;">Challenges</h2>
-          <ol>
+          <ul>
             <li><strong>Universal</strong> - Make framework run on the server</li>
             <li><strong>State Transition</strong> - Server-side state needs to be transferred to client</li>
-          </ol>
+          </ul>
         </section>
 
         <section class="react-bg bg-start delay-content">
@@ -1012,6 +1053,12 @@ app.get('/', (req, res) => {
           
 app.listen(3000, () => console.log('Running...'));</code></pre>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>Simplified version of express code</li>
+              <li>We generate HTML using <code>RenderApp</code></li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1023,6 +1070,12 @@ app.listen(3000, () => console.log('Running...'));</code></pre>
 });</span>
           
 app.listen(3000, () => console.log('Running...'));</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Simplified version of express code</li>
+              <li>We generate HTML using <code>RenderApp</code></li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1036,6 +1089,12 @@ function renderApp(numberOfBoxes) {
 
   return renderPage(html, boxes);
 }</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>creates boxes</li>
+              <li>renders JSX to HTML</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1049,6 +1108,12 @@ function renderApp(numberOfBoxes) {
 
   return renderPage(html, boxes);
 }</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>creates boxes</li>
+              <li>renders JSX to HTML</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1062,6 +1127,12 @@ function renderApp(numberOfBoxes) {
 
   <span style="color: #000;">return renderPage(html, boxes);</span>
 }</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>creates boxes</li>
+              <li>renders JSX to HTML</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1081,6 +1152,13 @@ function renderApp(numberOfBoxes) {
     &lt;/html&gt;
   `;
 }</code></pre>
+          <aside class="notes">
+            <ul>
+              <li>takes html, data</li>
+              <li>writes react html into layout</li>
+              <li>stringifies data to make state available on client</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1100,6 +1178,13 @@ function renderApp(numberOfBoxes) {
     &lt;/html&gt;
   `;
 }</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>takes html, data</li>
+              <li>writes react html into layout</li>
+              <li>stringifies data to make state available on client</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1119,6 +1204,13 @@ function renderApp(numberOfBoxes) {
     &lt;/html&gt;
   `;
 }</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>takes html, data</li>
+              <li>writes react html into layout</li>
+              <li>stringifies data to make state available on client</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1130,6 +1222,12 @@ const { boxes } = initialState;
 const mountNode = document.getElementById('mount');
 ReactDOM.render(&lt;App boxes={boxes}/&gt;, mountNode);
 </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>clientside: we take state</li>
+              <li>and then init app with that state (from server)</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1141,6 +1239,12 @@ const { boxes } = initialState;</span>
 const mountNode = document.getElementById('mount');
 ReactDOM.render(&lt;App boxes={boxes}/&gt;, mountNode);
 </x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>clientside: we take state</li>
+              <li>and then init app with that state (from server)</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1152,6 +1256,12 @@ const { boxes } = initialState;
 <span style="color: #000;">const mountNode = document.getElementById('mount');
 ReactDOM.render(&lt;App boxes={boxes}/&gt;, mountNode);</span>
 </x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>clientside: we take state</li>
+              <li>and then init app with that state (from server)</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="react-bg">
@@ -1171,6 +1281,13 @@ import { BrowserModule } from '@angular/platform-browser';
 })
 export class AppModule {}</code></pre>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>Let's take a look at our Angular module</li>
+              <li>Notice <strong>BrowserModule</strong> dependency</li>
+              <li>Makes app run in browser</li>
+            </ul>
+          </aside>
         </section>
 
 
@@ -1187,6 +1304,13 @@ export class AppModule {}</code></pre>
 })
 export class AppModule {}</x-code></pre>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>Let's take a look at our Angular module</li>
+              <li>Notice <strong>BrowserModule</strong> dependency</li>
+              <li>Makes app run in browser</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="angular-bg">
@@ -1204,6 +1328,13 @@ export class AppModule {}</x-code></pre>
 })
 export class AppModule {}</code></pre>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>On the server, pretty much same code</li>
+              <li>We need another module</li>
+              <li>Has Common and Universal dep to make it run on server</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="angular-bg">
@@ -1221,6 +1352,13 @@ import { UniversalModule } from 'angular2-universal/node';</span>
 })
 export class AppModule {}</x-code></pre>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>On the server, pretty much same code</li>
+              <li>We need another module</li>
+              <li>Has Common and Universal dep to make it run on server</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="angular-bg">
@@ -1237,6 +1375,13 @@ app.get('/', (req, res) => {
 });
 </code></pre>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>we create an express server</li>
+              <li>we also need express engine to compile Angular templates</li>
+              <li>And then we render page</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="angular-bg">
@@ -1251,6 +1396,13 @@ app.get('/', (req, res) => {
   res.render('index', { req, res });
 });
 </x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>we create an express server</li>
+              <li>we also need express engine to compile Angular templates</li>
+              <li>And then we render page</li>
+            </ul>
+          </aside>
         </section>
 
 
@@ -1266,11 +1418,25 @@ app.engine('.html', createEngine({ ngModule: AppModule });
   res.render('index', { req, res });
 });</span>
 </x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>we create an express server</li>
+              <li>we also need express engine to compile Angular templates</li>
+              <li>And then we render page</li>
+            </ul>
+          </aside>
         </section>
 
         <section class="angular-bg">
           <h2 style="font-size: 2em;">How to preserve state?</h2>
+          <aside class="notes">
+            <ul>
+              <li>Turns out, preserving state in Angular is a bit more tricky</li>
+              <li>the following code is based on APIs that need polishing</li>
+            </ul>
+          </aside>
         </section>
+
         <section class="angular-bg">
           <div>
             <pre><code style="font-size: 1.15em;">// node.module.ts
@@ -1433,7 +1599,7 @@ export class AppModule {
 
         <section class="angular-bg">
           <div>
-            <pre><code style="font-size: 1.15em;">@Component({...})
+            <pre><code style="font-size: 1.4em;">@Component({...})
 export class AppComponent {
 
   boxes = [];
@@ -1449,7 +1615,7 @@ export class AppComponent {
 
         <section class="angular-bg">
           <div>
-            <pre><x-code style="font-size: 1.15em;">@Component({...})
+            <pre><x-code style="font-size: 1.4em;">@Component({...})
 export class AppComponent {
 
   boxes = [];
@@ -1463,7 +1629,7 @@ export class AppComponent {
           </div>
         </section>
 
-        <section>
+        <section class="angular-bg">
           <h1><a href="#">Demo &rarr;</a></h1>
         </section>
 
@@ -1472,8 +1638,14 @@ export class AppComponent {
           <h2>3rd-Party Library Integration</h2>
         </section>
 
-        <section data-background="#fae042" class="section-slide">
-          <h2>Framework Scope</h2>
+        <section>
+          <h2 style="font-size: 2.5em;">Motivation</h2>
+
+          <ul>
+            <li>There are a lot of 3rd-party libs out there</li>
+            <li>Usually not written in framework of our choice</li>
+            <li>Examples: Bootstrap, d3, jQuery, ...</li>
+          </ul>
         </section>
 
         <section data-background="#fae042" class="section-slide">
