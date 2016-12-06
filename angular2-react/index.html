@@ -103,7 +103,7 @@
             <li><strong>Runtime Performance Tuning</strong> - How to make it faster?</li>
             <li><strong>Server-side Rendering</strong> - Make it run on the server</li>
             <li><strong>3rd-Party Library Integration</strong> - Render an SVG chart using 3rd-party lib</li>
-            <li class="fragment" style="border-top: 4px solid #555; padding-top: 0.5em;"><strong>Framework Scope</strong> - Responsibility. What's inside? What's not?</li>
+            <!-- <li class="fragment" style="border-top: 4px solid #555; padding-top: 0.5em;"><strong>Framework Scope</strong> - Responsibility. What's inside? What's not?</li> -->
           </ul>
           <aside class="notes">
             <ul>
@@ -381,16 +381,16 @@ svg.addEventListener('mousemove', onMouseMove);</span>
           </aside>
         </section>
 
-        <section>
-          <h2 style="font-size: 2.2em;">Characteristics</h2>
+        <!-- <section> -->
+        <!--   <h2 style="font-size: 2.2em;">Characteristics</h2> -->
           
-          <p>The <strong>VanillaJS implementation</strong> is very fast by default:</p>
-          <ul>
-            <li>Only one box at a time needs update</li>
-            <li>Executes as little code as possible</li>
-            <li>No additional (framework) overhead</li>
-          </ul>
-        </section>
+        <!--   <p>The <strong>VanillaJS implementation</strong> is very fast by default:</p> -->
+        <!--   <ul> -->
+        <!--     <li>Only one box at a time needs update</li> -->
+        <!--     <li>Executes as little code as possible</li> -->
+        <!--     <li>No additional (framework) overhead</li> -->
+        <!--   </ul> -->
+        <!-- </section> -->
 
         <section class="react-bg bg-start">
           <h1 style="font-size: 3.5em;">React</h1>
@@ -472,16 +472,74 @@ svg.addEventListener('mousemove', onMouseMove);</span>
   }
 
   <span style="color: #000;">render() {
+
+
+
+
+
+
+
+
+
+  }</span>
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Next: <code>render()</code></li>
+              <li>renders child components, in our case SVG</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
+  constructor() {
+    const boxes = [];
+    // ... create boxes
+    this.state = { boxes: boxes, currentId: null };
+  }
+
+  render() {
+    <span style="color: #000;">const {boxes} = this.state;</span>
+
+
+
+
+
+
+
+
+  }
+}
+</x-code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Next: <code>render()</code></li>
+              <li>renders child components, in our case SVG</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="react-bg">
+          <pre><x-code style="font-size: 1.2em;">export class App extends React.Component {
+  constructor() {
+    const boxes = [];
+    // ... create boxes
+    this.state = { boxes: boxes, currentId: null };
+  }
+
+  render() {
     const {boxes} = this.state;
-    return (
+    <span style="color: #000;">return (
       &lt;svg onMouseDown={(event) => this.onMouseDown(event)}
            onMouseUp={(event) => this.onMouseUp(event)}
            onMouseMove={(event) => this.onMouseMove(event)}&gt;
         &lt;g&gt;
           { boxes.map((box) => &lt;Box box={box}/&gt;) }
         &lt;/g&gt;
-    );
-  }</span>
+    );</span>
+  }
 }
 </x-code></pre>
           <aside class="notes">
@@ -657,7 +715,7 @@ svg.addEventListener('mousemove', onMouseMove);</span>
         </section>
 
         <section class="react-bg">
-          <h2 style="font-size: 2.5em;">Why slow?</h2>
+          <h2 style="font-size: 2.5em;">Observations</h2>
           <p>React's change detection happens in <strong>Virtual DOM</strong> level</p>
             <ul>
               <li>Every mouse move re-renders full application (all boxes)</li>
@@ -928,7 +986,7 @@ export class BoxComponent {
           <h2 style="font-size: 2.5em;">Observations</h2>
 
             <ul>
-              <li><strong>Unoptimized about as fast as React</strong>'s optimized implementation</li>
+              <li><strong>About as fast as React</strong>'s unoptimized implementation</li>
               <li>Jankee, Angular checks every component on every event</li>
             </ul>
         </section>
@@ -1005,9 +1063,9 @@ export class BoxComponent {
         <section class="angular-bg">
           <h2 style="font-size: 2.5em;">Result</h2>
           <ul>
-            <li><strong>OnPush</strong> not very helpful in flat component trees</li>
-            <li>Boxes are still checked and only skip subtree (very few bindings)</li>
-            <li>Can be improved by changing application code (Segmentation Model)</li>
+            <li><strong>OnPush</strong> alone doesn't save a lot in this scenario</li>
+            <li><strong>ngFor</strong> check every row, instead of just collection length (like React)</li>
+            <li>Fair setup: <strong>"simpleNgFor"</strong> that only checks length (big effort as not provided by core)</li>
           </ul>
           <aside class="notes">
             <ul>
@@ -1266,6 +1324,16 @@ ReactDOM.render(&lt;App boxes={boxes}/&gt;, mountNode);</span>
 
         <section class="react-bg">
           <h1><a href="https://github.com/DJCordhose/angular2-react/tree/gh-pages/code/react/2-universal-rendering" target="_blank">Demo &rarr;</a></h1>
+        </section>
+
+        <section>
+          <h2 style="font-size: 2.5em;">Observations</h2>
+
+          <ul>
+            <li>Pretty straight forward setup</li>
+            <li>Easy to prerender app and send to the client</li>
+            <li>No built-in support for server-side WebAPI equivalents</li>
+          </ul>
         </section>
 
         <section class="angular-bg bg-start delay-content">
@@ -1633,6 +1701,16 @@ export class AppComponent {
           <h1><a href="#">Demo &rarr;</a></h1>
         </section>
 
+        <section>
+          <h2 style="font-size: 2.5em;">Observations</h2>
+
+          <ul>
+            <li>Feels more verbose due to NgModules</li>
+            <li>State transfer requires more effort, <strong>but uses DI</strong></li>
+            <li>Supports server-side Http etc. out-of-the-box</li>
+            <li>Can be AoT compiled for even faster render</li>
+          </ul>
+        </section>
 
         <section data-background="#fae042" class="section-slide">
           <h2>3rd-Party Library Integration</h2>
@@ -1644,13 +1722,317 @@ export class AppComponent {
           <ul>
             <li>There are a lot of 3rd-party libs out there</li>
             <li>Usually not written in framework of our choice</li>
-            <li>Examples: Bootstrap, d3, jQuery, ...</li>
+            <li><strong>Examples</strong>: Bootstrap, d3, jQuery, ...</li>
           </ul>
+        </section>
+
+        <section>
+          <h2>Example: NVD3 Pie Chart</h2>
+          <img src="images/3rd-party-integration.png">
+        </section>
+
+        <section>
+          <h2 style="font-size: 2.5em;">Challenges</h2>
+
+          <ul>
+            <li><strong>DOM Access</strong> - How to access DOM element?</li>
+            <li><strong>Updates</strong> - Sending model updates to 3rd party lib</li>
+          </ul>
+        </section>
+
+        <section class="react-bg bg-start delay-content">
+          <div>
+            <pre><code style="font-size: 1.18em;">class Chart extends React.Component {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="react-bg">
+          <div>
+            <pre><x-code style="font-size: 1.18em;">class Chart extends React.Component {
+  <span style="color: #000;">render() {
+    return &lt;svg ref={c => this.chart = c}&gt;&lt;/svg&gt;
+  }</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="react-bg">
+          <div>
+            <pre><x-code style="font-size: 1.18em;">class Chart extends React.Component {
+  render() {
+    return &lt;svg ref={c => this.chart = c}&gt;&lt;/svg&gt;
+  }
+
+  <span style="color: #000;">shouldComponentUpdate() {
+    return false;
+  }</span>
+
+
+
+
+
+
+
+
+
+
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="react-bg">
+          <div>
+            <pre><x-code style="font-size: 1.18em;">class Chart extends React.Component {
+  render() {
+    return &lt;svg ref={c => this.chart = c}&gt;&lt;/svg&gt;
+  }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  <span style="color: #000;">componentDidMount() {
+    const data = calculateData(this.props.positions);
+    createChart(this.chart, data);
+  }</span>
+
+
+
+
+
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="react-bg">
+          <div>
+            <pre><x-code style="font-size: 1.18em;">class Chart extends React.Component {
+  render() {
+    return &lt;svg <span style="color: #000;">ref={c => this.chart = c}</span>&gt;&lt;/svg&gt;
+  }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  componentDidMount() {
+    const data = calculateData(this.props.positions);
+    createChart(<span style="color: #000;">this.chart</span>, data);
+  }
+
+
+
+
+
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="react-bg">
+          <div>
+            <pre><x-code style="font-size: 1.18em;">class Chart extends React.Component {
+  render() {
+    return &lt;svg ref={c => this.chart = c}&gt;&lt;/svg&gt;
+  }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  componentDidMount() {
+    const data = calculateData(this.props.positions);
+    createChart(this.chart, data);
+  }
+
+  <span style="color: #000;">componentWillReceiveProps(nextProps) {
+    const data = calculateData(this.nextProps.positions);
+    updateChart(this.chart, data);
+  }</span>
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="react-bg">
+          <h1><a href="#">Demo &rarr;</a></h1>
+        </section>
+
+        <section class="angular-bg bg-start delay-content">
+          <div>
+            <pre><code style="font-size: 1.2em;">@Component({
+  template: `&lt;svg&gt;&lt;/svg&gt;`
+})
+export class ChartComponent {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.2em;">@Component({
+  template: `&lt;svg <span style="color: #000;">#chart</span>&gt;&lt;/svg&gt;`
+})
+export class ChartComponent {
+
+  
+  <span style="color: #000;">@ViewChild('chart') chart: ElementRef;</span>
+
+
+
+
+
+
+
+
+
+
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.2em;">@Component({
+  template: `&lt;svg #chart&gt;&lt;/svg&gt;`
+})
+export class ChartComponent <span style="color: #000;">implements AfterViewInit</span> {
+
+  <span style="color: #000;">@Input() positions;</span>
+  @ViewChild('chart') chart: ElementRef;
+
+  <span style="color: #000;">ngAfterViewInit() {
+    const data = calculateData(this.positions);
+    createChart(this.chart, data);
+  }</span>
+
+
+
+
+
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.2em;">@Component({
+  template: `&lt;svg #chart&gt;&lt;/svg&gt;`
+})
+export class ChartComponent implements AfterViewInit, <span style="color: #000;">DoCheck</span> {
+
+  @Input() positions;
+  @ViewChild('chart') chart: ElementRef;
+
+  ngAfterViewInit() {
+    const data = calculateData(this.positions);
+    createChart(this.chart, data);
+  }
+
+  <span style="color: #000;">ngDoCheck() {
+    const data = calculateData(this.positions);
+    updateChart(this.chart, data);
+  }</span>
+}</x-code></pre>
+          </div>
+        </section>
+
+        <!-- <section class="angular-bg"> -->
+        <!--   <div> -->
+        <!--     <pre><code style="font-size: 0.9em;">@Component({ -->
+  <!-- template: `&lt;svg #chart&gt;&lt;/svg&gt;` -->
+<!-- }) -->
+<!-- export class ChartComponent implements AfterViewInit, OnChanges, DoCheck { -->
+
+  <!-- @Input() positions; -->
+  <!-- @ViewChild('chart') chart: ElementRef; -->
+
+  <!-- constructor(private differs: IterableDiffers) {} -->
+
+  <!-- ngAfterViewInit() { -->
+    <!-- const data = calculateData(this.positions); -->
+    <!-- createChart(this.chart, data); -->
+  <!-- } -->
+
+  <!-- ngOnChanges() { -->
+    <!-- this.differ = this.differs.find(this.positions).create(); -->
+  <!-- } -->
+
+  <!-- ngDoCheck() { -->
+    <!-- const changes = this.differ.diff(this.positions); -->
+    <!-- if (changes) { -->
+      <!-- const data = calculateData(this.positions); -->
+      <!-- updateChart(this.chart, data); -->
+    <!-- } -->
+  <!-- } -->
+<!-- }</code></pre> -->
+        <!--   </div> -->
+        <!-- </section> -->
+
+        <section class="angular-bg">
+          <h1><a href="#">Demo &rarr;</a></h1>
+        </section>
+
+        <section class="angularbg">
+          <h2 style="font-size: 2.5em;">Observations</h2>
+          <p>Lorem Ipsum</p>
+            <ul>
+              <li>Foo</li>
+              <li>Bar</li>
+            </ul>
+          <aside class="notes">
+          </aside>
         </section>
 
         <section data-background="#fae042" class="section-slide">
           <h2>Conclusion</h2>
         </section>
+
 
         <section>
           <h2 style="font-size: 2.5em;">Conclusion</h2>
