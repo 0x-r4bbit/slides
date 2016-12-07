@@ -715,7 +715,7 @@ svg.addEventListener('mousemove', onMouseMove);</span>
         </section>
 
         <section class="react-bg">
-          <h2 style="font-size: 2.5em;">Observations</h2>
+            <h2 style="font-size: 2.5em;">How does React render?</h2>
           <p>React's change detection happens in <strong>Virtual DOM</strong> level</p>
             <ul>
               <li>Every mouse move re-renders full application (all boxes)</li>
@@ -729,7 +729,7 @@ svg.addEventListener('mousemove', onMouseMove);</span>
           <h2 style="font-size: 2.5em;">Making it faster</h2>
           <p>React comes with a component lifecycle hook <strong>shouldComponentUpdate()</strong></p>
             <ul>
-              <li>Gives us <strong>more control</strong> over when a component needs to be rendered</li>
+              <li>Gives us <strong>more control</strong> over when a component needs to be re-rendered</li>
               <li><strong>Immutable data structures</strong> can speed up model check</li>
             </ul>
           <aside class="notes">
@@ -983,7 +983,7 @@ export class BoxComponent {
         </section>
 
         <section class="angular-bg">
-          <h2 style="font-size: 2.5em;">Observations</h2>
+          <h2 style="font-size: 2.5em;">Performance?</h2>
 
             <ul>
               <li><strong>About as fast as React</strong>'s unoptimized implementation</li>
@@ -1075,7 +1075,17 @@ export class BoxComponent {
           </aside>
         </section>
 
-        <section data-background="#fae042" class="section-slide">
+            <section>
+                <h2 style="font-size: 2.5em;">Observations</h2>
+                    <ul>
+                        <li>comparable performance without optimizations</li>
+                        <li>comparable performance with basic optimizations (shouldComponentUpdate, OnPush)</li>
+                        <li>more optimization possible, but more effort and might make code hard to maintain
+                    </ul>
+                <p>Keep in mind: the challenge has been craftet to be as hard as possible for every frameworks</p>
+            </section>
+
+                <section data-background="#fae042" class="section-slide">
           <h2>Server-side Rendering</h2>
         </section>
 
@@ -1097,8 +1107,21 @@ export class BoxComponent {
           <ul>
             <li><strong>Universal</strong> - Make framework run on the server</li>
             <li><strong>State Transition</strong> - Server-side state needs to be transferred to client</li>
+              <li><strong>No Flicker</strong> - do not re-render server rendered result if not necessary</li>
           </ul>
         </section>
+
+        <section>
+            <div style="float: left; align-content: center;">
+                <h2>SPA</h2><br>
+                <img src="images/screenshot_svg_spa.png" height="200px">
+            </div>
+            <div style="float: right; align-content: center;" class="fragment">
+                <h2>Universal App</h2><br>
+                <img src="images/screenshot_svg_universal.png" height="200px">
+            </div>
+        </section>
+
 
         <section class="react-bg bg-start delay-content">
           <div>
@@ -1322,18 +1345,14 @@ ReactDOM.render(&lt;App boxes={boxes}/&gt;, mountNode);</span>
           </aside>
         </section>
 
+            <section class="react-bg">
+                <h2>data-react-checksum</h2>
+                <p>Guarentees that React does not re-render on client when not necessary</p>
+                <img src="images/screenshot_checksum.png">
+            </section>
+
         <section class="react-bg">
           <h1><a href="https://github.com/DJCordhose/angular2-react/tree/gh-pages/code/react/2-universal-rendering" target="_blank">Demo &rarr;</a></h1>
-        </section>
-
-        <section>
-          <h2 style="font-size: 2.5em;">Observations</h2>
-
-          <ul>
-            <li>Pretty straight forward setup</li>
-            <li>Easy to prerender app and send to the client</li>
-            <li>No built-in support for server-side WebAPI equivalents</li>
-          </ul>
         </section>
 
         <section class="angular-bg bg-start delay-content">
@@ -1701,18 +1720,36 @@ export class AppComponent {
           <h1><a href="#">Demo &rarr;</a></h1>
         </section>
 
-        <section>
+                <section class="angular-bg">
           <h2 style="font-size: 2.5em;">Observations</h2>
 
-          <ul>
-            <li>Feels more verbose due to NgModules</li>
-            <li>State transfer requires more effort, <strong>but uses DI</strong></li>
-            <li>Supports server-side Http etc. out-of-the-box</li>
-            <li>Can be AoT compiled for even faster render</li>
-          </ul>
+                    <ul>
+                        <li>Angular
+                          <ul>
+                            <li>Feels more verbose due to NgModules</li>
+                            <li>State transfer requires more effort, <strong>but uses DI</strong></li>
+                            <li>Supports server-side Http etc. out-of-the-box</li>
+                            <li>Can be AoT compiled for even faster render</li>
+                          </ul>
+                        </li>
+                    </ul>
         </section>
 
-        <section data-background="#fae042" class="section-slide">
+        <section class="react-bg">
+            <h2 style="font-size: 2.5em;">Observations</h2>
+            <ul>
+                <li>React
+                    <ul>
+                        <li>Pretty straight forward setup</li>
+                        <li>Easy to prerender app and send to the client</li>
+                        <li>Server-side WebAPI equivalents using
+                            <a href="https://www.npmjs.com/package/isomorphic-fetch" target="_blank">isomorphic-fetch</a> or Flux frameworks</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+                <section data-background="#fae042" class="section-slide">
           <h2>3rd-Party Library Integration</h2>
         </section>
 
@@ -1728,7 +1765,7 @@ export class AppComponent {
 
         <section>
           <h2>Example: NVD3 Pie Chart</h2>
-          <img src="images/3rd-party-integration.png">
+          <img src="images/screenshot_3rd_party.png">
         </section>
 
         <section>
@@ -1885,7 +1922,7 @@ export class AppComponent {
         </section>
 
         <section class="react-bg">
-          <h1><a href="#">Demo &rarr;</a></h1>
+          <h1><a href="https://djcordhose.github.io/angular2-react/code/react/3-third-party-integration/public">Demo &rarr;</a></h1>
         </section>
 
         <section class="angular-bg bg-start delay-content">
@@ -1960,6 +1997,7 @@ export class ChartComponent <span style="color: #000;">implements AfterViewInit<
         </section>
 
         <section class="angular-bg">
+            <h1 style="color: red">TODO: Huch, wo ist der Check in ngDoCheck hin?</h1>
           <div>
             <pre><x-code style="font-size: 1.2em;">@Component({
   template: `&lt;svg #chart&gt;&lt;/svg&gt;`
@@ -2018,12 +2056,11 @@ export class ChartComponent implements AfterViewInit, <span style="color: #000;"
           <h1><a href="#">Demo &rarr;</a></h1>
         </section>
 
-        <section class="angularbg">
+        <section>
           <h2 style="font-size: 2.5em;">Observations</h2>
-          <p>Lorem Ipsum</p>
             <ul>
-              <li>Foo</li>
-              <li>Bar</li>
+              <li>3rd party integration no big deal in both React and Angular 2</li>
+              <li>much improved over Ng1</li>
             </ul>
           <aside class="notes">
           </aside>
@@ -2036,11 +2073,12 @@ export class ChartComponent implements AfterViewInit, <span style="color: #000;"
 
         <section>
           <h2 style="font-size: 2.5em;">Conclusion</h2>
-
           <ul>
-            <li>Number one</li>
-            <li>Number two</li>
+            <li>React and Angular 2 provide similar solution to our challenges</li>
+            <li>Learning to do one thing in one of them can teach you about the other</li>
+              <li>Both can be tuned to be reasonably fast in most realistic scenarios</li>
           </ul>
+            <p class="fragment">Bottom Line: Angular 2 gives you the full stack, React gives you choices</p>
         </section>
 
         <section>
