@@ -178,6 +178,37 @@ section.has-dark-background {
     }
   }
 
+  .credits {
+    margin-left: 0;
+
+    li {
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+      margin-left: 0.5em;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    img {
+      height: 180px;
+      width: 180px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto;
+      border: 3px solid #fae042!important;
+    }
+
+    span {
+      display: inline-block;
+      margin-top: 0.5em;
+      font-weight: bold;
+      font-size: 0.8em;
+    }
+  }
+
   .milk-glass {
     background: rgba(255, 255, 255,0.8);
     padding: 1em;

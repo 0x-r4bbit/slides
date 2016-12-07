@@ -93,6 +93,27 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   .reveal .delay-content.present > div {
     opacity: 1;
     transition-delay: 800ms; }
+  .reveal .credits {
+    margin-left: 0; }
+    .reveal .credits li {
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+      margin-left: 0.5em; }
+      .reveal .credits li:first-child {
+        margin-left: 0; }
+    .reveal .credits img {
+      height: 180px;
+      width: 180px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto;
+      border: 3px solid #fae042 !important; }
+    .reveal .credits span {
+      display: inline-block;
+      margin-top: 0.5em;
+      font-weight: bold;
+      font-size: 0.8em; }
   .reveal .milk-glass {
     background: rgba(255, 255, 255, 0.8);
     padding: 1em;
