@@ -33,7 +33,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
       padding: 0 !important;
       max-height: 800px !important; }
     .reveal pre x-code {
-      color: #ccc; }
+      color: #888; }
     .reveal pre .hljs-attribute,
     .reveal pre .hljs-tag,
     .reveal pre .hljs-built_in,
@@ -165,7 +165,7 @@ body {
 
 ::selection {
   color: #fff;
-  background: #fdf4be;
+  background: #fce455;
   text-shadow: none; }
 
 .reveal .slides > section,
@@ -348,20 +348,20 @@ body {
  * LINKS
  *********************************************/
 .reveal a {
-  color: #fae042;
+  color: #cdb004;
   text-decoration: none;
   -webkit-transition: color .15s ease;
   -moz-transition: color .15s ease;
   transition: color .15s ease; }
 
 .reveal a:hover {
-  color: #fcec8d;
+  color: #fbdc23;
   text-shadow: none;
   border: none; }
 
 .reveal .roll span:after {
   color: #fff;
-  background: #e9c906; }
+  background: #827003; }
 
 /*********************************************
  * IMAGES
@@ -383,7 +383,7 @@ body {
 
 .reveal a:hover img {
   background: rgba(255, 255, 255, 0.2);
-  border-color: #fae042;
+  border-color: #cdb004;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 
 /*********************************************
@@ -391,31 +391,31 @@ body {
  *********************************************/
 .reveal .controls .navigate-left,
 .reveal .controls .navigate-left.enabled {
-  border-right-color: #fae042; }
+  border-right-color: #cdb004; }
 
 .reveal .controls .navigate-right,
 .reveal .controls .navigate-right.enabled {
-  border-left-color: #fae042; }
+  border-left-color: #cdb004; }
 
 .reveal .controls .navigate-up,
 .reveal .controls .navigate-up.enabled {
-  border-bottom-color: #fae042; }
+  border-bottom-color: #cdb004; }
 
 .reveal .controls .navigate-down,
 .reveal .controls .navigate-down.enabled {
-  border-top-color: #fae042; }
+  border-top-color: #cdb004; }
 
 .reveal .controls .navigate-left.enabled:hover {
-  border-right-color: #fcec8d; }
+  border-right-color: #fbdc23; }
 
 .reveal .controls .navigate-right.enabled:hover {
-  border-left-color: #fcec8d; }
+  border-left-color: #fbdc23; }
 
 .reveal .controls .navigate-up.enabled:hover {
-  border-bottom-color: #fcec8d; }
+  border-bottom-color: #fbdc23; }
 
 .reveal .controls .navigate-down.enabled:hover {
-  border-top-color: #fcec8d; }
+  border-top-color: #fbdc23; }
 
 /*********************************************
  * PROGRESS BAR
@@ -424,7 +424,7 @@ body {
   background: rgba(0, 0, 0, 0.2); }
 
 .reveal .progress span {
-  background: #fae042;
+  background: #cdb004;
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }

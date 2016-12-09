@@ -28,6 +28,7 @@ $headingLetterSpacing: normal;
 $headingTextTransform: uppercase;
 $headingFontWeight: 600;
 $linkColor: #fae042;
+$linkColor: #cdb004;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
 
@@ -81,7 +82,7 @@ section.has-dark-background {
     }
 
     x-code {
-      color: #ccc;
+      color: #888;
     }
 
     .hljs-attribute,
