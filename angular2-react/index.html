@@ -83,7 +83,7 @@
 
         <section>
           <blockquote>
-            <p>"Angular 2 is closer to React than it is to AngularJS."</p>
+            <p>"Angular (v2) is closer to React than it is to AngularJS."</p>
           </blockquote>
           <p style="text-align: left; padding-left: 4em; margin-top: 2em;">&mdash; Oliver Zeigermann</p>
           <aside class="notes">
@@ -711,11 +711,11 @@ svg.addEventListener('mousemove', onMouseMove);</span>
         </section>
 
         <section class="react-bg">
-          <h1><strong><a href="http://djcordhose.github.com/angular2-react/code/react/0-start/public/">DEMO &rarr;</a></strong></h1>
+          <h1><strong><a href="http://djcordhose.github.com/angular2-react/code/react/0-start/public/">Demo</a></strong></h1>
         </section>
 
         <section class="react-bg">
-            <h2 style="font-size: 2.5em;">How does React render?</h2>
+            <h2 style="font-size: 2em;">How does React render?</h2>
           <p>React's change detection happens in <strong>Virtual DOM</strong> level</p>
             <ul>
               <li>Every mouse move re-renders full application (all boxes)</li>
@@ -812,7 +812,7 @@ svg.addEventListener('mousemove', onMouseMove);</span>
         </section>
 
         <section>
-          <h1><a href="http://djcordhose.github.io/angular2-react/code/react/1-advanced-change-detection/public/" target="_blank">Demo &rarr;</a></h1>
+          <h1><a href="http://djcordhose.github.io/angular2-react/code/react/1-advanced-change-detection/public/" target="_blank">Demo</a></h1>
         </section>
 
         <section class="angular-bg bg-start">
@@ -979,7 +979,7 @@ export class BoxComponent {
           </aside>
         </section>
         <section class="angular-bg">
-          <h1><strong><a href="#">DEMO &rarr;</a></strong></h1>
+          <h1><strong><a href="#">Demo</a></strong></h1>
         </section>
 
         <section class="angular-bg">
@@ -987,7 +987,7 @@ export class BoxComponent {
 
             <ul>
               <li><strong>About as fast as React</strong>'s unoptimized implementation</li>
-              <li>Jankee, Angular checks every component on every event</li>
+              <li><strong>Can be improved</strong> - Angular checks every binding every single time</li>
             </ul>
         </section>
 
@@ -1057,13 +1057,13 @@ export class BoxComponent {
         </section>
 
         <section class="angular-bg">
-          <h1><a href="#" target="_blank">Demo &rarr;</a></h1>
+          <h1><a href="#" target="_blank">Demo</a></h1>
         </section>
 
         <section class="angular-bg">
           <h2 style="font-size: 2.5em;">Result</h2>
           <ul>
-            <li><strong>OnPush</strong> alone doesn't save a lot in this scenario</li>
+            <li><strong>OnPush</strong> saves 8 bindings per box</li>
             <li><strong>ngFor</strong> check every row, instead of just collection length (like React)</li>
             <li>Fair setup: <strong>"simpleNgFor"</strong> that only checks length (big effort as not provided by core)</li>
           </ul>
@@ -1075,14 +1075,14 @@ export class BoxComponent {
           </aside>
         </section>
 
-            <section>
+            <section class="angular-bg">
                 <h2 style="font-size: 2.5em;">Observations</h2>
-                    <ul>
-                        <li>comparable performance without optimizations</li>
-                        <li>comparable performance with basic optimizations (shouldComponentUpdate, OnPush)</li>
-                        <li>more optimization possible, but more effort and might make code hard to maintain
-                    </ul>
-                <p>Keep in mind: the challenge has been craftet to be as hard as possible for every frameworks</p>
+                <ul>
+                  <li><strong>Unoptimized</strong>: comparable performance</li>
+                  <li>Both can be optimized in similar ways to some degree</li>
+                  <li>More optimization possible (at least in in Angular),<br> requires more effort</li>
+                </ul>
+                <p><strong>Keep in mind</strong>: This was not about who's faster</p>
             </section>
 
                 <section data-background="#fae042" class="section-slide">
@@ -1352,7 +1352,7 @@ ReactDOM.render(&lt;App boxes={boxes}/&gt;, mountNode);</span>
             </section>
 
         <section class="react-bg">
-          <h1><a href="https://github.com/DJCordhose/angular2-react/tree/gh-pages/code/react/2-universal-rendering" target="_blank">Demo &rarr;</a></h1>
+          <h1><a href="https://github.com/DJCordhose/angular2-react/tree/gh-pages/code/react/2-universal-rendering" target="_blank">Demo</a></h1>
         </section>
 
         <section class="angular-bg bg-start delay-content">
@@ -1535,7 +1535,7 @@ export class AppModule {
 
   constructor(private state: StateService) {}
 
-  universalDoDehydrate = (universalCache) => {
+  universalDoDehydrate(universalCache) => {
     this.state.set('boxes', createBoxes(5000));
 
     const values = this.state.valuesAsJson()
@@ -1556,7 +1556,7 @@ export class AppModule {
 
   <span style="color: #000;">constructor(private state: StateService) {}</span>
 
-  universalDoDehydrate = (universalCache) => {
+  universalDoDehydrate(universalCache) => {
     this.state.set('boxes', createBoxes(5000));
 
     const values = this.state.valuesAsJson()
@@ -1577,7 +1577,7 @@ export class AppModule {
 
   constructor(private state: StateService) {}
 
-  <span style="color: #000;">universalDoDehydrate = (universalCache) => {</span>
+  <span style="color: #000;">universalDoDehydrate(universalCache) => {</span>
     this.state.set('boxes', createBoxes(5000));
 
     const values = this.state.valuesAsJson()
@@ -1598,7 +1598,7 @@ export class AppModule {
 
   constructor(private state: StateService) {}
 
-  universalDoDehydrate = (universalCache) => {
+  universalDoDehydrate(universalCache) => {
     <span style="color: #000;">this.state.set('boxes', createBoxes(5000));</span>
 
     const values = this.state.valuesAsJson()
@@ -1620,7 +1620,7 @@ export class AppModule {
 
   constructor(private state: StateService) {}
 
-  universalDoDehydrate = (universalCache) => {
+  universalDoDehydrate(universalCache) => {
     this.state.set('boxes', createBoxes(5000));
 
     <span style="color: #000;">const values = this.state.valuesAsJson()
@@ -1636,11 +1636,12 @@ export class AppModule {
 
 @NgModule({
   ...
+  imports: [...],
   providers: [StateService]
 })
 export class AppModule {
 
-  constructor(private state: StateService) {
+  constructor(state: StateService) {
     const values = window[UNIVERSAL_CACHE]['StateService'];
     this.state.valuesFromJson(values);   
   }
@@ -1654,11 +1655,12 @@ export class AppModule {
 
 @NgModule({
   ...
+  imports: [...],
   <span style="color: #000;">providers: [StateService]</span>
 })
 export class AppModule {
 
-  <span style="color: #000;">constructor(private state: StateService) {</span>
+  <span style="color: #000;">constructor(state: StateService) {</span>
     const values = window[UNIVERSAL_CACHE]['StateService'];
     this.state.valuesFromJson(values);   
   <span style="color: #000;">}</span>
@@ -1672,13 +1674,33 @@ export class AppModule {
 
 @NgModule({
   ...
+  imports: [...],
   providers: [StateService]
 })
 export class AppModule {
 
-  constructor(private state: StateService) {
+  constructor(state: StateService) {
     <span style="color: #000;">const values = window[UNIVERSAL_CACHE]['StateService'];
     this.state.valuesFromJson(values);</span>
+  }
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.15em;">// browser.module.ts
+
+@NgModule({
+  ...
+  <span style="color: #000;">imports: [..., UniversalModule]</span>,
+  providers: [StateService]
+})
+export class AppModule {
+
+  constructor(state: StateService, <span style="color: #000;">@Inject(UNIVERSAL_CACHE) cache</span>) {
+    <span style="color: #000;">const values = cache['StateService'];</span>
+    this.state.valuesFromJson(values);
   }
 }</x-code></pre>
           </div>
@@ -1717,14 +1739,14 @@ export class AppComponent {
         </section>
 
         <section class="angular-bg">
-          <h1><a href="#">Demo &rarr;</a></h1>
+          <h1><a href="#">Demo</a></h1>
         </section>
 
                 <section class="angular-bg">
           <h2 style="font-size: 2.5em;">Observations</h2>
 
                     <ul>
-                        <li>Angular
+                      <li><strong>Angular</strong>
                           <ul>
                             <li>Feels more verbose due to NgModules</li>
                             <li>State transfer requires more effort, <strong>but uses DI</strong></li>
@@ -1738,12 +1760,12 @@ export class AppComponent {
         <section class="react-bg">
             <h2 style="font-size: 2.5em;">Observations</h2>
             <ul>
-                <li>React
+                <li><strong>React</strong>
                     <ul>
                         <li>Pretty straight forward setup</li>
                         <li>Easy to prerender app and send to the client</li>
                         <li>Server-side WebAPI equivalents using
-                            <a href="https://www.npmjs.com/package/isomorphic-fetch" target="_blank">isomorphic-fetch</a> or Flux frameworks</li>
+                            <a style="color: #f9d605;"href="https://www.npmjs.com/package/isomorphic-fetch" target="_blank">isomorphic-fetch</a> or Flux frameworks</li>
                     </ul>
                 </li>
             </ul>
@@ -1922,7 +1944,7 @@ export class AppComponent {
         </section>
 
         <section class="react-bg">
-          <h1><a href="https://djcordhose.github.io/angular2-react/code/react/3-third-party-integration/public">Demo &rarr;</a></h1>
+          <h1><a href="https://djcordhose.github.io/angular2-react/code/react/3-third-party-integration/public">Demo</a></h1>
         </section>
 
         <section class="angular-bg bg-start delay-content">
@@ -1976,6 +1998,29 @@ export class ChartComponent {
         <section class="angular-bg">
           <div>
             <pre><x-code style="font-size: 1.2em;">@Component({
+  template: `&lt;svg <span style="color: #000;">#chopchop</span>&gt;&lt;/svg&gt;`
+})
+export class ChartComponent {
+
+  
+  <span style="color: #000;">@ViewChild('chopchop') chart: ElementRef;</span>
+
+
+
+
+
+
+
+
+
+
+}</x-code></pre>
+          </div>
+        </section>
+
+        <section class="angular-bg">
+          <div>
+            <pre><x-code style="font-size: 1.2em;">@Component({
   template: `&lt;svg #chart&gt;&lt;/svg&gt;`
 })
 export class ChartComponent <span style="color: #000;">implements AfterViewInit</span> {
@@ -1997,7 +2042,6 @@ export class ChartComponent <span style="color: #000;">implements AfterViewInit<
         </section>
 
         <section class="angular-bg">
-            <h1 style="color: red">TODO: Huch, wo ist der Check in ngDoCheck hin?</h1>
           <div>
             <pre><x-code style="font-size: 1.2em;">@Component({
   template: `&lt;svg #chart&gt;&lt;/svg&gt;`
@@ -2053,14 +2097,15 @@ export class ChartComponent implements AfterViewInit, <span style="color: #000;"
         <!-- </section> -->
 
         <section class="angular-bg">
-          <h1><a href="#">Demo &rarr;</a></h1>
+          <h1><a href="#">Demo</a></h1>
         </section>
 
         <section>
           <h2 style="font-size: 2.5em;">Observations</h2>
             <ul>
-              <li>3rd party integration no big deal in both React and Angular 2</li>
-              <li>much improved over Ng1</li>
+              <li>3rd-party integration <strong>very similar</strong> in both React and Angular 2</li>
+              <li>React allows for easy/immediate element reference access</li>
+              <li>Angular comes with ViewChild/ViewChildren (Observable-based)</li>
             </ul>
           <aside class="notes">
           </aside>
@@ -2074,9 +2119,9 @@ export class ChartComponent implements AfterViewInit, <span style="color: #000;"
         <section>
           <h2 style="font-size: 2.5em;">Conclusion</h2>
           <ul>
-            <li>React and Angular 2 provide similar solution to our challenges</li>
+            <li>React and Angular 2 provide similar solutions to our challenges</li>
             <li>Learning to do one thing in one of them can teach you about the other</li>
-              <li>Both can be tuned to be reasonably fast in most realistic scenarios</li>
+            <li>Both can be tuned to be reasonably fast in most realistic scenarios</li>
           </ul>
             <p class="fragment">Bottom Line: Angular 2 gives you the full stack, React gives you choices</p>
         </section>
