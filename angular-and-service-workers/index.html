@@ -1,0 +1,706 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/aio.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/dracula.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+    <!-- <a style="font-family: 'Roboto', sans-serif;text-decoration: none; font-size: 1.2em;position: absolute; top: 1em; left: 7.5em; z-index: 2; color: #eee;" href="http://twitter.com/PascalPrecht"> -->
+    <!--   <span>@PascalPrecht</span> -->
+    <!-- </a> -->
+
+    <!-- <a style="font-family: 'Roboto', sans-serif; color: #eee;text-decoration: none; font-size: 1.2em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://enterjs.de"> -->
+    <!--   <span>#AngularUp</span> -->
+    <!-- </a> -->
+		<div class="reveal">
+			<div class="slides">
+				<section data-state="start" class="deck-slide" data-background="img/angular.svg" data-transition="fade">
+          <h1>Angular <br> Service Workers</h1>
+          <div class="speaker">
+            <img src="img/pascal.jpg">
+            <div class="speaker-info">
+              <span>Pascal Precht</span>
+              <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <figure class="polaroid left fragment">
+            <img src="img/pascal.jpg" >
+            <figcaption>
+            @PascalPrecht<br>
+            <span><small><strong>GDE for the Angular Team</strong></small></span>
+            </figcaption>
+          </figure>
+
+          <figure class="polaroid horizontal fragment">
+            <img src="img/thoughtram.jpg">
+            <figcaption>
+            <small>Angular Master Class by @<strong>thoughtram</strong></small>
+            </figcaption>
+          </figure>
+        </section>
+
+        <section data-background="img/mighty-parrot-2.png">
+          <div style="position: relative;" class="fragment">
+          <span class="annotation">Shai Reznik</span>
+          <span class="annotation">Mighty Parrot</span>
+          <div class="fragment written-annotation"><img src="img/thats-me.svg"></div>
+          </div>
+        </section>
+
+        <section>
+          <img src="img/igors-tweet.png">
+        </section>
+
+        <section>
+          <img src="img/angular-io.png">
+        </section>
+
+        <section>
+          <img src="img/lighthouse-benchmark.png">
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2>Service Worker?</h2> 
+        </section>
+
+				<section data-transition="none">
+          <div class="box fragment" data-autoslide="1000">
+            <h2>Progressive Web Apps</h2>
+            <ul class="half">
+              <li data-autoslide="800" class="fragment">Progressive</li>
+              <li data-autoslide="800" class="fragment">Responsive</li>
+              <li data-autoslide="800" class="fragment">Connectivity Independent</li>
+              <li data-autoslide="800" class="fragment">App-like</li>
+              <li data-autoslide="800" class="fragment">Fresh</li>
+            </ul>
+            <ul class="half">
+              <li data-autoslide="800" class="fragment">Safe</li>
+              <li data-autoslide="800" class="fragment">Discoverable</li>
+              <li data-autoslide="800" class="fragment">Re-engageable</li>
+              <li data-autoslide="800" class="fragment">Installable</li>
+              <li data-autoslide="2500" class="fragment">Linkable</li>
+            </ul>
+          </div>
+        </section>
+
+				<section data-transition="none">
+          <div class="box">
+            <h2>Progressive Web Apps</h2>
+            <ul class="half">
+              <li>Progressive</li>
+              <li>Responsive</li>
+              <li><span>Connectivity Independent</span></li>
+              <li><span>App-like</span></li>
+              <li><span>Fresh</span></li>
+            </ul>
+            <ul class="half">
+              <li class="has-tag">Safe <span class="fragment">HTTPS required!</span></li>
+              <li>Discoverable</li>
+              <li><span>Re-engageable</span></li>
+              <li>Installable</li>
+              <li>Linkable</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Service Worker</h2>
+            <p>A script that <strong>runs in the background</strong>, separate from a web page, opening the door to features that <strong>don't need user interaction.</strong></p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Service Worker Facts</h2>
+            <ul>
+              <li><strong>JavaScript Worker</strong> - Can't access DOM</li>
+              <li><strong>Network Proxy</strong> - Controls how network requests are handled</li>
+              <li>Terminated when not in use</li>
+              <li><strong>Safe by default</strong> - HTTPS required</li>
+            </ul>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2>Use Cases</h2>
+            <ul>
+              <li class="fragment"><strong>Reliability</strong> - Provide static, dynamic and external resources from cache</li>
+              <li class="fragment"><strong>Performance</strong> - Only reach out to network if necessary</li>
+              <li class="fragment"><strong>Push Notifications</strong> - Sending push messages to users for re-engagement</li>
+              <li class="fragment">...</li>
+            </ul>
+          </div>
+        </section>
+
+        <section data-background="img/is-sw-ready.png">
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2>Service Worker APIs</h2> 
+        </section>
+
+        <section>
+          <div class="box fragment">
+            <img src="img/sw-lifecycle-1.svg" style="max-width: 90%; margin: 0 auto;display: block;">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <img src="img/sw-lifecycle-2.svg" style="max-width: 90%; margin: 0 auto;display: block;">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <img src="img/sw-lifecycle-3.svg" style="max-width: 90%; margin: 0 auto;display: block;">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <img src="img/sw-lifecycle-4.svg" style="max-width: 90%; margin: 0 auto;display: block;">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <img src="img/sw-lifecycle-5.svg" style="max-width: 90%; margin: 0 auto;display: block;">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <img src="img/sw-lifecycle-6.svg" style="max-width: 90%; margin: 0 auto;display: block;">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <img src="img/sw-lifecycle.svg" style="max-width: 90%; margin: 0 auto;display: block;">
+          </div>
+        </section>
+
+
+        <section>
+          <div class="box">
+            <h2>Worker registration</h2>
+            <pre class="fragment"><code data-trim data-noescape class="typescript">
+            if ('serviceWorker' in navigator) {
+              <fragment class="fragment">navigator.serviceWorker.register('/sw.js').then(() => {
+                console.log('Installation successful!');
+              }, (err) => {
+                console.log('Service Worker registration failed: ', err);
+              });</fragment>
+            }
+            </code></pre>
+            <p class="ribbon fragment"><i class="material-icons">info_outline</i> <code>register()</code> can be called every time a page loads without concern.</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Worker installation</h2>
+            <pre class="fragment"><code data-trim data-noescape class="typescript">
+            self.addEventListener('install', event => {
+              <fragment class="fragment">event.waitUntil(
+                <fragment class="fragment">caches.open('aio-static-cache-v1') // different per version</fragment>
+                      <fragment class="fragment">.then(cache => {
+                        <fragment class="fragment">return cache.addAll([
+                          '/',
+                          '/styles/main.css',
+                          '/scripts/main.js'
+                        ]);</fragment>
+                      });</fragment>
+              );</fragment>
+            });
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2><code>install</code> event</h2>
+
+            <ul>
+              <li class="fragment">Get things ready before other events are handled</li>
+              <li class="fragment"><code>event.waitUntil()</code> used to defer installation</li>
+              <li class="fragment"><u>Mustn't disrupt</u> previous Service Worker versions</li>
+            </ul>
+            <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> <strong>Ideal for</strong>: Static resources (CSS, JS, images, ...)</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Responding from cache</h2>
+
+            <pre class="fragment"><code data-trim data-noescape class="typescript">
+            self.addEventListener('fetch', event => {
+              <fragment class="fragment">event.respondWith(
+                <fragment class="fragment">caches.match(event.request)</fragment>
+                      <fragment class="fragment">.then(response => {
+                        return response ? response : fetch(event.request);
+                      })</fragment>
+              );</fragment>
+            });
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="typescript smaller">
+            self.addEventListener('fetch', event => {
+              event.respondWith(caches.match(event.request).then(response => {
+                if (response) return response;
+                <fragment class="fragment">const request = event.request.clone();
+                return fetch(request).then(response => {
+                  <fragment class="fragment">if (!response || response.status !== 200) { 
+                    return response;
+                  }
+                  <fragment class="fragment">const responseToCache = response.clone();
+                  caches.open('aio-dynamic-cache').then(cache => {
+                    cache.put(event.request, responseToCache);
+                  });
+                  return response;</fragment></fragment>
+                });</fragment>
+              }));
+            });
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2><code>fetch</code> event</h2>
+
+            <ul>
+              <li class="fragment">Executed on every request made by browser</li>
+              <li class="fragment">Good place to cleanup cache</li>
+              <li class="fragment"><code>Request</code> and <code>Response</code> streams <u>can only be consumed once</u> - needs clone</li>
+            </ul>
+            <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> <strong>Ideal for</strong>: Frequently updating resources</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Updating Workers</h2>
+
+            <pre class="fragment"><code data-trim data-noescape class="typescript">
+            self.addEventListener('activate', event => {
+              const cacheWhitelist = ['aio-static-cache-v2'];
+
+              event.waitUntil(
+                <fragment class="fragment">caches.keys().then(cacheNames => Promise.all(
+                  cacheNames.map(cacheName => {
+                    <fragment class="fragment">if (cacheWhitelist.indexOf(cacheName === -1)) {
+                      return caches.delete(cacheName);
+                    }</fragment>
+                  })
+                ));</fragment>
+              );
+            });
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2><code>activate</code> event</h2>
+
+            <ul>
+              <li class="fragment">Called when previous Service Worker deactivated</li>
+              <li class="fragment">Long activation <u>could potentially block page loads</u></li>
+            </ul>
+            <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> <strong>Ideal for</strong>: Cleanup and migration</p>
+          </div>
+        </section>
+
+        <section data-background="img/congrats.gif">
+          <h3 style="color: #fff; margin-top: 8em; text-shadow: 3px 0px 3px #333;">Congrats, you know Service Workers.</h3>
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2>Angular Service Worker</h2> 
+        </section>
+
+        <section data-transition="none">
+          <div class="box fragment">
+            <h2>Angular Service Worker</h2>
+            <ul>
+              <li>Basically a <strong>ready-to-use</strong> implementation</li>
+              <li>Consumes <strong>manifest</strong> for configuration</li>
+              <li>Plugin system for extensibility</li>
+            </ul>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2>Takes care of bulk work</h2>
+
+            <ul>
+              <li class="fragment">Installing/updating Service Workers</li>
+              <li class="fragment">Managing caches <small>(yea, we don't have to do that)</small></li>
+              <li class="fragment">Handles dynamic routes and static, dynamic and external resources</li>
+              <li class="fragment">...</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Installation</h2>
+            <p>Angular Service Worker implementation comes in an additional module</p>
+            <pre><code data-trim data-noescape class="bash">
+            $ npm install @angular/service-worker
+            </code></pre>
+            <p style="margin-top: 1.5em;" class="ribbon fragment"><i class="material-icons">info_outline</i> Angular CLI takes care of adding the worker to our app*<br>
+              <small>* When using <strong>Push APIs</strong> need to do a bit more work</small></p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Enabling SW Support</h2>
+            <pre class="fragment"><code data-trim data-noescape class="json">
+            // .angular-cli.json
+            {
+              ...
+              "apps": [
+                {
+                  ...
+                  <fragment class="fragment">"serviceWorker": "true"</fragment>
+                }
+              ]
+            }
+            </code></pre>
+            <pre class="fragment"><code data-trim data-noescape class="shell">
+            $ ng set apps.0.serviceWorker=true
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-background="img/magic.gif">
+        </section>
+
+        <section>
+          <div class="box">
+            <p style="margin-top: 0;">Angular CLI will now add a Service Worker registration script to our <strong>production</strong> build</p>
+            <pre><code data-trim data-noescape class="html">
+            &lt;!doctype html&gt;
+            &lt;html&gt;
+              ...
+              &lt;body&gt;
+                &lt;aio-shell&gt;&lt;/aio-shell&gt;
+                &lt;script src="polyfills.{HASH}.bundle.js"&gt;&lt;/script&gt;
+                <fragment class="fragment">&lt;script src="sw-register.{HASH}.bundle.js"&gt;&lt;/script&gt;</fragment>
+                &lt;script src="main.{HASH}.bundle.js"&gt;&lt;/script&gt;
+              &lt;/body&gt;
+            &lt;/html&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Behind the scenes</h2>
+
+            <ul>
+              <li>Adds script for Service Worker registration to <code>index.html</code></li>
+              <li>Copies Service Worker bundle to <code>dist/</code>
+              <li>Generates a <code>ngsw-manifest.json</code></li>
+            </ul>
+            <p class="ribbon fragment"><i class="material-icons">info_outline</i> Service Worker support <strong>only works in production builds</strong></p>
+          </div>
+        </section>
+
+        <section>
+          <h1>Demo</h1>
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2>ngsw-manifest</h2> 
+        </section>
+
+        <section>
+          <div class="box fragment">
+            <h2>ngsw-manifest</h2>
+            <p>Manifest that <strong>configures plugins</strong> for the Angular Service Worker. This includes:</p>
+            <ul>
+              <li>Static and external content resources</li>
+              <li>Dynamic resources</li>
+              <li>Routing redirection</li>
+              <li>...</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Static Content Cache</h2>
+            <pre class="fragment"><code data-trim data-noescape class="json">
+            // ngsw-manifest.json
+            {
+              "static": {
+                "index.html": "9cd2a887...",
+                "main.bundle.js": "1cab6cf...",
+                "main.css": "c0ee6a6..."
+              },
+              ...
+            }
+            </code></pre>
+            <p class="ribbon fragment"><i class="material-icons">info_outline</i> Hashes are used by Service Worker to identify new versions of the requested resources</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>External Content Cache</h2>
+            <pre class="fragment"><code data-trim data-noescape class="javascript">
+            // ngsw-manifest.json
+            {
+              ...
+              "external": {
+                "urls": [
+                  { "url": "https://fonts.googleapis.com/css?family=..." },
+                  { "url": "https://fonts.gstatic.com/s/materialicons/..." }
+                ]
+              }
+            }
+            </code></pre>
+            <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> Useful for fonts and other files we don't serve ourselves</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Route Redirection</h2>
+            <p></p>
+            <ul>
+              <li>Service Worker only serves content from cache listed in manifest</li>
+              <li>Requests to e.g. <code>/some/sub-route</code> will still fail</li>
+            </ul>
+            <p class="ribbon fragment"><i class="material-icons">info_outline</i> <strong>Route redirection</strong> takes care of redirecting configured routes<br> to a specific index route</p>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="javascript">
+            // ngsw-manifest.json
+            {
+              ...
+              "routing": {
+                <fragment class="fragment">"index": "/index.html",</fragment>
+                <fragment class="fragment">"routes": {
+                  "/": {
+                    "prefix": "false" // match exactly
+                  }
+                }</fragment>
+              }
+            }
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="javascript">
+            // ngsw-manifest.json
+            {
+              ...
+              "routing": {
+                "index": "/index.html",
+                "routes": {
+                  "/blog": {
+                    "prefix": "true" // match '/blog*'
+                  }
+                }
+              }
+            }
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="javascript">
+            // ngsw-manifest.json
+            {
+              ...
+              "routing": {
+                "index": "/index.html",
+                "routes": {
+                  "/(?!e?plnkr)[^/.]*$": {
+                    "match": "regex"
+                  }
+                }
+              }
+            }
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Demo</h1>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Dynamic Content Cache</h2>
+            <p>By default, files fetched at runtime aren't cached. Angular helps with two optimization options:</p>
+            <ul>
+              <li class="fragment"><strong>performance</strong> - Always serve from cache first, then try to cache updates</li>
+              <li class="fragment"><strong>freshness</strong> - Always try to fetch first, fallback to cache</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <pre style="margin-top: 0;"><code data-trim data-noescape style="font-size: 0.8em;" class="javascript">
+            {
+              ...
+              <fragment class="fragment">"dynamic": {
+                "group": [
+                  <fragment class="fragment">{
+                    "name": "guides",
+                    <fragment class="fragment">"urls": {
+                      "/generated/docs/guide": { "match": "prefix" }
+                    },</fragment>
+                    <fragment class="fragment">"cache": {
+                      "optimizeFor": "performance", // or 'freshness'
+                      "maxAgeMs": "360000000",
+                      "maxEntries": 40,
+                      "strategy": "lru" // or 'fifo', 'lfo'
+                    }</fragment>
+                  }</fragment>
+                ]
+              }</fragment>
+            }
+            </code></pre>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>LRU - Least Recently Used</li>
+              <li>LFU - Least Frequently Used</li>
+              <li>FIFO - First in First out</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Demo</h1>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Doing more...</h2>
+            <ul>
+              <li><strong>Check for updates at runtime</strong> - Prompt users to restart page</li> 
+              <li><strong>Generate SW routes</strong> - Manifest updates routing config automatically</li>
+              <li><strong>Delay Service Worker registration</strong> - Don't compete for resources with critical path of page boot</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Other features</h2>
+            <ul>
+              <li><strong>Push Notifications</strong> - Re-engage with your users by sending notifications</li>
+              <li><strong>Background Sync</strong> - Defer actions until user has stable connectivity</li>
+            </ul>
+            <p class="ribbon fragment"><i class="material-icons">info_outline</i> Both require a dedicated <strong>server-side</strong> implementation</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Credits</h2>
+            Todo
+            <!-- <ul class="credits"> -->
+            <!--   <li> -->
+            <!--     <img src="img/jake.jpg"> -->
+            <!--     <h5>Jake Archibald</h5> -->
+            <!--   </li> -->
+            <!-- </ul> -->
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Resources</h2>
+
+            <ul>
+              <li>Talk - <a href="https://www.youtube.com/watch?v=ecu1vAO23ZM">Automatic PWAs using Angular</a></li>
+              <li>Talk - <a href="https://www.youtube.com/watch?v=C8KcW1Nj3Mw">PWA Experiences with Angular</a></li>
+              <li>Article - <a href="https://fluin.io/blog/angular-service-worker">State of Angular Service Worker</a></li>
+              <li>Cookbook - <a href="https://jakearchibald.com/2014/offline-cookbook/">The offline cookbook</a></li>
+            </ul>
+          </div>
+        </section>
+
+        <section data-state="end" class="thank-you-slide" data-background="img/angular.svg" data-autoslide="1000">
+          <div class="fragment">
+            <h1>Thank you.</h1>
+            <div class="speaker">
+              <img src="img/pascal.jpg">
+              <div class="speaker-info">
+                <span>Pascal Precht</span>
+                <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a>
+              </div>
+            </div>
+          </div>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        history: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
