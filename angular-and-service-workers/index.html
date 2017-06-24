@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Angular and Service Workers by @PascalPrecht</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
@@ -43,6 +43,16 @@
               <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a>
             </div>
           </div>
+
+          <aside class="notes">
+            <uL>
+              <li>Hello there! How's everyone doing?</li>
+              <li>Obviously talk is about SW</li>
+              <li>Spent the last weeks researching SW/PWA</li>
+              <li>A topic that isn't scary and can easily be used by anyone here</li>
+              <li>What are SW? how are they used in aio?</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -60,6 +70,15 @@
             <small>Angular Master Class by @<strong>thoughtram</strong></small>
             </figcaption>
           </figure>
+          <aside class="notes">
+            <uL>
+              <li>I'm Pascal, GDE for Angular</li>
+              <li>Did some things here and there with Angular you might heard of</li>
+              <li>I teach Angular at thoughtram, Training + Author</li>
+              <li>HMU if you're interested</li>
+              <li>... well.. and sometimes..</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-background="img/mighty-parrot-2.png">
@@ -68,10 +87,24 @@
           <span class="annotation">Mighty Parrot</span>
           <div class="fragment written-annotation"><img src="img/thats-me.svg"></div>
           </div>
+          <aside class="notes">
+            <uL>
+              <li>Who has seen Shai's performance here?</li>
+              <li>Who liked the mighty parrot?</li>
+              <li>What if I told you... he's here today</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <img src="img/igors-tweet.png">
+          <aside class="notes">
+            <uL>
+              <li>About two weeks ago, new AIO has been launched</li>
+              <li>First Angular project with SW support</li>
+              <li>Now is the right time to look into this</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -80,6 +113,13 @@
 
         <section>
           <img src="img/lighthouse-benchmark.png">
+          <aside class="notes">
+            <uL>
+              <li>Pretty good lighthouse performance, still room for improvements though</li>
+              <li>100 PWA points stand out</li>
+              <li>reason: PWA Manifest, Https, responsiveness.. and SW!</li>
+            </ul>
+          </aside>
         </section>
 
 				<section class="section-slide" data-state="section">
@@ -124,6 +164,12 @@
               <li>Linkable</li>
             </ul>
           </div>
+
+          <aside class="notes">
+            <ul>
+              <li>With SW, browser vendors gave up solving offline and gave devs moving parts</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -143,11 +189,19 @@
               <li><strong>Safe by default</strong> - HTTPS required</li>
             </ul>
           </div>
+
+          <aside class="notes">
+            <ul>
+              <li>SW can communicate via <code>postMessage</code> APIs</li>
+              <li>Terminated when not in use, restarted when needed (No Global state!)</li>
+              <li>Heavily relying on Promise APIs</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-transition="none">
           <div class="box">
-            <h2>Use Cases</h2>
+            <h2>Features / Use Cases</h2>
             <ul>
               <li class="fragment"><strong>Reliability</strong> - Provide static, dynamic and external resources from cache</li>
               <li class="fragment"><strong>Performance</strong> - Only reach out to network if necessary</li>
@@ -158,6 +212,13 @@
         </section>
 
         <section data-background="img/is-sw-ready.png">
+          <aside class="notes">
+            <ul>
+              <li>SW can communicate via <code>postMessage</code> APIs</li>
+              <li>Terminated when not in use, restarted when needed (No Global state!)</li>
+              <li>Heavily relying on Promise APIs</li>
+            </ul>
+          </aside>
         </section>
 
 				<section class="section-slide" data-state="section">
@@ -174,12 +235,25 @@
           <div class="box">
             <img src="img/sw-lifecycle-2.svg" style="max-width: 90%; margin: 0 auto;display: block;">
           </div>
+          <aside class="notes">
+            <ul>
+              <li>Installation -> needs registration</li>
+              <li>usually we want to cache static assets here</li>
+              <li>Once cached, installation done</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-transition="none">
           <div class="box">
             <img src="img/sw-lifecycle-3.svg" style="max-width: 90%; margin: 0 auto;display: block;">
           </div>
+          <aside class="notes">
+            <ul>
+              <li>Once installed, activation process kicks in</li>
+              <li>Great to manage old caches</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-transition="none">
@@ -223,6 +297,12 @@
           </div>
         </section>
 
+        <!-- <section> -->
+        <!--   <div class="box"> -->
+        <!--     <img src="img/install.png"> -->
+        <!--   </div> -->
+        <!-- </section> -->
+
         <section>
           <div class="box">
             <h2>Worker installation</h2>
@@ -241,6 +321,15 @@
             });
             </code></pre>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>When installing: old Worker is still active</li>
+              <li><code>waitUntil</code> - causes browser to not terminate but wait</li>
+              <li>Can think of cache as array of <code>Request</code>
+              <li>We install things without our page would be non-functional</li>
+              <li>HINT: cache name should prolly be different per version</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -249,7 +338,7 @@
 
             <ul>
               <li class="fragment">Get things ready before other events are handled</li>
-              <li class="fragment"><code>event.waitUntil()</code> used to defer installation</li>
+              <li class="fragment"><code>event.waitUntil()</code> used to defer (possible) termination</li>
               <li class="fragment"><u>Mustn't disrupt</u> previous Service Worker versions</li>
             </ul>
             <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> <strong>Ideal for</strong>: Static resources (CSS, JS, images, ...)</p>
@@ -271,6 +360,13 @@
             });
             </code></pre>
           </div>
+          <aside class="notes">
+            <ul>
+              <li><code>fetch</code> is called whenever browser tries to request</li>
+              <li><code>respondWith</code> - Promise that resolve with <code>Response</code></li>
+              <li>Can think of cache as array of <code>Request</code></li>
+            </ul>
+          </aside>
         </section>
 
         <section data-transition="none">
@@ -294,6 +390,13 @@
             });
             </code></pre>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>What if we want to cache new network requests?</li>
+              <li></li>
+              <li></li>
+            </ul>
+          </aside>
         </section>
 
         <section data-transition="none">
@@ -302,11 +405,16 @@
 
             <ul>
               <li class="fragment">Executed on every request made by browser</li>
-              <li class="fragment">Good place to cleanup cache</li>
+              <li class="fragment">Good place to cleanup cache (e.g. Flickr images)</li>
               <li class="fragment"><code>Request</code> and <code>Response</code> streams <u>can only be consumed once</u> - needs clone</li>
             </ul>
             <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> <strong>Ideal for</strong>: Frequently updating resources</p>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>What if we need to update our SW?</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -341,6 +449,12 @@
             </ul>
             <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> <strong>Ideal for</strong>: Cleanup and migration</p>
           </div>
+          <aside class="notes">
+            <ul>
+              <li>Other events like <code>fetch</code> are put into a queue</li>
+              <li>Only do things you couldn't do while old SW was active</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-background="img/congrats.gif">
@@ -349,6 +463,11 @@
 
 				<section class="section-slide" data-state="section">
           <h2>Angular Service Worker</h2> 
+          <aside class="notes">
+            <ul>
+              <li>Everything shown here can totally be done without NG APIs</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-transition="none">
@@ -599,8 +718,8 @@
                     <fragment class="fragment">"cache": {
                       "optimizeFor": "performance", // or 'freshness'
                       "maxAgeMs": "360000000",
-                      "maxEntries": 40,
-                      "strategy": "lru" // or 'fifo', 'lfo'
+                      "maxEntries": 1,
+                      "strategy": "lru" // or 'fifo', 'lfu'
                     }</fragment>
                   }</fragment>
                 ]
@@ -637,22 +756,34 @@
             <h2>Other features</h2>
             <ul>
               <li><strong>Push Notifications</strong> - Re-engage with your users by sending notifications</li>
-              <li><strong>Background Sync</strong> - Defer actions until user has stable connectivity</li>
+              <li><strong>Background Sync</strong> - Defer actions until user has stable connectivity (no special support in ngsw)</li>
+              <li>...</li>
             </ul>
-            <p class="ribbon fragment"><i class="material-icons">info_outline</i> Both require a dedicated <strong>server-side</strong> implementation</p>
           </div>
         </section>
 
         <section>
           <div class="box">
             <h2>Credits</h2>
-            Todo
-            <!-- <ul class="credits"> -->
-            <!--   <li> -->
-            <!--     <img src="img/jake.jpg"> -->
-            <!--     <h5>Jake Archibald</h5> -->
-            <!--   </li> -->
-            <!-- </ul> -->
+            <ul class="credits">
+              <li>
+                <img src="img/jake.jpg">
+                <h5>Jake Archibald</h5>
+              </li>
+              <li>
+                <img src="img/alex.png">
+                <h5>Alex Rickabaugh</h5>
+              </li>
+              <li>
+                <img src="img/maxim.jpg">
+                <h5>Maxim Salnikov</h5>
+              </li>
+              <li>
+                <img src="img/ari.jpg">
+                <h5>Ari Lerner</h5>
+              </li>
+            </ul>
+            <p class="fragment">And... Everyone who worked on the latest <strong>angular.io</strong> release!</p>
           </div>
         </section>
 
