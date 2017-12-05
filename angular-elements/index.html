@@ -1,0 +1,725 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Angular Elements by @PascalPrecht</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/aio.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/dracula.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+     <a style="font-family: 'Roboto', sans-serif;text-decoration: none; font-size: 1.2em;position: absolute; bottom: 1em; left: 1.5em; z-index: 2; color: #AAA;" href="http://twitter.com/PascalPrecht">
+    <span>@PascalPrecht</span>
+    </a>
+
+    <!-- <a style="font-family: 'Roboto', sans-serif; color: #eee;text-decoration: none; font-size: 1.2em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://enterjs.de"> -->
+    <!--   <span>#AngularUp</span> -->
+    <!-- </a> -->
+		<div class="reveal">
+			<div class="slides">
+				<section data-state="start" class="deck-slide" data-background="img/angular.svg" data-transition="fade">
+          <h1>Angular Elements</h1>
+          <div class="speaker">
+            <img src="img/pascal.jpg">
+            <div class="speaker-info">
+              <span>Pascal Precht</span>
+              <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <uL>
+              <li>Hello there! How's everyone doing?</li>
+              <li>Thrilled to open this conference and set the tone!</li>
+              <li>Obviously talk is about future/brand new stuff</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <figure class="polaroid left fragment">
+            <img src="img/pascal.jpg" >
+            <figcaption>
+            <a href="https://twitter.com/PascalPrecht">@PascalPrecht</a><br>
+            <span><small><strong>GDE for the Angular Team</strong></small></span>
+            </figcaption>
+          </figure>
+          <figure class="polaroid horizontal fragment">
+            <img src="img/thoughtram.jpg">
+            <figcaption>
+            <small>Software training with passion <a href="https://twitter.com/thoughtram">@<strong>thoughtram</strong></a></small>
+            </figcaption>
+          </figure>
+          <figure class="polaroid bottom fragment">
+            <img src="img/machinelabs-team.jpg">
+            <figcaption>
+            <small>Machine Learning for everyone<br><a href="https://twitter.com/machinelabs_ai">@<strong>MachineLabs_AI</strong></a></small>
+            </figcaption>
+          </figure>
+
+          <aside class="notes">
+            <uL>
+              <li>I'm Pascal, GDE for Angular</li>
+              <li>Did some things here and there with Angular you might heard of</li>
+              <li>Maybe you've read one or the other article I wrote</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <strong>pascalprecht.github.io/slides/angular-elements</strong>
+        </section>
+
+        <section data-autoslide="7000">
+          <img src="img/angular-labs.svg" style="max-width: 500px">
+
+          <aside class="notes">
+            <uL>
+              <li>Quick heads-up: who knows this logo?</li>
+              <li>Angular Labs: experiments, so things might change</li>
+              <li>Ergo: super exciting, but not stable</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-autoslide="4000">
+          <img src="img/angular-labs.svg" style="max-width: 600px; transform: rotateZ(14deg)">
+        </section>
+
+        <section data-autoslide="4000">
+          <div style="position: relative;">
+            <img src="img/angular-labs.svg" style="max-width: 900px; transform: rotateZ(-30deg); margin-top: -2em;">
+            <img class="fragment" src="img/not-at-home.svg" style="position: absolute; max-width: 500px; left: 15em;">
+          </div>
+        </section>
+
+        <section>
+          <div style="position: relative;">
+            <img src="img/angular-labs.svg" style="max-width: 900px; transform: rotateZ(-30deg); margin-top: -2em;">
+            <img src="img/jk.svg" style="position: absolute; max-width: 450px; top: 2em; left: -5em;">
+          </div>
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2>Background</h2> 
+          <aside class="notes">
+            <uL>
+              <li>Alight, lets start with a little bit of a background</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <div class="box fragment">
+            <blockquote style="margin-bottom: 2em;">
+              "Angular is ideal for building <strong>complete applications</strong>, and our tooling, documentation and infrastructure are primarily aimed at this case."
+            </blockquote>
+            <div class="rob-quote">
+              <img src="img/rob-wormald.jpg">
+              <small style="text-align: left;">Rob Wormald, <strong>Angular Team™</strong></small>
+            </div>
+          </div>
+          <aside class="notes">
+            <uL>
+              <li>Earlier this year, Rob gave a talk about Angular elements</li>
+              <li>Start with this statement -> emphasises status quo</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <div class="box">
+            <blockquote style="margin-bottom: 2em; color: #CCC;">
+              "Angular is ideal for building <strong style="color: #000;">complete applications</strong>, and our tooling, documentation and infrastructure are primarily aimed at this case."
+            </blockquote>
+            <div class="rob-quote">
+              <img src="img/rob-wormald.jpg">
+              <small style="text-align: left;">Rob Wormald, <strong>Angular Team™</strong></small>
+            </div>
+          </div>
+          <aside class="notes">
+            <uL>
+              <li>I'd like to point out this part here:</li>
+              <li>complete applications</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <div class="box">
+            <img data-autoslide="1000"class="fragment" src="img/ng-platform-1.svg">
+          </div>
+          <aside class="notes">
+            <uL>
+              <li>This is very true considering what Angular offers out-of-the-box</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-transition="none" data-autoslide="3000">
+          <div class="box">
+            <img src="img/ng-platform-2.svg">
+          </div>
+        </section>
+
+        <section data-transition="none" data-autoslide="3000">
+          <div class="box">
+            <img src="img/ng-platform-3.svg">
+          </div>
+        </section>
+
+        <section data-transition="none" data-autoslide="3000">
+          <div class="box">
+            <img src="img/ng-platform-4.svg">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <img src="img/ng-platform.svg">
+          </div>
+        </section>
+
+        <section>
+          <div class="box fragment">
+            <blockquote style="margin-bottom: 2.5em; max-width: 80%;">
+              "...but it's quite <strong>challenging</strong> to use in scenarios that don't fit that specific <i>Single Page Application</i> model."
+            </blockquote>
+            <div class="rob-quote">
+              <img src="img/rob-wormald.jpg">
+              <small style="text-align: left;">Rob Wormald, <strong>Angular Team™</strong></small>
+            </div>
+          </div>
+          <aside class="notes">
+            <uL>
+              <li>However, he also pointed out what's not going to well...</li>
+              <li>Using Angular outside Angular is hard</li>
+              <li>Why using Angular outside Angular you ask?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Various use cases</h2>
+
+            <ul>
+              <li class="fragment"><strong>Reusability</strong> - Reuse components across teams and projects</li>
+              <li class="fragment"><strong>CMS Pages</strong> - Embed standalone apps in CMS powered websites</li>
+              <li class="fragment"><strong>Widgets</strong> - Use Angular components in other environments</li>
+              <li class="fragment">...</li>
+            </ul>
+          </div>
+          <aside class="notes">
+            <uL>
+              <li>All these things are possible but rather hard to do</li>
+              <li>Considering all these things we might wonder...</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="img/what-if.gif">
+          <h3 class="fragment" style="color: #fff; font-size: 2.5em; text-align:right; margin-top: 1em; margin-right: -1em; text-shadow: 5px 0 0 #000;">What if...</h3>
+          <aside class="notes">
+            <uL>
+              <li><strong>What if</strong> there was a component model for the web</li>
+              <li>Oh wait...!</li>
+            </ul>
+          </aside>
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <img style="margin-top: 2em;" src="img/logo-wc.png">
+          <h2 style="margin-top: -0.5em;">Web Components</h2> 
+        </section>
+
+				<section data-transition="none">
+          <div class="box fragment">
+            <h2>Web Components</h2>
+            <ul>
+              <li><strong>Templates</strong> - Templates in HTML</li>
+              <li><strong>HTML Imports</strong> - Imports in HTML</li>
+              <li><strong>Shadow DOM</strong> - DOM and Style Encapsuation</li>
+              <li><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
+            </ul>
+          </div>
+        </section>
+
+				<section data-transition="none">
+          <div class="box">
+            <h2>Web Components</h2>
+            <ul style="color: #AAA">
+              <li style="color: #001;"><strong>Templates</strong> - Templates in HTML</li>
+              <li><strong>HTML Imports</strong> - Imports in HTML</li>
+              <li><strong>Shadow DOM</strong> - DOM and Style Encapsuation</li>
+              <li><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Templates</h2>
+            <pre><code data-trim data-noescape class="html" style="font-size: 1.2em;">
+              &lt;template&gt;
+                &lt;p&gt;This is a template!&lt;/p&gt;
+              &lt;/template&gt;
+            </code></pre>
+            <p style="margin-bottom: 0;">Declared using <code>&lt;template&gt;</code> and can be <strong>instantiated later</strong> at runtime.</p>
+          </div>
+        </section>
+
+				<section data-transition="none">
+          <div class="box">
+            <h2>Web Components</h2>
+            <ul style="color: #AAA">
+              <li style="color: #001;"><strong>Templates</strong> - Templates in HTML</li>
+              <li><strong>HTML Imports</strong> - Imports in HTML</li>
+              <li><strong>Shadow DOM</strong> - DOM and Style Encapsuation</li>
+              <li><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
+            </ul>
+          </div>
+        </section>
+
+				<section data-transition="none">
+          <div class="box">
+            <h2>Web Components</h2>
+            <ul style="color: #AAA">
+              <li><strong>Templates</strong> - Templates in HTML</li>
+              <li style="color: #001;"><strong>HTML Imports</strong> - Imports in HTML</li>
+              <li><strong>Shadow DOM</strong> - DOM and Style Encapsuation</li>
+              <li><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
+            </ul>
+          </div>
+        </section>
+
+				<section data-transition="none">
+          <div class="box">
+            <h2>Web Components</h2>
+            <ul style="color: #AAA">
+              <li><strong>Templates</strong> - Templates in HTML</li>
+              <li style="color: #001;"><s><strong>HTML Imports</strong> - Imports in HTML</s></li>
+              <li><strong>Shadow DOM</strong> - DOM and Style Encapsuation</li>
+              <li><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
+            </ul>
+          </div>
+        </section>
+
+				<section data-transition="none">
+          <div class="box">
+            <h2>Web Components</h2>
+            <ul style="color: #AAA">
+              <li><strong>Templates</strong> - Templates in HTML</li>
+              <li><s><strong>HTML Imports</strong> - Imports in HTML</s></li>
+              <li style="color: #001;"><strong>Shadow DOM</strong> - DOM and Style Encapsuation</li>
+              <li><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Shadow DOM</h2>
+            <pre><code data-trim data-noescape class="html" style="font-size: 1em;">
+            &lt;input type="date"&gt;
+              &lt;#shadow-root&gt;
+                &lt;div&gt;
+                  ...
+                &lt;/div&gt;
+              &lt;/shadow-root&gt;
+            </code></pre>
+            <p style="margin-bottom: 0;">Enables <strong>style and DOM encapsulation</strong> within a DOM element.</p>
+          </div>
+        </section>
+
+				<section data-transition="none">
+          <div class="box">
+            <h2>Web Components</h2>
+            <ul style="color: #AAA">
+              <li><strong>Templates</strong> - Templates in HTML</li>
+              <li><s><strong>HTML Imports</strong> - Imports in HTML</s></li>
+              <li style="color: #001;"><strong>Shadow DOM</strong> - DOM and Style Encapsuation</li>
+              <li><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
+            </ul>
+          </div>
+        </section>
+
+
+				<section data-transition="none">
+          <div class="box">
+            <h2>Web Components</h2>
+            <ul style="color: #AAA">
+              <li><strong>Templates</strong> - Templates in HTML</li>
+              <li><s><strong>HTML Imports</strong> - Imports in HTML</s></li>
+              <li><strong>Shadow DOM</strong> - DOM and Style Encapsuation</li>
+              <li style="color: #001;"><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
+            </ul>
+          </div>
+        </section>
+
+				<section data-transition="none">
+          <div class="box">
+            <h2>Web Components</h2>
+            <ul style="color: #AAA">
+              <li><strong>Templates</strong> - Templates in HTML</li>
+              <li><s><strong>HTML Imports</strong> - Imports in HTML</s></li>
+              <li><strong>Shadow DOM</strong> - DOM and Style Encapsuation</li>
+              <li style="color: #001;" class="blink"><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <strong><code>&lt;loading-spinner&gt;&lt;/loading-spinner&gt;</code></strong>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Custom Elements</h2>
+
+            <p style="margin-bottom: 0;">Custom elements share the same API surface as native DOM objects:</p>
+            <ul>
+              <li><strong>Attributes</strong></li>
+              <li><strong>Properties</strong></li>
+              <li><strong>Methods</strong></li>
+              <li><strong>Events</strong></li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Defining Custom Elements</h2>
+            <pre><code data-trim data-noescape class="javascript" style="font-size: 1em;">
+            class LoadingSpinner extends HTMLElement {
+              ...
+            }
+
+            customElements.define('loading-spinner', LoadingSpinner);
+            </code></pre>
+            <p class="fragment" style="margin-bottom: 0;">Custom elements are <strong><code>HTMLUnknownElement</code></strong> until upgraded.</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Attributes</h2>
+
+            <pre><code data-trim data-noescape class="javascript" style="font-size: 0.9em;">
+            class LoadingSpinner extends HTMLElement {
+
+              <fragment class="fragment">static get observedAttributes() {
+                return ['mode'];
+              }</fragment>
+
+              <fragment class="fragment">attributeChangedCallback(name, oldValue, newValue) {
+                if (name === 'mode') {
+                  // do something with newValue
+                }
+              }</fragment>
+            }
+            </code></pre>
+            <pre class="fragment"><code data-trim data-noescape class="html">
+            &lt;loading-spinner mode="indeterminate"&gt;&lt;/loading-spinner&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2>Properties</h2>
+            <pre><code data-trim data-noescape class="javascript" style="font-size: 0.9em;">
+            class LoadingSpinner extends HTMLElement {
+              ...
+              <fragment class="fragment">get mode() {
+                return this.getAttribute('mode');
+              }
+
+              set mode(val) {
+                this.setAttribute('mode', val);
+              }</fragment>
+            }
+            </code></pre>
+            <pre class="fragment"><code data-trim data-noescape class="javascript" style="font-size: 0.9em;">
+            let spinner = document.querySelector('loading-spinner');
+            spinner.mode = 'indeterminate';
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Custom Events</h2>
+            <pre class="fragment"><code data-trim data-noescape class="javascript" style="font-size: 0.9em;">
+            class LoadingSpinner extends HTMLElement {
+              ...
+              <fragment class="fragment">emitModeChange() {
+                <fragment class="fragment">let modeChangeEvent = new CustomEvent('mode-change', {
+                  mode: this.mode
+                });</fragment>
+                <fragment class="fragment">this.dispatchEvent(modeChangeEvent);</fragment>
+              }</fragment>
+            }
+            </code></pre>
+            <pre class="fragment"><code data-trim data-noescape class="javascript" style="font-size: 0.9em;">
+            let spinner = document.querySelector('loading-spinner');
+            spinner.addEventListener('mode-change', mode => { ... });
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2>Reactions</h2>
+            <p style="margin-bottom: 0;">Run code during interesting times of existence.</p>
+            <ul style="font-size: 0.8em;">
+              <li class="fragment"><strong>constructor()</strong> - Instance creation</li>
+              <li class="fragment"><strong>connectedCallback()</strong> - Inserted into DOM</li>
+              <li class="fragment"><strong>disconnectedCallback()</strong> - Removed from DOM</li>
+              <li class="fragment"><strong>attributeChangedCallback()</strong> - Attribute changed</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2 style="font-size: 1.2em;">Custom Elements inside Angular</h2>
+            <pre class="fragment"><code data-trim data-noescape class="html">
+              &lt;loading-spinner
+                [mode]="mode"
+                [attr.mode]="mode"
+                (modeChange)="doSomething()"
+                [value]="progress"&gt;
+              &lt;/loading-spinner&gt;
+            </code></pre>
+            <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> Angular has been designed for this.</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>NG &rarr; CE</h2>
+            <p>In fact, Angular and Custom Elements seem quite similar...</p>
+            <table>
+              <tr class="fragment">
+                <td><code>@HostBinding()</code></td>
+                <td>&rarr;</td>
+                <td>Attributes</td>
+              </tr>
+              <tr class="fragment">
+                <td><code>@Input()</code></td>
+                <td>&rarr;</td>
+                <td>Properties</td>
+              </tr>
+              <tr class="fragment">
+                <td><code>@Output()</code></td>
+                <td>&rarr;</td>
+                <td><code>CustomEvent()</code></td>
+              </tr>
+              <tr class="fragment">
+                <td>Lifecycle Hooks</td>
+                <td>&rarr;</td>
+                <td>Reactions</td>
+              </tr>
+            </table>
+          </div>
+        </section>
+
+        <section data-background="img/what-if.gif">
+          <h3 class="fragment" style="color: #fff; font-size: 2.5em; text-align:right; margin-top: 4.5em; margin-right: -1em; text-shadow: 5px 0 0 #000;">What if...<span class="fragment"><img src="img/angular.svg" style="display: inline-block; width: 150px; vertical-align: bottom;"> &rarr; <img src="img/logo-wc.png" style="display: inline-block; vertical-align: bottom; width: 170px;"></span></h3>
+          <h4>
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2>Angular Elements</h2> 
+        </section>
+
+        <section>
+          <div class="box fragment">
+            <p style="font-size: 1.2em;"><strong>Angular Components</strong> packaged as <strong>Custom Elements</strong>.*</p>
+            <small style="display: block; text-align: left; margin-top: 2.5em;">* kinda like Custom Elements on steroids; designed to work outside Angular apps</small>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <img src="img/ng-platform.svg">
+          </div>
+        </section>
+
+        <section data-background="img/blown-away.gif">
+        </section>
+
+        <!-- <section data-transition="none">
+            <img src="img/ng2ce.svg">
+        </section> -->
+
+        <section>
+          <div class="box">
+            <h2>In a nutshell</h2>
+
+            <ul>
+              <li>Self-bootstrapping <br>via <code>connectedCallback()</code></li>
+              <li>Hosts Angular Component <strong>inside</strong> Custom Element</li>
+              <li><strong>Brigdes</strong> DOM APIs and Angular APIs</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <blockquote style="margin-bottom: 2.5em;">"<strong>Angular Component</strong> on the <strong>inside</strong>, <strong>Standards</strong> on the <strong>outside</strong>."</blockquote>
+            <div class="rob-quote">
+              <img src="img/rob-wormald.jpg">
+              <small style="text-align: left;">Rob Wormald, <strong>Angular Team™</strong></small>
+            </div>
+          </div>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2>Angular Elements in Code</h2>
+            <pre class="fragment"><code data-trim data-noescape class="typescript">
+            // app.module.ts
+            import { HelloWorldComponent } from './hello-world';
+
+            <fragment class="fragment">export const CEComponents = [HelloWorldComponent];</fragment>
+
+            <fragment class="fragment">@NgModule({
+              <fragment class="fragment">imports: [BrowserModule],</fragment>
+              <fragment class="fragment">declarations: CEComponents,</fragment>
+              <fragment class="fragment">entryComponents: CEComponents</fragment>
+            })
+            export class CustomElementsModule {
+              <fragment class="fragment">ngDoBootstrap() {} // required in bootstrap module</fragment>
+            }</fragment>
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2>Angular Elements in Code</h2>
+            <pre class="fragment"><code data-trim data-noescape class="typescript">
+            // main.ts
+            import { registerAsCustomElements } from '@angular/elements';
+            <fragment class="fragment">import { CEComponents, CustomElementsModule } from './app';</fragment>
+
+            <fragment class="fragment">registerAsCustomElements(CEComponents, () => {
+              return platformBrowserDynamic()
+                .bootstrapModule(CustomElementsModule);
+            })</fragment><fragment class="fragment">.then(_ => {
+              // application code goes here
+            }).catch(onError);</fragment>
+            </code></pre>
+            <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> Works in AoT as well!</p>
+          </div>
+        </section>
+
+        <section>
+          <h1>Demo</h1>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Conclusion</h2>
+            <ul>
+              <li class="fragment">Makes your components usable everywhere</li>
+              <li class="fragment">Might become standalone component model for Angular</li>
+              <li class="fragment">Some things still need to be figured out (packaging, dependency management etc.)</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Credits</h2>
+            <ul class="credits">
+              <li>
+                <img src="img/georgios.jpg">
+                <h5>Georgios Kalpakas</h5>
+              </li>
+              <li>
+                <img src="img/rob-wormald.jpg">
+                <h5>Rob Wormald</h5>
+              </li>
+            </ul>
+            <p style="margin-bottom: 0;"><strong>Thanks for your help!</strong></p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Demos</h2>
+            <ul>
+              <li><a href="https://stackblitz.com/edit/ng-be-2017-demo-hello-world">Hello World</a></li>
+              <li><a href="https://stackblitz.com/edit/ng-be-2017-demo-material">Material Components as Custom Elements</a></li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Resources</h2>
+
+            <ul>
+              <li><a href="https://github.com/angular/angular/tree/labs/elements">angular@labs/elements</a> on GitHub</li>
+              <li><a href="https://developers.google.com/web/fundamentals/web-components/customelements">Custom Elements V1 - Web Fundamentals</a></li>
+              <li><a href="https://www.youtube.com/watch?v=ljsOPm4MMEo&">Angular Labs: A Glimpse at Angular Elements</a></li>
+            </ul>
+          </div>
+        </section>
+        <section data-state="end" class="thank-you-slide" data-background="img/angular.svg" data-autoslide="1000">
+          <div class="fragment">
+            <h1>Thank you.</h1>
+            <div class="speaker">
+              <img src="img/pascal.jpg">
+              <div class="speaker-info">
+                <span>Pascal Precht</span>
+                <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a>
+              </div>
+            </div>
+          </div>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        history: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
