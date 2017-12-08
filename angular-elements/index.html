@@ -472,7 +472,7 @@
               ...
               <fragment class="fragment">emitModeChange() {
                 <fragment class="fragment">let modeChangeEvent = new CustomEvent('mode-change', {
-                  mode: this.mode
+                  detail: this.mode
                 });</fragment>
                 <fragment class="fragment">this.dispatchEvent(modeChangeEvent);</fragment>
               }</fragment>
@@ -480,7 +480,7 @@
             </code></pre>
             <pre class="fragment"><code data-trim data-noescape class="javascript" style="font-size: 0.9em;">
             let spinner = document.querySelector('loading-spinner');
-            spinner.addEventListener('mode-change', mode => { ... });
+            spinner.addEventListener('mode-change', event => { ... });
             </code></pre>
           </div>
         </section>
@@ -505,7 +505,7 @@
               &lt;loading-spinner
                 [mode]="mode"
                 [attr.mode]="mode"
-                (modeChange)="doSomething()"
+                (modeChange)="doSomething($event)"
                 [value]="progress"&gt;
               &lt;/loading-spinner&gt;
             </code></pre>
@@ -547,6 +547,11 @@
           <h4>
         </section>
 
+        <section>
+          <h2>Others do it too!</h2>
+          <a href="https://stenciljs.com"><img src="img/stencil.png"></a>
+        </section>
+
 				<section class="section-slide" data-state="section">
           <h2>Angular Elements</h2> 
         </section>
@@ -567,9 +572,34 @@
         <section data-background="img/blown-away.gif">
         </section>
 
-        <!-- <section data-transition="none">
+        <section data-transition="none">
+          <div class="box">
+            <h2>How it works</h2>
+            <img class="fragment" src="img/ng2ce-1.svg">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2>How it works</h2>
+            <img src="img/ng2ce-2.svg">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2>How it works</h2>
             <img src="img/ng2ce.svg">
-        </section> -->
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <h2>How it works</h2>
+            <img src="img/ng2ce-highlight.svg">
+            <h4 style="position: absolute; bottom: 4em; right: 0.5em; font-size: 1.5em; transform: rotateZ(-15deg);" class="fragment">Done by Angular<br> =)</h4>
+          </div>
+        </section>
 
         <section>
           <div class="box">
@@ -636,7 +666,11 @@
         </section>
 
         <section>
-          <h1>Demo</h1>
+          <img src="img/demo-tweet.png">
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2>Demo</h2> 
         </section>
 
         <section>
@@ -669,7 +703,7 @@
 
         <section>
           <div class="box">
-            <h2>Demos</h2>
+            <h2>Links to Demos</h2>
             <ul>
               <li><a href="https://stackblitz.com/edit/ng-be-2017-demo-hello-world">Hello World</a></li>
               <li><a href="https://stackblitz.com/edit/ng-be-2017-demo-material">Material Components as Custom Elements</a></li>
