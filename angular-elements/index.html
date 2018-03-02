@@ -53,15 +53,24 @@
           </aside>
         </section>
 
+        <section data-transition="none" data-background="/img/group.svg" style="position: relative">
+        </section>
+        <section data-transition="none" data-background="/img/group-arrow.svg" style="position: relative">
+        </section>
+        <section data-transition="none" data-background="/img/group-zoom.svg" style="position: relative">
+        </section>
+        <section data-background="/img/group-zoom-2.svg" style="position: relative">
+        </section>
+
         <section>
-          <figure class="polaroid left fragment">
+          <figure class="polaroid fragment">
             <img src="img/pascal.jpg" >
             <figcaption>
             <a href="https://twitter.com/PascalPrecht">@PascalPrecht</a><br>
             <span><small><strong>GDE for the Angular Team</strong></small></span>
             </figcaption>
           </figure>
-          <figure class="polaroid horizontal fragment">
+          <!-- <figure class="polaroid horizontal fragment">
             <img src="img/thoughtram.jpg">
             <figcaption>
             <small>Software training with passion <a href="https://twitter.com/thoughtram">@<strong>thoughtram</strong></a></small>
@@ -71,8 +80,8 @@
             <img src="img/machinelabs-team.jpg">
             <figcaption>
             <small>Machine Learning for everyone<br><a href="https://twitter.com/machinelabs_ai">@<strong>MachineLabs_AI</strong></a></small>
-            </figcaption>
-          </figure>
+            </figcaption> 
+          </figure> -->
 
           <aside class="notes">
             <uL>
@@ -99,7 +108,7 @@
           </aside>
         </section>
 
-        <section data-autoslide="4000">
+        <!-- <section>
           <img src="img/angular-labs.svg" style="max-width: 600px; transform: rotateZ(14deg)">
         </section>
 
@@ -115,7 +124,7 @@
             <img src="img/angular-labs.svg" style="max-width: 900px; transform: rotateZ(-30deg); margin-top: -2em;">
             <img src="img/jk.svg" style="position: absolute; max-width: 450px; top: 2em; left: -5em;">
           </div>
-        </section>
+        </section> -->
 
 				<section class="section-slide" data-state="section">
           <h2>Background</h2> 
@@ -552,6 +561,12 @@
           <a href="https://stenciljs.com"><img src="img/stencil.png"></a>
         </section>
 
+        <section data-background="img/julien-tweet.png">
+        </section>
+
+        <section data-background="img/wc-implementations.png">
+        </section>
+
 				<section class="section-slide" data-state="section">
           <h2>Angular Elements</h2> 
         </section>
@@ -665,15 +680,26 @@
           </div>
         </section>
 
-        <section>
+        <!-- <section>
           <img src="img/demo-tweet.png">
-        </section>
+        </section> -->
 
 				<section class="section-slide" data-state="section">
           <h2>Demo</h2> 
         </section>
 
         <section>
+          <div class="box">
+            <h2>Current limitations</h2>
+            <ul>
+              <li class="fragment">No support for Animation HostEventListeners yet (<a href="https://github.com/angular/angular/issues/22117">#22117</a>)</li>
+              <li class="fragment">Component methods aren't preserved on DOM object (<a href="https://github.com/angular/angular/issues/22114">#22114</a>)</li>
+              <li class="fragment">Packaging/bundling story (<strong>Ivy is going to fix this</strong>)</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- <section>
           <div class="box">
             <h2>Conclusion</h2>
             <ul>
@@ -682,6 +708,22 @@
               <li class="fragment">Some things still need to be figured out (packaging, dependency management etc.)</li>
             </ul>
           </div>
+        </section> -->
+
+        <section>
+          <div class="box">
+            <h2>So when is it ready?</h2>
+            <ul>
+              <li class="fragment">Initial experimental release: Angular v6</li>
+              <li class="fragment">v6 is just the foundational work</li>
+              <li class="fragment">Angular.io embedded Components are done first</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>v6.angular.io</h2>
+          <img src="img/v6-milestone.png">"
         </section>
 
         <section>
@@ -696,6 +738,10 @@
                 <img src="img/rob-wormald.jpg">
                 <h5>Rob Wormald</h5>
               </li>
+              <li>
+                <img src="img/andrei.jpeg">
+                <h5>Andrei Antal</h5>
+              </li>
             </ul>
             <p style="margin-bottom: 0;"><strong>Thanks for your help!</strong></p>
           </div>
@@ -707,6 +753,7 @@
             <ul>
               <li><a href="https://stackblitz.com/edit/ng-be-2017-demo-hello-world">Hello World</a></li>
               <li><a href="https://stackblitz.com/edit/ng-be-2017-demo-material">Material Components as Custom Elements</a></li>
+              <li><a href="https://github.com/andrei-antal/ng-europe-demo-angular-elements">Angular Element inside Vue and React</a> (Thanks Andrei!)</li>
             </ul>
           </div>
         </section>

@@ -246,12 +246,15 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 .reveal .credits {
   list-style: none;
-  margin: 0;
-  padding: 0; }
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
   .reveal .credits li {
-    width: 49%;
-    display: inline-block;
-    text-align: center; }
+    text-align: center;
+    flex: 1; }
     .reveal .credits li:first-child {
       margin-left: 0; }
   .reveal .credits img {

@@ -343,13 +343,16 @@ section.has-dark-background {
 
   .credits {
     list-style: none;
-    margin:0;
+    margin:0 auto;
     padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
     li {
-      width: 49%;
-      display: inline-block;
       text-align: center;
+      flex: 1;
 
       &:first-child {
         margin-left: 0;
