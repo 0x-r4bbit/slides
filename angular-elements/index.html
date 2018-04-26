@@ -53,14 +53,14 @@
           </aside>
         </section>
 
-        <section data-transition="none" data-background="/img/group.svg" style="position: relative">
+        <!-- <section data-transition="none" data-background="/img/group.svg" style="position: relative">
         </section>
         <section data-transition="none" data-background="/img/group-arrow.svg" style="position: relative">
         </section>
         <section data-transition="none" data-background="/img/group-zoom.svg" style="position: relative">
         </section>
         <section data-background="/img/group-zoom-2.svg" style="position: relative">
-        </section>
+        </section> -->
 
         <section>
           <figure class="polaroid fragment">
@@ -96,7 +96,7 @@
           <strong>pascalprecht.github.io/slides/angular-elements</strong>
         </section>
 
-        <section data-autoslide="7000">
+        <!-- <section data-autoslide="7000">
           <img src="img/angular-labs.svg" style="max-width: 500px">
 
           <aside class="notes">
@@ -106,7 +106,7 @@
               <li>Ergo: super exciting, but not stable</li>
             </ul>
           </aside>
-        </section>
+        </section> -->
 
         <!-- <section>
           <img src="img/angular-labs.svg" style="max-width: 600px; transform: rotateZ(14deg)">
@@ -230,9 +230,9 @@
             <h2>Various use cases</h2>
 
             <ul>
-              <li class="fragment"><strong>Reusability</strong> - Reuse components across teams and projects</li>
+              <li class="fragment"><strong>Reusability</strong> - Reuse components across teams</li>
               <li class="fragment"><strong>CMS Pages</strong> - Embed standalone apps in CMS powered websites</li>
-              <li class="fragment"><strong>Widgets</strong> - Use Angular components in other environments</li>
+              <li class="fragment"><strong>Widgets</strong> - Use Angular components in other environments/projects/frameworks</li>
               <li class="fragment">...</li>
             </ul>
           </div>
@@ -244,7 +244,7 @@
           </aside>
         </section>
 
-        <section data-background="img/what-if.gif">
+        <!-- <section data-background="img/what-if.gif">
           <h3 class="fragment" style="color: #fff; font-size: 2.5em; text-align:right; margin-top: 1em; margin-right: -1em; text-shadow: 5px 0 0 #000;">What if...</h3>
           <aside class="notes">
             <uL>
@@ -252,7 +252,7 @@
               <li>Oh wait...!</li>
             </ul>
           </aside>
-        </section>
+        </section>-->
 
 				<section class="section-slide" data-state="section">
           <img style="margin-top: 2em;" src="img/logo-wc.png">
@@ -283,7 +283,7 @@
           </div>
         </section>
 
-        <section>
+        <!-- <section>
           <div class="box">
             <h2>Templates</h2>
             <pre><code data-trim data-noescape class="html" style="font-size: 1.2em;">
@@ -293,9 +293,9 @@
             </code></pre>
             <p style="margin-bottom: 0;">Declared using <code>&lt;template&gt;</code> and can be <strong>instantiated later</strong> at runtime.</p>
           </div>
-        </section>
+        </section> -->
 
-				<section data-transition="none">
+				<!-- <section data-transition="none">
           <div class="box">
             <h2>Web Components</h2>
             <ul style="color: #AAA">
@@ -305,7 +305,7 @@
               <li><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
             </ul>
           </div>
-        </section>
+        </section> -->
 
 				<section data-transition="none">
           <div class="box">
@@ -343,7 +343,7 @@
           </div>
         </section>
 
-        <section>
+        <!-- <section>
           <div class="box">
             <h2>Shadow DOM</h2>
             <pre><code data-trim data-noescape class="html" style="font-size: 1em;">
@@ -356,9 +356,9 @@
             </code></pre>
             <p style="margin-bottom: 0;">Enables <strong>style and DOM encapsulation</strong> within a DOM element.</p>
           </div>
-        </section>
+        </section> -->
 
-				<section data-transition="none">
+				<!-- <section data-transition="none">
           <div class="box">
             <h2>Web Components</h2>
             <ul style="color: #AAA">
@@ -368,7 +368,7 @@
               <li><strong>Custom Elements</strong> - Extend the browser vocabulary!</li>
             </ul>
           </div>
-        </section>
+        </section> -->
 
 
 				<section data-transition="none">
@@ -423,7 +423,25 @@
 
             customElements.define('loading-spinner', LoadingSpinner);
             </code></pre>
-            <p class="fragment" style="margin-bottom: 0;">Custom elements are <strong><code>HTMLUnknownElement</code></strong> until upgraded.</p>
+            <p style="margin-bottom: 0;">Custom elements are <strong><code>HTMLUnknownElement</code></strong> until upgraded.</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="box">
+            <h2>Reactions</h2>
+            <pre><code data-trim data-noescape class="javascript" style="font-size: 1em;">
+            class LoadingSpinner extends HTMLElement {
+              ...
+              connectedCallback() {
+                ...
+              }
+              disconnectedCallback() {
+                ...
+              }
+            }
+            </code></pre>
+            <p style="margin-bottom: 0;">Run code during interesting times of existence.</p>
           </div>
         </section>
 
@@ -433,7 +451,7 @@
 
             <pre><code data-trim data-noescape class="javascript" style="font-size: 0.9em;">
             class LoadingSpinner extends HTMLElement {
-
+              ...
               <fragment class="fragment">static get observedAttributes() {
                 return ['mode'];
               }</fragment>
@@ -476,14 +494,13 @@
         <section>
           <div class="box">
             <h2>Custom Events</h2>
-            <pre class="fragment"><code data-trim data-noescape class="javascript" style="font-size: 0.9em;">
+            <pre><code data-trim data-noescape class="javascript" style="font-size: 0.9em;">
             class LoadingSpinner extends HTMLElement {
               ...
               <fragment class="fragment">emitModeChange() {
-                <fragment class="fragment">let modeChangeEvent = new CustomEvent('mode-change', {
+                <fragment class="fragment">this.dispatchEvent(new CustomEvent('mode-change', {
                   detail: this.mode
-                });</fragment>
-                <fragment class="fragment">this.dispatchEvent(modeChangeEvent);</fragment>
+                }));</fragment>
               }</fragment>
             }
             </code></pre>
@@ -491,19 +508,6 @@
             let spinner = document.querySelector('loading-spinner');
             spinner.addEventListener('mode-change', event => { ... });
             </code></pre>
-          </div>
-        </section>
-
-        <section data-transition="none">
-          <div class="box">
-            <h2>Reactions</h2>
-            <p style="margin-bottom: 0;">Run code during interesting times of existence.</p>
-            <ul style="font-size: 0.8em;">
-              <li class="fragment"><strong>constructor()</strong> - Instance creation</li>
-              <li class="fragment"><strong>connectedCallback()</strong> - Inserted into DOM</li>
-              <li class="fragment"><strong>disconnectedCallback()</strong> - Removed from DOM</li>
-              <li class="fragment"><strong>attributeChangedCallback()</strong> - Attribute changed</li>
-            </ul>
           </div>
         </section>
 
@@ -552,7 +556,7 @@
         </section>
 
         <section data-background="img/what-if.gif">
-          <h3 class="fragment" style="color: #fff; font-size: 2.5em; text-align:right; margin-top: 4.5em; margin-right: -1em; text-shadow: 5px 0 0 #000;">What if...<span class="fragment"><img src="img/angular.svg" style="display: inline-block; width: 150px; vertical-align: bottom;"> &rarr; <img src="img/logo-wc.png" style="display: inline-block; vertical-align: bottom; width: 170px;"></span></h3>
+          <h3 style="color: #fff; font-size: 2.5em; text-align:right; margin-top: 4.5em; margin-right: -1em; text-shadow: 5px 0 0 #000;">What if...<span class="fragment"><img src="img/angular.svg" style="display: inline-block; width: 150px; vertical-align: bottom;"> &rarr; <img src="img/logo-wc.png" style="display: inline-block; vertical-align: bottom; width: 170px;"></span></h3>
           <h4>
         </section>
 
@@ -573,7 +577,7 @@
 
         <section>
           <div class="box fragment">
-            <p style="font-size: 1.2em;"><strong>Angular Components</strong> packaged as <strong>Custom Elements</strong>.*</p>
+            <p style="font-size: 1.2em;"><strong>Angular Components</strong> glued together with <strong>Custom Elements</strong>.*</p>
             <small style="display: block; text-align: left; margin-top: 2.5em;">* kinda like Custom Elements on steroids; designed to work outside Angular apps</small>
           </div>
         </section>
@@ -589,12 +593,253 @@
 
         <section data-transition="none">
           <div class="box">
-            <h2>How it works</h2>
-            <img class="fragment" src="img/ng2ce-1.svg">
+            <pre class="fragment"><code data-trim data-noescape class="typescript">
+            @Component({
+              selector: 'hello-world',
+              template: `
+                &lt;h1&gt;Hello {{name}}&lt;/h1&gt;
+                &lt;input type="text" [(ngModel)]="name"&gt;
+                &lt;button (click)="changeName()"&gt;Save&lt;/button&gt;
+              `
+            })
+            class HelloWorld {
+              <fragment class="fragment">@Input() name: string;
+              @Output() nameChange = new EventEmitter();</fragment>
+              <fragment class="fragment">changeName() {
+                this.nameChange.emit(this.name);
+              }</fragment>
+            }
+            </code></pre>
           </div>
         </section>
 
         <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="typescript">
+            import { NgModule } from '@angular/core';
+            import { BrowserModule } from '@angular/platform-browser';
+            import { HelloWorld } from './hello-world';
+
+            <fragment class="fragment">@NgModule({
+              <fragment class="fragment">imports: [BrowserModule, ...],</fragment>
+              <fragment class="fragment">declarations: [HelloWorld],</fragment>
+              <fragment class="fragment">entryComponents: [HelloWorld]</fragment>
+            })
+            export class HelloWorldModule {
+              <fragment class="fragment">ngDoBootstrap() {} // required in bootstrap module</fragment>
+            }</fragment>
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="typescript">
+            import { HelloWorldModule } from './app';
+            import { HelloWorld } from './hello-world';
+            import { createCustomElement } from '@angular/elements';
+
+            <fragment class="fragment">platformBrowserDynamic()
+              .bootstrapModule(HelloWorldModule)
+              <fragment class="fragment">.then(({injector}) => {
+                <fragment class="fragment">const HelloWorldElement = createCustomElement(HelloWorld, {
+                  injector
+                });
+                <fragment class="fragment">customElements.define('hello-world', HelloWorldElement);</fragment></fragment>
+              });</fragment></fragment>
+            </code></pre>
+            <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> Works in AoT as well!</p>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="typescript">
+            import { createCustomElement } from '@angular/elements';
+
+            @NgModule({...})
+            export class HelloWorldModule {
+              <fragment class="fragment">constructor(private injector: Injector) {}</fragment>
+              ngDoBootstrap() {
+                <fragment class="fragment">customElements.define(
+                  'hello-world',
+                  createCustomElement(HelloWorld, { injector: this.injector })
+                );</fragment>
+              }
+            }
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="typescript">
+            import { HelloWorldModule } from './app';
+            import { HelloWorld } from './hello-world';
+
+            platformBrowserDynamic().bootstrapModule(HelloWorldModule);
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <strong><code style="font-size: 0.8em;">&lt;hello-world name="Uphill Conf"&gt;&lt;/hello-world&gt;</code></strong>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="javascript">
+            const helloWorld = document.createElement('hello-world');
+            document.body.appendChild(helloWorld);
+
+            helloWorld.name = 'Pascal';
+            helloWorld.setAttribute('name', 'Pascal');
+            helloWorld.addEventListener('nameChange', event => {...});
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="javascript">
+            const HelloWorld = customElements.get('hello-world');
+            const helloWorld = new HelloWorld();
+            document.body.appendChild(helloWorld);
+
+            helloWorld.addEventListener('nameChange', event => {...});
+            </code></pre>
+          </div>
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2 style="font-size: 1.2em; font-weight: normal;">Angular Elements are the <span style="font-weight: bold;">Host Element</span></h2> 
+        </section>
+
+        <section data-transition="none">
+          <div class="box fragment">
+            <pre><code data-trim data-noescape class="javascript">
+            @Component({
+              selector: 'hello-world',
+              ...
+            })
+            export class HelloWorld {
+              <fragment class="fragment">constructor(el: ElementRef) {
+                el.nativeElement // &lt;- Angular Element
+              }</fragment>
+
+              <fragment class="fragment">@HostListener('click')
+              onHostClick($event) { ... }</fragment>
+
+              <fragment class="fragment">@HostBinding('attr.someAttribute')
+              someAttributeValue: string;</fragment>
+            }
+            </code></pre>
+          </div>
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2>Dependency Injection</h2> 
+        </section>
+
+        <section data-transition="none">
+          <div class="box fragment">
+            <img src="img/ng-injector-tree.svg">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <img src="img/ng-injector-tree-element-injector.svg">
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="typescript" style="font-size: 0.9em;">
+            @NgModule({...})
+            export class HelloWorldModule {
+              constructor(private injector: Injector) {}
+              ngDoBootstrap() {
+                customElements.define(
+                  'hello-world',
+                  createCustomElement(HelloWorld, { injector: this.injector })
+                );
+              }
+            }
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <p style="font-size: 1.2em;">Dependency Injection <strong>just works™</strong></p>
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2>Content Projection</h2> 
+        </section>
+
+        <section data-transition="none">
+          <div class="box fragment">
+            <pre><code data-trim data-noescape class="html">
+            &lt;hello-world&gt;
+              <fragment class="fragment">&lt;span&gt;Some HTML right here&lt;/span&gt;</fragment>
+            &lt;/hello-world&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="typescript">
+            @Component({
+              selector: 'hello-world',
+              template: `
+                &lt;h1&gt;Hello {{name}}!&lt;/h1&gt;
+                <fragment class="fragment">&lt;ng-content&gt;&lt;/ng-content&gt;</fragment>
+              `
+            })
+            export class HelloWorld {
+              ...
+            }
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="html">
+            &lt;hello-world&gt;
+              &lt;h1&gt;Hello world!&lt;/h1&gt;
+              &lt;span&gt;Some HTML right here&lt;/span&gt;
+            &lt;/hello-world&gt;
+            </code></pre>
+          </div>
+        </section>
+
+				<section class="section-slide" data-state="section">
+          <h2>Slots + Shadow DOM</h2> 
+        </section>
+
+        <section data-transition="none">
+          <div class="box fragment" data-fragment-index="1">
+            <pre><code data-trim data-noescape class="typescript">
+            @Component({
+              selector: 'hello-world',
+              template: `
+                &lt;h1&gt;Hello {{name}}!&lt;/h1&gt;
+                <span class="fragment" data-fragment-index="3">&lt;slot&gt;&lt;/slot&gt;</span>
+              `,
+              <span class="fragment" data-fragment-index="2">encapsulation: ViewEncapsulation.Native</span>
+            })
+            export class HelloWorld {
+              ...
+            }
+            </code></pre>
+            <p class="ribbon error fragment"><strong>Experimental!</strong></p>
+          </div>
+        </section>
+
+        <!-- <section data-transition="none">
           <div class="box">
             <h2>How it works</h2>
             <img src="img/ng2ce-2.svg">
@@ -626,7 +871,7 @@
               <li><strong>Bridges</strong> DOM APIs and Angular APIs</li>
             </ul>
           </div>
-        </section>
+        </section> -->
 
         <section>
           <div class="box">
@@ -640,55 +885,49 @@
           </aside>
         </section>
 
-        <section data-transition="none">
-          <div class="box">
-            <h2>Angular Elements in Code</h2>
-            <pre class="fragment"><code data-trim data-noescape class="typescript">
-            // app.module.ts
-            import { HelloWorldComponent } from './hello-world';
-
-            <fragment class="fragment">export const CEComponents = [HelloWorldComponent];</fragment>
-
-            <fragment class="fragment">@NgModule({
-              <fragment class="fragment">imports: [BrowserModule],</fragment>
-              <fragment class="fragment">declarations: CEComponents,</fragment>
-              <fragment class="fragment">entryComponents: CEComponents</fragment>
-            })
-            export class CustomElementsModule {
-              <fragment class="fragment">ngDoBootstrap() {} // required in bootstrap module</fragment>
-            }</fragment>
-            </code></pre>
-          </div>
+				<section class="section-slide" data-state="section">
+          <h2>Angular Elements in Action</h2> 
         </section>
 
-        <section data-transition="none">
-          <div class="box">
-            <h2>Angular Elements in Code</h2>
-            <pre class="fragment"><code data-trim data-noescape class="typescript">
-            // main.ts
-            import { registerAsCustomElements } from '@angular/elements';
-            <fragment class="fragment">import { CEComponents, CustomElementsModule } from './app';</fragment>
-
-            <fragment class="fragment">registerAsCustomElements(CEComponents, () => {
-              return platformBrowserDynamic()
-                .bootstrapModule(CustomElementsModule);
-            })</fragment><fragment class="fragment">.then(_ => {
-              // application code goes here
-            }).catch(onError);</fragment>
-            </code></pre>
-            <p class="ribbon success fragment"><i class="material-icons">thumb_up</i> Works in AoT as well!</p>
-          </div>
+        <section data-background="img/aio-1.png">
+          
         </section>
 
-        <!-- <section>
-          <img src="img/demo-tweet.png">
-        </section> -->
+        <section data-background="img/aio-2.png">
+          
+        </section>
 
 				<section class="section-slide" data-state="section">
           <h2>Demo</h2> 
         </section>
 
-        <section>
+				<section class="section-slide" data-state="section">
+          <h2>Beyond v6 + Ivy</h2> 
+        </section>
+
+        <section data-transition="none">
+          <div class="box">
+            <pre><code data-trim data-noescape class="typescript">
+            @Component({
+              selector: 'hello-world',
+              template: '...',
+              <fragment class="fragment">customElement: true</fragment>
+            })
+            export class HelloWorld {
+              ...
+            }
+            </code></pre>
+            <p class="ribbon error"><strong>Speculative API</strong></p>
+          </div>
+        </section>
+
+        <section data-background="img/ng-cake.png">
+        </section>
+
+        <section data-background="img/ng-cake-2.png">
+        </section>
+
+        <!-- <section>
           <div class="box">
             <h2>Current limitations</h2>
             <ul>
@@ -697,7 +936,7 @@
               <li class="fragment">Packaging/bundling story (<strong>Ivy is going to fix this</strong>)</li>
             </ul>
           </div>
-        </section>
+        </section> -->
 
         <!-- <section>
           <div class="box">
@@ -710,7 +949,7 @@
           </div>
         </section> -->
 
-        <section>
+        <!-- <section>
           <div class="box">
             <h2>So when is it ready?</h2>
             <ul>
@@ -719,12 +958,12 @@
               <li class="fragment">Angular.io embedded Components are done first</li>
             </ul>
           </div>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h2>v6.angular.io</h2>
           <img src="img/v6-milestone.png">"
-        </section>
+        </section> -->
 
         <section>
           <div class="box">
@@ -763,9 +1002,9 @@
             <h2>Resources</h2>
 
             <ul>
-              <li><a href="https://github.com/angular/angular/tree/labs/elements">angular@labs/elements</a> on GitHub</li>
+              <li><a href="https://github.com/angular/angular/tree/master/packages/elements">angular/elements</a> on GitHub</li>
               <li><a href="https://developers.google.com/web/fundamentals/web-components/customelements">Custom Elements V1 - Web Fundamentals</a></li>
-              <li><a href="https://www.youtube.com/watch?v=ljsOPm4MMEo&">Angular Labs: A Glimpse at Angular Elements</a></li>
+              <li><a href="https://youtu.be/dIxknqPOWms?t=1329">Tree-shakable providers and Ivy</a></li>
             </ul>
           </div>
         </section>
