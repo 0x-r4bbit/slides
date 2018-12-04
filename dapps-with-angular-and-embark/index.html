@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Decentralized apps with Angular and Embark</title>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700" rel="stylesheet">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/pascal.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/a11y-light.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+     <a style="font-family: 'Fira Mono', sans-serif;text-decoration: none; font-size: 1.2em;position: absolute; bottom: 1em; left: 1.5em; z-index: 2; color: #AAA;" href="http://twitter.com/PascalPrecht">
+    <span>@PascalPrecht</span>
+    </a>
+		<div class="reveal">
+			<div class="slides">
+				<section class="deck-slide">
+          <h2>Decentralized Apps</h2>
+          <h4 style="font-weight: normal;">with <strong>Angular</strong> and <strong>Embark</strong></h4>
+          <div class="speaker">
+            <img alt=""src="https://pbs.twimg.com/profile_images/993785060733194241/p3oAIMDP_400x400.jpg">
+            <div class="speaker-info">
+              <span>Pascal Precht</span>
+              <a href="http://twitter.com/PascalPrecht">@PascalPrecht</a>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <uL>
+              <li>Hello there! How's everyone doing?</li>
+              <li>Today I'm gonna take you on a journey about building apps differently</li>
+              <li>We've got lots to cover. As a matter of fact...</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <img style="max-width: 80%;" src="img/tweet.png">
+          <aside class="notes">
+            <uL>
+              <li>...I've got 30 mins to explain these.</li>
+              <li>Obviously not enough time to go in too much detail.</li>
+              <li>Hopefully gives you an idea and is inspiring</li>
+            </ul>
+          </aside>
+        </section>
+				<section>
+          <h2>Decentralized app?</h2>
+          <aside class="notes">
+            <uL>
+              <li>Alright, let's get started</li>
+              <li>What's a Dapp anyways?</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <p>A decentralized application (<i>DApp</i>) is an application that doesn't run on a single computer.</p>
+          <aside class="notes">
+            <uL>
+              <li>Simple right?</li>
+              <li>This idea is not new</li>
+              <li>Ppl have been building protocols and apps for p2p networks long ago</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <img src="img/network-types.png">
+          <small class="img-source">Source: https://diglife.com/content/images/2017/08/network_types_simplified.png</small>
+          <aside class="notes">
+            <uL>
+              <li>Let's take a look here to visualize this</li>
+              <li>3 Network topologies</li>
+              <li>Depending on goal, 2 and 3 is what we want, due to various reasons</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3>Benefits of DApps</h3>
+          <uL>
+            <li><strong>Faster</strong> - Send/receive data from closest peer</li>
+            <li><strong>More reliable</strong> - No single point of failure</li>
+            <li><strong>Run by the network</strong> - DApps can't be shut down by single entity</li>
+          </ul>
+          <aside class="notes">
+            <uL>
+              <li>Dapps come with great benefits</li>
+              <li>Some of these are really powerful</li>
+              <li>So how can we build Dapps?</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <p>So how do we build DApps?</p>
+        </section>
+        <section>
+          <img src="img/architecture.svg">
+          <aside class="notes">
+            <uL>
+              <li>Conceptually this is what we do today</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <img src="img/architecture-2.svg">
+          <aside class="notes">
+            <uL>
+              <li>This is what future architecture might look like</li>
+              <li>Notice: This is super high-level, not everything should and will go on the blockchain</li>
+            </ul>
+          </aside>
+        </section>
+				<section>
+          <h2>Blockchain</h2>
+          <aside class="notes">
+            <uL>
+              <li>So what's this blockchain everybody's talking about</li>
+            </ul>
+          </aside>
+        </section>
+				<section>
+          <p>A blockchain is a <strong>public</strong>, <strong>distributed</strong> ledger that records transactions in a <strong>verifiable</strong> and <strong>permanent</strong> way.</p>
+        </section>
+				<section>
+          <p>"It's kinda like a semi-automated Git repository on steroids that can't be rebased."</p>
+          <div class="quote">
+            <small style="text-align: left;">- Pascal Precht</small>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>...or, as a certain somebody likes to say</li>
+              <li>Still doesn't make sense?</li>
+            </ul>
+          </aside>
+        </section>
+        <!-- <section>
+          <img src="img/buy.svg">
+        </section> -->
+        <section>
+          <h2>"Legacy" world problems</h2>
+          <ul>
+            <li><strong>Banks</strong> - Everything we buy today has to go through a credit card company or bank</li>
+            <li>That means: Single authority, control, trust</li>
+          </ul>
+          <aside class="notes">
+            <uL>
+              <li>Okay, here's what blockchain on a high level is about</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <ul>
+            <li>Instead of having single ledger, all users would record all transactions</li>
+            <li>Cheaper, quicker, easier</li>
+          </ul>
+        </section>
+        <section>
+          <a href="https://anders.com/blockchain/hash.html" target="_blank">Blockchain Demo</a>
+        </section>
+        <section>
+          <h3>Various Use Cases</h3>
+
+          <ul>
+            <li>Identity <small>(e.g. <a href="https://www.uport.me/">Uport</a>)</small></li>
+            <li>Governance and democracy <small>(e.g. <a href="https://aragon.org/">Aragon</a>)</small></li>
+            <li>Storage <small>(e.g. IPFS <a href="https://filecoin.io/">Filecoin</a>)</small></li>
+            <li>Housing <small>(e.g. <a href="https://www.cryptocribs.com/">CryptoCribs</a>)</small></li>
+            <li>...</li>
+          </ul>
+        </section>
+				<section><h2>Smart Contracts</h2></section>
+        <section>
+          <h3>Smart Contracts</h3>
+          <ul>
+            <li>Programs that live on the blockchain</li>
+            <li>An account controlled by code</li>
+            <li>Contains balance, storage, bytecode</li>
+          </ul>
+        </section>
+        <section>
+          <img src="img/smart-contracts-1.svg">
+        </section>
+        <section>
+          <img src="img/smart-contracts-2.svg">
+        </section>
+        <section>
+          <img src="img/smart-contracts-3.svg">
+        </section>
+        <section>
+          <img src="img/smart-contracts-4.svg">
+        </section>
+        <section>
+          <img src="img/smart-contracts.svg">
+        </section>
+        <section>
+          <img src="img/smart-contracts-6.svg">
+        </section>
+        <section>
+          <div style="position: relative;">
+          <p>Let's make a lottery contract!*</p>
+
+          <small style="font-size: 0.3em;">*Shout-out to Stephen Grider for his <a href="https://www.udemy.com/ethereum-and-solidity-the-complete-developers-guide/" target="_blank">online course</a>!</small>
+          </div>
+        </section>
+        <section>
+          <img src="img/lotter-contract-1.svg">
+        </section>
+        <section>
+          <img src="img/lotter-contract-2.svg">
+        </section>
+        <section>
+          <img src="img/lotter-contract-3.svg">
+        </section>
+        <section>
+          <img src="img/lotter-contract-4.svg">
+        </section>
+        <section>
+          <img src="img/lotter-contract-5.svg">
+        </section>
+        <section>
+          <img src="img/lotter-contract-6.svg">
+        </section>
+        <section>
+          <img src="img/lotter-contract-7.svg">
+        </section>
+        <section>
+          <img src="img/lotter-contract-8.svg">
+        </section>
+        <section>
+          <h3>Lottery Contract in code (Solidity)</h3>
+        </section>
+        <section>
+          <pre><code data-trim data-noescape class="javascript scroll-shadow" style="max-height: 600px; font-size: 1.2em;">
+contract Lottery {
+  <fragment class="fragment">address public manager;
+  address[] public players;</fragment>
+  
+  <fragment class="fragment">function Lottery() public {
+    manager = msg.sender;
+  }</fragment>
+  
+  <fragment class="fragment">function enter() public payable {
+    require(msg.value > .01 ether);
+    players.push(msg.sender);
+  }</fragment>
+  
+  <fragment class="fragment">function random() private view returns (uint) {
+    return uint(sha3(block.difficulty, now, players));
+  }</fragment>
+  
+  <fragment class="fragment">function pickWinner() public {
+    require(msg.sender == manager);
+    uint index = random() % players.length;
+    players[index].transfer(this.balance);
+    players = new address[](0);
+  }</fragment>
+  
+  <fragment class="fragment">function getPlayers() public view returns (address[]) {
+    return players;
+  }</fragment>
+}
+          </code></pre>
+        </section>
+        <section>
+          <p>How do we talk to our Smart Contract?</p>
+        </section>
+        <section><h2>web3.js</h2></section>
+        <section>
+          <h2>web3.js</h2>
+
+          <ul>
+            <li>JavaScript RPC client</li>
+            <li>Provides access to wallet accounts</li>
+            <li>Sending transactions</li>
+            <li>Creates Contract instances from ABI</li>
+            <li>Utilities</li>
+          </ul>
+        </section>
+
+        <section>
+          <pre><code data-trim data-noescape class="javascript" style="max-height: 600px; font-size: 1.2em;">import Web3 from 'web3';
+
+const web3 = new Web3(provider) // HD Wallet or Metamask
+<fragment class="fragment">const accounts = await web3.eth.getAccounts();</fragment>
+<fragment class="fragment">const lottery = new web3.eth.Contract(abi, '0x...');</fragment>
+
+<fragment class="fragment">await lottery.methods.enter().send({
+  from: accounts[0],
+  value: web3.utils.toWei('1', 'ether')
+});</fragment>
+
+<fragment class="fragment">const players = await lottery.methods.getPlayers().call();</fragment>
+
+          </code></pre>
+        </section>
+
+        <section>
+          <pre><code data-trim data-noescape class="javascript" style="max-height: 600px; font-size: 1em;">
+@NgModule({
+  providers: [
+    <fragment class="fragment">{ 
+      provide: Web3, useFactory: () => { return new Web3(provider) }
+    },</fragment>
+    <fragment class="fragment">{ 
+      provide: Lottery, 
+      deps: [Web3],
+      useFactory: (web3) => {
+        return new web3.eth.Contract(abi, '0x...');
+      }
+    }</fragment>
+  ]
+})
+export class AppModule {...}
+          </code></pre>
+        </section>
+        <section>
+          <pre><code data-trim data-noescape class="javascript" style="max-height: 600px; font-size: 1.2em;">@Component(...)
+class AppComponent {
+  <fragment class="fragment">constructor(private web3: Web3, private lottery: Lottery) {}</fragment>
+
+  <fragment class="fragment">pickWinner() {
+    const accounts = await this.web3.getAccounts();
+
+    await this.lottery.methods.pickWinner().send({
+      from: accounts[0];
+    });
+  }</fragment>
+}
+          </code></pre>
+        </section>
+        <section>
+          <p>How do we put this all together?</p>
+        </section>
+				<section><h2>Enter Embark</h2></section>
+				<section><p><a href="https://embark.status.im">Embark</a> is a developer platform for building decentralized applications.</section>
+				<section>
+          <h3>Embark</h3>
+          <ul>
+            <li>CLI with interactive Dashboard and other tools</li>
+            <li>Manages and tracks Smart Contracts</li>
+            <li>Integrates with decentralized storages</li>
+            <li>"Cockpit" web interface</li>
+          </ul>
+          <p style="margin-top: 2em;">...and much more!</p>
+        </section>
+				<section><h3>Let's see it in action!</h3></section>
+				<section class="thank-you-slide">
+          <img alt=""src="https://pbs.twimg.com/profile_images/993785060733194241/p3oAIMDP_400x400.jpg">
+          <h3 style="font-weight: normal;">Thanks.</h3>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+        history: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,169 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+
+$mainFontSize: 42px;
+$mainFont: 'Fira Mono', Helvetica, sans-serif;
+$headingFont: 'Fira Mono', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: normal;
+$headingFontWeight: 600;
+$linkColor: #0080ab;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+}
+
+.reveal {
+
+  p {
+    font-weight: 500;
+  }
+
+  ul {
+    margin-top: 0.5em!important;
+    li {
+      margin-top: 0.5em;
+      font-size: 0.9em;
+      letter-spacing: -2px;
+
+      small {
+        vertical-align: middle!important;
+        font-size: 0.8em;
+      }
+    }
+  }
+
+  pre {
+    box-shadow: none!important;
+    width: initial!important;
+    border-radius: 4px;
+    margin-bottom: 0!important;
+
+    code {
+      padding: 0.5em 0.8em!important;
+      border-radius: 4px;
+      line-height: 1.6;
+      font-size: 0.95em;
+
+      &.smaller { font-size: 0.9em; }
+    }
+  }
+
+  section {
+    letter-spacing: -1px;
+
+    img {
+      border: 0!important;
+      box-shadow: none!important;
+      background: none!important;
+      margin: 0!important;
+    }
+  }
+
+  .deck-slide {
+    h2 {
+      margin-top: 2em!important;
+    }
+  }
+
+  .thank-you-slide {
+    img {
+      max-width: 220px;
+      display: inline-block;
+    }
+    h3 {
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 2em;
+    }
+  }
+
+  .speaker {
+    text-align: left;
+    margin-top: 2.5em;
+
+    img {
+      border-radius: 50%;
+      max-width: 150px;
+      display: inline-block;
+    }
+
+    .speaker-info {
+      display: inline-block;
+      vertical-align: top;
+      font-size: 0.6em;
+      margin-top: 2.2em;
+    }
+
+    span, a { display: block; }
+    a {
+      font-size: 0.7em;
+      margin-top: 0.2em;
+    }
+  }
+
+  .scroll-shadow {
+    background: linear-gradient(white 30%, rgba(255,255,255,0)),linear-gradient(rgba(255,255,255,0), white 70%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)), radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    background-attachment: local, local, scroll, scroll;
+    background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+    background-repeat: no-repeat;
+  }
+
+  .quote {
+    position: absolute;
+    left: 0.8em;
+    bottom: -2em;
+
+    img {
+      border-radius: 50%!important;
+      max-width: 80px;
+      margin: 0;
+    }
+
+    small {
+      margin-top: 0em;
+    }
+  }
+
+  .img-source {
+    font-size: 0.2em;
+    display: block;
+    text-align: left;
+    margin-top: 3em;
+  }
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
