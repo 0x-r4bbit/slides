@@ -150,19 +150,24 @@
         <section>
           <h2>"Legacy" world problems</h2>
           <ul>
-            <li><strong>Banks</strong> - Everything we buy today has to go through a credit card company or bank</li>
-            <li>That means: Single authority, control, trust</li>
+            <li><strong>Single Authority Control</strong> (Banks, Social Platforms, ...)</li>
+            <li>Everything we buy today has to go through a credit card company or bank</li>
+            <li>Corrupt governments and law systems</li>
+            <li>...</li>
           </ul>
           <aside class="notes">
-            <uL>
+            <ul>
               <li>Okay, here's what blockchain on a high level is about</li>
             </ul>
           </aside>
         </section>
         <section>
+          <h2>Blockchain World</h2>
           <ul>
-            <li>Instead of having single ledger, all users would record all transactions</li>
-            <li>Cheaper, quicker, easier</li>
+            <li>Instead of having a single ledger, all users would record all transactions</li>
+            <li>Transparent and Anonymous</li>
+            <li>Consensus Algorithm</li>
+            <li>Immutable</li>
           </ul>
         </section>
         <section>
@@ -208,7 +213,7 @@
         </section>
         <section>
           <div style="position: relative;">
-          <p>Let's make a lottery contract!*</p>
+          <p style="font-size: 1.5em;">Let's make a lottery contract!*</p>
 
           <small style="font-size: 0.3em;">*Shout-out to Stephen Grider for his <a href="https://www.udemy.com/ethereum-and-solidity-the-complete-developers-guide/" target="_blank">online course</a>!</small>
           </div>
@@ -245,8 +250,10 @@
 contract Lottery {
   <fragment class="fragment">address public manager;
   address[] public players;</fragment>
+  <fragment class="fragment">event newPlayer();
+  event winnerPicked();</fragment>
   
-  <fragment class="fragment">function Lottery() public {
+  <fragment class="fragment">function constructor() public {
     manager = msg.sender;
   }</fragment>
   
@@ -329,7 +336,7 @@ export class AppModule {...}
 class AppComponent {
   <fragment class="fragment">constructor(private web3: Web3, private lottery: Lottery) {}</fragment>
 
-  <fragment class="fragment">pickWinner() {
+  <fragment class="fragment">async pickWinner() {
     const accounts = await this.web3.getAccounts();
 
     await this.lottery.methods.pickWinner().send({
