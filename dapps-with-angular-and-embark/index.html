@@ -150,8 +150,9 @@
         <section>
           <h2>"Legacy" world problems</h2>
           <ul>
-            <li><strong>Single Authority Control</strong> (Banks, Social Platforms, ...)</li>
+            <li><strong>Single Authority Control</strong> <small>(Banks, Social Platforms, ...)</small></li>
             <li>Everything we buy today has to go through a credit card company or bank</li>
+            <li>Untransparent slow transaction times</li>
             <li>Corrupt governments and law systems</li>
             <li>...</li>
           </ul>
@@ -165,13 +166,13 @@
           <h2>Blockchain World</h2>
           <ul>
             <li>Instead of having a single ledger, all users would record all transactions</li>
-            <li>Transparent and Anonymous</li>
-            <li>Consensus Algorithm</li>
+            <li>Anonymous and Transparent</li>
+            <li>Consensus Rules</li>
             <li>Immutable</li>
           </ul>
         </section>
         <section>
-          <a href="https://anders.com/blockchain/hash.html" target="_blank">Blockchain Demo</a>
+          <a href="https://anders.com/blockchain/hash.html" target="_blank">Hashes and Blockchain (Simulator)</a>
         </section>
         <section>
           <h3>Various Use Cases</h3>
@@ -260,6 +261,7 @@ contract Lottery {
   <fragment class="fragment">function enter() public payable {
     require(msg.value > .01 ether);
     players.push(msg.sender);
+    emit newPlayer();
   }</fragment>
   
   <fragment class="fragment">function random() private view returns (uint) {
@@ -271,6 +273,7 @@ contract Lottery {
     uint index = random() % players.length;
     players[index].transfer(this.balance);
     players = new address[](0);
+    emit winnerPicked();
   }</fragment>
   
   <fragment class="fragment">function getPlayers() public view returns (address[]) {
@@ -349,7 +352,10 @@ class AppComponent {
         <section>
           <p>How do we put this all together?</p>
         </section>
-				<section><h2>Enter Embark</h2></section>
+				<section>
+          <img src="img/embark.png">
+          <a href="https://embark.status.im">embark.status.im</a>
+        </section>
 				<section><p><a href="https://embark.status.im">Embark</a> is a developer platform for building decentralized applications.</section>
 				<section>
           <h3>Embark</h3>
